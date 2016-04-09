@@ -1,24 +1,25 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 from base import Base
-class C(Base):
+class X(Base):
 	def encode(self,struct):
 		try:
 			self.check_input(struct);
 			inlist = struct['inlist'];
-			keys = self.data.keys();
+			xdata = self.data['X'];
+			keys = xdata.keys();
 			#foreach inlist
 			for tt in inlist:
-				#foreach self.data.keys
+				#foreach self.data.values
 				for key in keys:
-					data = self.data[key];
+					data = xdata[key];
 					#if the dic self.data contain tt
 					if tt in data:
 						if struct.has_key(tt):
 							raise Exception('the word %s has one more type' %tt);
 						tdic = dict();
-						tdic['type'] = 'C';
-						tdic['c'] = key;
+						tdic['type'] = 'X';
+						tdic['dir'] = key;
 						struct[tt]= tdic;
 						break;
 		except Exception as e:
