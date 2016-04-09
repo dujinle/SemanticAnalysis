@@ -1,0 +1,39 @@
+#F:方向动词
+{
+	"打开":{
+		"name":"打开",
+		"nickname:"打开",
+		"dimension":"二元",
+		"dir":"NEW"
+	},
+	"开":{
+		"name":"开",
+		"nickname:"开",
+		"dimension":"一维",
+		"dir":"正"
+	},
+	"关":{
+		"name":"关",
+		"nickname:"关",
+		"dimension":"一维",
+		"dir":"负"
+	},
+	"增加":{
+		"name":"增加",
+		"nickname":"增加",
+		"dimension":"一维",
+		"dir":"正"
+	},
+	"关掉":{
+		"name":"关掉",
+		"nickname":"关掉",
+		"dimension":"二元",
+		"dir":"NULL"
+	},
+	"调":{
+		"name":"调",
+		"nickname":"调",
+		"dimension":"一维",
+		"dir":"OFF"
+	}
+}
