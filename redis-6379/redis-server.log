@@ -1,0 +1,711 @@
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 4587
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[4587] 31 Mar 08:40:00.378 # Server started, Redis version 2.8.4
+[4587] 31 Mar 08:40:00.378 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[4587] 31 Mar 08:40:00.378 * The server is now ready to accept connections on port 6379
+[4587] 31 Mar 08:40:00.378 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-3679/redis.sock
+[4587] 31 Mar 08:40:28.735 * DB saved on disk
+[4587] 31 Mar 08:42:50.506 # User requested shutdown...
+[4587] 31 Mar 08:42:50.506 * Saving the final RDB snapshot before exiting.
+[4587] 31 Mar 08:42:50.632 * DB saved on disk
+[4587] 31 Mar 08:42:50.632 * Removing the pid file.
+[4587] 31 Mar 08:42:50.632 * Removing the unix socket file.
+[4587] 31 Mar 08:42:50.632 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 4715
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[4715] 31 Mar 08:51:38.365 # Server started, Redis version 2.8.4
+[4715] 31 Mar 08:51:38.365 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[4715] 31 Mar 08:51:38.365 * DB loaded from disk: 0.000 seconds
+[4715] 31 Mar 08:51:38.366 * The server is now ready to accept connections on port 6379
+[4715] 31 Mar 08:51:38.366 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-3679/redis.sock
+[4715] 31 Mar 08:51:48.278 # User requested shutdown...
+[4715] 31 Mar 08:51:48.278 * Saving the final RDB snapshot before exiting.
+[4715] 31 Mar 08:51:48.331 * DB saved on disk
+[4715] 31 Mar 08:51:48.331 * Removing the pid file.
+[4715] 31 Mar 08:51:48.331 * Removing the unix socket file.
+[4715] 31 Mar 08:51:48.331 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 4777
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[4777] 31 Mar 09:02:23.004 # Server started, Redis version 2.8.4
+[4777] 31 Mar 09:02:23.004 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[4777] 31 Mar 09:02:23.004 * DB loaded from disk: 0.000 seconds
+[4777] 31 Mar 09:02:23.004 * The server is now ready to accept connections on port 6379
+[4777] 31 Mar 09:02:23.004 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-3679/redis.sock
+[4796] 31 Mar 09:04:42.031 # Creating Server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 4991
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[4991] 31 Mar 10:26:24.020 # Server started, Redis version 2.8.4
+[4991] 31 Mar 10:26:24.020 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[4991] 31 Mar 10:26:24.020 * DB loaded from disk: 0.000 seconds
+[4991] 31 Mar 10:26:24.020 * The server is now ready to accept connections on port 6379
+[4991] 31 Mar 10:26:24.020 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[4991] 31 Mar 10:27:48.964 # User requested shutdown...
+[4991] 31 Mar 10:27:48.964 * Saving the final RDB snapshot before exiting.
+[4991] 31 Mar 10:27:49.071 * DB saved on disk
+[4991] 31 Mar 10:27:49.071 * Removing the pid file.
+[4991] 31 Mar 10:27:49.071 * Removing the unix socket file.
+[4991] 31 Mar 10:27:49.071 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5031
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5031] 31 Mar 10:27:51.497 # Server started, Redis version 2.8.4
+[5031] 31 Mar 10:27:51.497 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5031] 31 Mar 10:27:51.497 * DB loaded from disk: 0.000 seconds
+[5031] 31 Mar 10:27:51.497 * The server is now ready to accept connections on port 6379
+[5031] 31 Mar 10:27:51.497 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5031] 31 Mar 10:29:18.949 # User requested shutdown...
+[5031] 31 Mar 10:29:18.949 * Saving the final RDB snapshot before exiting.
+[5031] 31 Mar 10:29:19.027 * DB saved on disk
+[5031] 31 Mar 10:29:19.027 * Removing the pid file.
+[5031] 31 Mar 10:29:19.027 * Removing the unix socket file.
+[5031] 31 Mar 10:29:19.027 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5057
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5057] 31 Mar 10:29:21.689 # Server started, Redis version 2.8.4
+[5057] 31 Mar 10:29:21.690 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5057] 31 Mar 10:29:21.690 * DB loaded from disk: 0.000 seconds
+[5057] 31 Mar 10:29:21.690 * The server is now ready to accept connections on port 6379
+[5057] 31 Mar 10:29:21.690 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5057] 31 Mar 10:31:32.758 # User requested shutdown...
+[5057] 31 Mar 10:31:32.759 * Saving the final RDB snapshot before exiting.
+[5057] 31 Mar 10:31:32.820 * DB saved on disk
+[5057] 31 Mar 10:31:32.820 * Removing the pid file.
+[5057] 31 Mar 10:31:32.820 * Removing the unix socket file.
+[5057] 31 Mar 10:31:32.821 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5116
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5116] 31 Mar 10:31:34.973 # Server started, Redis version 2.8.4
+[5116] 31 Mar 10:31:34.973 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5116] 31 Mar 10:31:34.973 * DB loaded from disk: 0.000 seconds
+[5116] 31 Mar 10:31:34.973 * The server is now ready to accept connections on port 6379
+[5116] 31 Mar 10:31:34.973 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5116] 31 Mar 10:36:03.062 # User requested shutdown...
+[5116] 31 Mar 10:36:03.062 * Saving the final RDB snapshot before exiting.
+[5116] 31 Mar 10:36:03.134 * DB saved on disk
+[5116] 31 Mar 10:36:03.134 * Removing the pid file.
+[5116] 31 Mar 10:36:03.134 * Removing the unix socket file.
+[5116] 31 Mar 10:36:03.135 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5155
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5155] 31 Mar 10:36:05.584 # Server started, Redis version 2.8.4
+[5155] 31 Mar 10:36:05.584 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5155] 31 Mar 10:36:05.584 * DB loaded from disk: 0.000 seconds
+[5155] 31 Mar 10:36:05.584 * The server is now ready to accept connections on port 6379
+[5155] 31 Mar 10:36:05.584 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5155] 31 Mar 10:38:15.362 # User requested shutdown...
+[5155] 31 Mar 10:38:15.362 * Saving the final RDB snapshot before exiting.
+[5155] 31 Mar 10:38:15.421 * DB saved on disk
+[5155] 31 Mar 10:38:15.421 * Removing the pid file.
+[5155] 31 Mar 10:38:15.422 * Removing the unix socket file.
+[5155] 31 Mar 10:38:15.422 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5181
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5181] 31 Mar 10:38:21.470 # Server started, Redis version 2.8.4
+[5181] 31 Mar 10:38:21.470 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5181] 31 Mar 10:38:21.470 * DB loaded from disk: 0.000 seconds
+[5181] 31 Mar 10:38:21.470 * The server is now ready to accept connections on port 6379
+[5181] 31 Mar 10:38:21.470 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5181] 31 Mar 10:49:02.686 # User requested shutdown...
+[5181] 31 Mar 10:49:02.686 * Saving the final RDB snapshot before exiting.
+[5181] 31 Mar 10:49:02.742 * DB saved on disk
+[5181] 31 Mar 10:49:02.742 * Removing the pid file.
+[5181] 31 Mar 10:49:02.743 * Removing the unix socket file.
+[5181] 31 Mar 10:49:02.743 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5298
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5298] 31 Mar 10:49:13.750 # Server started, Redis version 2.8.4
+[5298] 31 Mar 10:49:13.750 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5298] 31 Mar 10:49:13.750 * DB loaded from disk: 0.000 seconds
+[5298] 31 Mar 10:49:13.750 * The server is now ready to accept connections on port 6379
+[5298] 31 Mar 10:49:13.750 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5298] 31 Mar 10:53:24.086 # User requested shutdown...
+[5298] 31 Mar 10:53:24.086 * Saving the final RDB snapshot before exiting.
+[5298] 31 Mar 10:53:24.212 * DB saved on disk
+[5298] 31 Mar 10:53:24.212 * Removing the pid file.
+[5298] 31 Mar 10:53:24.212 * Removing the unix socket file.
+[5298] 31 Mar 10:53:24.212 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5339
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5339] 31 Mar 10:53:58.154 # Server started, Redis version 2.8.4
+[5339] 31 Mar 10:53:58.154 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5339] 31 Mar 10:53:58.155 * DB loaded from disk: 0.000 seconds
+[5339] 31 Mar 10:53:58.155 * The server is now ready to accept connections on port 6379
+[5339] 31 Mar 10:53:58.155 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5339] 31 Mar 11:08:59.016 * 1 changes in 900 seconds. Saving...
+[5339] 31 Mar 11:08:59.017 * Background saving started by pid 5408
+[5408] 31 Mar 11:08:59.084 * DB saved on disk
+[5408] 31 Mar 11:08:59.085 * RDB: 2 MB of memory used by copy-on-write
+[5339] 31 Mar 11:08:59.118 * Background saving terminated with success
+[5339] 01 Apr 01:33:48.985 # User requested shutdown...
+[5339] 01 Apr 01:33:48.985 * Saving the final RDB snapshot before exiting.
+[5339] 01 Apr 01:33:49.055 * DB saved on disk
+[5339] 01 Apr 01:33:49.055 * Removing the pid file.
+[5339] 01 Apr 01:33:49.056 * Removing the unix socket file.
+[5339] 01 Apr 01:33:49.056 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5483
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5483] 01 Apr 01:34:23.589 # Server started, Redis version 2.8.4
+[5483] 01 Apr 01:34:23.590 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5483] 01 Apr 01:34:23.590 * DB loaded from disk: 0.000 seconds
+[5483] 01 Apr 01:34:23.590 * The server is now ready to accept connections on port 6379
+[5483] 01 Apr 01:34:23.590 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5483] 01 Apr 02:20:51.074 * 1 changes in 900 seconds. Saving...
+[5483] 01 Apr 02:20:51.078 * Background saving started by pid 5586
+[5586] 01 Apr 02:20:51.159 * DB saved on disk
+[5586] 01 Apr 02:20:51.160 * RDB: 2 MB of memory used by copy-on-write
+[5483] 01 Apr 02:20:51.178 * Background saving terminated with success
+[5483] 01 Apr 02:27:59.878 # User requested shutdown...
+[5483] 01 Apr 02:27:59.878 * Saving the final RDB snapshot before exiting.
+[5483] 01 Apr 02:27:59.944 * DB saved on disk
+[5483] 01 Apr 02:27:59.944 * Removing the pid file.
+[5483] 01 Apr 02:27:59.944 * Removing the unix socket file.
+[5483] 01 Apr 02:27:59.945 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5625
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5625] 01 Apr 02:28:05.658 # Server started, Redis version 2.8.4
+[5625] 01 Apr 02:28:05.658 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5625] 01 Apr 02:28:05.659 * DB loaded from disk: 0.000 seconds
+[5625] 01 Apr 02:28:05.659 * The server is now ready to accept connections on port 6379
+[5625] 01 Apr 02:28:05.659 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5625] 01 Apr 02:33:29.078 # User requested shutdown...
+[5625] 01 Apr 02:33:29.079 * Saving the final RDB snapshot before exiting.
+[5625] 01 Apr 02:33:29.138 * DB saved on disk
+[5625] 01 Apr 02:33:29.138 * Removing the pid file.
+[5625] 01 Apr 02:33:29.138 * Removing the unix socket file.
+[5625] 01 Apr 02:33:29.139 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5664
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5664] 01 Apr 02:33:47.873 # Server started, Redis version 2.8.4
+[5664] 01 Apr 02:33:47.874 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5664] 01 Apr 02:33:47.874 * The server is now ready to accept connections on port 6379
+[5664] 01 Apr 02:33:47.874 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5664] 01 Apr 02:35:18.608 # User requested shutdown...
+[5664] 01 Apr 02:35:18.608 * Saving the final RDB snapshot before exiting.
+[5664] 01 Apr 02:35:18.670 * DB saved on disk
+[5664] 01 Apr 02:35:18.670 * Removing the pid file.
+[5664] 01 Apr 02:35:18.670 * Removing the unix socket file.
+[5664] 01 Apr 02:35:18.670 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5685
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5685] 01 Apr 02:35:21.466 # Server started, Redis version 2.8.4
+[5685] 01 Apr 02:35:21.466 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5685] 01 Apr 02:35:21.466 * DB loaded from disk: 0.000 seconds
+[5685] 01 Apr 02:35:21.466 * The server is now ready to accept connections on port 6379
+[5685] 01 Apr 02:35:21.466 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5685] 01 Apr 02:35:38.747 # User requested shutdown...
+[5685] 01 Apr 02:35:38.747 * Saving the final RDB snapshot before exiting.
+[5685] 01 Apr 02:35:38.824 * DB saved on disk
+[5685] 01 Apr 02:35:38.824 * Removing the pid file.
+[5685] 01 Apr 02:35:38.824 * Removing the unix socket file.
+[5685] 01 Apr 02:35:38.824 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5718
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5718] 01 Apr 02:36:06.437 # Server started, Redis version 2.8.4
+[5718] 01 Apr 02:36:06.438 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5718] 01 Apr 02:36:06.438 * The server is now ready to accept connections on port 6379
+[5718] 01 Apr 02:36:06.438 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5718] 01 Apr 02:40:47.002 # User requested shutdown...
+[5718] 01 Apr 02:40:47.003 * Saving the final RDB snapshot before exiting.
+[5718] 01 Apr 02:40:47.089 * DB saved on disk
+[5718] 01 Apr 02:40:47.089 * Removing the pid file.
+[5718] 01 Apr 02:40:47.090 * Removing the unix socket file.
+[5718] 01 Apr 02:40:47.090 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5754
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5754] 01 Apr 02:49:34.644 # Server started, Redis version 2.8.4
+[5754] 01 Apr 02:49:34.644 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5754] 01 Apr 02:49:34.644 * DB loaded from disk: 0.000 seconds
+[5754] 01 Apr 02:49:34.644 * The server is now ready to accept connections on port 6379
+[5754] 01 Apr 02:49:34.644 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5754] 01 Apr 02:49:44.904 # User requested shutdown...
+[5754] 01 Apr 02:49:44.904 * Saving the final RDB snapshot before exiting.
+[5754] 01 Apr 02:49:44.976 * DB saved on disk
+[5754] 01 Apr 02:49:44.976 * Removing the pid file.
+[5754] 01 Apr 02:49:44.976 * Removing the unix socket file.
+[5754] 01 Apr 02:49:44.977 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5783
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5783] 01 Apr 02:49:54.724 # Server started, Redis version 2.8.4
+[5783] 01 Apr 02:49:54.724 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5783] 01 Apr 02:49:54.725 * DB loaded from disk: 0.000 seconds
+[5783] 01 Apr 02:49:54.725 * The server is now ready to accept connections on port 6379
+[5783] 01 Apr 02:49:54.725 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5783] 01 Apr 02:50:24.754 # User requested shutdown...
+[5783] 01 Apr 02:50:24.754 * Saving the final RDB snapshot before exiting.
+[5783] 01 Apr 02:50:24.797 * DB saved on disk
+[5783] 01 Apr 02:50:24.797 * Removing the pid file.
+[5783] 01 Apr 02:50:24.797 * Removing the unix socket file.
+[5783] 01 Apr 02:50:24.797 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5834
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5834] 01 Apr 02:50:33.274 # Server started, Redis version 2.8.4
+[5834] 01 Apr 02:50:33.274 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5834] 01 Apr 02:50:33.275 * The server is now ready to accept connections on port 6379
+[5834] 01 Apr 02:50:33.275 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5834] 01 Apr 02:51:36.489 # User requested shutdown...
+[5834] 01 Apr 02:51:36.503 * Saving the final RDB snapshot before exiting.
+[5834] 01 Apr 02:51:36.564 * DB saved on disk
+[5834] 01 Apr 02:51:36.564 * Removing the pid file.
+[5834] 01 Apr 02:51:36.564 * Removing the unix socket file.
+[5834] 01 Apr 02:51:36.564 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5879
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5879] 01 Apr 02:51:45.640 # Server started, Redis version 2.8.4
+[5879] 01 Apr 02:51:45.640 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5879] 01 Apr 02:51:45.640 * The server is now ready to accept connections on port 6379
+[5879] 01 Apr 02:51:45.640 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5879] 01 Apr 03:06:46.077 * 1 changes in 900 seconds. Saving...
+[5879] 01 Apr 03:06:46.078 * Background saving started by pid 5897
+[5897] 01 Apr 03:06:46.146 * DB saved on disk
+[5897] 01 Apr 03:06:46.147 * RDB: 0 MB of memory used by copy-on-write
+[5879] 01 Apr 03:06:46.178 * Background saving terminated with success
+[5879] 01 Apr 04:41:36.247 # User requested shutdown...
+[5879] 01 Apr 04:41:36.247 * Saving the final RDB snapshot before exiting.
+[5879] 01 Apr 04:41:36.306 * DB saved on disk
+[5879] 01 Apr 04:41:36.306 * Removing the pid file.
+[5879] 01 Apr 04:41:36.306 * Removing the unix socket file.
+[5879] 01 Apr 04:41:36.306 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5932
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[5932] 01 Apr 04:41:38.754 # Server started, Redis version 2.8.4
+[5932] 01 Apr 04:41:38.754 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[5932] 01 Apr 04:41:38.755 * DB loaded from disk: 0.000 seconds
+[5932] 01 Apr 04:41:38.755 * The server is now ready to accept connections on port 6379
+[5932] 01 Apr 04:41:38.755 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[5932] 01 Apr 04:56:39.020 * 1 changes in 900 seconds. Saving...
+[5932] 01 Apr 04:56:39.021 * Background saving started by pid 5939
+[5939] 01 Apr 04:56:39.079 * DB saved on disk
+[5939] 01 Apr 04:56:39.080 * RDB: 0 MB of memory used by copy-on-write
+[5932] 01 Apr 04:56:39.122 * Background saving terminated with success
+[5932] 07 Apr 09:07:19.366 # User requested shutdown...
+[5932] 07 Apr 09:07:19.366 * Saving the final RDB snapshot before exiting.
+[5932] 07 Apr 09:07:19.426 * DB saved on disk
+[5932] 07 Apr 09:07:19.426 * Removing the pid file.
+[5932] 07 Apr 09:07:19.426 * Removing the unix socket file.
+[5932] 07 Apr 09:07:19.426 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 6128
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[6128] 07 Apr 09:10:20.478 # Server started, Redis version 2.8.4
+[6128] 07 Apr 09:10:20.479 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[6128] 07 Apr 09:10:20.479 * DB loaded from disk: 0.000 seconds
+[6128] 07 Apr 09:10:20.479 * The server is now ready to accept connections on port 6379
+[6128] 07 Apr 09:10:20.479 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[6128] 07 Apr 09:13:51.953 # User requested shutdown...
+[6128] 07 Apr 09:13:51.953 * Saving the final RDB snapshot before exiting.
+[6128] 07 Apr 09:13:52.054 * DB saved on disk
+[6128] 07 Apr 09:13:52.054 * Removing the pid file.
+[6128] 07 Apr 09:13:52.054 * Removing the unix socket file.
+[6128] 07 Apr 09:13:52.054 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 6167
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[6167] 07 Apr 09:13:54.080 # Server started, Redis version 2.8.4
+[6167] 07 Apr 09:13:54.080 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[6167] 07 Apr 09:13:54.116 * DB loaded from disk: 0.000 seconds
+[6167] 07 Apr 09:13:54.117 * The server is now ready to accept connections on port 6379
+[6167] 07 Apr 09:13:54.117 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[6167] 07 Apr 09:18:08.844 # User requested shutdown...
+[6167] 07 Apr 09:18:08.844 * Saving the final RDB snapshot before exiting.
+[6167] 07 Apr 09:18:08.921 * DB saved on disk
+[6167] 07 Apr 09:18:08.921 * Removing the pid file.
+[6167] 07 Apr 09:18:08.921 * Removing the unix socket file.
+[6167] 07 Apr 09:18:08.921 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 6219
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[6219] 07 Apr 09:18:10.832 # Server started, Redis version 2.8.4
+[6219] 07 Apr 09:18:10.832 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[6219] 07 Apr 09:18:10.832 * DB loaded from disk: 0.000 seconds
+[6219] 07 Apr 09:18:10.832 * The server is now ready to accept connections on port 6379
+[6219] 07 Apr 09:18:10.833 * The server is now ready to accept connections at /root/svndata/Semantic_Struct/redis-6379/redis.sock
+[6219] 07 Apr 09:33:11.093 * 1 changes in 900 seconds. Saving...
+[6219] 07 Apr 09:33:11.094 * Background saving started by pid 6247
+[6247] 07 Apr 09:33:11.163 * DB saved on disk
+[6247] 07 Apr 09:33:11.164 * RDB: 0 MB of memory used by copy-on-write
+[6219] 07 Apr 09:33:11.194 * Background saving terminated with success
+[6219] 08 Apr 07:56:19.322 * 1 changes in 900 seconds. Saving...
+[6219] 08 Apr 07:56:19.322 * Background saving started by pid 6351
+[6351] 08 Apr 07:56:19.371 * DB saved on disk
+[6351] 08 Apr 07:56:19.372 * RDB: 0 MB of memory used by copy-on-write
+[6219] 08 Apr 07:56:19.423 * Background saving terminated with success

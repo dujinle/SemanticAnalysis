@@ -1,0 +1,51 @@
+*{padding: 0; margin: 0;}
+body {background-color:#fff; margin: 10px; padding: 0;}
+html body{font: 62.5%/1.4em Arial, Helvetica, sans-serif;color:#333333}
+html>body{font: 62.5%/1.4em Arial, Helvetica, sans-serif;color:#333333}
+p, table, ul, dl, h2 {font-size: 1.2em}
+caption {font-size: 1.4em}
+h3 {
+color: #cfcfcf;
+	font-weight: bold;
+	text-transform: capitalize;
+	margin-top:30px;
+	padding-bottom:10px;
+}
+a:link {color: #CC6633;}
+a:visited {color: #CC6633;}
+a:hover {color: #999966;}
+a:active {color: #CC6633;}
+a:focus{color: #CC6633;}
+	.portletcontent {
+		padding:0 7px 0 0;
+		background:#fff url(../borders.gif) 100% 0 repeat-y;
+	}
+	.bi {
+		padding:0 0 0 1px;
+		background:#000 url(../borders.gif) 0 0 repeat-y;
+	}
+	.bb {
+		height:30px;
+		margin:0 -7px 0 -1px;
+		background:url(../box.gif) 100% 100% no-repeat;
+	}
+	.bb div {
+		width:18px;
+		height:30px;
+		background:url(../box.gif) 0 100% no-repeat;
+	}
+	.portlet h2 {
+	height:20px;
+	padding:0 0 0 10px;
+	background-color:#666;
+	background-image:url(../topright.gif);
+	background-position:right top;
+	background-repeat:no-repeat;
+	color:#592C16;
+	line-height:20px;
+	}
+	
+	.portletcontent p {
+		padding:8px 10px 8px 10px;
+		background:#fff;
+	}

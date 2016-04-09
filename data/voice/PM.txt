@@ -2,6 +2,7 @@
 {
 	"reg":[
 		"FCM",
-		"MXC"
+		"MXC",
+		"MT!XT!"
 	]
 }
