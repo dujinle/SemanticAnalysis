@@ -4,7 +4,7 @@
 		"name":"打开",
 		"nickname":"打开",
 		"dimension":"二元",
-		"dir":"NEW"
+		"dir":"有"
 	},
 	"开":{
 		"name":"开",
@@ -28,7 +28,7 @@
 		"name":"关掉",
 		"nickname":"关掉",
 		"dimension":"二元",
-		"dir":"NULL"
+		"dir":"无"
 	},
 	"调":{
 		"name":"调",
