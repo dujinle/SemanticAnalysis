@@ -2,6 +2,9 @@
 #-*- coding:utf-8 -*-
 from base import Base
 class F(Base):
+	def __init__(self):
+		pass;
+
 	def encode(self,struct):
 		try:
 			self.check_input(struct);
@@ -12,7 +15,7 @@ class F(Base):
 					if not struct.has_key(tt):
 						tdic = dict();
 						tdic['type'] = 'F';
-						tdic['vaule'] = self.data[tt];
+						tdic['value'] = self.data[tt];
 						struct[tt] = tdic;
 					else:
 						raise Exception('the word has one more type' %tt);

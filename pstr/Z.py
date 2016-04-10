@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 from base import Base
-class T(Base):
+class Z(Base):
 	def __init__(self):
 		pass;
 
@@ -21,6 +21,7 @@ class T(Base):
 		diclist = dict();
 		if first in inlist:
 			idx = inlist.index(first);
+			reg = 'Z';
 			tdic = dict();
 			tdic['type'] = key;
 			diclist[first] = tdic;
@@ -28,15 +29,16 @@ class T(Base):
 			while True:
 				if sid >= len(strv) or idx >= len(inlist):
 					break;
-
 				if strv[sid] == inlist[idx]:
 					tdic = dict();
 					tdic['type'] = key;
 					diclist[strv[sid]] = tdic;
+					reg = reg + 'Z';
 					sid = sid + 1;
 					idx = idx + 1;
 					continue;
 				elif strv[sid] == '*' and idx < len(inlist):
+					reg = reg + strv[sid];
 					sid = sid + 1;
 					idx = idx + 1;
 					continue;
@@ -47,12 +49,15 @@ class T(Base):
 						if ddic['type'] == strv[sid]:
 							sid = sid + 1;
 							idx = idx + 1;
+							reg = reg + ddic['type'];
 							continue;
 				idx = idx + 1;
 			if sid == len(strv):
 				if struct.has_key('T'):
 					raise Exception('the words has one more T [' + value + ' ' + struct['T'] + ']');
-				struct['T'] = value;
+				struct['Z'] = dict();
+				struct['Z']['value'] = value;
+				struct['Z']['reg'] = reg;
 				for kk in diclist:
 					struct[kk] = diclist[kk];
 

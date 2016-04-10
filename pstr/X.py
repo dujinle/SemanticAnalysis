@@ -2,6 +2,9 @@
 #-*- coding:utf-8 -*-
 from base import Base
 class X(Base):
+	def __init__(self):
+		pass;
+
 	def encode(self,struct):
 		try:
 			self.check_input(struct);

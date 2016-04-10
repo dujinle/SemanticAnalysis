@@ -3,7 +3,10 @@
 import common
 class Base:
 	def __init__(self):
-		self.data = None;
+		pass;
+
+	def init(self):
+		self.__init__();
 
 	def load_data(self,dfile):
 		try:
