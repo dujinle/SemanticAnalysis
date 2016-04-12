@@ -28,9 +28,34 @@ def match(d1data,struct,typec):
 		dics.update(data);
 		struct[typec] = dics;
 
+def insert(d1data,indata,typec):
+	try:
+		if indata.has_key('reg') and indata.has_key('dir'):
+			reg = data.get('reg');
+			dirs = data.get('dir');
+			for rdata in d1data:
+				if reg == rdata['reg']:
+					return;
+			tdic = dict();
+			tdic['type'] = typec;
+			tdic.update(indata);
+			x1data.append(tdic);
+		else:
+			raise ValueError('%s data has no key [dir | reg]' % typec);
+	except Exception as e:
+		raise e;
+
+def remove(d1data,indata):
+	try:
+		for rdata in d1data:
+			reg = rdata.get('reg');
+			if reg.find(indata) != -1:
+				del x1data[rdata];
+				break;
+	except Exception as e:
+		raise e;
+
 class X1(Base):
-	def __init__(self):
-		pass;
 
 	def encode(self,struct):
 		try:
@@ -40,9 +65,21 @@ class X1(Base):
 		except Exception as e:
 			raise e;
 
+	def _add(self,data):
+		try:
+			x1data = self.data['X1'];
+			insert(x1data,data,'X1');
+		except Exception as e:
+			raise e;
+
+	def _del(self,data):
+		try:
+			x1data = self.data['X1'];
+			remove(x1data,data);
+		except Exception as e:
+			raise e;
+
 class F1(Base):
-	def __init__(self):
-		pass;
 
 	def encode(self,struct):
 		try:
@@ -52,9 +89,21 @@ class F1(Base):
 		except Exception as e:
 			raise e;
 
+	def _add(self,data):
+		try:
+			x1data = self.data['F1'];
+			insert(x1data,data,'F1');
+		except Exception as e:
+			raise e;
+
+	def _del(self,data):
+		try:
+			x1data = self.data['F1'];
+			remove(x1data,data);
+		except Exception as e:
+			raise e;
+
 class M1(Base):
-	def __init__(self):
-		pass;
 
 	def encode(self,struct):
 		try:
@@ -64,3 +113,16 @@ class M1(Base):
 		except Exception as e:
 			raise e;
 
+	def _add(self,data):
+		try:
+			x1data = self.data['M1'];
+			insert(x1data,data,'M1');
+		except Exception as e:
+			raise e;
+
+	def _del(self,data):
+		try:
+			x1data = self.data['M1'];
+			remove(x1data,data);
+		except Exception as e:
+			raise e;

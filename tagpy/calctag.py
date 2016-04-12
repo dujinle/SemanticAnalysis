@@ -3,7 +3,7 @@
 from base import Base
 class Calc(Base):
 
-	def __init__(self):
+	def init(self):
 		self.level = u'中';
 		self.dirs = u'正';
 

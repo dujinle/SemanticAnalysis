@@ -3,8 +3,6 @@
 from base import Base
 
 class X(Base):
-	def __init__(self):
-		pass;
 
 	def encode(self,struct):
 		try:
@@ -30,9 +28,36 @@ class X(Base):
 					tdic['value'] = tt;
 					taglist.insert(idx,tdic);
 
+	def _add(self,data):
+		try:
+			xdata = self.data['X'];
+			if data.has_key('dir') and data.has_key('value'):
+				tdir = data.get('dir');
+				value = data.get('value');
+				if not xdata.has_key(tdir):
+					xdata[tdir] = list();
+				if value in xdata[tdir]:
+					pass;
+				else:
+					xdata[tdir].append(value);
+			else:
+				raise ValueError('X: input data has no key [dir|value]');
+		except Exception as e:
+			raise e;
+
+	def _del(self,data):
+		try:
+			xdata = self.data['X'];
+			for key in xdata.keys():
+				tdata = xdata[key];
+				if data in tdata:
+					idx = tdata.index(data);
+					del tdata[idx];
+					break;
+		except Exception as e:
+			raise e;
+
 class M(Base):
-	def __init__(self):
-		pass;
 
 	def encode(self,struct):
 		try:
@@ -52,9 +77,26 @@ class M(Base):
 		except Exception as e:
 			raise Exception(__file__ + format(e));
 
+	def _add(self,data):
+		try:
+			mdata = self.data['M'];
+			if data in mdata:
+				return;
+			mdata.append(data);
+		except Exception as e:
+			raise e;
+
+	def _del(self,data):
+		try:
+			mdata = self.data['M'];
+			if data in mdata:
+				idx = mdata.index(data);
+				del mdata[idx];
+				return;
+		except Exception as e:
+			raise e;
+
 class C(Base):
-	def __init__(self):
-		pass;
 
 	def encode(self,struct):
 		try:
@@ -80,9 +122,36 @@ class C(Base):
 		except Exception as e:
 			raise e;
 
+	def _add(self,data):
+		try:
+			xdata = self.data;
+			if data.has_key('level') and data.has_key('value'):
+				tdir = data.get('level');
+				value = data.get('value');
+				if not xdata.has_key(tdir):
+					xdata[tdir] = list();
+				if value in xdata[tdir]:
+					pass;
+				else:
+					xdata[tdir].append(value);
+			else:
+				raise ValueError('C: input data has no key [dir|value]');
+		except Exception as e:
+			raise e;
+	def _del(self,data):
+		try:
+			xdata = self.data;
+			for key in xdata.keys():
+				tdata = xdata[key];
+				if data in tdata:
+					idx = tdata.index(data);
+					del tdata[idx];
+					break;
+		except Exception as e:
+			raise e;
+
+
 class F(Base):
-	def __init__(self):
-		pass;
 
 	def encode(self,struct):
 		try:
@@ -100,5 +169,34 @@ class F(Base):
 					tdic['value'] = tt;
 					tdic.update(data);
 					taglist.insert(idx,tdic);
+		except Exception as e:
+			raise e;
+
+	def _add(self,data):
+		try:
+			fdata = self.data;
+			if data.has_key('dir') and data.has_key('value'):
+				dirs = data.get('dir');
+				value = data.get('value');
+				if value in fdata.keys():
+					return;
+				tdic = dict();
+				tdic['name'] = value;
+				tdic['nickname'] = value;
+				if dirs == u'有' or dirs == u'无':
+					tdic['dimension'] = u'二元';
+				else:
+					tdic['dimension'] = u'一维';
+				tdic['dir'] = dirs;
+				fdata[value] = tdic;
+		except Exception as e:
+			raise e;
+	def _del(self,data):
+		try:
+			fdata = self.data;
+			fkeys = fdata.keys();
+			if data in fkeys:
+				idx = fkeys.index(data);
+				del fdata[data];
 		except Exception as e:
 			raise e;
