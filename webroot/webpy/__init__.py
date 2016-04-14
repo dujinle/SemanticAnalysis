@@ -6,5 +6,6 @@ from gethandle import GetHandler
 __all__ = [
 	'ResultHandler',
 	'DelHandler',
-	'AddHandler'
+	'AddHandler',
+	'GetHandler'
 ]

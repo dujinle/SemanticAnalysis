@@ -2,16 +2,11 @@
 #-*- coding : utf-8 -*-
 
 import sys
-#####################################
-sys.path.append('../mainpy');
-sys.path.append('../commons');
-#####################################
 
 import tornado.web
 from logger import *
 import common
 from handler import RequestHandler
-from mager import Mager
 
 class ResultHandler(RequestHandler):
 
@@ -20,11 +15,11 @@ class ResultHandler(RequestHandler):
 	def post(self):
 		try:
 			if not self.body_json.has_key('text'):
-				self.execpte_handle('the url data format error');
+				self.except_handle('the url data format error');
 				return ;
 			itest = self.body_json['text'];
 			if len(itest) == 0:
-				self.execpt_handle('the param text is empty');
+				self.except_handle('the param text is empty');
 				return ;
 			logging.info('input:%s' %itest);
 			sres = self.menj.encode(itest);
@@ -35,5 +30,5 @@ class ResultHandler(RequestHandler):
 			ret['dir'] = sres['dir'];
 			self.write(self.gen_result(0,'enjoy success',ret));
 		except Exception as e:
-			self.execpt_handle(format(e));
+			self.except_handle('enjoy segmentic failed');
 			return;

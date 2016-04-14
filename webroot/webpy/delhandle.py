@@ -2,16 +2,10 @@
 #-*- coding : utf-8 -*-
 
 import sys
-#####################################
-sys.path.append('../commons');
-sys.path.append('../mainpy');
-#####################################
-
 import tornado.web
 from logger import *
 import common
 from handler import RequestHandler
-#from mager import Mager
 
 class DelHandler(RequestHandler):
 
