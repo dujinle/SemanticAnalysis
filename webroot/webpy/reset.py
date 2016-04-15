@@ -14,7 +14,7 @@ from logger import *
 import common
 from handler import RequestHandler
 
-class AddHandler(RequestHandler):
+class ResetHandler(RequestHandler):
 
 	@tornado.gen.coroutine
 	@common.json_loads_body
@@ -23,12 +23,14 @@ class AddHandler(RequestHandler):
 			if not self.body_json.has_key('type'):
 				self.except_handle('the url data format error');
 				return ;
-			ctype = self.body_json['type'];
-			data = self.body_json['value'];
-			logging.info(ctype + ' add words:' + data);
+			dtype = self.body_json['type'];
+			if len(dtype) == 0:
+				self.except_handle('the param type is empty');
+				return ;
+			logging.info('the load data type:[%s]' %dtype);
 			mager = self.get_mager();
-			mager.deal_data(ctype,'add',self.body_json);
-			self.write(self.gen_result(0,ctype + ' add words:' + data + ' success',None));
-		except Exception,e:
-			self.except_handle(format(e));
-			return ;
+			sres = mager.reset(dtype);
+			self.write(self.gen_result(0,'reset data type:[' + dtype + '] + success',None));
+		except Exception as e:
+			self.except_handle('reset data type failed');
+			return;

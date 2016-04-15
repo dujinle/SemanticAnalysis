@@ -1,7 +1,12 @@
 #!/usr/bin/python
 #-*- coding : utf-8 -*-
 
-import sys
+import sys,os
+#=============================================
+''' import common module '''
+base_path = os.path.dirname(__file__);
+sys.path.append(base_path + '/../../commons');
+#=============================================
 
 import tornado.web
 from logger import *
@@ -22,7 +27,8 @@ class ResultHandler(RequestHandler):
 				self.except_handle('the param text is empty');
 				return ;
 			logging.info('input:%s' %itest);
-			sres = self.menj.encode(itest);
+			mager = self.get_mager();
+			sres = mager.encode(itest);
 			ret = dict();
 			ret['text'] = sres['text'];
 			ret['inlist'] = sres['inlist'];
