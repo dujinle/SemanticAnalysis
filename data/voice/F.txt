@@ -35,5 +35,11 @@
 		"nickname":"调",
 		"dimension":"一维",
 		"dir":"OFF"
+	},
+	"来":{
+		"name":"来",
+		"nickname":"来",
+		"dimension":"一维",
+		"dir":"正"
 	}
 }
