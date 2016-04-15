@@ -45,5 +45,5 @@ class Dictionary(_Dictionary):
 dict_load_defaults = Dictionary.load_dictionaries;
 dict_add_word = Dictionary.add_word;
 dict_del_word = Dictionary.del_word;
-dict_write2file = Dictionary.write_file;
+dict_write_file = Dictionary.write_file;
 dict_rename_wordsfile = Dictionary.rename_wordsfile;

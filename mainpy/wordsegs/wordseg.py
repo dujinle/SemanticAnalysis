@@ -33,13 +33,13 @@ class WordSeg:
 	def write2file(self):
 		try:
 			self.mmseg.dict_rename_wordsfile();
-			#self.mmseg.dict_write_file();
+			self.mmseg.dict_write_file();
 		except Exception as e:
 			raise e;
 
-wd = WordSeg();
-print wd.tokens(u'你打野');
-wd.write2file();
+#wd = WordSeg();
+#print wd.tokens(u'你打野');
+#wd.write2file();
 #print wd.tokens(u'你打野');
 #wd.del_word(u'你打野');
 #print wd.tokens(u'你打野');
