@@ -27,6 +27,10 @@ def print_dic(struct):
 	value = json.dumps(struct,indent = 4,ensure_ascii=False);
 	print value;
 
+def get_dicstr(struct):
+	value = json.dumps(struct,indent = 4,ensure_ascii=False);
+	return value;
+
 def singleton(cls,*args,**kw):
 	instances = {};
 	def __singleton():

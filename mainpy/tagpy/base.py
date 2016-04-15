@@ -3,6 +3,7 @@
 import common
 import os
 import json
+from myexception import MyException
 class Base:
 	def __init__(self):
 		self.data = None;
@@ -18,7 +19,7 @@ class Base:
 		try:
 			self.data = common.read_json(dfile);
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 	def deal_data(self,fname,action,data):
 		_class = str(self.__class__);
@@ -33,7 +34,7 @@ class Base:
 
 	def check_input(self,struct):
 		if not struct.has_key('inlist'):
-			raise Exception('the struct has not contain the key [inlist]');
+			raise MyException('the struct has not contain the key [inlist]');
 
 	def write_file(self,dfile):
 		try:
@@ -43,7 +44,7 @@ class Base:
 			fd.write(data);
 			fd.close();
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 	def _add(self,data): pass;
 	def _del(self,data): pass;

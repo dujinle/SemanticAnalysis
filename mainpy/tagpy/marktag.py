@@ -1,6 +1,15 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
+import sys,os
+#============================================
+''' import MyException module '''
+
+base_path = os.path.dirname(__file__);
+sys.path.append(os.path.join(base_path,'../../commons'));
+#============================================
 from base import Base
+
+from myexception import MyException
 
 class X(Base):
 
@@ -10,7 +19,7 @@ class X(Base):
 			xdata = self.data['X'];
 			self.__match_x(xdata,struct);
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 	def __match_x(self,xdata,struct):
 		inlist = struct['inlist'];
@@ -41,9 +50,9 @@ class X(Base):
 				else:
 					xdata[tdir].append(value);
 			else:
-				raise ValueError('X: input data has no key [dir|value]');
+				raise MyException('X: input data has no key [dir|value]');
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 	def _del(self,data):
 		try:
@@ -56,7 +65,7 @@ class X(Base):
 					del tdata[idx];
 					break;
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 class M(Base):
 
@@ -76,7 +85,7 @@ class M(Base):
 				else:
 					taglist.append(st);
 		except Exception as e:
-			raise Exception(__file__ + format(e));
+			raise MyException(format(e));
 
 	def _add(self,data):
 		try:
@@ -86,7 +95,7 @@ class M(Base):
 				return;
 			mdata.append(word);
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 	def _del(self,data):
 		try:
@@ -97,7 +106,7 @@ class M(Base):
 				del mdata[idx];
 				return;
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 class C(Base):
 
@@ -123,7 +132,7 @@ class C(Base):
 						taglist.insert(idx,tdic);
 						break;
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 	def _add(self,data):
 		try:
@@ -138,9 +147,9 @@ class C(Base):
 				else:
 					xdata[tdir].append(value);
 			else:
-				raise ValueError('C: input data has no key [dir|value]');
+				raise MyException('C: input data has no key [dir|value]');
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 	def _del(self,data):
 		try:
 			xdata = self.data;
@@ -152,7 +161,7 @@ class C(Base):
 					del tdata[idx];
 					break;
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 
 class F(Base):
@@ -175,7 +184,7 @@ class F(Base):
 					#tdic.update(data);
 					taglist.insert(idx,tdic);
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 
 	def _add(self,data):
 		try:
@@ -195,7 +204,7 @@ class F(Base):
 				tdic['dir'] = dirs;
 				fdata[value] = tdic;
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));
 	def _del(self,data):
 		try:
 			fdata = self.data;
@@ -204,4 +213,4 @@ class F(Base):
 			if invalue in fkeys:
 				del fdata[invalue];
 		except Exception as e:
-			raise e;
+			raise MyException(format(e));

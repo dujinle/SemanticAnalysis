@@ -18,6 +18,7 @@ sys.path.append(base_path + '/../commons');
 from wordseg import WordSeg
 import common
 import config
+from myexception import MyException
 from marktag import M
 from marktag import C
 from marktag import F
@@ -56,7 +57,7 @@ class Mager:
 			for obj in self.tag_objs:
 				obj.load_data(dfiles[str(step)]);
 				step = step + 1;
-		except Exception as e:
+		except MyException as e:
 			raise e;
 
 	def encode(self,inlist):
@@ -69,8 +70,9 @@ class Mager:
 				obj.init();
 				obj.encode(struct);
 			return struct;
-		except Exception as e:
-			raise e;
+		except MyException as e:
+			res = common.get_dicstr(struct);
+			raise MyException(res);
 
 	def deal_data(self,fname,action,data):
 		try:
@@ -80,15 +82,15 @@ class Mager:
 					continue;
 				elif not ret is None:
 					return ret;
-		except Exception as e:
+		except MyException as e:
 			raise e;
 
 	def sp_deal(self,action,word):
 		if self.wordseg is None:
-			raise ValueError('the word seg obj is none');
+			raise MyException('the word seg obj is none');
 		try:
 			self.wordseg.deal_word(action,word);
-		except Exception as e:
+		except MyException as e:
 			raise e;
 
 	def write_file(self):
@@ -98,13 +100,19 @@ class Mager:
 			for obj in self.tag_objs:
 				obj.write_file(dfiles[str(step)]);
 				step = step + 1;
-		except Exception as e:
+		except MyException as e:
 			raise e;
-
-mg = Mager();
-mg.init('Voice');
-#mg.write_file();
-common.print_dic(mg.encode(u'把声音关了'));
+'''
+try:
+	mg = Mager();
+	mg.init('Voice');
+	#mg.write_file();
+	#common.print_dic(mg.encode(u'把声音调大点'));
+	mg.sp_deal('del',{'value':u'大点'});
+	common.print_dic(mg.encode(u'把声音调大点'));
+except MyException as e:
+	print e.value;
+'''
 #mg.deal_data('M','add',{"type":"M","value":u"音频"});
 #mg = Mager();
 #data = mg.deal_data('M','get',None);

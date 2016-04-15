@@ -12,6 +12,7 @@ import tornado.web
 from logger import *
 import common
 from handler import RequestHandler
+from myexception import MyException
 
 class ResultHandler(RequestHandler):
 
@@ -35,6 +36,6 @@ class ResultHandler(RequestHandler):
 			ret['value'] = sres['value'];
 			ret['dir'] = sres['dir'];
 			self.write(self.gen_result(0,'enjoy success',ret));
-		except Exception as e:
-			self.except_handle('enjoy segmentic failed');
+		except MyException as e:
+			self.except_handle(e.value);
 			return;

@@ -27,7 +27,10 @@ class AddHandler(RequestHandler):
 			data = self.body_json['value'];
 			logging.info(ctype + ' add words:' + data);
 			mager = self.get_mager();
-			mager.deal_data(ctype,'add',self.body_json);
+			if ctype == 'SP':
+				mager.sp_deal('add',self.body_json);
+			else:
+				mager.deal_data(ctype,'add',self.body_json);
 			self.write(self.gen_result(0,ctype + ' add words:' + data + ' success',None));
 		except Exception,e:
 			self.except_handle(format(e));

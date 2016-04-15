@@ -27,7 +27,10 @@ class DelHandler(RequestHandler):
 			data = self.body_json['value'];
 			logging.info(ctype + ' del words:' + data);
 			mager = self.get_mager();
-			mager.deal_data(ctype,'del',self.body_json);
+			if ctype == 'SP':
+				mager.sp_deal('del',self.body_json);
+			else:
+				mager.deal_data(ctype,'del',self.body_json);
 			self.write(self.gen_result(0,ctype + ' del words:' + data + ' success',None));
 		except Exception,e:
 			self.except_handle(format(e));

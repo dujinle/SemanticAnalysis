@@ -1,20 +1,37 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import json
+import json,os,sys
 import tornado.web
-from logger import logging
+import traceback
+from logger import *
+#==================================================
+''' import module mager '''
+abspath = os.path.dirname(__file__);
+
+sys.path.append(base_path);
+sys.path.append(base_path + '/../mainpy');
+#===================================================
+
 from mager import Mager
+MAGER = None;
 
 class RequestHandler(tornado.web.RequestHandler):
 
+	mager = None;
 	def __init__(self,*args,**kwargs):
 		tornado.web.RequestHandler.__init__(self, *args, **kwargs);
 		try:
-			self.menj = Mager();
-			self.menj.init();
+			global MAGER
+			if MAGER is None:
+				MAGER = Mager();
+				MAGER.init('Voice');
+				print 'creat menj success ......';
 		except Exception as e:
-			logging.error(format(e));
 			raise e;
+
+	def get_mager(self):
+		global MAGER;
+		return MAGER;
 
 	def write(self, trunk):
 		if type(trunk) == int:
@@ -26,15 +43,17 @@ class RequestHandler(tornado.web.RequestHandler):
 		res += '"code": %s, ' % code;
 		res += '"message": "%s' % message;
 		if result is None:
-			logging.info(res);
 			return res + '" }';
 		if not isinstance(result, basestring) and type(result) <> int:
 			result = json.dumps(result, sort_keys=False,ensure_ascii=False);
 			res += '","result": %s' % result;
-		logging.info(res);
 		return res + ' }';
 
 	def except_handle(self, message):
-		logging.error(message)
-		self.write(self.gen_result(-1, message, None))
+		s = traceback.format_exc();
+		logging.error(s + message);
+		msg = message.replace(',',' ').replace('\n','#');
+		msg = msg.replace('"',' ');
+		msg = msg.replace(';',' ');
+		self.write(self.gen_result(-1,msg, None))
 		return
