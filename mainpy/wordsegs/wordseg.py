@@ -2,7 +2,13 @@
 #-*- coding:utf-8 -*-
 ###################################
 ###################################
+import os,sys
 import mmseg
+#=============================================
+''' import common module '''
+base_path = os.path.dirname(__file__);
+sys.path.append(base_path + '/../../commons');
+#=============================================
 
 class WordSeg:
 	def __init__(self):
@@ -11,8 +17,8 @@ class WordSeg:
 		# load default dictionaries
 		try:
 			self.mmseg.dict_load_defaults();
-		except Exception, e:
-			print e;
+		except MyException as e:
+			raise e;
 
 	def tokens(self,intext):
 		seglist = [];
@@ -28,18 +34,19 @@ class WordSeg:
 				self.mmseg.dict_add_word(word.get('value'));
 			elif action == 'del':
 				self.mmseg.dict_del_word(word.get('value'));
-		except Exception,e:
+		except MyException,e:
 			raise e;
-	def write2file(self):
+
+	def write_file(self):
 		try:
 			self.mmseg.dict_rename_wordsfile();
 			self.mmseg.dict_write_file();
-		except Exception as e:
+		except MyException as e:
 			raise e;
 
 #wd = WordSeg();
 #print wd.tokens(u'你打野');
-#wd.write2file();
+#wd.write_file();
 #print wd.tokens(u'你打野');
 #wd.del_word(u'你打野');
 #print wd.tokens(u'你打野');

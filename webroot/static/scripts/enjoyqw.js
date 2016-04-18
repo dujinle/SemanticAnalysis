@@ -35,7 +35,7 @@ function GetResult(){
 		restext.innerText = JSON.stringify(result,null,"\t");
 		return true;
 	}else{
-		restext.innerText = json_obj.message;
+		restext.innerText = json_obj.message.replace(/#/g,'\n');
 	}
 }
 
@@ -84,10 +84,29 @@ function DealWords(type,action,vid,did){
 		if(action == 'get'){
 			y.innerText = JSON.stringify(obj.result,null,'\t');
 		}else{
-			y.innerText = obj.message;
+			y.innerText = obj.message.replace(/#/g,'\n');
 		}
 	}else{
-		y.innerText = obj.message;
+		y.innerText = obj.message.replace(/#/g,'\n');
 	}
 	return false;
+}
+
+function save_data(){
+	var obj = null;
+	$.ajax({
+		async:false,
+		url: $basepath + 'save_data',
+		type:'get',
+		success:function(data){
+			obj = data;
+		},
+		error:function(){
+			alert(arguments);
+		}
+	});
+	sptext.value = "";
+	var json_obj = JSON.parse(obj);
+	y = document.getElementById('status_id');
+	y.innerText = json_obj.message.replace(/#/g,'\n');
 }

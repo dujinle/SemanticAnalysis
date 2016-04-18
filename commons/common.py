@@ -42,7 +42,8 @@ def singleton(cls,*args,**kw):
 def json_loads_body(func):
 	def wrapper(self, *args, **kwargs):
 		try:
-			self.body_json = json.loads(self.request.body);
+			if not self.request.body is None:
+				self.body_json = json.loads(self.request.body);
 		except Exception, e:
 			raise e;
 		return func(self, *args, **kwargs);
