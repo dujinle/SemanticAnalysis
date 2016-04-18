@@ -72,6 +72,7 @@ class Mager:
 			return struct;
 		except MyException as e:
 			res = common.get_dicstr(struct);
+			res = e.value + '\n' +res;
 			raise MyException(res);
 
 	def deal_data(self,fname,action,data):
@@ -100,6 +101,7 @@ class Mager:
 			for obj in self.tag_objs:
 				obj.write_file(dfiles[str(step)]);
 				step = step + 1;
+			self.wordseg.write_file();
 		except MyException as e:
 			raise e;
 '''

@@ -1,0 +1,19 @@
+#单位标记
+{
+	"m":{
+		"reg":["%f m"],
+		"attr":"distance"
+	},
+	"米":{
+		"reg":["%f 米"],
+		"attr":"distance"
+	},
+	"度":{
+		"reg":["%f 度"],
+		"attr":"temperature"
+	},
+	"天":{
+		"reg":["%d 天","半 天"],
+		"attr":"time"
+	}
+}

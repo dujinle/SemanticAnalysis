@@ -1,9 +1,15 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import json
+import os,sys,json
 
 #global params
 PASS = 1;
+#============================================
+''' import MyException module '''
+base_path = os.path.dirname(__file__);
+sys.path.append(base_path);
+#============================================
+from myexception import MyException
 
 def read_json(dfile):
 	fid = open(dfile,'r');
@@ -21,7 +27,7 @@ def read_json(dfile):
 		ojson = json.loads(all_test);
 		return ojson;
 	except Exception as e:
-		raise Exception(all_test + ' load failed');
+		raise MyException('load json file failed[' + dfile + ']');
 
 def print_dic(struct):
 	value = json.dumps(struct,indent = 4,ensure_ascii=False);
@@ -45,6 +51,6 @@ def json_loads_body(func):
 			if not self.request.body is None:
 				self.body_json = json.loads(self.request.body);
 		except Exception, e:
-			raise e;
+			raise MyException(format(e));
 		return func(self, *args, **kwargs);
 	return wrapper;
