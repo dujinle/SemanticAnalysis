@@ -19,22 +19,30 @@ def match(d1data,struct,typec):
 			tagstr = tagstr + tag['type'];
 		else:
 			tagstr = tagstr + tag;
+	maxlen = 0;
+	idx = step = 0;
+	candidate = None;
 	for data in d1data:
 		value = data.get('reg');
 		strreg = value.replace(' ','');
-		if tagstr.find(strreg) == -1:
-			continue;
-		for tt in value.split(' '):
-			if tt in taglist:
-				idx = taglist.index(tt);
-				del taglist[idx];
-				tdic = dict();
-				tdic['type'] = typec;
-				tdic['value'] = tt;
-				taglist.insert(idx,tdic);
-		dics = dict();
-		dics.update(data);
-		struct[typec] = dics;
+		if tagstr.find(strreg) != -1 and maxlen <= len(strreg):
+			candidate = value;
+			maxlen = len(strreg);
+			step = idx;
+		idx = idx + 1;
+	if candidate is None: return ;
+	data = d1data[step];
+	for tt in candidate.split(' '):
+		if tt in taglist:
+			idx = taglist.index(tt);
+			del taglist[idx];
+			tdic = dict();
+			tdic['type'] = typec;
+			tdic['value'] = tt;
+			taglist.insert(idx,tdic);
+	dics = dict();
+	dics.update(data);
+	struct[typec] = dics;
 
 def insert(d1data,data,typec):
 	try:
