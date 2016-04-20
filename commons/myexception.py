@@ -14,4 +14,4 @@ class MyException(Exception):
 		CODENUM = CODENUM + 1;
 		if vtype == dict or vtype == list:
 			res = json.dumps(self.value,indent = 2,ensure_ascii = False);
-		return repr('CodeError[' + str(CODENUM) + ']:' + res);
+		return str('CodeError[' + str(CODENUM) + ']:' + res);
