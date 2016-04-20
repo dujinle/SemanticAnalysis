@@ -27,7 +27,7 @@ from extendtag import X1
 from extendtag import M1
 from extendtag import F1
 from extendtag import Z
-from checktag import Check
+from checktag import PM
 from calctag import Calc
 
 #@common.singleton
@@ -47,7 +47,7 @@ class Mager:
 		self.tag_objs.append(F1());
 		self.tag_objs.append(Z());
 		# calc tag obj #
-		self.tag_objs.append(Check());
+		self.tag_objs.append(PM());
 		self.tag_objs.append(Calc());
 
 	def init(self,dtype):

@@ -10,7 +10,7 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
 from myexception import MyException
 
-class Check(Base):
+class PM(Base):
 
 	def _check(self,struct):
 		try:
@@ -34,5 +34,27 @@ class Check(Base):
 	def encode(self,struct):
 		try:
 			self._check(struct);
+		except Exception as e:
+			raise MyException(format(e));
+
+	def _add(self,data):
+		try:
+			fdata = self.data;
+			regs = fdata.get('reg');
+			if data.has_key('value'):
+				value = data.get('value');
+				if value in regs:
+					return;
+				regs.append(value);
+		except Exception as e:
+			raise MyException(format(e));
+
+	def _del(self,data):
+		try:
+			fdata = self.data;
+			regs = fdata.get('reg');
+			invalue = data.get('value');
+			if invalue in regs:
+				del regs[invalue];
 		except Exception as e:
 			raise MyException(format(e));

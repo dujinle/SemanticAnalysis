@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ static_url("css/index.css") }}" type="text/css">
+	<link rel="stylesheet" href="{{ static_url("css/index.css") }}" type="text/css">
+    <!-- link rel="stylesheet" href="index.css" type="text/css" -->
     <title>Title</title>
 </head>
 <body>
@@ -43,6 +44,10 @@
                 <div class="add">
                     <span>添加分词:</span><input class="input" type="text" id="add_word">
                     <div class="top_button"><input class="input_button" type="button" value="确定" onclick="add_word('SP','add','add_word',null)"></div>
+                </div>
+                <div class="save">
+                    <span class="save_text">保存修改:</span>
+                    <div class=""><input class="input_button" type="button" value="确定" onclick="add_word('SP','add','add_word',null)"></div>
                 </div>
             </div>
             <div class="R_left">
@@ -116,11 +121,11 @@
                     </div>
                     <div class="row_2">
                         <span>方向:</span>
-                        <input type="radio" name="choose3" value="正" ><span>+</span>
-                        <input type="radio" name="choose3" value="负" ><span>-</span>
-                        <input type="radio" name="choose3" value="有" ><span>有</span>
-                        <input type="radio" name="choose3" value="无" ><span>无</span>
-                        <input type="radio" name="choose3" value="OFF" ><span>invalid</span>
+                        <input type="radio" name="choose4" value="正" ><span>+</span>
+                        <input type="radio" name="choose4" value="负" ><span>-</span>
+                        <input type="radio" name="choose4" value="有" ><span>有</span>
+                        <input type="radio" name="choose4" value="无" ><span>无</span>
+                        <input type="radio" name="choose4" value="OFF" ><span>invalid</span>
                     </div>
                 </div>
                 <div class="X1">
@@ -133,10 +138,7 @@
                     </div>
                     <div class="row_2">
                         <span>方向:</span>
-                        <input type="radio" name="choose4" value="正" ><span>+</span>
-                        <input type="radio" name="choose4" value="负" ><span>-</span>
-                        <input type="radio" name="choose4" value="有" ><span>有</span>
-                        <input type="radio" name="choose4" value="无" ><span>无</span>
+                        <input type="radio" name="choose4" value="取反" ><span>取反</span>
                         <input type="radio" name="choose4" value="OFF" ><span>invalid</span>
                     </div>
                 </div>
@@ -155,9 +157,18 @@
 						<input type="radio" name="choose5" value="低" ><span>低</span>
 					</div>
                 </div>
+                <div class="Mp">
+                    <div class="row_1">
+                        <span class="title">模板(Mp)：</span>
+                        <input class="text" type="text" id="Mp">
+                        <input class="button" value="注入" type="button" onclick="DealWords('PM','add','Mp',null)">
+                        <input class="button" value="删除" type="button" onclick="DealWords('PM','del','Mp',null)">
+                        <input class="button" value="获取" type="button" onclick="DealWords('PM','get',null,null)">
+                    </div>
+                </div>
             </div>
             <div class="R_right">
-                <textarea  class="r_text" id="status_id" rows="33" cols="65"></textarea>
+                <textarea  class="r_text" id="status_id" rows="33" cols="35"></textarea>
             </div>
         </div>
     </div>
