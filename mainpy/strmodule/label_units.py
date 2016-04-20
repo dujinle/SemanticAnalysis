@@ -33,41 +33,36 @@ class LabelUnits():
 			keys = self.data.keys();
 			for key in keys:
 				item = self.data.get(key);
-				for reg in item['reg']:
-					tdic = dict();
-					tdic['reg'] = reg;
-					tdic['attr'] = item['attr'];
-					match = self.__paser_unit(inlist,tdic);
-					if match is None:
-						continue;
-					if not struct.has_key('match'):
-						struct['match'] = list();
-					struct['match'].append(match);
-					break;
+				item['value'] = key;
+				match = self.__paser_unit(inlist,item);
+				if match is None:
+					continue;
+				if not struct.has_key('match'):
+					struct['match'] = list();
+				struct['match'].append(match);
+				break;
 		except MyException as e:
 			print e.value;
 
 	def __paser_unit(self,inlist,reg_item):
 		try:
-			global REGS;
-			regs = reg_item['reg'].split(' ');
-			first = regs[0];
-			second = regs[1];
-			mdic = dict();
-			regstr = '';
-			if first[0] == '%':
-				regstr = REGS[first[1:]];
-			else:
-				regstr = first;
+			regstr = reg_item['reg'];
+			value = reg_item.get('value');
+			if not value in inlist: return;
+
 			tcompile = re.compile(regstr);
+			idx = inlist.index(value);
+			if idx == 0: return ;
+			mstr = inlist[idx - 1];
+			match = tcompile.match(mstr);
+
+			mdic = dict();
 			match = None;
-			for tstr in inlist:
-				match = tcompile.match(tstr);
-				if match is None:
-					continue;
-				if match.end() - match.start() == len(tstr):
-					mdic['match'] = tstr;
-					break;
+
+			if match is None: continue;
+			if match.end() - match.start() == len(tstr):
+				mdic['match'] = tstr;
+				break;
 			if mdic.has_key('match'):
 				idx = inlist.index(mdic['match']);
 				if idx < len(inlist) - 1 and cmp(second,inlist[idx + 1]) == 0:
