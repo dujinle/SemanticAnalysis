@@ -4,10 +4,11 @@ function start(){
 	redis=$1;
 	web=$2;
 	if [[ "${redis}x" == "x" ]];then
-		redis-server ./redis-6379/redis.conf
+		echo "pass ......"
+		#redis-server ./redis-6379/redis.conf
 	fi
 	if [[ "${web}x" == "x" ]];then
-		./web.py &
+		./webroot/web.py &
 		ps > .pidfile && echo "server start ......"
 		echo "start server,listening port 8082"
 	else
@@ -19,7 +20,8 @@ function stop(){
 	redis=$1;
 	web=$2;
 	if [[ "${redis}x" != "x" ]];then
-		redis-cli shutdown
+		echo "pass ......"
+		#redis-cli shutdown
 	fi
 	if [[ "${web}x" != "x" ]];then
 		pid=`cat .pidfile | grep "web.py" | awk '{print $1}'`
