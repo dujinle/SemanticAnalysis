@@ -1,12 +1,7 @@
 #!/bin/bash
 
 function start(){
-	redis=$1;
-	web=$2;
-	if [[ "${redis}x" == "x" ]];then
-		echo "pass ......"
-		#redis-server ./redis-6379/redis.conf
-	fi
+	web=$1;
 	if [[ "${web}x" == "x" ]];then
 		./webroot/web.py &
 		ps > .pidfile && echo "server start ......"
@@ -17,15 +12,12 @@ function start(){
 	fi
 }
 function stop(){
-	redis=$1;
-	web=$2;
-	if [[ "${redis}x" != "x" ]];then
-		echo "pass ......"
-		#redis-cli shutdown
-	fi
+	web=$1;
 	if [[ "${web}x" != "x" ]];then
 		pid=`cat .pidfile | grep "web.py" | awk '{print $1}'`
-		kill -9 $pid && echo "server stop ......"
+		if [[ "${pid}x" != "x" ]];then
+			kill -9 $pid && echo "server stop ......"
+		fi
 	fi
 	echo "server has bean stop......"
 }
@@ -33,14 +25,13 @@ if [[ $# != 1 ]];then
 	echo "Usage: $0 [start|stop|restart]"
 	exit -1
 fi
-redis=`netstat -lntp | grep "6379"`
 web=`netstat -lntp | grep "8082"`
 ttarg=$1;
 if [[ "${ttarg}x" == "startx" ]];then
-	start $redis $web
+	start $web
 elif [[ "${ttarg}x" == "stopx" ]];then
-	stop $redis $web
+	stop $web
 elif [[ "${ttarg}x" == "restartx" ]];then
-	stop $redis $web
-	start $redis $web
+	stop $web
+	start $web
 fi
