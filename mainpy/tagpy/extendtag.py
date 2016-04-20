@@ -68,7 +68,7 @@ def remove(d1data,indata):
 		for rdata in d1data:
 			reg = rdata.get('reg');
 			idx = d1data.index(rdata);
-			if reg.find(data) != -1:
+			if cmp(reg,data) == 0:
 				del d1data[idx];
 				break;
 	except Exception as e:
