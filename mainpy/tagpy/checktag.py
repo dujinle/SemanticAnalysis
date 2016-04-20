@@ -55,6 +55,7 @@ class PM(Base):
 			regs = fdata.get('reg');
 			invalue = data.get('value');
 			if invalue in regs:
-				del regs[invalue];
+				idx = regs.index(invalue);
+				del regs[idx];
 		except Exception as e:
 			raise MyException(format(e));
