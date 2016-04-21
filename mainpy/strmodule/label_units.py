@@ -11,10 +11,6 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
 import common
 from common import MyException
-REGS = {
-	'f':'[1-9][0-9]{0,}[.][0-9]{0,}',
-	'd':'[1-9][0-9]{0,}'
-};
 
 class LabelUnits():
 
@@ -46,42 +42,39 @@ class LabelUnits():
 
 	def __paser_unit(self,inlist,reg_item):
 		try:
-			regstr = reg_item['reg'];
-			value = reg_item.get('value');
-			if not value in inlist: return;
+			ldata = list();
+			ldata.append(reg_item.get('value'));
+			same = reg_item.get('same');
+			if not same is None:
+				ldata.append(same);
+			value = self.__check_unit(ldata,inlist);
+			if value is None: return;
 
-			tcompile = re.compile(regstr);
 			idx = inlist.index(value);
 			if idx == 0: return ;
-			mstr = inlist[idx - 1];
-			match = tcompile.match(mstr);
 
 			mdic = dict();
-			match = None;
-
-			if match is None: continue;
-			if match.end() - match.start() == len(tstr):
-				mdic['match'] = tstr;
-				break;
-			if mdic.has_key('match'):
-				idx = inlist.index(mdic['match']);
-				if idx < len(inlist) - 1 and cmp(second,inlist[idx + 1]) == 0:
-					del inlist[idx + 1];
-					inlist[idx] = mdic['match'] + second;
-					mdic['match'] = mdic['match'] + second;
-					mdic['reg'] = reg_item['reg'];
-					mdic['attr'] = reg_item['attr'];
-					#common.print_dic(mdic);
-					return mdic;
-			return ;
+			mstr = inlist[idx - 1];
+			regstr = reg_item['reg'];
+			tcompile = re.compile(regstr);
+			match = tcompile.match(mstr);
+			if match is None: return;
+			if match.end() - match.start() == len(mstr):
+				mdic['match'] = mstr;
+				mdic['reg'] = reg_item['reg'];
+			return mdic;
 		except MyException as e:
 			raise e;
 
+	def __check_unit(self,ldata,inlist):
+		for lstr in ldata:
+			if lstr in inlist: return lstr;
+		return None;
 
 lu = LabelUnits();
-lu.load_data('./units.txt');
+lu.load_data('./time_unit.txt');
 struct = dict();
-struct['inlist'] = [u'半',u'天'];
+struct['inlist'] = [u'3',u'号'];
 lu.paser_units(struct);
 common.print_dic(struct);
 
