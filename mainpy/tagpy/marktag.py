@@ -85,7 +85,7 @@ class M(Base):
 				else:
 					taglist.append(st);
 			if self.data.has_key('attr'):
-				struct['attr'] = self.data['attr'];
+				struct['attr'] = self.data.get('attr');
 		except Exception as e:
 			raise MyException(format(e));
 
