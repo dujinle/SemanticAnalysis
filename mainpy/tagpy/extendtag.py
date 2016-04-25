@@ -40,6 +40,8 @@ def match(d1data,struct,typec):
 			tdic['type'] = typec;
 			tdic['value'] = tt;
 			taglist.insert(idx,tdic);
+	if data.has_key('attr'):
+		struct['attr'] = data['attr'];
 	dics = dict();
 	dics.update(data);
 	struct[typec] = dics;
