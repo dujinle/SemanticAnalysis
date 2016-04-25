@@ -112,7 +112,8 @@ try:
 	mg.init('Temp');
 	#mg.write_file();
 	mg.sp_deal('del',{'value':u'上调'});
-	common.print_dic(mg.encode(u'把温度上调30%'));
+	common.print_dic(mg.encode(u'把温度调到30度'));
+	#common.print_dic(mg.encode(u'把温度上调30%'));
 	#mg.sp_deal('del',{'value':u'大点'});
 	#common.print_dic(mg.encode(u'把声音调大点'));
 except MyException as e:
