@@ -84,6 +84,8 @@ class M(Base):
 					taglist.append(tdic);
 				else:
 					taglist.append(st);
+			if self.data.has_key('attr'):
+				struct['attr'] = self.data['attr'];
 		except Exception as e:
 			raise MyException(format(e));
 
