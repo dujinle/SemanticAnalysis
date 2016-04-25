@@ -104,7 +104,7 @@ class Mager:
 			self.wordseg.write_file();
 		except MyException as e:
 			raise e;
-'''
+#'''
 try:
 	mg = Mager();
 	mg.init('Voice');
@@ -114,9 +114,4 @@ try:
 	common.print_dic(mg.encode(u'把声音调大点'));
 except MyException as e:
 	print e.value;
-'''
-#mg.deal_data('M','add',{"type":"M","value":u"音频"});
-#mg = Mager();
-#data = mg.deal_data('M','get',None);
-#common.print_dic(data);
-#print_dic(mg.encode(u'把声音关了'));
+#'''
