@@ -36,6 +36,8 @@ class Calc(Base):
 				if m1['reg'].find('C') != -1:
 					self.level = u'中';
 			struct['value'] = level[self.level];
+			if struct.has_key('Nt'):
+				struct['value'] = struct['Nt']['value'];
 		except Exception as e:
 			raise MyException(format(e));
 
@@ -68,6 +70,10 @@ class Calc(Base):
 						struct['dir'] = '-';
 					elif struct['dir'] == '-':
 						struct['dir'] = '+';
+			if struct.has_key('Nt'):
+				ntype = struct['Nt'].get('type');
+				if ntype == 'vnum':
+					struct['dir'] = '+'
 		except Exception as e:
 			raise MyException(format(e));
 

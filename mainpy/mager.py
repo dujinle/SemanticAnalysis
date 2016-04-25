@@ -23,6 +23,7 @@ from marktag import M
 from marktag import C
 from marktag import F
 from marktag import X
+from numtag import Nt
 from extendtag import X1
 from extendtag import M1
 from extendtag import F1
@@ -41,6 +42,7 @@ class Mager:
 		self.tag_objs.append(C());
 		self.tag_objs.append(F());
 		self.tag_objs.append(X());
+		self.tag_objs.append(Nt());
 		# extend tag objs #
 		self.tag_objs.append(X1());
 		self.tag_objs.append(M1());
@@ -104,17 +106,18 @@ class Mager:
 			self.wordseg.write_file();
 		except MyException as e:
 			raise e;
-'''
+
 try:
 	mg = Mager();
-	mg.init('Voice');
+	mg.init('Temp');
 	#mg.write_file();
+	mg.sp_deal('del',{'value':u'上调'});
+	common.print_dic(mg.encode(u'把温度上调30%'));
+	#mg.sp_deal('del',{'value':u'大点'});
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	mg.sp_deal('del',{'value':u'大点'});
-	common.print_dic(mg.encode(u'把声音调大点'));
 except MyException as e:
 	print e.value;
-'''
+
 #mg.deal_data('M','add',{"type":"M","value":u"音频"});
 #mg = Mager();
 #data = mg.deal_data('M','get',None);

@@ -45,7 +45,7 @@ class WordSeg:
 			raise e;
 
 #wd = WordSeg();
-#print wd.tokens(u'你打野');
+#print wd.tokens(u'90%');
 #wd.write_file();
 #print wd.tokens(u'你打野');
 #wd.del_word(u'你打野');
