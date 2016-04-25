@@ -47,12 +47,17 @@ class Calc(Base):
 			direct = self.data['direct'];
 			taglist = struct['taglist'];
 			for _tag in taglist:
+				if _tag.has_key('dir') and _tag['dir'] != 'OFF':
+					self.dirs = _tag['dir'];
+					break;
+				'''
 				if _tag['type'] == 'F':
-					if _tag['dir'] == 'OFF':
-						continue;
+					if _tag['dir'] == 'OFF': continue;
+					if _tag['dir'] == u'值': break;
 					self.dirs = _tag['dir'];
 				if _tag['type'] == 'X':
 					self.dirs = _tag['dir'];
+				'''
 			if struct.has_key('F1'):
 				if struct['F1']['dir'] != 'OFF':
 					self.dirs = struct['F1']['dir'];
@@ -70,10 +75,12 @@ class Calc(Base):
 						struct['dir'] = '-';
 					elif struct['dir'] == '-':
 						struct['dir'] = '+';
+			'''
 			if struct.has_key('Nt'):
 				ntype = struct['Nt'].get('type');
 				if ntype == 'vnum':
 					struct['dir'] = '+'
+			'''
 		except Exception as e:
 			raise MyException(format(e));
 
