@@ -104,14 +104,14 @@ class Mager:
 			self.wordseg.write_file();
 		except MyException as e:
 			raise e;
-#'''
+'''
 try:
 	mg = Mager();
 	mg.init('Voice');
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	mg.sp_deal('del',{'value':u'大点'});
-	common.print_dic(mg.encode(u'把声音调大点'));
+	#mg.sp_deal('del',{'value':u'大点'});
+	common.print_dic(mg.encode(u'把声音调到最大'));
 except MyException as e:
 	print e.value;
-#'''
+'''
