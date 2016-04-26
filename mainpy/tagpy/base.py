@@ -23,11 +23,10 @@ class Base:
 
 	def deal_data(self,fname,action,data):
 		_class = str(self.__class__);
-		if _class.find(fname) == -1:
+		idx = _class.find(fname);
+		spidx = _class.find('.');
+		if spidx != -1 and fname != _class[spidx + 1:]:
 			return common.PASS;
-		if len(fname) == 1 and _class.find(fname + '1') <> -1:
-			return common.PASS;
-
 		func = self.action[action];
 		ret = func(data);
 		return ret;
