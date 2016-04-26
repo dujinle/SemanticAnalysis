@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="{{ static_url("css/index.css") }}" type="text/css">
-    <!-- link rel="stylesheet" href="index.css" type="text/css" -->
+	<!-- link rel="stylesheet" href="index.css" type="text/css" -->
     <title>Title</title>
 </head>
 <body>
@@ -162,6 +162,23 @@
 						<input type="radio" name="choose5" value="底" ><span>底</span>
 					</div>
                 </div>
+                <div class="Z">
+                    <div class="row_1">
+                        <span class="title">综合修饰(Z)：</span>
+                        <input class="text" type="text" id="Z">
+                        <input class="button" value="注入" type="button" onclick="DealWords('Z','add','Z','choose6')" >
+                        <input class="button" value="删除" type="button" onclick="DealWords('Z','del','Z',null)" >
+                        <input class="button" value="获取" type="button" onclick="DealWords('Z','get',null,null)" >
+                    </div>
+                    <div class="row_2">
+                        <span>方向:</span>
+                        <input type="radio" name="choose6" value="正" ><span>正</span>
+                        <input type="radio" name="choose6" value="负" ><span>负</span>
+                        <input type="radio" name="choose6" value="有" ><span>有</span>
+                        <input type="radio" name="choose6" value="无" ><span>无</span>
+                        <input type="radio" name="choose6" value="OFF" ><span>invalid</span>
+                    </div>
+                </div>
                 <div class="Mp">
                     <div class="row_1">
                         <span class="title">模板(Mp)：</span>
@@ -171,6 +188,7 @@
                         <input class="button" value="获取" type="button" onclick="DealWords('PM','get',null,null)">
                     </div>
                 </div>
+
             </div>
             <div class="R_right">
                 <textarea  class="r_text" id="status_id" rows="33" cols="35"></textarea>
