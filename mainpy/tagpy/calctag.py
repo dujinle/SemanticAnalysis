@@ -44,18 +44,21 @@ class Calc(Base):
 			inlist = struct['inlist'];
 			direct = self.data['direct'];
 			taglist = struct['taglist'];
+			mydir = None;
 			for _tag in taglist:
 				if _tag.has_key('dir') and _tag['dir'] != 'OFF':
-					self.dirs = _tag['dir'];
+					mydir = _tag['dir'];
 					break;
+
 			if struct.has_key('F1'):
-				if struct['F1']['dir'] != 'OFF':
-					self.dirs = struct['F1']['dir'];
+				if mydir is None and struct['F1']['dir'] != 'OFF':
+					mydir = struct['F1']['dir'];
 
 			if struct.has_key('M1'):
-				if self.dirs is None and struct['M1']['dir'] != 'OFF':
-					self.dirs = struct['M1']['dir'];
+				if mydir is None and struct['M1']['dir'] != 'OFF':
+					mydir = struct['M1']['dir'];
 
+			if not mydir is None: self.dirs = mydir;
 			if not direct.has_key(self.dirs):
 				raise MyException('Num file has not the dir key[' + self.dirs + ']');
 			struct['dir'] = direct[self.dirs];
