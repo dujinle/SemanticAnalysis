@@ -51,12 +51,17 @@ class Calc(Base):
 					break;
 
 			if struct.has_key('F1'):
-				if mydir is None and struct['F1']['dir'] != 'OFF':
+				if struct['F1']['dir'] != 'OFF':
 					mydir = struct['F1']['dir'];
+				#if not mydir is None and struct['F1']['dir'] != u'值':
+					#mydir = struct['F1']['dir'];
 
 			if struct.has_key('M1'):
 				if mydir is None and struct['M1']['dir'] != 'OFF':
 					mydir = struct['M1']['dir'];
+			if struct.has_key('Z'):
+				if struct['Z']['dir'] != 'OFF':
+					mydir = struct['Z']['dir'];
 
 			if not mydir is None: self.dirs = mydir;
 			if not direct.has_key(self.dirs):
