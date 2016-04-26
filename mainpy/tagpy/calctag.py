@@ -31,10 +31,12 @@ class Calc(Base):
 			for _tag in taglist:
 				if _tag['type'] == 'C':
 					self.level = _tag['level'];
+			'''
 			if struct.has_key('M1'):
 				m1 = struct['M1'];
 				if m1['reg'].find('C') != -1:
 					self.level = u'中';
+			'''
 			if not level.has_key(self.level):
 				raise MyException('Num file has not level key[' + self.level + ']');
 			struct['value'] = level[self.level];
