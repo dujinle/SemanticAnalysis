@@ -114,7 +114,7 @@ try:
 	#common.print_dic(mg.encode(u'静音'));
 	#mg.sp_deal('del',{'value':u'最大声'});
 	#common.print_dic(mg.encode(u'大点声'));
-	common.print_dic(mg.encode(u'把声音关了'));
+	common.print_dic(mg.encode(u'再整点'));
 except MyException as e:
 	print e.value;
 '''

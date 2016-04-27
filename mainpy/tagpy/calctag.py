@@ -29,6 +29,7 @@ class Calc(Base):
 			level = self.data['value'];
 			taglist = struct['taglist'];
 			for _tag in taglist:
+				if type(_tag) != dict: continue;
 				if _tag['type'] == 'C':
 					self.level = _tag['level'];
 			if not level.has_key(self.level):
@@ -46,6 +47,7 @@ class Calc(Base):
 			taglist = struct['taglist'];
 			mydir = None;
 			for _tag in taglist:
+				if type(_tag) != dict: continue;
 				if _tag.has_key('dir') and _tag['dir'] != 'OFF':
 					mydir = _tag['dir'];
 					break;
