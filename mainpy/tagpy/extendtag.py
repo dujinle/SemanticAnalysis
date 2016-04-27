@@ -156,7 +156,6 @@ class Z(Base):
 				raise MyException('the struct dic not found the key[text]');
 			text = struct['text'];
 			Zdata = self.data['Z'];
-			print text;
 			for data in Zdata:
 				if data['reg'] == text:
 					struct['Z'] = data;
