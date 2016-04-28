@@ -66,7 +66,7 @@ li {
 }
 .box .main {
   width: 100%;
-  height: 700px;
+  height: 800px;
   overflow: hidden;
   box-sizing: border-box;
   margin-top: 50px;
@@ -75,7 +75,7 @@ li {
   box-sizing: border-box;
   width: 400px;
   border-right: 1px solid #000 ;
-  height: 700px;
+  height: 800px;
   padding: 10px;
   float: left;
 }
@@ -171,6 +171,7 @@ li {
   float: left;
   padding:20px 10px;
   box-sizing: border-box;
+  height: 800px;
 }
 .box .main .right .R_left .title {
   font-size: 15px;
@@ -196,12 +197,11 @@ li {
   background: #42abf8;
 }
 .box .main .right .R_left .M,
-.box .main .right .R_left .Mp,
-.box .main .right .R_left .C {
+.box .main .right .R_left .C{
   border-bottom: 1px solid #000;
   line-height: 30px;
 }
-.box .main .right .R_left .Mp {
+.box .main .right .R_left .Mp{
   margin-top: 10px;
   border-bottom: none !important;
 }
@@ -209,7 +209,8 @@ li {
 .box .main .right .R_left .F,
 .box .main .right .R_left .F1,
 .box .main .right .R_left .X,
-.box .main .right .R_left .X1 {
+.box .main .right .R_left .X1,
+.box .main .right .R_left .Z{
   height: 85px;
   padding: 5px 0;
   box-sizing: border-box;
@@ -220,7 +221,9 @@ li {
 .box .main .right .R_left .F .row_1,
 .box .main .right .R_left .F1 .row_1,
 .box .main .right .R_left .X .row_1,
-.box .main .right .R_left .X1 .row_1 {
+.box .main .right .R_left .X1 .row_1,
+.box .main .right .R_left .Mp .row_1,
+.box .main .right .R_left .Z .row_1,{
   height: 40px;
   line-height: 40px;
 }
@@ -228,7 +231,8 @@ li {
 .box .main .right .R_left .F .row_2,
 .box .main .right .R_left .F1 .row_2,
 .box .main .right .R_left .X .row_2,
-.box .main .right .R_left .X1 .row_2 {
+.box .main .right .R_left .X1 .row_2 ,
+.box .main .right .R_left .Z.row_2{
   margin-top: 10px;
   height: 20px;
   line-height: 20px;
