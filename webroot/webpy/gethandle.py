@@ -25,6 +25,7 @@ class GetHandler(RequestHandler):
 				return ;
 			ctype = self.body_json['type'];
 			mager = self.get_mager();
+			logging.info('get data: type:' + ctype);
 			rest = mager.deal_data(ctype,'get',None);
 			print rest;
 			self.write(self.gen_result(0,ctype + ' get words success',rest));

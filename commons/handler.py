@@ -24,7 +24,7 @@ class RequestHandler(tornado.web.RequestHandler):
 			global MAGER
 			if MAGER is None:
 				MAGER = Mager();
-				MAGER.init('Voice');
+				MAGER.init('Temp');
 				print 'creat menj success ......';
 		except Exception as e:
 			raise e;
