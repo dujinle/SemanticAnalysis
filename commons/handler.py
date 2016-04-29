@@ -3,14 +3,15 @@
 import json,os,sys
 import tornado.web
 import traceback
-from logger import *
 #==================================================
 ''' import module mager '''
-abspath = os.path.dirname(__file__);
+base_path = os.path.dirname(__file__);
 
 sys.path.append(base_path);
 sys.path.append(base_path + '/../mainpy');
 #===================================================
+from logger import *
+import config
 
 from mager import Mager
 MAGER = None;
@@ -25,6 +26,7 @@ class RequestHandler(tornado.web.RequestHandler):
 			if MAGER is None:
 				MAGER = Mager();
 				MAGER.init('Temp');
+				config.dtype = 'Temp';
 				print 'creat menj success ......';
 		except Exception as e:
 			raise e;
