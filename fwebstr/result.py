@@ -19,6 +19,9 @@ class ResultHandler(RequestHandler):
 	def __init__(self,*args, **kwargs):
 		RequestHandler.__init__(self, *args, **kwargs);
 
+	def initialize(self,mager):
+		self.mager = mager;
+
 	@tornado.gen.coroutine
 	@common.json_loads_body
 	def post(self):
@@ -39,3 +42,4 @@ class ResultHandler(RequestHandler):
 			self.write(self.gen_result(0,'enjoy success',sres));
 		except Exception as e:
 			logging.error(str(e));
+			raise e;
