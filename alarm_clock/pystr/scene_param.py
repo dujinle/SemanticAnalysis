@@ -284,8 +284,8 @@ def _find_cks_time_to_time(struct,super_b):
 	if start[0] == 'null': start = inter_1['end'];
 	end = inter_2['start'];
 	if end[0] == 'null': end = inter_2['end'];
-	able,diff = _get_time_to_time_able(start,end);
-
+	able,diff,sweek,eweek = _get_time_to_time_able(start,end);
+	#print able,diff
 	if inter_1['scope'] == 'day' and inter_2['scope'] == 'day':
 		for ck in super_b.clocks:
 			clock = super_b.clocks[ck];
@@ -296,7 +296,7 @@ def _find_cks_time_to_time(struct,super_b):
 			clock = super_b.clocks[ck];
 			hour = int(clock['time'].split(':')[0]);
 			mins = int(clock['time'].split(':')[1]);
-			if hour < start[3] and int(clock['able']['able']) & int(math.pow(2,idx)) > 0:
+			if hour < start[3] and int(clock['able']['able']) & int(math.pow(2,sweek)) > 0:
 				continue;
 			elif int(clock['able']['able']) & int(able) <= 0:
 				continue;
@@ -321,7 +321,7 @@ def _find_cks_time_to_time(struct,super_b):
 			mins = int(clock['time'].split(':')[1]);
 			#print hour,mins,start,end
 			if diff == 0:
-				if hour < start[3] and int(clock['able']['able']) & int(math.pow(2,idx)) > 0:
+				if hour < start[3] and int(clock['able']['able']) & int(math.pow(2,sweek)) > 0:
 					continue;
 				if hour > end[3] and int(clock['able']['able']) & int(math.pow(2,eweek)) > 0:
 					continue;
@@ -390,9 +390,13 @@ def _get_time_to_time_able(start,end):
 	idx = sweek;
 	while True:
 		if sweek > eweek: break;
-		able = able + math.pow(2,sweek);
+		if sweek >= 7:
+			able = able + math.pow(2,sweek - 7);
+		else:
+			able = able + math.pow(2,sweek);
 		sweek = sweek + 1;
-	return (able,diff);
+	if eweek >= 7: eweek = eweek - 7;
+	return (able,diff,idx,eweek);
 
 def _get_time_able(start,end):
 	able = 0;

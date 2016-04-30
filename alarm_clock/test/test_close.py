@@ -30,7 +30,7 @@ def analysis_result(struct,ans):
 wd = WordSeg();
 timer = TimeMager(wd);
 tag = MytagMager(wd);
-se = SEngin(wd);
+se = SEngin();
 
 se.init('../tdata/');
 timer.init('Timer');
@@ -38,17 +38,16 @@ tag.init('Mytag');
 
 struct = dict();
 struct['result'] = dict();
-tests = common.read_json('./mclose.test');
+tests = common.read_json('./mclose.json');
 for test in tests:
 	#init data
 	se.clocks.clear();
-	ck_list = common.read_json('./mclose.init');
-	for ck in ck_list:
+	se.myclock = None;
+	for ck in test['init']:
+		if se.myclock is None: se.myclock = ck;
 		se.clocks[ck['key']] = ck;
-	se.myclock = ck_list[0];
-	#read test file
-	#start tests
 	struct['text'] = test['test'];
+	struct['inlist'] = wd.tokens(struct['text']);
 	timer.encode(struct);
 	tag.encode(struct);
 	se.encode(struct);

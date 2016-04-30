@@ -24,33 +24,16 @@ class SceneClose(Base):
 
 			#启动时响应回复
 			if struct['step'] == 'start':
-				cks = self._which_ck_close(struct,super_b);
-				struct['result']['msg'] = (self.data['msg']['close_start'][0] %len(cks))
-				#todo send msg......
-				if len(cks) > 0:
+				cks = self._find_cks(struct,super_b);
+				if not cks is None and len(cks) > 0:
 					close_num = self._close_cks(cks,super_b);
-					msg_id = SceneParam._get_random_id(len(self.data['msg']['close_succ']));
-					struct['result']['msg'] = (self.data['msg']['close_succ'][msg_id]);
+					SceneParam._set_msg(struct,self.data['msg']['close_succ']);
+				else:
+					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
-	def _which_ck_close(self,struct,super_b):
-		cks = list();
-		if struct['ttag'].find('_time_to_time') <> -1:
-			cks = SceneParam._find_cks_time_to_time(struct,super_b);
-			del struct['intervals'][0];
-			del struct['intervals'][0];
-		elif struct['ttag'].find('_time') <> -1:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			del struct['intervals'][0];
-		elif len(re.findall('((_remind)|(_clock))(_all)*(_close)',struct['ttag'])) > 0:
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-			if len(cks) == 0: cks = super_b.clocks.keys();
-		elif len(re.findall('_close.*((_clock)|(_remind))',struct['ttag'])) <> -1:
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-			if len(cks) == 0: cks = super_b.clocks.keys();
-		return cks;
 
 	def _close_cks(self,cks,super_b):
 		close_num = 0;
@@ -64,3 +47,45 @@ class SceneClose(Base):
 				clock['status']['type'] = 'close';
 				close_num = close_num + 1;
 		return close_num;
+
+	def _find_cks(self,struct,super_b):
+		match = self._get_match_info(struct['ttag']);
+		if match is None: return None;
+		if match['func'] == 't2t':
+			print 'go into _find_cks_time_to_time......'
+			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+			return cks;
+		if match['func'] == 'time':
+			print 'go into _find_cks_time......'
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			return cks;
+		if match['func'] == 'info':
+			print 'go into _find_cks_info......'
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+			return cks;
+		if match['func'] == 'pastdue':
+			cks = SceneParam._find_cks_pastdue(super_b);
+			return cks;
+		if match['func'] == 'all':
+			print 'go into _find_all_cks......'
+			cks = super_b.clocks.keys();
+			return cks;
+		if match['func'] == 'num':
+			print 'go into _find_num cks......'
+			cks = SceneParam._find_cks_by_num(struct,super_b);
+			return cks;
+		if match['func'] == 'just':
+			cks = list();
+			if not super_b.myclock is None: cks.append(super_b.myclock['key']);
+			return cks;
+		if match['func'] == 'nouse':
+			cks = SceneParam._find_cks_nouse(super_b);
+			return cks;
+		return None;
+
+	def _get_match_info(self,ttag):
+		for temp in self.data['template']:
+			comp = re.compile(temp['reg']);
+			match = comp.search(ttag);
+			if not match is None: return temp;
+		return None;
