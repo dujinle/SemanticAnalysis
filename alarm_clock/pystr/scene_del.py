@@ -1,15 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json,copy
-import re,time
-reload(sys);
-sys.setdefaultencoding('utf-8');
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
-import common,datetime,math
+import sys,os,common,re
 from common import logging
 from myexception import MyException
 from scene_base import SceneBase
@@ -61,8 +52,8 @@ class SceneDel(SceneBase):
 
 	def _find_cks(self,struct,super_b):
 		match = self._get_match_info(struct['ttag']);
-		common.print_dic(match);
 		if match is None: return None;
+		common.print_dic(match);
 		if match['func'] == 't2t':
 			print 'go into _find_cks_time_to_time......'
 			cks = SceneParam._find_cks_time_to_time(struct,super_b);

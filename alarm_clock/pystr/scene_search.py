@@ -1,15 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json,copy
-import re,time,math
-reload(sys);
-sys.setdefaultencoding('utf-8');
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
-import common
+import sys,os,re,common
 from myexception import MyException
 from common import logging
 import scene_param as SceneParam

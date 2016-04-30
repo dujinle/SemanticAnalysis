@@ -1,9 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json,copy
-import re,time,math
-
-import common
+import sys,os,re,common
 from common import logging
 import scene_param as SceneParam
 from myexception import MyException

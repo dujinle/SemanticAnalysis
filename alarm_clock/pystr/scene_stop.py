@@ -1,15 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json,copy
-import re,time
-reload(sys);
-sys.setdefaultencoding('utf-8');
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
-import common
+import sys,os,common
 from myexception import MyException
 from common import logging
 import scene_param as SceneParam
@@ -29,10 +20,8 @@ class SceneStop(SceneBase):
 
 			if struct['step'] == 'start':
 				SceneParam._set_msg(struct,self.data['msg']['set_start']);
-				#self.send_msg(struct);
-				#开始参数设置向导
 				self._set_clock_stop(struct,super_b);
-				struct['step'] = 'end';
+			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
