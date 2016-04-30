@@ -33,7 +33,8 @@ class TSolarTerm(Base):
 			if not my_interval.has_key('type'): my_interval['type'] = 'time_st';
 			self._convert_solarterm_day(my_interval,mdic);
 			struct['step_id'] = step_id + len(mdic['mstr']);
-			if not struct.has_key('scope'): struct['scope'] = 'year';
+			#if not struct.has_key('scope'): struct['scope'] = 'year';
+			struct['scope'] = 'day';
 			struct['prev_func'] = 'time_st';
 			return 0;
 		except MyException as e: raise e;
@@ -55,7 +56,7 @@ class TSolarTerm(Base):
 		year_type = mdic['year_type'];
 
 		year = curtime[time_common.tmenu['year']];
-		if my_interval['start'][time_common.tmenu['year']] <> 0:
+		if my_interval['start'][time_common.tmenu['year']] <> 'null':
 			year = my_interval['start'][time_common.tmenu['year']];
 		(year,mon,day) = time_calendar.GetSolarTerm(year,order);
 
