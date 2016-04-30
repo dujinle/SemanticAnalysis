@@ -22,26 +22,9 @@ from wordseg import WordSeg
 from scene_engin import SEngin
 
 def analysis_result(struct,ans):
-	key = ans['key'];
-	if not struct['mcks'].has_key(key): return False;
-	clock = struct['mcks'][key];
-	if ans.has_key('time'):
-		if ans['time'] == clock['time']:
-			return True;
-		else:
-			return False;
-	if ans.has_key('info'):
-		if ans['info'] == clock['info']:
-			return True;
-		else:
-			return False;
-	if ans.has_key('able'):
-		if int(ans['able']) == int(clock['able']['able']):
-			return True;
-		else:
-			return False;
+	for item in ans:
+		if not struct['mcks'].has_key(item): return False;
 	return True;
-
 
 
 wd = WordSeg();
@@ -58,7 +41,7 @@ pdeal.init('PDeal');
 struct = dict();
 struct['result'] = dict();
 #read test file
-tests = common.read_json('./magenda.json');
+tests = common.read_json('./maddm.json');
 #start tests
 for test in tests:
 	struct['text'] = test['test'];

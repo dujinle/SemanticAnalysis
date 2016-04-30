@@ -11,11 +11,13 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 sys.path.append(os.path.join(base_path,'../../modules/timer'));
 sys.path.append(os.path.join(base_path,'../../modules/wordsegs'));
 sys.path.append(os.path.join(base_path,'../../modules/mytag'));
+sys.path.append(os.path.join(base_path,'../../modules/prev_deal'));
 sys.path.append(os.path.join(base_path,'../pystr'));
 #============================================
 import common,config
-from time_mager import TimeMager
-from tag_mager import MytagMager
+from time_cmager import TimeMager
+from tag_cmager import MytagMager
+from pdeal_cmager import PDealMager
 from wordseg import WordSeg
 from scene_engin import SEngin
 
@@ -49,13 +51,15 @@ def analysis_result(struct,ans):
 
 
 wd = WordSeg();
-timer = TimeMager(wd);
-tag = MytagMager(wd);
+timer = TimeMager();
+tag = MytagMager();
+pdeal = PDealMager();
 se = SEngin();
 
 se.init('../tdata/');
 timer.init('Timer');
 tag.init('Mytag');
+pdeal.init('PDeal');
 
 struct = dict();
 struct['result'] = dict();
@@ -69,9 +73,10 @@ for test in tests:
 		if se.myclock is None: se.myclock = ck;
 		se.clocks[ck['key']] = ck;
 	struct['text'] = test['test'];
+	struct['inlist'] = wd.tokens(struct['text']);
+	pdeal.encode(struct);
 	timer.encode(struct);
 	tag.encode(struct);
-	struct['inlist'] = wd.tokens(struct['text']);
 	se.encode(struct);
 	if analysis_result(struct,test['ans']) == True:
 		print test['test'],'succ';
