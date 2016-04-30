@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import sys,os,time,common
-import time_common,re
+import time_common,re,datetime
 from myexception import MyException
 
 base_path = os.path.dirname(__file__);
@@ -92,9 +92,9 @@ class TimeReduce():
 			tdic['str'] = sitem['str'] + eitem['str'];
 			tdic['stime'] = ret[0];
 			tdic['etime'] = ret[1];
-#			tdic['scope'] = sitem['scope'];
-			if sitem.has_key('func') and sitem['func'] == 'add':
-				tdic['func'] = 'add';
+			mtype = sitem['type'] + '_' + eitem['type'];
+			if mtype == 'date_wfestival':
+				self.time_week_festival(tdic);
 			return tdic;
 		return None;
 
@@ -118,14 +118,39 @@ class TimeReduce():
 			for it in struct['time_stc']:
 				rstr = item['str'] + it['str'];
 				lstr = it['str'] + item['str'];
-				if rstr == mstr:
+				if rstr.find(mstr) <> -1:
 					mdic = dict(it);
 					struct['time_stc'].remove(it);
 					return [item,it];
-				if lstr == mstr:
+				if lstr.find(mstr) <> -1:
 					mdic = dict(item);
 					struct['time_stc'].remove(it);
 					return [it,item];
 			if one_time == False:
 				left_list.append(item);
 		struct['time_stc'].extend(left_list);
+
+	def time_week_festival(self,item):
+		cur_time = time.localtime();
+		mdate = datetime.date(cur_time[time_common.tmenu['year']],int(item['month']),1);
+		nmdate = datetime.date(cur_time[time_common.tmenu['year']],int(item['month']) + 1,1);
+		if item['stime'][time_common.tmenu['year']] <> 'null':
+			mdate = datetime.date(item['stime'][time_common.tmenu['year']],int(item['month']),1);
+			nmdate = datetime.date(item['stime'][time_common.tmenu['year']],int(item['month']) + 1,1);
+
+		week = mdate.weekday();
+		nweek = nmdate.weekday();
+		left_day = 0;
+		if int(item['week_idx']) > 0:
+			if week < int(item['week']):
+				left_day = int(item['week']) - week + 1;
+			else:
+				left_day = 7 - week + int(item['week']);
+			left_day = (int(item['week_idx']) - 1) * 7 + left_day;
+			item['stime'][time_common.tmenu['day']] = left_day;
+			item['etime'][time_common.tmenu['day']] = left_day + 1;
+		elif int(item['week_idx']) == -1:
+			left_day = int(item['week']) - nweek - 7 + 1;
+			item['stime'][time_common.tmenu['day']] = left_day;
+			item['etime'][time_common.tmenu['day']] = left_day + 1;
+		item['scope'] = 'day';

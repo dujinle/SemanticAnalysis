@@ -1,77 +1,90 @@
 [
 	{
+		"type":"wfestival",
 		"reg":"国际麻风节",
 		"month":1,
 		"week":6,
 		"week_idx":-1
 	},
 	{
+		"type":"wfestival",
 		"reg":"母亲节",
 		"month":5,
 		"week":6,
 		"week_idx":2
 	},
 	{
+		"type":"wfestival",
 		"reg":"全国助残日",
 		"month":5,
 		"week":6,
 		"week_idx":3
 	},
 	{
+		"type":"wfestival",
 		"reg":"父亲节",
 		"month":6,
 		"week":6,
 		"week_idx":3
 	},
 	{
+		"type":"wfestival",
 		"reg":"国际和平日",
 		"month":9,
 		"week":1,
 		"week_idx":3
 	},
 	{
+		"type":"wfestival",
 		"reg":"全国国防教育日",
 		"month":9,
 		"week":5,
 		"week_idx":3
 	},
 	{
+		"type":"wfestival",
 		"reg":"国际聋人节",
 		"month":9,
 		"week":6,
 		"week_idx":4
 	},
 	{
+		"type":"wfestival",
 		"reg":"世界住房日",
 		"month":10,
 		"week":0,
 		"week_idx":1
 	},
 	{
+		"type":"wfestival",
 		"reg":"加拿大感恩节",
 		"month":10,
 		"week":0,
 		"week_idx":2
 	},
 	{
+		"type":"wfestival",
 		"reg":"国际减轻自然灾害日",
 		"month":10,
 		"week":2,
 		"week_idx":2
 	},
 	{
+		"type":"wfestival",
 		"reg":"世界爱眼日",
 		"month":10,
 		"week":3,
 		"week_idx":2
 	},
 	{
+		"type":"wfestival",
 		"reg":"美国感恩节",
 		"month":11,
 		"week":3,
 		"week_idx":4
 	},
 	{
+		"type":"wfestival",
 		"reg":"中小学生安全教育日",
 		"month":3,
 		"week":0,

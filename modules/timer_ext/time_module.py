@@ -92,7 +92,7 @@ class TimeModule():
 			left_day = 0;
 			if int(item['week_idx']) > 0:
 				if week < int(item['week']):
-					left_day = int(item['week']) - week;
+					left_day = int(item['week']) - week + 1;
 				else:
 					left_day = 7 - week + int(item['week']);
 				left_day = (int(item['week_idx']) - 1) * 7 + left_day;
@@ -104,9 +104,6 @@ class TimeModule():
 				item['etime'][time_common.tmenu['month']] = int(item['month']) + 1;
 				item['stime'][time_common.tmenu['day']] = left_day;
 				item['etime'][time_common.tmenu['day']] = left_day + 1;
-			del item['week'];
-			del item['month'];
-			del item['week_idx'];
 			item['scope'] = 'day';
 
 	def time_decade(self,struct,key):
@@ -159,25 +156,3 @@ class TimeModule():
 			item['stime'][time_common.tmenu['day']] = int(solar['day']);
 			item['etime'][time_common.tmenu['day']] = int(solar['day']) + 1;
 			item['scope'] = 'day';
-	#移除无效的时间对象 通过最长匹配原则
-	def remove_time_item(self,struct):
-		left_list = list();
-		slen = len(struct['text']);
-		sid = flg = 0;eid = slen;
-		while True:
-			if sid > slen: break;
-			istr = struct['text'][sid:eid];
-			flg = 0;
-			for item in struct['time_stc']:
-				if item['str'] == istr:
-					sid = eid;
-					eid = slen;
-					flg = 1;
-					left_list.append(item);
-					break;
-			if flg == 0:
-				eid = eid - 1;
-			if eid == 0:
-				eid = slen;
-				sid = sid + 1;
-		struct['time_stc'] = left_list;

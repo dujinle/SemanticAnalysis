@@ -70,7 +70,8 @@ class TimeTail():
 		while True:
 			if idx >= len(item.keys()): break;
 			key = item.keys()[idx];
-			if key == 'stime' or key == 'etime' or key == 'str' or key == 'scope':
+			if key == 'stime' or key == 'etime' or key == 'str' or key == 'scope' \
+				or key == 'type':
 				idx = idx + 1;
 				continue;
 			else:

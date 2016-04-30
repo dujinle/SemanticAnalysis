@@ -23,9 +23,12 @@ class MarkObjs():
 			for item in mdata:
 				comp = re.compile(item['reg']);
 				match = comp.search(struct['text']);
-				if match is None: continue;
-				tdic = dict(item);
-				tdic['str'] = match.group();
-				struct[key].append(tdic);
+
+				amatch = re.findall(item['reg'],struct['text']);
+				for tstr in amatch:
+					if len(tstr) == 0: continue;
+					tdic = dict(item);
+					tdic['str'] = tstr;
+					struct[key].append(tdic);
 		except Exception as e:
 			raise MyException(sys.exc_info());

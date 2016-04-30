@@ -28,7 +28,7 @@ class TimeMiddle():
 			for key in keys:
 				struct['time_stc'].extend(struct[key]);
 				del struct[key];
-#进行一次去重 去除 多余的结构会对下一步造成影响
+			#进行一次去重 去除 多余的结构会对下一步造成影响
 			self.remove_time_item(struct);
 			self.match_item(struct,key);
 		except Exception:
@@ -163,7 +163,7 @@ class TimeMiddle():
 		slen = len(struct['text']);
 		sid = flg = 0;eid = slen;
 		while True:
-			if sid > slen: break;
+			if sid >= slen: break;
 			istr = struct['text'][sid:eid];
 			flg = 0;
 			for item in struct['time_stc']:

@@ -1,461 +1,538 @@
 [
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[2,3],
-		"reg":"后(天|日)",
+		"reg":"后[天日]",
 		"func":"add"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[12,24],
-		"reg":"后半(天|日)",
+		"reg":"后半[天日]",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[1,2],
-		"reg":"(次|明)(天|日)",
+		"reg":"[次明][天日]",
 		"func":"add"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[0,1],
 		"func":"add",
-		"reg":"(本|今)(天|日)"
+		"reg":"[本今][天日]"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[-1,0],
 		"func":"add",
-		"reg":"昨(天|日)"
+		"reg":"昨[天日]"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[-2,-1],
 		"func":"add",
-		"reg":"前(天|日)"
+		"reg":"前[天日]"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[0,6],
 		"func":"equal",
 		"reg":"凌晨"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[6,8],
 		"func":"equal",
 		"reg":"早晨"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[6,8],
 		"func":"equal",
 		"reg":"清晨"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[6,8],
 		"func":"equal",
 		"reg":"早上"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[9,12],
 		"func":"equal",
 		"reg":"上午"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[12,14],
 		"func":"equal",
 		"reg":"中午"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[14,17],
 		"func":"equal",
 		"reg":"下午"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[17,19],
 		"func":"equal",
 		"reg":"傍晚"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[17,19],
 		"func":"equal",
 		"reg":"黄昏"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[19,22],
 		"func":"equal",
 		"reg":"晚上"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[22,24],
 		"func":"equal",
 		"reg":"深夜"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[0,1],
 		"func":"equal",
 		"reg":"午夜"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[12,14],
 		"reg":"晌午",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[21,24],
 		"reg":"前半夜",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[24,30],
 		"reg":"后半夜",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[24,30],
 		"reg":"下半夜",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[21,24],
 		"reg":"上半夜",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"year",
 		"region":[-1,0],
 		"reg":"去年",
 		"func":"add"
 	},
 	{
+		"type":"date",
 		"scope":"year",
 		"region":[-2,-1],
 		"reg":"前年",
 		"func":"add"
 	},
 	{
+		"type":"date",
 		"scope":"year",
 		"region":[1,2],
-		"reg":"(明|次)年",
+		"reg":"[明次]年",
 		"func":"add"
 	},
 	{
+		"type":"date",
 		"scope":"year",
 		"region":[0,1],
-		"reg":"(今|本)年",
+		"reg":"[今本]年",
 		"func":"add"
 	},
 	{
+		"type":"date",
 		"scope":"year",
 		"region":[2,3],
 		"reg":"后年",
 		"func":"add"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[0,2],
 		"func":"add",
-		"reg":"这两(天|日)"
+		"reg":"这两[天日]"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[0,3],
-		"reg":"这几(天|日)",
+		"reg":"这几[天日]",
 		"func":"add"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[4,6],
 		"reg":"拂晓",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[23,25],
 		"func":"equal",
 		"reg":"子时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[1,3],
 		"func":"equal",
 		"reg":"丑时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[3,5],
 		"func":"equal",
 		"reg":"寅时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[5,7],
 		"func":"equal",
 		"reg":"卯时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[7,9],
 		"func":"equal",
 		"reg":"辰时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[9,11],
 		"func":"equal",
 		"reg":"巳时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[11,13],
 		"func":"equal",
 		"reg":"午时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[13,15],
 		"func":"equal",
 		"reg":"未时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[17,19],
 		"func":"equal",
 		"reg":"酉时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[19,21],
 		"func":"equal",
 		"reg":"戌时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[21,23],
 		"func":"equal",
 		"reg":"亥时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[15,17],
 		"func":"equal",
 		"reg":"申时"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[8,20],
-		"reg":"白(天|日)",
+		"reg":"白[天日]",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[22,28],
 		"reg":"半夜",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[6,8],
 		"reg":"清早",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[23,25],
 		"reg":"子夜",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[4,6],
 		"reg":"黎明",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[20,30],
 		"reg":"夜间",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[20,30],
 		"reg":"夜里",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[12,14],
 		"reg":"午间",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[14,18],
 		"reg":"午后",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[1,6],
 		"reg":"上半年",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[1,6],
 		"reg":"前半年",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[7,12],
 		"reg":"下半年",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[7,12],
 		"reg":"后半年",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[1,5],
 		"reg":"月初",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[13,17],
 		"reg":"月中",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[26,30],
 		"reg":"月底",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[26,30],
 		"reg":"月末",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[26,30],
 		"reg":"月度末",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[1,2],
 		"reg":"年初",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[6,7],
 		"reg":"年中",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[11,12],
 		"reg":"年底",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"year",
 		"region":[-1,0],
 		"reg":"上年",
 		"func":"add"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[1,2],
 		"reg":"元月",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"hour",
 		"region":[0,1],
 		"reg":"零点",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[2,5],
 		"reg":"第*1季度",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[5,8],
 		"reg":"第*2季度",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[8,11],
 		"reg":"第*3季度",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"month",
 		"region":[11,14],
 		"reg":"第*4季度",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"min",
 		"region":[15,15],
 		"reg":"1刻钟*",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"min",
 		"region":[30,30],
 		"reg":"2刻钟*",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"min",
 		"region":[30,45],
 		"reg":"3刻钟*",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[1,10],
 		"reg":"上旬",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[11,20],
 		"reg":"中旬",
 		"func":"equal"
 	},
 	{
+		"type":"date",
 		"scope":"day",
 		"region":[21,30],
 		"reg":"下旬",
