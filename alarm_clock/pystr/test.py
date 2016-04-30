@@ -14,16 +14,16 @@ sys.path.append(os.path.join(base_path,'../../modules/mytag'));
 sys.path.append(os.path.join(base_path,'../../modules/prev_deal'));
 #============================================
 import common,config
-from time_mager import TimeMager
-from tag_mager import MytagMager
-from pdeal_mager import PDealMager
+from time_cmager import TimeMager
+from tag_cmager import MytagMager
+from pdeal_cmager import PDealMager
 from wordseg import WordSeg
 from scene_engin import SEngin
 
 wd = WordSeg();
-timer = TimeMager(wd);
-tag = MytagMager(wd);
-pdeal = PDealMager(wd);
+timer = TimeMager();
+tag = MytagMager();
+pdeal = PDealMager();
 se = SEngin();
 
 tag.init('Mytag');

@@ -1,15 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json,copy
-import re,time,math,datetime
-reload(sys);
-sys.setdefaultencoding('utf-8');
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
-import common
+import sys,os,re,common
 from myexception import MyException
 from pdeal_base import PDealBase
 
@@ -20,7 +11,7 @@ class PDealReplace(PDealBase):
 		try:
 			self._replace_str(struct);
 			self._deal_time_rep(struct);
-		except MyException as e: raise e;
+		except Exception as e: raise e;
 
 	def _replace_str(self,struct):
 		for reg in self.data['rep']:
@@ -30,13 +21,14 @@ class PDealReplace(PDealBase):
 			match = compstr.search(struct['text']);
 			if not match is None:
 				struct['text'] = struct['text'].replace(match.group(0),value);
+				if match.group(0) in struct['inlist']:
+					struct['inlist'].remove(match.group(0));
 
 	def _deal_time_rep(self,struct):
 		com = re.compile(self.data['time_rep']);
 		match = com.search(struct['text']);
 		if not match is None:
 			tstr = match.group(0);
-			print tstr;
 			if len(tstr) <> 4: return None;
 			thour = tstr[2:];
 			tnum = thour[0];

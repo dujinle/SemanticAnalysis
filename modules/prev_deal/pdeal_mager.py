@@ -36,23 +36,5 @@ class PDealMager:
 	def encode(self,struct):
 		try:
 			for obj in self.tag_objs: obj.encode(struct);
-			return struct;
-		except MyException as e:
-			res = common.get_dicstr(struct);
-			res = e.value + '\n' +res;
-			raise MyException(res);
-
-
-'''
-try:
-	sys.path.append('../wordsegs');
-	from wordseg import WordSeg
-	wordseg = WordSeg();
-	mg = PDealMager(wordseg);
-	mg.init('PDeal');
-	struct = dict();
-	struct['text'] = u'8点提醒我回忆';
-	common.print_dic(mg.encode(struct));
-except MyException as e:
-	print e.value;
-'''
+		except Exception as e:
+			raise e;
