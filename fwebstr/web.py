@@ -2,18 +2,21 @@
 #-*- coding : utf-8 -*-
 #
 import sys,os
-
 import tornado.ioloop
 import tornado.web
-from webpy import *
+
+base_path = os.path.dirname(__file__);
+sys.path.append(os.path.join(base_path,'../'));
+
 from mager import Mager
 from result import ResultHandler
 
 class Application(tornado.web.Application):
 	def __init__(self):
 		self.mager = Mager();
+		self.mager.init();
 		handlers = [
-			(r"/result",ResultHandler(self.mager));
+			(r"/get_sresult",ResultHandler,{'mager':self.mager}),
 		];
 		settings = dict(
 				template_path = os.path.join(os.path.dirname(__file__),"templates"),
