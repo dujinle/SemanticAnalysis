@@ -95,6 +95,7 @@ class TReplace(Base):
 				if int(pre_num) <= 12:
 					num = str(int(pre_num) + 12);
 					input_str = input_str.replace(pre_num,num,1);
+					struct['rep_dict'][num] = str(pre_num);
 			if mdic['func'] == 'hour_half':
 				input_str = input_str.replace(mdic['value'],u'30分',1);
 				struct['rep_dict'][u'30分'] = mdic['value'];
