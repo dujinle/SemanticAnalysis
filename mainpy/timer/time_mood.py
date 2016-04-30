@@ -43,3 +43,25 @@ class TMood(Base):
 				if len(num) > 0: mydic['num'] = num[0];
 				return mydic;
 		return None;
+
+	def _add(self,data):
+		if not data.has_key('type'):
+			raise MyException('not found type value');
+		if not data.has_key('reg'):
+			raise MyException('not found reg value');
+		tdic['reg'] = data['reg'];
+		tdic['type'] = data['dtype'];
+		if data.has_key('status'):
+			tdic['status'] = data['status'];
+		elif data.has_key('level'):
+			tdic['level'] = data['level'];
+		self.data['regs'].append(data);
+
+	def _del(self,data):
+		if not data.has_key('reg'):
+			raise MyException('not found reg value');
+		istr = data['reg'];
+		for item in self.data['regs']:
+			if item['reg'] == istr:
+				self.data['regs'].remove(item);
+				break;

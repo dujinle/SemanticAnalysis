@@ -42,6 +42,7 @@ class TimeMager:
 		self.tag_objs.append(TEFestival());
 		self.tag_objs.append(TSolarTerm());
 		self.tag_objs.append(TDecade());
+		self.tag_objs.append(TMood());
 
 	def init(self,dtype):
 		try:
@@ -68,10 +69,9 @@ class TimeMager:
 				for obj in self.tag_objs:
 					obj.init();
 					ret += obj.encode(struct);
-				if ret == -8:
+				if ret == -9:
 					self.tail.encode(struct);
 					struct['step_id'] = struct['step_id'] + 1;
-					time_common._creat_next_interval(struct);
 			return struct;
 		except MyException as e:
 			res = common.get_dicstr(struct);
@@ -98,7 +98,7 @@ class TimeMager:
 				step = step + 1;
 		except MyException as e:
 			raise e;
-#'''
+'''
 try:
 	sys.path.append('../wordsegs');
 	from wordseg import WordSeg
@@ -108,11 +108,11 @@ try:
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'14点15分30秒'));
 	#common.print_dic(mg.encode(u'凌晨'));
-	common.print_dic(mg.encode(u'下周3上午'));
+	common.print_dic(mg.encode(u'这是一个'));
 	#common.print_dic(mg.encode(u'下周3上午'));
 	#common.print_dic(mg.encode(u'今年中秋节'));
 	#common.print_dic(mg.encode(u'下午2点30分'));
 	#common.print_dic(mg.encode(u'上周末'));
 except MyException as e:
 	print e.value;
-#'''
+'''

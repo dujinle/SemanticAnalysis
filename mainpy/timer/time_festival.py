@@ -67,6 +67,26 @@ class TFestival(Base):
 		idx = time_common.tmenu['day'];
 		my_interval['start'][idx] = my_interval['end'][idx] = day;
 
+	def _add(self,data):
+		if not data.has_key('scope'):
+			raise MyException('not found scope value');
+		if not data.has_key('reg'):
+			raise MyException('not found reg value');
+		if not data.has_key('func'):
+			raise MyException('not found func value');
+		if not data.has_key('interval') or type(data['interval']) <> list:
+			raise MyException('not found interval list');
+		self.data['regs'].append(data);
+
+	def _del(self,data):
+		if not data.has_key('reg'):
+			raise MyException('not found reg value');
+		istr = data['reg'];
+		for item in self.data['regs']:
+			if item['reg'] == istr:
+				self.data['regs'].remove(item);
+				break;
+
 class TEFestival(Base):
 	def encode(self,struct):
 		try:

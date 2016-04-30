@@ -19,6 +19,8 @@ class TTail(Base):
 		try:
 			if struct.has_key('prev_func') and struct['prev_func'] == 'time_mood':
 				return 0;
+			if struct.has_key('intervals') and len(struct['intervals']) == 0:
+				return 0;
 			intext = struct['text'];
 			step_id = struct['step_id'];
 			input_str = intext[step_id:];
@@ -66,6 +68,7 @@ class TTail(Base):
 						end[0] = 'null';
 					struct['step_id'] = struct['step_id'] + 1;
 					my_interval['str'] = my_interval['str'] + mdic['mstr'];
+				my_interval['scope'] = struct['scope'];
 				del struct['scope'];
 			time_common._make_sure_time(start,tid);
 			time_common._make_sure_time(end,tid);
