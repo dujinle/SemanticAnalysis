@@ -1,15 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json,copy
-import re,time
-reload(sys);
-sys.setdefaultencoding('utf-8');
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
-import common
+import sys,os,common
 from myexception import MyException
 from common import logging
 import scene_param as SceneParam
@@ -38,6 +29,7 @@ class SceneDelay(SceneBase):
 	def _set_clock_delay(self,struct,super_b):
 		myclock = super_b.myclock;
 		dtag = self.data['deal_tag'];
+		#common.print_dic(struct)
 		for key in dtag:
 			if struct['ttag'].find(key) <> -1:
 				tag = dtag[key];
