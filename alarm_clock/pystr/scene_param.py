@@ -35,9 +35,12 @@ def _find_time(struct):
 			tdic['date'] = str(times[0]) + '/' + str(times[1]) + '/' + str(times[2]);
 			tdic['type'] = myinterval['type'];
 			struct['ck_date'] = tdic;
-		if times[3] <> 0:
+		if times[3] <> 'null':
 			tdic = dict();
-			tdic['time'] = str(times[3]) + ':' + str(times[4]);
+			if times[4] == 'null':
+				tdic['time'] = str(times[3]) + ':0';
+			else:
+				tdic['time'] = str(times[3]) + ':' + str(times[4]);
 			tdic['str'] = myinterval['str'];
 			struct['ck_time'] = tdic;
 
@@ -106,44 +109,26 @@ def _find_ck_name(struct):
 			idx = idx - 1;
 		return name;
 	return None;
-	return None;
 
-def _find_tag_name(struct):
+def _find_tag_name(struct,strs):
 	ttag = struct['ttag'];
-	if ttag.find('_clock') <> -1:
-		idx = len(struct['clocks']) - 1;
-		tag = False;
-		name = '';
-		while True:
-			if idx < 0: break;
-			cl = struct['clocks'][idx];
-			if tag == True and isinstance(cl,dict): break;
-			if isinstance(cl,dict) and cl['type'] == '_clock':
-				tag = True;
-			elif tag == True and cl == u'的':
-				pass;
-			elif tag == True:
-				name = cl + name;
-			idx = idx - 1;
-		return name;
-	if ttag.find('_remind') <> -1:
-		idx = len(struct['remind']) - 1;
-		tag = False;
-		name = '';
-		while True:
-			if idx < 0: break;
-			cl = struct['clocks'][idx];
-			if tag == True and isinstance(cl,dict): break;
-			if isinstance(cl,dict) and cl['type'] == '_remind':
-				tag = True;
-			elif tag == True and cl == u'的':
-				pass;
-			elif tag == True:
-				name = cl + name;
-			idx = idx - 1;
-		return name;
-	return None;
-	return None;
+	idx = len(struct['clocks']) - 1;
+	tag = False;
+	name = '';
+	while True:
+		if idx < 0: break;
+		cl = struct['clocks'][idx];
+		if tag == True and isinstance(cl,dict): break;
+		if isinstance(cl,dict) and cl['type'] == strs:
+			break;
+		elif tag == False and isinstance(cl,dict):
+			pass;
+		elif isinstance(cl,dict) == False:
+			name = cl + name;
+			tag = True;
+		idx = idx - 1;
+	if name == '': return None;
+	return name;
 
 def _find_cks_bytime(struct,super_b):
 	cks = list();

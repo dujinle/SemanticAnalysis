@@ -92,16 +92,16 @@ class SceneAgenda(SceneBase):
 			if struct['ttag'].find('_cout') <> -1:
 				myclock['info'] = self.data['cout'];
 			elif struct['ttag'].find('_go') <> -1:
-				tid = struct['inlist'].index(u'去');
-				myclock['info'] = struct['inlist'][tid + 1];
+				tname = SceneParam._find_tag_name(struct,'_go');
+				myclock['info'] = tname;
 			elif struct['ttag'].find('_meeting') <> -1:
 				myclock['info'] = self.data['meeting'];
 			elif struct['ttag'].find('_remind_me') <> -1:
-				tid = struct['text'].find(u'提醒我') + 3;
-				myclock['info'] = struct['text'][tid:];
-			elif struct['text'].find(self.data['drink']) <> -1:
-				tid = struct['text'].find(self.data['drink']);
-				myclock['info'] = struct['text'][tid:];
+				tname = SceneParam._find_tag_name(struct,'_remind');
+				myclock['info'] = tname;
+			elif struct['ttag'].find('_drink') <> -1:
+				tname = SceneParam._find_tag_name(struct,'_drink');
+				myclock['info'] = tname;
 			elif struct['ttag'].find('_info') <> -1:
 				for content in self.data['infois']:
 					if struct['text'].find(content) <> -1:
