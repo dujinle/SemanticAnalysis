@@ -33,7 +33,8 @@ class TFestival(Base):
 			if not my_interval.has_key('type'): my_interval['type'] = 'time_ft';
 			self._convert_festival_day(my_interval,mdic);
 			struct['step_id'] = step_id + len(mdic['mstr']);
-			if not struct.has_key('scope'): struct['scope'] = 'year';
+			#if not struct.has_key('scope'): struct['scope'] = 'year';
+			struct['scope'] = 'day';
 			struct['prev_func'] = 'time_ft';
 			return 0;
 		except MyException as e: raise e;
@@ -53,10 +54,11 @@ class TFestival(Base):
 		curtime = time.localtime();
 		mdate = mdic['date'];
 		year = curtime[time_common.tmenu['year']];
-		if my_interval['start'][time_common.tmenu['year']] <> 0:
+		if my_interval['start'][time_common.tmenu['year']] <> 'null':
 			year = my_interval['start'][time_common.tmenu['year']];
 		mon = int(mdate.split('/')[0]);
 		day = int(mdate.split('/')[1]);
+
 		#如果时间是农历时间则转换成阳历时间#
 		if mdic['year_type'] == 'lunar':
 			(year,mon,day) = time_calendar.ToSolarDate(year,mon,day);
@@ -108,7 +110,8 @@ class TEFestival(Base):
 			if not my_interval.has_key('type'): my_interval['type'] = 'time_ft';
 			self._convert_efestival_day(my_interval,mdic);
 			struct['step_id'] = step_id + len(mdic['mstr']);
-			if not struct.has_key('scope'): struct['scope'] = 'year';
+			#if not struct.has_key('scope'): struct['scope'] = 'year';
+			struct['scope'] = 'day';
 			struct['prev_func'] = 'time_ft';
 			return 0;
 		except MyException as e: raise e;
@@ -127,7 +130,7 @@ class TEFestival(Base):
 	def _convert_efestival_day(self,my_interval,mdic):
 		curtime = time.localtime();
 		year = curtime[time_common.tmenu['year']];
-		if my_interval['start'][time_common.tmenu['year']] <> 0:
+		if my_interval['start'][time_common.tmenu['year']] <> 'null':
 			year = my_interval['start'][time_common.tmenu['year']];
 		mon = mdic['month'];
 		if mdic.has_key('week_type') and mdic['week_type'] == 'full':

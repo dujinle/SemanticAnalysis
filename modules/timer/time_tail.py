@@ -60,10 +60,9 @@ class TTail(Base):
 				if not struct.has_key('prev_func'): return 0;
 				tid = time_common.tmenu[struct['scope']];
 				for idx,i in enumerate(end):
-					if tid > idx:
-						start[idx] = end[idx] = curtime[idx];
-					elif start[idx] <> 0 or end[idx] <> 0:
-						tid = idx;
+					if idx > tid: break;
+					if start[idx] == 'null': start[idx] = curtime[idx];
+					if end[idx] == 'null': end[idx] = curtime[idx];
 				self._calc_interval(start,end,struct['prev_func'],tid);
 				if not mdic is None:
 					if mdic['dir'] == '-':

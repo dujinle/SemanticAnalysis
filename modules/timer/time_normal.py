@@ -29,7 +29,8 @@ class TNormal(Base):
 				struct['intervals'].append(my_interval);
 			self._convert_normal_date(struct,mdic);
 			struct['step_id'] = step_id + len(mdic['mstr']);
-			if not struct.has_key('scope'): struct['scope'] = mdic['scope'];
+			#if not struct.has_key('scope'): struct['scope'] = mdic['scope'];
+			struct['scope'] = mdic['scope'];
 			struct['prev_func'] = 'time_ut';
 			return 0;
 		except MyException as e: raise e;
@@ -81,7 +82,8 @@ class TBucket(Base):
 
 			self._convert_bucket_date(my_interval,mdic);
 			struct['step_id'] = step_id + len(mdic['mstr']);
-			if not struct.has_key('scope'): struct['scope'] = mdic['scope']
+			#if not struct.has_key('scope'): struct['scope'] = mdic['scope']
+			struct['scope'] = mdic['scope']
 			struct['prev_func'] = 'time_bt';
 			return 0;
 		except MyException as e: raise e;
@@ -145,7 +147,8 @@ class TBucket(Base):
 					if cur_quarter - qnum > 4: raise MyException('the quarter is larger 4');
 					start[idx] = 2 + (cur_quarter - 1) * 3 + qnum * 3;
 					end[idx] = 2 + cur_quarter * 3 + qnum * 3;
-				struct['scope'] = 'year';
+				#struct['scope'] = 'year';
+				struct['scope'] = 'month';
 			else:
 				idx = time_common.tmenu[left_tag['scope']];
 				start = time_common._list_copy(curtime,my_interval['start'],idx);

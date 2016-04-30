@@ -86,15 +86,15 @@ def _is_leap_year(myyear):
 def _creat_empty_interval():
 	my_interval = dict();
 	my_interval['str'] = '';
-	my_interval['start'] = [0,0,0,0,0,0,0,0,0];
-	my_interval['end'] = [0,0,0,0,0,0,0,0,0];
+	my_interval['start'] = ['null','null','null','null','null','null','null','null','null'];
+	my_interval['end'] = ['null','null','null','null','null','null','null','null','null'];
 	return my_interval;
 
 def _creat_next_interval(struct):
 	my_interval = dict();
 	my_interval['str'] = '';
-	my_interval['start'] = [0,0,0,0,0,0,0,0,0];
-	my_interval['end'] = [0,0,0,0,0,0,0,0,0];
+	my_interval['start'] = ['null','null','null','null','null','null','null','null','null'];
+	my_interval['end'] = ['null','null','null','null','null','null','null','null','null'];
 	struct['intervals'].append(my_interval);
 	struct['my_inter_id'] = struct['my_inter_id'] + 1;
 	return my_interval;
