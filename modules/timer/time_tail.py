@@ -53,7 +53,7 @@ class TTail(Base):
 					start[tid] = end[tid] + dnum;
 					end[0] = 'null';
 				my_interval['scope'] = struct['scope'];
-				my_interval['value'] = dnum;
+				my_interval['num'] = dnum;
 				del struct['uttag'];
 				del struct['scope'];
 			elif struct.has_key('intervals') and len(struct['intervals']) > 0:
