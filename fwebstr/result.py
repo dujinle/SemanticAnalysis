@@ -16,9 +16,8 @@ from myexception import MyException
 
 class ResultHandler(RequestHandler):
 
-	def __init__(self,mager):
+	def __init__(self,*args, **kwargs):
 		RequestHandler.__init__(self, *args, **kwargs);
-		self.mager = mager;
 
 	@tornado.gen.coroutine
 	@common.json_loads_body
