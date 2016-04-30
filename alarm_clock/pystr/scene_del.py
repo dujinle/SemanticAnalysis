@@ -81,6 +81,7 @@ class SceneDel(SceneBase):
 			cks = super_b.clocks.keys();
 			return cks;
 		if match['func'] == 'num':
+			print 'go into _find_num cks......'
 			cks = SceneParam._find_cks_by_num(struct,super_b);
 			return cks;
 		if match['func'] == 'just':

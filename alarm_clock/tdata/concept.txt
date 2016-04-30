@@ -1,5 +1,6 @@
 {
 	"_you":["你"],
+	"_hand":["把"],
 >>start 'search alarm scene'
 	"_has":["有"],
 	"_what":["什么"],

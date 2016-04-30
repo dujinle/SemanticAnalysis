@@ -25,6 +25,18 @@
 			"func":"pastdue"
 		},
 		{
+			"reg":"_time_to_time_clock.*_cancle
+				|_time_to_time_remind.*_cancle
+				|_time_to_time_agenda.*_cancle
+				|_time_to_time_clock.*_no
+				|_time_to_time_remind.*_no
+				|_time_to_time_agenda.*_no
+				|_time_to_time_agenda.*_del
+				|_time_to_time_clock.*_del
+				|_time_to_time_remind.*_del",
+			"func":"t2t"
+		},
+		{
 			"reg":"_cancle_all_clock
 				|_del_all_clock
 				|_del_all_agenda
