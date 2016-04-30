@@ -92,62 +92,6 @@ class SceneDel(SceneBase):
 			cks = SceneParam._find_cks_nouse(super_b);
 			return cks;
 		return None;
-	'''
-	def _get_match_cks(self,struct,super_b):
-		cks = list();
-		ttag = struct['ttag'];
-		if len(re.findall('((_del)|(_cancle))_pastdue_clock',ttag)) > 0:
-			cks = SceneParam._find_cks_pastdue(super_b);
-		elif len(re.findall('((_cancle)|(_del))_all_clock',ttag)) > 0:
-			cks = super_b.clocks.keys();
-		elif len(re.findall('_all((_clock)|(_remind)).*((_cancle)|(_del))',ttag)) > 0:
-			cks = super_b.clocks.keys();
-		#处理 删除/取消.....闹钟/提醒
-		elif len(re.findall('((_cancle)|(_del)).*_clock',ttag)) > 0:
-			cks = self._get_cks_by_tag(struct,super_b,'_clock');
-		elif len(re.findall('((_cancle)|(_del)).*_remind',ttag)) > 0:
-			cks = self._get_cks_by_tag(struct,super_b,'_remind');
-		#....闹钟/提醒....删了/不要了
-		elif len(re.findall('.*_clock(_all)*((_no)|(_del)|(_cancle))',ttag)) > 0:
-			cks = self._get_cks_by_tag(struct,super_b,'_clock');
-		elif len(re.findall('.*_remind(_all)*((_no)|(_del)|(_cancle))',ttag)) > 0:
-			cks = self._get_cks_by_tag(struct,super_b,'_remind');
-		elif len(re.findall('_time(_all)*((_no)|(_del)|(_cancle))',ttag)) > 0:
-			cks = self._get_cks_by_tag(struct,super_b,None);
-		elif len(re.findall('_time',ttag)) > 0:
-			cks = self._get_cks_by_tag(struct,super_b,None);
-		elif len(re.findall('_prep((_del)|(_cancle))',ttag)) > 0:
-			cks = SceneParam._find_cks_prep(struct,super_b);
-		elif len(re.findall('((_del)|(_cancle)).*_prep',ttag)) > 0:
-			cks = SceneParam._find_cks_prep(struct,super_b);
-		elif len(re.findall('_just_that((_no)|(_del)|(_cancle))',ttag)) > 0:
-			if super_b.myclock is None: return None;
-			cks = list();
-			cks.append(super_b.myclock['key']);
-		elif len(re.findall('_nouse((_no)|(_del)|(_cancle))',ttag)) > 0:
-			cks = SceneParam._find_cks_nouse(super_b);
-		elif struct.has_key('ck_name'):
-			cks.append(struct['ck_name']);
-		return cks
-
-	def _get_cks_by_tag(self,struct,super_b,tag):
-		ttag = struct['ttag'];
-		pre_tag = ttag;
-		if not tag is None: pre_tag = ttag[:ttag.find(tag)];
-		cks = None;
-		if pre_tag.find('time') <> -1:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			del struct['intervals'][0];
-		else:
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-		if (cks is None or len(cks) == 0) and super_b.myclock is None:
-			struct['result']['msg'] = self.data['msg']['ck_unknow'][0];
-			return None;
-		elif cks is None or len(cks) == 0:
-			cks = list();
-			cks.append(super_b.myclock['key']);
-		return cks;
-	'''
 
 	def _get_match_info(self,ttag):
 		for temp in self.data['template']:
