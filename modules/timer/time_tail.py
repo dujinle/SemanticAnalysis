@@ -81,7 +81,7 @@ class TTail(Base):
 			self._undo_strs(struct,my_interval);
 			del struct['prev_func']
 			return 0;
-		except MyException as e: raise e;
+		except Exception as e: raise e;
 
 	def _get_match_reg(self,inputstr):
 		prev = u'[以之]*前';
@@ -130,6 +130,7 @@ class TTail(Base):
 				if istr.find(key) <> -1:
 					istr = istr.replace(key,struct['rep_dict'][key],1);
 					struct['text'] = struct['text'].replace(key,struct['rep_dict'][key],1);
+					struct['step_id'] = struct['step_id'] + len(struct['rep_dict'][key]) - len(key);
 			undo_str = undo_str + '_' + istr;
 		my_interval['str'] = undo_str;
 		if struct.has_key('rep_dict'): del struct['rep_dict'];
