@@ -86,7 +86,7 @@ class Mager:
 		return self.struct;
 
 
-#'''
+'''
 try:
 	mg = Mager();
 	mg.init();
@@ -95,4 +95,4 @@ try:
 	common.print_dic(mg.encode(u'把温度调高点','Temp'));
 except Exception as e:
 	raise e;
-#'''
+'''
