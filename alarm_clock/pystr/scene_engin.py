@@ -70,6 +70,7 @@ class SEngin():
 
 	def init(self,fdir):
 		self.scene_con.load_data(fdir + '/concept.txt');
+		self.prev_scene.load_data(fdir + '/prev_scene.txt');
 		self.dist_scene.load_data(fdir + '/dist_scene.txt');
 
 		self.scene_add.load_data(fdir + '/scene_add.txt');
