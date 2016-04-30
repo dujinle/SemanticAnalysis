@@ -22,13 +22,11 @@ class Concept(SceneBase):
 			if not struct.has_key('clocks'): struct['clocks'] = list();
 			clocks = struct['clocks'];
 			for st in struct['inlist']:
-				if st == 'time':
+				if struct.has_key('time_strs') and st in struct['time_strs']:
 					tdic = dict();
 					tdic['type'] = '_time';
-					tdic['mystr'] = struct['rep'][0];
-					struct['text'] = struct['text'].replace('time',tdic['mystr'],1);
+					tdic['mystr'] = st;
 					clocks.append(tdic);
-					del struct['rep'][0];
 				else:
 					tag = False;
 					for key in self.data.keys():
@@ -37,8 +35,7 @@ class Concept(SceneBase):
 							break;
 					if tag == False:
 						clocks.append(st);
-			if struct.has_key('rep'): del struct['rep'];
-			struct['text'] = struct['text'].replace('#','');
+			if struct.has_key('time_strs'): del struct['time_strs'];
 
 		except Exception as e:
 			raise MyException(sys.exc_info());

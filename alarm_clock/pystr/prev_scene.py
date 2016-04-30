@@ -25,11 +25,27 @@ class PrevScene(SceneBase):
 	def _replace_time_tag(self,struct):
 		if struct.has_key('intervals') and len(struct['intervals']) > 0:
 			inters = struct['intervals'];
-			struct['rep'] = list();
+			struct['time_strs'] = list();
 			for ints in inters:
 				tstr = ints['str'].replace('_','');
-				struct['rep'].append(tstr);
-				struct['text'] = struct['text'].replace(tstr,'time#',1);
+				tid = struct['text'].find(tstr);
+				cid = idx = i = slen = 0;
+				remove = set();
+				for i,istr in enumerate(struct['inlist']):
+					if idx == tid:
+						if slen == len(tstr): break;
+						remove.add(i);
+						slen = slen + len(istr);
+						continue;
+					idx = idx + len(istr);
+				for i,j in enumerate(remove):
+					if i == 0:
+						del struct['inlist'][j];
+						cid = j;
+					else: del struct['inlist'][cid];
+				struct['inlist'].insert(cid,tstr);
+				struct['time_strs'].append(tstr);
+
 
 	def _filter_time_str(self,struct):
 		if not struct.has_key('intervals'):
