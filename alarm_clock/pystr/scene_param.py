@@ -192,11 +192,11 @@ def _find_cks_bytime(struct,super_b):
 				cks.append(ck);
 		else:
 			if start[hid] <> 'null' and hour < start[hid]: continue;
-			if start[mid] <> 'null' and start[mid] > mins: continue;
+			if start[mid] <> 'null' and hour == start[hid] and start[mid] > mins: continue;
 
 			if end[hid] <> 'null' and hour > end[hid]: continue;
-			if end[mid] == 'null' and hour == end[hid]: continue;
-			if end[mid] <> 'null' and end[mid] < mins: continue;
+			#if end[mid] == 'null' and hour == end[hid]: continue;
+			if end[mid] <> 'null' and hour == end[hid] and end[mid] < mins: continue;
 			if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 				cks.append(ck);
 	return cks;
@@ -341,6 +341,33 @@ def _find_cks_time_to_time(struct,super_b):
 			cks.append(ck);
 	return cks;
 
+def _find_cks_time_and_time(struct,super_b):
+	cks = list();
+	inter_1 = struct['intervals'][0];
+	inter_2 = struct['intervals'][1];
+	start = inter_1['start'];
+	end = inter_2['start'];
+	if start[0] == 'null' or end[0] == 'null': return cks;
+	stime = etime = '';
+	if start[3] == 'null' or end[3] == 'null': return cks;
+	stime = str(start[3]) + ':';
+	etime = str(end[3]) + ':';
+	if start[4] == 'null':
+		stime = stime + '0';
+	else:
+		stime = stime + str(start[4]);
+	if end[4] == 'null':
+		etime = etime + '0';
+	else:
+		etime = etime + str(end[4]);
+
+	for ck in super_b.clocks:
+		clock = super_b.clocks[ck];
+		tstr = clock['time'];
+		if stime == tstr or etime == tstr:
+			cks.append(ck);
+	return cks;
+
 def _find_cks_after_time(struct,super_b):
 	cks = list();
 	time = list(_get_cur_time());
@@ -376,7 +403,7 @@ def _find_cks_after_time(struct,super_b):
 		hour = int(clock['time'].split(':')[0]);
 		mins = int(clock['time'].split(':')[1]);
 		if time[3] < hour or (time[3] == hour and time[4] <= mins):
-			if clock['type'] == 'agenda' and int(clock['able']['able']) & int(able) > 0:
+			if int(clock['able']['able']) & int(able) > 0:
 				cks.append(ck);
 	return cks;
 

@@ -107,8 +107,8 @@ class SceneTime(SceneBase):
 
 	def _find_cks(self,struct,super_b):
 		match = self._get_match_info(struct['ttag'],'template');
-		common.print_dic(match);
 		if match is None: return None;
+		common.print_dic(match);
 		if match['func'] == 't2t':
 			print 'go into _find_cks_time_to_time......'
 			cks = SceneParam._find_cks_time_to_time(struct,super_b);
@@ -120,25 +120,21 @@ class SceneTime(SceneBase):
 			del struct['intervals'][0];
 			return cks;
 		if match['func'] == 'info':
-			tmatch = self._get_match_info(struct['ttag'],'temptag');
-			if not tmatch is None:
-				print 'go into _find tag name......'
-				name = SceneParam._find_tag_name(struct,tmatch);
-				if not name is None and len(name) > 0:
-					if super_b.clocks.has_key(name):
-						cks = [name];
-						return cks;
+			print 'go into _find info cks......'
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+			if cks is None or len(cks) == 0:
+				tmatch = self._get_match_info(struct['ttag'],'temptag');
+				if not tmatch is None:
+					print 'go into _find tag name......'
+					name = SceneParam._find_tag_name(struct,tmatch);
+					if not name is None and len(name) > 0 and super_b.clocks.has_key(name): return [name];
 			else:
-				print 'go into _find info cks......'
-				cks = SceneParam._find_cks_byinfo(struct,super_b);
 				return cks;
 		if match['func'] == 'tat':
 			print 'go into _find_time and time_cks......'
-			cks = SceneParam._find_cks_bytime(struct,super_b);
+			cks = SceneParam._find_cks_time_and_time(struct,super_b);
 			del struct['intervals'][0];
-			ecks = SceneParam._find_cks_bytime(struct,super_b);
 			del struct['intervals'][0];
-			for item in ecks: cks.append(item);
 			return cks;
 		if match['func'] == 'this':
 			if not super_b.myclock is None:

@@ -38,7 +38,7 @@ wd = WordSeg();
 timer = TimeMager(wd);
 tag = MytagMager(wd);
 pdeal = PDealMager(wd);
-se = SEngin(wd);
+se = SEngin();
 
 se.init('../tdata/');
 pdeal.init('PDeal');
@@ -47,16 +47,17 @@ tag.init('Mytag');
 
 struct = dict();
 struct['result'] = dict();
-#init data
-ck_list = common.read_json('./msearch.init');
-for ck in ck_list:
-	se.clocks[ck['key']] = ck;
-se.myclock = ck_list[0];
 
-tests = common.read_json('./msearch.test');
+tests = common.read_json('./msearch.json');
 for test in tests:
 	#start tests
+	se.clocks.clear();
+	se.myclock = None;
+	for ck in test['init']:
+		if se.myclock is None: se.myclock = ck;
+		se.clocks[ck['key']] = ck;
 	struct['text'] = test['test'];
+	struct['inlist'] = wd.tokens(struct['text']);
 	timer.encode(struct);
 	tag.encode(struct);
 	se.encode(struct);

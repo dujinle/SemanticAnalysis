@@ -68,9 +68,74 @@
 				|_and.*_relate_remind.*_has
 				|_and.*_relate_clock.*_yes
 				|_and.*_relate_remind.*_yes
+				|_orderin_wtime
+				|_wtime_yes
+				|_yes_wtime
+				|_at_wtime
 				|_see.*_clock
 				|_see.*_remind",
 			"func":"info"
+		}
+	],
+#-----------------------------------------------------
+#获取闹钟的标签信息
+#-----------------------------------------------------
+	"temptag":[
+		{
+			"reg":"_and.*_orderin_wtime",
+			"start":{
+				"tag":"_and",
+				"type":"left"
+			},
+			"end":{
+				"tag":"_orderin",
+				"type":"filter"
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		},
+		{
+			"reg":"_wtime_yes",
+			"start":{
+				"tag":"_yes",
+				"type":"filter"
+			},
+			"end":{
+				"tag":"",
+				"type":""
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		},
+		{
+			"reg":"_yes_wtime",
+			"start":{
+				"tag":"",
+				"type":""
+			},
+			"end":{
+				"tag":"_yes",
+				"type":"filter"
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		},
+		{
+			"reg":"_at_wtime",
+			"start":{
+				"tag":"",
+				"type":""
+			},
+			"end":{
+				"tag":"_at",
+				"type":"filter"
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
 		}
 	]
 }

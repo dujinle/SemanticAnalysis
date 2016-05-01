@@ -159,6 +159,10 @@
 			|_remind_yes_what_shihou
 			|_see.*_clock
 			|_see.*_remind
+			|_orderin_wtime
+			|_wtime_yes
+			|_yes_wtime
+			|_at_wtime
 			|_time_yes_what_info
 			|_prep_info_yes_what
 			|_time_agenda.*_yes_what

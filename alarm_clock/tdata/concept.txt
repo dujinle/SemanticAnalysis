@@ -1,10 +1,11 @@
 {
+	"_at":["在"],
 	"_you":["你"],
 	"_hand":["把"],
 >>start 'search alarm scene'
 	"_has":["有"],
 	"_what":["什么"],
-	"_wtime":["几点"],
+	"_wtime":["几点","几点钟"],
 	"_relate":["有关"],
 	"_shihou":["时候"],
 	"_workoff":["下班"],

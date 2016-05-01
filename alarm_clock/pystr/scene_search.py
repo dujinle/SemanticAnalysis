@@ -35,9 +35,9 @@ class SceneSearch(SceneBase):
 			raise MyException(sys.exc_info());
 
 	def _find_cks(self,struct,super_b):
-		match = self._get_match_info(struct['ttag']);
-		common.print_dic(match);
+		match = self._get_match_info(struct['ttag'],'template');
 		if match is None: return None;
+		common.print_dic(match);
 		if match['func'] == 't2t':
 			print 'go into _find_cks_time_to_time......'
 			cks = SceneParam._find_cks_time_to_time(struct,super_b);
@@ -46,8 +46,17 @@ class SceneSearch(SceneBase):
 			cks = SceneParam._find_cks_bytime(struct,super_b);
 			return cks;
 		if match['func'] == 'info':
+			print 'go into _find info cks......'
 			cks = SceneParam._find_cks_byinfo(struct,super_b);
-			return cks;
+			if cks is None or len(cks) == 0:
+				tmatch = self._get_match_info(struct['ttag'],'temptag');
+				if not tmatch is None:
+					print 'go into _find tag name......'
+					name = SceneParam._find_tag_name(struct,tmatch);
+					if not name is None and len(name) > 0 and super_b.clocks.has_key(name):
+						return [name];
+			else:
+				return cks;
 		if match['func'] == 'after':
 			print 'go into _find_cks_after......'
 			cks = SceneParam._find_cks_after_time(struct,super_b);
@@ -73,8 +82,8 @@ class SceneSearch(SceneBase):
 		msg_id = SceneParam._get_random_id(len(self.data['msg']['ck_num']));
 		struct['result']['msg'] = (self.data['msg']['ck_num'][msg_id] %len(cks));
 
-	def _get_match_info(self,ttag):
-		for temp in self.data['template']:
+	def _get_match_info(self,ttag,template):
+		for temp in self.data[template]:
 			comp = re.compile(temp['reg']);
 			match = comp.search(ttag);
 			if not match is None: return temp;
