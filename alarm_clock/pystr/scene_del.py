@@ -56,19 +56,13 @@ class SceneDel(SceneBase):
 					delnum = delnum + 1
 		msg_id = SceneParam._get_random_id(len(self.data['msg']['del_cks']));
 		struct['result']['msg'] = self.data['msg']['del_cks'][msg_id];
-		'''
-		if delnum > 1 and len(info) > 0:
-			struct['result']['msg'] = (self.data['msg']['del_cks'][0] %(info,u'等'));
-		else:
-			struct['result']['msg'] = (self.data['msg']['del_cks'][0] %(info,''));
-		'''
 
 	def _get_match_cks(self,struct,super_b):
 		cks = list();
 		ttag = struct['ttag'];
 		if len(re.findall('((_del)|(_cancle))_pastdue_clock',ttag)) > 0:
 			cks = SceneParam._find_cks_pastdue(super_b);
-		elif len(re.findall('(_cancle)|(_del)_all_clock',ttag)) > 0:
+		elif len(re.findall('((_cancle)|(_del))_all_clock',ttag)) > 0:
 			cks = super_b.clocks.keys();
 		elif len(re.findall('_all((_clock)|(_remind)).*(_cancle)|(_del)',ttag)) > 0:
 			cks = super_b.clocks.keys();

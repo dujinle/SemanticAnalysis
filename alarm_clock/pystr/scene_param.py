@@ -29,8 +29,8 @@ def _find_time(struct):
 	if struct.has_key('intervals') and len(struct['intervals']) > 0:
 		myinterval = struct['intervals'][0]
 		times = myinterval['start'];
-		if myinterval['scope'] == 'day' or myinterval['scope'] == 'month' \
-			or myinterval['scope'] == 'year':
+		if myinterval['scope'] == 'day' or myinterval['scope'] == 'hour'\
+			or myinterval['scope'] == 'min' or myinterval['scope'] == 'sec':
 			tdic = dict();
 			tdic['date'] = str(times[0]) + '/' + str(times[1]) + '/' + str(times[2]);
 			tdic['type'] = myinterval['type'];
@@ -148,22 +148,26 @@ def _find_cks_bytime(struct,super_b):
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);
 		mins = int(clock['time'].split(':')[1]);
-		if start[hid] == 0 and end[hid] == 0:
+		if start[hid] == 'null' and end[hid] == 'null':
 			if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 				cks.append(ck);
 		elif start[0] == 'null':
-			if hour < end[hid] or (hour == end[hid] and mins <= end[mid]):
-				if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
-					cks.append(ck);
+			if end[hid] <> 'null' and hour > end[hid]: return cks;
+			elif end[mid] <> 'null' and hour == end[hid] and mins > end[mid]: return cks;
+			elif clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
+				cks.append(ck);
 		elif end[0] == 'null':
-			if hour > start[hid] or (hour == start[hid] and mins >= start[mid]):
-				if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
-					cks.append(ck);
+			if start[hid] <> 'null' and hour < start[hid]: return cks;
+			elif start[mid] <> 'null' and mins < start[mid]: return cks;
+			elif clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
+				cks.append(ck);
 		else:
-			if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
-				if hour < end[hid] or (hour == end[hid] and mins <= end[mid]):
-					if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
-						cks.append(ck);
+			if start[hid] <> 'null' and hour < start[hid]: return cks;
+			if end[hid] <> 'null' and hour > end[hid]: return cks;
+			if start[mid] <> 'null' and start[mid] > mins: return cks;
+			if end[mid] <> 'null' and end[mid] < mins: return cks;
+			if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
+				cks.append(ck);
 	return cks;
 
 def _find_cks_byinfo(struct,super_b):
