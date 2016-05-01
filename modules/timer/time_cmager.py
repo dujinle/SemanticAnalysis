@@ -1,15 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import sys,os
-reload(sys);
-sys.setdefaultencoding('utf-8');
-import collections
-
-#==============================================================
-''' import tagpy wordsegs '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#==============================================================
 
 import common,config,time_common
 from time_normal import TNormal,TBucket
@@ -25,8 +16,7 @@ from myexception import MyException
 
 
 class TimeMager:
-	def __init__(self,wordseg):
-		self.wordseg = wordseg;
+	def __init__(self):
 		self.tag_objs = list();
 		self.tail = TTail();
 
@@ -50,7 +40,7 @@ class TimeMager:
 			for obj in self.tag_objs:
 				obj.load_data(dfiles[str(step)]);
 				step = step + 1;
-		except MyException as e: raise e;
+		except Exception as e: raise e;
 
 	def encode(self,struct):
 		struct['intervals'] = list();
@@ -79,48 +69,5 @@ class TimeMager:
 			if struct.has_key('my_inter_id'): del struct['my_inter_id'];
 			if struct.has_key('scope'): del struct['scope'];
 			if struct.has_key('prev_func'): del struct['prev_func'];
-			return struct;
-		except MyException as e:
-			res = common.get_dicstr(struct);
-			res = e.value + '\n' +res;
-			raise MyException(res);
-
-	def deal_data(self,fname,action,data):
-		try:
-			for obj in self.tag_objs:
-				ret = obj.deal_data(fname,action,data);
-				if ret == common.PASS:
-					continue;
-				elif not ret is None:
-					return ret;
-		except MyException as e:
+		except Exception as e:
 			raise e;
-
-	def write_file(self,dtype):
-		try:
-			step = 1;
-			dfiles = config.dfiles[dtype];
-			for obj in self.tag_objs:
-				obj.write_file(dfiles[str(step)]);
-				step = step + 1;
-		except MyException as e:
-			raise e;
-'''
-try:
-	sys.path.append('../wordsegs');
-	from wordseg import WordSeg
-	wordseg = WordSeg();
-	mg = TimeMager(wordseg);
-	mg.init('Timer');
-	struct = dict();
-	struct['text'] = u'下午3点以后';
-	#mg.write_file();
-	#common.print_dic(mg.encode(u'14点15分30秒'));
-	#common.print_dic(mg.encode(u'凌晨'));
-	common.print_dic(mg.encode(struct));
-	#common.print_dic(mg.encode(u'今年中秋节'));
-	#common.print_dic(mg.encode(u'下午2点30分'));
-	#common.print_dic(mg.encode(u'上周末'));
-except MyException as e:
-	print e.value;
-'''

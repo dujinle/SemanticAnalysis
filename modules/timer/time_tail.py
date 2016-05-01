@@ -131,6 +131,7 @@ class TTail(Base):
 					istr = istr.replace(key,struct['rep_dict'][key],1);
 					struct['text'] = struct['text'].replace(key,struct['rep_dict'][key],1);
 					struct['step_id'] = struct['step_id'] + len(struct['rep_dict'][key]) - len(key);
-			undo_str = undo_str + '_' + istr;
+			if len(istr) > 0:
+				undo_str = undo_str + '_' + istr;
 		my_interval['str'] = undo_str;
 		if struct.has_key('rep_dict'): del struct['rep_dict'];

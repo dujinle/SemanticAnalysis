@@ -89,7 +89,7 @@ class TReplace(Base):
 			if mdic['func'] == 'add':
 				if input_str.find(mdic['value']) == -1:
 					input_str = input_str.replace(mdic['mstr'],mdic['mstr'] + mdic['value'],1);
-					struct['rep_dict'][mdic['mstr'] + mdic['value']] = mdic['mstr'];
+					struct['rep_dict'][mdic['value']] = '';
 			if mdic['func'] == 'time':
 				pre_num = re.findall('[0-9]{1,}',input_str)[0];
 				if int(pre_num) <= 12:
