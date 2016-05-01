@@ -20,13 +20,13 @@ class TimeMager():
 		self.tail = TimeTail();
 
 		self.tag_keys = list();
-		self.tag_keys.append('TimeNunit');
-		self.tag_keys.append('TimeRegion');
 		self.tag_keys.append('TimeWeek');
-		self.tag_keys.append('TimeFestival');
 		self.tag_keys.append('TimeWeekFestival');
+		self.tag_keys.append('TimeFestival');
+		self.tag_keys.append('TimeRegion');
 		self.tag_keys.append('TimeDecade');
 		self.tag_keys.append('TimeSolarTerm');
+		self.tag_keys.append('TimeNunit');
 
 	def init(self):
 		try:
@@ -39,6 +39,7 @@ class TimeMager():
 
 	def encode(self,struct):
 		try:
+			self.mobjs.init();
 			for key in self.tag_keys:
 				self.mobjs.encode(struct,key,self.net_data);
 				self.tmodu.encode(struct,key);
