@@ -16,7 +16,8 @@ class PDealHan2num(PDealBase):
 
 	def match_item(self,struct):
 		try:
-			for item in self.data:
+			for key in self.data:
+				item = self.data[key];
 				comp = re.compile(item['reg']);
 				match = comp.findall(struct['text']);
 				for im in match:

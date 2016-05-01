@@ -44,7 +44,7 @@ class TimeTail():
 
 	#移除无效的时间对象 通过最长匹配原则
 	def remove_time_item(self,struct):
-		struct['time_stcs'] = dict();
+		left_list = list();
 		slen = len(struct['text']);
 		sid = flg = 0;eid = slen;
 		while True:
@@ -56,14 +56,14 @@ class TimeTail():
 					sid = eid;
 					eid = slen;
 					flg = 1;
-					struct['time_stcs'][istr] = item;
+					left_list.append(item);
 					break;
 			if flg == 0:
 				eid = eid - 1;
 			if eid == 0:
 				eid = slen;
 				sid = sid + 1;
-		del struct['time_stc'];
+		struct['time_stc'] = left_list;
 
 	def remove_item_ext(self,item):
 		idx = 0;

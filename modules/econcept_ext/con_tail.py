@@ -20,7 +20,7 @@ class ConTail():
 				if not struct.has_key(key): continue;
 				self.fetch_cept(struct['stc'],struct[key]);
 				del struct[key];
-			self._fetch_ckey(struct,'time_stcs','TIME');
+			self._fetch_ckey(struct,'time_stc','TIME');
 			self._fetch_ckey(struct,'SomeNums',None);
 			self._fetch_ckey(struct,'SomeUnits',None);
 
