@@ -26,6 +26,7 @@ class DistScene(SceneBase):
 			struct['ttag'] = tag;
 			self._get_ck_name(struct);
 			self._find_scene(tag,struct);
+#			common.print_dic(struct);
 		except Exception as e:
 			raise MyException(sys.exc_info());
 

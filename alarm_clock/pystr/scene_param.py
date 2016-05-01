@@ -337,6 +337,7 @@ def _find_cks_time_to_time(struct,super_b):
 				if hour > end[3]: continue;
 				if end[4] <> 'null' and hour == end[3]:
 					if mins > end[4]: continue;
+			#print ck
 			cks.append(ck);
 	return cks;
 
