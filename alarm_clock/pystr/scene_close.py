@@ -49,43 +49,53 @@ class SceneClose(Base):
 		return close_num;
 
 	def _find_cks(self,struct,super_b):
-		match = self._get_match_info(struct['ttag']);
-		if match is None: return None;
-		if match['func'] == 't2t':
-			print 'go into _find_cks_time_to_time......'
-			cks = SceneParam._find_cks_time_to_time(struct,super_b);
-			return cks;
-		if match['func'] == 'time':
-			print 'go into _find_cks_time......'
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			return cks;
-		if match['func'] == 'info':
-			print 'go into _find_cks_info......'
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-			return cks;
-		if match['func'] == 'pastdue':
-			cks = SceneParam._find_cks_pastdue(super_b);
-			return cks;
-		if match['func'] == 'all':
-			print 'go into _find_all_cks......'
-			cks = super_b.clocks.keys();
-			return cks;
-		if match['func'] == 'num':
-			print 'go into _find_num cks......'
-			cks = SceneParam._find_cks_by_num(struct,super_b);
-			return cks;
-		if match['func'] == 'just':
-			cks = list();
-			if not super_b.myclock is None: cks.append(super_b.myclock['key']);
-			return cks;
-		if match['func'] == 'nouse':
-			cks = SceneParam._find_cks_nouse(super_b);
-			return cks;
+		ms = self._get_match_info(struct['ttag']);
+		if len(ms) == 0: return None;
+		for match in ms:
+			if match['func'] == 't2t':
+				print 'go into _find_cks_time_to_time......'
+				cks = SceneParam._find_cks_time_to_time(struct,super_b);
+				if cks is None or len(cks) == 0: continue;
+				return cks;
+			if match['func'] == 'time':
+				print 'go into _find_cks_time......'
+				cks = SceneParam._find_cks_bytime(struct,super_b);
+				if cks is None or len(cks) == 0: continue;
+				return cks;
+			if match['func'] == 'info':
+				print 'go into _find_cks_info......'
+				cks = SceneParam._find_cks_byinfo(struct,super_b);
+				if cks is None or len(cks) == 0: continue;
+				return cks;
+			if match['func'] == 'pastdue':
+				cks = SceneParam._find_cks_pastdue(super_b);
+				if cks is None or len(cks) == 0: continue;
+				return cks;
+			if match['func'] == 'all':
+				print 'go into _find_all_cks......'
+				cks = super_b.clocks.keys();
+				if cks is None or len(cks) == 0: continue;
+				return cks;
+			if match['func'] == 'num':
+				print 'go into _find_num cks......'
+				cks = SceneParam._find_cks_by_num(struct,super_b);
+				if cks is None or len(cks) == 0: continue;
+				return cks;
+			if match['func'] == 'just':
+				cks = list();
+				if not super_b.myclock is None: cks.append(super_b.myclock['key']);
+				if cks is None or len(cks) == 0: continue;
+				return cks;
+			if match['func'] == 'nouse':
+				cks = SceneParam._find_cks_nouse(super_b);
+				if cks is None or len(cks) == 0: continue;
+				return cks;
 		return None;
 
 	def _get_match_info(self,ttag):
+		mtsc = list();
 		for temp in self.data['template']:
 			comp = re.compile(temp['reg']);
 			match = comp.search(ttag);
-			if not match is None: return temp;
-		return None;
+			if not match is None: mtsc.append(temp);
+		return mtsc;

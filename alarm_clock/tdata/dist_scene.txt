@@ -101,7 +101,11 @@
 #闹钟关闭场景入口
 	"ck_close":{
 		"reg":"_close.*_clock
-			|remind(_all)*_close",
+			|_close.*_remind
+			|_close.*_agenda
+			|_clock.*_close
+			|_agenda.*_close
+			|_remind.*_close",
 		"type":"ck_close"
 	},
 #删除闹钟场景入口
