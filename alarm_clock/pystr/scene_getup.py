@@ -19,7 +19,7 @@ class SceneGetup(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
-			logging.info('go into scene get up');
+			print 'go into scene get up......';
 			if not struct.has_key('step'): struct['step'] = 'start';
 			if struct['step'] == 'start' and SceneParam._if_exist(struct,super_b):
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['ck_exist']));

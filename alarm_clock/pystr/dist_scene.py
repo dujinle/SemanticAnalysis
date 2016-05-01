@@ -24,7 +24,9 @@ class DistScene(SceneBase):
 				if isinstance(ck,dict):
 					tag = tag + ck['type'];
 			struct['ttag'] = tag;
-			name = SceneParam._find_ck_name(struct);
+			name = SceneParam._find_ck_name(struct,'_clock');
+			if name is None:
+				name = SceneParam._find_ck_name(struct,'_remind');
 			if not name is None and len(name) > 0:
 				struct['ck_name'] = name;
 			self._find_scene(tag,struct);
@@ -36,15 +38,11 @@ class DistScene(SceneBase):
 			reg_comp = re.compile(calc_key['reg']);
 			match = reg_comp.search(tag);
 			if match is None: continue;
-			'''
-			if struct.has_key('ck_scene'):
-				if len(key) > len(struct['ck_scene']):
-					struct['ck_scene'] = key;
-					continue;
-			'''
 			if struct.has_key('ck_reg'):
 				if len(match.group(0)) <= len(struct['ck_reg']):
 					continue;
 			struct['ck_reg'] = match.group(0);
 			struct['ck_scene'] = key;
-		if struct.has_key('ck_reg'): del struct['ck_reg'];
+		if struct.has_key('ck_reg'):
+			print struct['ck_reg'];
+			del struct['ck_reg'];

@@ -115,6 +115,7 @@ class SEngin():
 
 			self.scene_con.encode(struct);
 			self.dist_scene.encode(struct);
+
 			if struct.has_key('ck_scene'):
 				if struct['ck_scene'] == 'ck_add':
 					self.scene_add.encode(struct,self);
@@ -155,6 +156,7 @@ class SEngin():
 			struct['mcks'] = self.clocks;
 			SceneParam._degbu_info(struct);
 			self._tail(struct);
+
 		except Exception as e:
 			if struct.has_key('step'): del struct['step']
 			if struct.has_key('ck_scene'): del struct['ck_scene'];

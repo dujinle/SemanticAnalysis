@@ -20,7 +20,7 @@ class SceneAgenda(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
-			logging.info('go into scene agenda');
+			print 'go into scene agenda......';
 			if not struct.has_key('step'): struct['step'] = 'start';
 			if struct['step'] == 'start' and SceneParam._if_exist(struct,super_b):
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['ck_exist']));
@@ -97,10 +97,7 @@ class SceneAgenda(SceneBase):
 			elif struct['ttag'].find('_meeting') <> -1:
 				myclock['info'] = self.data['meeting'];
 			elif struct['ttag'].find('_remind_me') <> -1:
-				tname = SceneParam._find_tag_name(struct,'_remind');
-				myclock['info'] = tname;
-			elif struct['ttag'].find('_drink') <> -1:
-				tname = SceneParam._find_tag_name(struct,'_drink');
+				tname = SceneParam._find_tag_name(struct,'_me');
 				myclock['info'] = tname;
 			elif struct['ttag'].find('_info') <> -1:
 				for content in self.data['infois']:

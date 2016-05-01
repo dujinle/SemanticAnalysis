@@ -74,61 +74,53 @@ def _save_tag(super_b):
 	except Exception as e:
 		raise e;
 
-def _find_ck_name(struct):
+def _find_ck_name(struct,stag):
 	ttag = struct['ttag'];
-	if ttag.find('_clock') <> -1:
+	if ttag.find(stag) <> -1:
 		idx = len(struct['clocks']) - 1;
 		tag = False;
 		name = '';
 		while True:
 			if idx < 0: break;
 			cl = struct['clocks'][idx];
-			if tag == True and isinstance(cl,dict): break;
-			if isinstance(cl,dict) and cl['type'] == '_clock':
+			if tag == True:
+				if isinstance(cl,dict) and idx == 0: break;
+				if isinstance(cl,dict) == False and cl == u'的':
+					pass;
+				elif isinstance(cl,dict) == False:
+					name = cl + name;
+				else:
+					cn = struct['clocks'][idx - 1];
+					if isinstance(cn,dict): break;
+					else: name = cl['mystr'] + name;
+			if isinstance(cl,dict) and cl['type'] == stag:
 				tag = True;
-			elif tag == True and cl == u'的':
-				pass;
-			elif tag == True:
-				name = cl + name;
-			idx = idx - 1;
-		return name;
-	if ttag.find('_remind') <> -1:
-		idx = len(struct['clocks']) - 1;
-		tag = False;
-		name = '';
-		while True:
-			if idx < 0: break;
-			cl = struct['clocks'][idx];
-			if tag == True and isinstance(cl,dict): break;
-			if isinstance(cl,dict) and cl['type'] == '_remind':
-				tag = True;
-			elif tag == True and cl == u'的':
-				pass;
-			elif tag == True:
-				name = cl + name;
 			idx = idx - 1;
 		return name;
 	return None;
 
 def _find_tag_name(struct,strs):
 	ttag = struct['ttag'];
-	idx = len(struct['clocks']) - 1;
-	tag = False;
-	name = '';
-	while True:
-		if idx < 0: break;
-		cl = struct['clocks'][idx];
-		if tag == True and isinstance(cl,dict): break;
-		if isinstance(cl,dict) and cl['type'] == strs:
-			break;
-		elif tag == False and isinstance(cl,dict):
-			pass;
-		elif isinstance(cl,dict) == False:
-			name = cl + name;
-			tag = True;
-		idx = idx - 1;
-	if name == '': return None;
-	return name;
+	if ttag.find(strs) <> -1:
+		idx = 0;
+		tag = False;
+		name = '';
+		while True:
+			if idx >= len(struct['clocks']): break;
+			cl = struct['clocks'][idx];
+			if tag == True:
+				if isinstance(cl,dict) and idx == len(struct['clocks']) - 1: break;
+				if isinstance(cl,dict) == False:
+					name = name + cl;
+				else:
+					cn = struct['clocks'][idx + 1];
+					if isinstance(cn,dict): break;
+					else: name = name + cl['mystr'];
+			if isinstance(cl,dict) and cl['type'] == strs:
+				tag = True;
+			idx = idx + 1;
+		return name;
+	return None;
 
 def _find_cks_bytime(struct,super_b):
 	cks = list();

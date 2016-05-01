@@ -2,22 +2,28 @@
 {
 #添加闹钟场景进入
 	"ck_add":{
-		"reg":"_clock(_set)*
-			|(_set)|(_new).*_clock
+		"reg":
+			"_pverb_prep.*_clock
+			|_time.*_call(_me)*
 			|_anew_open_clock
-			|_pverb_prep_clock
-			|_time_call",
+			|_set.*_clock
+			|_new.*_clock
+			|_clock_set
+			|_clock",
 		"type":"ck_add"
 	},
 #添加日程提醒场景入口
 	"ck_agenda_add":{
-		"reg":"_new(_prep)*(_agenda)*(_remind)|(_clock)*
+		"reg":
+			"_new.*_meeting_clock
+			|_new.*_meeting_remind
+			|_new.*_remind
 			|_remind_me.*_time
 			|_time.*_remind_me
-			|(_set)|(_new).*_clock_info_yes
+			|_new.*_clock_info_yes
+			|_set.*_clock_info_yes
 			|_moment_remind_me
 			|_time.*_meeting
-			|_new.*_meeting((_clock)|(_remind))
 			|_new.*_info.*_remind
 			|_time.*_cout
 			|_time.*_go
@@ -28,25 +34,31 @@
 	"ck_getup_add":{
 		"reg":"_time_wake
 			|(_time)*_call_me_wake
-			|((_new)|(_set))(_prep)*_wake_clock",
+			|_set(_prep)*_wake_clock
+			|_new(_prep)*_wake_clock",
 		"type":"ck_getup_add"
 	},
 #添加多个闹钟场景入口
 	"ck_madd":{
-		"reg":"(_new)|(_set)_num_prep_clock",
+		"reg":
+			"_new_num_prep_clock
+			|_set_num_prep_clock",
 		"type":"ck_madd"
 	},
 #修改闹钟铃声提示音场景入口
 	"ck_cbell":{
-		"reg":"_change_prep_bell
-			|_bell_no_beaut
+		"reg":
+			"_change_prep_bell
 			|_change_prep_style
+			|_bell_no_beaut
 			|_has_what_style",
 		"type":"ck_cbell"
 	},
 #设置闹钟提示音场景入口
 	"ck_sbell":{
-		"reg":"_bell_set_to",
+		"reg":
+			"_bell_set_to
+			|_bell_moveto",
 		"type":"ck_sbell"
 	},
 #设置响铃方式场景入口
@@ -65,9 +77,14 @@
 	},
 #闹钟停止场景入口
 	"ck_stop":{
-		"reg":"(_wake)|(_yes)|(_enough)_le
-			|_too(_noisy)|(_call)(_le)*
-			|_no(_call)|(_noisy)_le
+		"reg":
+			"_wake_le
+			|_yes_le
+			|_enough_le
+			|_too_noisy(_le)*
+			|_too_call(_le)*
+			|_no_call_le
+			|_no_noisy_le
 			|_yes_le_yes_le
 			|_noisy_die_le
 			|_stupid_clock
@@ -98,14 +115,20 @@
 	},
 #删除闹钟场景入口
 	"ck_del":{
-		"reg":"(_time)*_clock(_cancle)|(_del)
+		"reg":
+			"(_time)*_clock(_all)*_del
+			|(_time)*_clock(_all)*_cancle
+			|(_time)*_clock(_all)*_no_le
+			|(_time)*_remind(_all)*_del
+			|(_time)*_remind(_all)*_cancle
+			|(_time)*_remind(_all)*_no_le
 			|_cancle_time.*_clock
-			|_time_clock(_all)*_no_le
 			|_only_left_time
-			|(_remind)|(_clock)(_all)*_del
-			|_del_pastdue_clock
+			|_del.*_clock
+			|_del.*_remind
+			|_cancle.*_clock
+			|_cancle.*_remind
 			|_time(_all)*_no
-			|((_del)|(_cancle)).*((_clock)|(_remind))
 			|_prep.*_del
 			|_nouse.*_del
 			|(_del)|(_cancle)
@@ -115,8 +138,11 @@
 	},
 #闹钟查询场景入口
 	"ck_search":{
-		"reg":"(_see)*_has_some(_clock)|(_remind)
-			|_time_has(_some)|(_what)_thing
+		"reg":
+			"(_see)*_has_some_clock
+			|(_see)*_has_some_remind
+			|_time_has_some_thing
+			|_time_has_what_thing
 			|_see.*_clock
 			|_see.*_remind
 			|_has_what_thing
@@ -127,7 +153,8 @@
 	},
 #修改时间场景入口
 	"ck_mo_time":{
-		"reg":"_ahead.*_time(_call)*
+		"reg":
+			"_ahead.*_time(_call)*
 			|_moveto_time
 			|_clock_ahead_time
 			|_defer.*_time
