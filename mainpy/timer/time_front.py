@@ -1,19 +1,21 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,time,copy,re
-reload(sys)
-sys.setdefaultencoding('utf-8')
-#=================================================
+import sys,os,json
+import re,time
+reload(sys);
+sys.setdefaultencoding('utf-8');
+#============================================
 ''' import MyException module '''
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
-#=================================================
+#============================================
 import common
+import time_common,time_calendar
 from myexception import MyException
 from base import Base
 
-#时间的状态 现在,过去,未来
-class TMood(Base):
+#上前下后 3 [年月日......]#
+class TFront(Base):
 	def encode(self,struct):
 		try:
 			intext = struct['text'];
@@ -21,13 +23,13 @@ class TMood(Base):
 			input_str = intext[step_id:];
 			mdic = self._get_match_reg(input_str);
 			if mdic is None:return -1;
-			if struct.has_key('mood'):
-				struct['mood'].append(mdic);
-			else:
-				struct['mood'] = list();
-				struct['mood'].append(mdic);
+			if mdic['dir'] == '-':
+				mdic['interval'] = [-1 * int(mdic['num']),0];
+			elif mdic['dir'] == '+':
+				mdic['interval'] = [1,int(mdic['num']) + 1];
 			struct['step_id'] = step_id + len(mdic['mstr']);
-			struct['prev_func'] = 'time_mood';
+			struct['prev_func'] = 'time_fot';
+			struct['tag'] = mdic;
 			return 0;
 		except MyException as e: raise e;
 

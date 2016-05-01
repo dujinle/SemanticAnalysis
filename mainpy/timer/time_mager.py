@@ -12,45 +12,36 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 sys.path.append(os.path.join(base_path,'../'));
 #==============================================================
 
-import common,config
-from time_ut import UT,UTE,CUTE
-from time_nt import NT,NTE,CNTE
-from time_wt import WT,WTE,CWTE
-from time_qt import QT,CQT
-from time_allt import ALLT,CALLT
-from time_mood import TM,TS,AS
-from time_festival import FT,CFTE
-
-
-#from calc_time import CalcTimeInterval
+import common,config,time_common
+from time_normal import TNormal,TBucket
+from time_week import TWeek
+from time_festival import TFestival,TEFestival
+from time_solarterm import TSolarTerm
+from time_decade import TDecade
+from time_front import TFront
+from time_tail import TTail
+from time_replace import TReplace
+from time_mood import TMood
 from myexception import MyException
+
 
 class TimeMager:
 	def __init__(self,wordseg):
 		self.wordseg = wordseg;
 		self.tag_objs = list();
+		self.tail = TTail();
 
 		# mark tag objs #
-		self.tag_objs.append(UT());
-		self.tag_objs.append(NT());
-		self.tag_objs.append(WT());
-		self.tag_objs.append(QT());
-		self.tag_objs.append(FT());
+		self.tag_objs.append(TReplace());
+		self.tag_objs.append(TFront());
+		self.tag_objs.append(TNormal());
+		self.tag_objs.append(TBucket());
+		self.tag_objs.append(TWeek());
 
-		self.tag_objs.append(UTE());
-		self.tag_objs.append(NTE());
-		self.tag_objs.append(WTE());
-		self.tag_objs.append(ALLT());
-
-		self.tag_objs.append(CUTE());
-		self.tag_objs.append(CNTE());
-		self.tag_objs.append(CWTE());
-		self.tag_objs.append(CQT());
-		self.tag_objs.append(CFTE());
-		self.tag_objs.append(CALLT());
-		self.tag_objs.append(TM());
-		self.tag_objs.append(TS());
-		self.tag_objs.append(AS());
+		self.tag_objs.append(TFestival());
+		self.tag_objs.append(TEFestival());
+		self.tag_objs.append(TSolarTerm());
+		self.tag_objs.append(TDecade());
 
 	def init(self,dtype):
 		try:
@@ -64,12 +55,23 @@ class TimeMager:
 	def encode(self,inlist):
 		struct = collections.OrderedDict();
 		struct['text'] = inlist;
+		struct['intervals'] = list();
+		struct['mood'] = list();
+		struct['my_inter_id'] = 0;
+		struct['step_id'] = 0;
 		try:
-			if not struct.has_key('inlist'):
-				struct['inlist'] = self.wordseg.tokens(inlist);
-			for obj in self.tag_objs:
-				obj.init();
-				obj.encode(struct);
+			while True:
+				if struct['step_id'] >= len(struct['text']):
+					self.tail.encode(struct);
+					break;
+				ret = 0;
+				for obj in self.tag_objs:
+					obj.init();
+					ret += obj.encode(struct);
+				if ret == -8:
+					self.tail.encode(struct);
+					struct['step_id'] = struct['step_id'] + 1;
+					time_common._creat_next_interval(struct);
 			return struct;
 		except MyException as e:
 			res = common.get_dicstr(struct);
@@ -104,14 +106,11 @@ try:
 	mg = TimeMager(wordseg);
 	mg.init('Timer');
 	#mg.write_file();
-	#common.print_dic(mg.encode(u'把声音调大点'));
-	#wordseg.deal_word('del',{'value':u'天上'});
-	#wordseg.deal_word('del',{'value':u'午前'});
 	#common.print_dic(mg.encode(u'14点15分30秒'));
 	#common.print_dic(mg.encode(u'凌晨'));
+	common.print_dic(mg.encode(u'下周3上午'));
 	#common.print_dic(mg.encode(u'下周3上午'));
-	#common.print_dic(mg.encode(u'下周3上午'));
-	common.print_dic(mg.encode(u'春节'));
+	#common.print_dic(mg.encode(u'今年中秋节'));
 	#common.print_dic(mg.encode(u'下午2点30分'));
 	#common.print_dic(mg.encode(u'上周末'));
 except MyException as e:

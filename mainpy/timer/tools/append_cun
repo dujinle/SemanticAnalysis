@@ -1,0 +1,37 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
+
+import sys
+reload(sys);
+sys.setdefaultencoding('utf-8');
+
+def append_cun(dfile):
+	fp = open(dfile,'r');
+	while True:
+		line = fp.readline();
+		if not line: break;
+		if len(line) == 0 or line[0] == '#': continue;
+		line = line.strip('\n').strip('\r').decode('utf-8');
+		if line[-1] == u'旗': continue;
+		if line[-1] == u'庄': continue;
+		if line[-1] == u'屯': continue;
+		if line[-1] == u'村': continue;
+		line = line + u'村';
+		print line;
+	fp.close();
+
+def creat_dic(dfile):
+	fp = open(dfile,'r');
+	while True:
+		line = fp.readline();
+		if not line: break;
+		if len(line) == 0 or line[0] == '#': continue;
+		line = line.strip('\n').strip('\r').decode('utf-8');
+		print len(line),line;
+	fp.close();
+
+if __name__ == '__main__':
+	if len(sys.argv) <= 1:
+		print 'Usage: %s infile' %(sys.argv[0]);
+		sys.exit(-1);
+	creat_dic(sys.argv[1])
