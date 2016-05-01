@@ -12,7 +12,7 @@ class PDealMager:
 		self.tag_objs = list();
 
 		self.dfiles = [
-			os.path.join(base_path,'tdata','pdeal_hanzi2num.txt')
+			os.path.join(base_path,'tdata','pdeal_hanzi2num.txt'),
 			os.path.join(base_path,'tdata','pdeal_replace.txt')
 		]
 		# mark tag objs #
