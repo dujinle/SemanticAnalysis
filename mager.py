@@ -48,7 +48,7 @@ class Mager:
 
 	def init(self):
 		try:
-			self.timer.init('Timer');
+			self.timer.init();
 			self.mytag.init('Mytag');
 			self.pdeal.init('PDeal');
 			self.concpt.init('Concept');
