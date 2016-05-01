@@ -2,6 +2,7 @@
 #-*- coding:utf-8 -*-
 import sys,os,common
 from pdeal_replace import PDealReplace
+from pdeal_hanzi2num import PdealHan2num
 from myexception import MyException
 
 base_path = os.path.dirname(__file__);
@@ -11,9 +12,11 @@ class PDealMager:
 		self.tag_objs = list();
 
 		self.dfiles = [
+			os.path.join(base_path,'tdata','pdeal_hanzi2num.txt')
 			os.path.join(base_path,'tdata','pdeal_replace.txt')
 		]
 		# mark tag objs #
+		self.tag_objs.append(PDealHan2num());
 		self.tag_objs.append(PDealReplace());
 
 	def init(self,dtype):

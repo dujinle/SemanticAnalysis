@@ -10,12 +10,12 @@ class PDealReplace(PDealBase):
 	def encode(self,struct):
 		try:
 			pass;
-			self._replace_str(struct);
+			self._replace_err_str(struct);
 			self._deal_time_rep(struct);
 		except Exception as e:
 			raise e;
 
-	def _replace_str(self,struct):
+	def _replace_err_str(self,struct):
 		for reg in self.data['rep']:
 			regstr = reg['reg'];
 			value = reg['value'];
@@ -25,15 +25,19 @@ class PDealReplace(PDealBase):
 				struct['text'] = struct['text'].replace(mat,value);
 
 	def _deal_time_rep(self,struct):
-		com = re.compile(self.data['time_rep']);
-		match = com.search(struct['text']);
-		if not match is None:
-			tstr = match.group(0);
-			if len(tstr) <> 4: return None;
-			thour = tstr[2:];
-			tnum = thour[0];
-			nnum = int(tnum) + 10;
-			phour = thour.replace(tnum,str(nnum));
-			pstr = tstr.replace(thour,phour);
-			struct['text'] = struct['text'].replace(tstr,pstr);
+		for reg in self.data['time_rep']:
+			com = re.compile(reg['reg']);
+			match = com.findall(struct['text']);
+			for item in match:
+				if item == '': continue;
+				if reg['func'] == 'replace':
+					struct['text'] = struct['text'].replace(item,reg['value'],1);
+				elif reg['func'] == 'add':
+					mstr = item + reg['value'];
+					if struct['text'].find(mstr) == -1:
+						struct['text'] = struct['text'].replace(item,mstr,1);
+				elif reg['func'] == 'hour_half':
+					mstr = item.replace(reg['value'],'');
+					mstr = mstr + u'30分';
+					struct['text'] = struct['text'].replace(item,mstr,1);
 
