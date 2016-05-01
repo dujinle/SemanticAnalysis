@@ -1,37 +1,60 @@
 #!/bin/bash
 
 function start(){
-	web=$1;
-	if [[ "${web}x" == "x" ]];then
-		./fwebstr/web.py &
-		ps > .pidfile && echo "server start ......"
-		echo "start server,listening port 8082"
+	port=$1;
+
+	pid=`cat .pidfile | awk '{print $1}'`
+	if [[ "${pid}x" != "x" ]];then
+		pid=`ps -ef | grep $pid | grep web`;
+	fi
+	if [[ "${pid}x" == "x" ]];then
+		./fwebstr/web.py ${port} &
+		echo $! > .pidfile \
+		&& echo "server start ......" \
+		&& echo "start server,listening port ${port}"
 	else
 		echo "the web is already runing"
-		echo "start server,listening port 8082"
+		echo "start server,listening port ${port}"
 	fi
 }
+
 function stop(){
-	web=$1;
-	if [[ "${web}x" != "x" ]];then
-		pid=`cat .pidfile | grep "web.py" | awk '{print $1}'`
-		if [[ "${pid}x" != "x" ]];then
-			kill -9 $pid && echo "server stop ......"
-		fi
+	pid=`cat .pidfile | awk '{print $1}'`
+	if [[ "${pid}x" != "x" ]];then
+		kill -9 $pid && echo "server stop ......"
 	fi
 	echo "server has bean stop......"
 }
-if [[ $# != 1 ]];then
-	echo "Usage: $0 [start|stop|restart]"
+
+if [[ $# < 1 ]];then
+	echo "Usage: $0 [start|stop] -port [8082]"
 	exit -1
 fi
-web=`netstat -lntp | grep "8082"`
-ttarg=$1;
-if [[ "${ttarg}x" == "startx" ]];then
-	start $web
-elif [[ "${ttarg}x" == "stopx" ]];then
-	stop $web
-elif [[ "${ttarg}x" == "restartx" ]];then
-	stop $web
-	start $web
+port="8082";
+func="";
+while true;do
+	if [[ $# == 0 ]];then break; fi
+	if [[ "${1}x" == "startx" ]];then
+		func="start";
+		shift;
+		continue
+	elif [[ "${1}x" == "stopx" ]];then
+		func="stop";
+		shift;
+		continue;
+	elif [[ "${1}x" == "-portx" ]];then
+		shift;
+		port=$1;
+	fi
+	shift;
+done
+
+if [[ ! -f ".pidfile" ]];then
+	> .pidfile
+fi
+
+if [[ "${func}x" == "startx" ]];then
+	start $port
+elif [[ "${func}x" == "stopx" ]];then
+	stop
 fi
