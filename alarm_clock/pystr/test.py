@@ -24,7 +24,7 @@ wd = WordSeg();
 timer = TimeMager(wd);
 tag = MytagMager(wd);
 pdeal = PDealMager(wd);
-se = SEngin(wd);
+se = SEngin();
 
 tag.init('Mytag');
 pdeal.init('PDeal');
@@ -38,6 +38,7 @@ while True:
 	mstr = raw_input('Enter your input: ');
 	if mstr == 'q': break;
 	struct['text'] = mstr.decode('utf-8');
+	struct['inlist'] = wd.tokens(struct['text']);
 	pdeal.encode(struct);
 	timer.encode(struct);
 	tag.encode(struct);

@@ -20,7 +20,7 @@ from wordseg import WordSeg
 from scene_engin import SEngin
 
 def analysis_result(struct,ans):
-	if type(ans) == dict:
+	if isinstance(ans,dict):
 		key = ans['key'];
 		clock = struct['mcks'][key];
 		if ans.has_key('time'):
@@ -32,7 +32,7 @@ def analysis_result(struct,ans):
 		elif ans.has_key('able'):
 			if int(ans['able']) <> int(clock['able']['able']):
 				return False;
-	elif type(ans) == list:
+	elif isinstance(ans,list):
 		for item in ans:
 			key = item['key'];
 			clock = struct['mcks'][key];
@@ -51,7 +51,7 @@ def analysis_result(struct,ans):
 wd = WordSeg();
 timer = TimeMager(wd);
 tag = MytagMager(wd);
-se = SEngin(wd);
+se = SEngin();
 
 se.init('../tdata/');
 timer.init('Timer');
@@ -60,16 +60,18 @@ tag.init('Mytag');
 struct = dict();
 struct['result'] = dict();
 #read test file
-tests = common.read_json('./mtime.test');
+tests = common.read_json('./mtime.json');
 #start tests
 for test in tests:
-	ck_list = common.read_json('./mtime.init');
-	for ck in ck_list:
+	se.clocks.clear();
+	se.myclock = None;
+	for ck in test['init']:
+		if se.myclock is None: se.myclock = ck;
 		se.clocks[ck['key']] = ck;
-	se.myclock = ck_list[0];
 	struct['text'] = test['test'];
 	timer.encode(struct);
 	tag.encode(struct);
+	struct['inlist'] = wd.tokens(struct['text']);
 	se.encode(struct);
 	if analysis_result(struct,test['ans']) == True:
 		print test['test'],'succ';

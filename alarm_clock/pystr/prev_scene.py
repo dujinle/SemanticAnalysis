@@ -2,14 +2,9 @@
 #-*- coding:utf-8 -*-
 import sys,os,json,copy
 import re,time,math,datetime
-reload(sys);
-sys.setdefaultencoding('utf-8');
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
+
 import common
+from common import logging
 from myexception import MyException
 from scene_base import SceneBase
 #根据模板区分不同的场景
@@ -34,9 +29,15 @@ class PrevScene(SceneBase):
 				for i,istr in enumerate(struct['inlist']):
 					if idx == tid:
 						if slen == len(tstr): break;
+						if slen > len(tstr):
+							logging.error('word not can be found');
+							return None;
 						remove.add(i);
 						slen = slen + len(istr);
 						continue;
+					if idx > tid:
+						logging.error('word not can be found');
+						return None;
 					idx = idx + len(istr);
 				for i,j in enumerate(remove):
 					if i == 0:

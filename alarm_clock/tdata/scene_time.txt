@@ -42,11 +42,18 @@
 			"func":"tat"
 		},
 		{
+			"reg":"[^_.]{1,}_ahead_time
+				|[^_.]{1,}_defer_time
+				|[^_.]{1,}_pass_time_recall
+				|[^_.]{1,}_moveto_time",
+			"func":"info"
+		},
+		{
 			"reg":"_ahead_time
 				|_defer_time
 				|_pass_time_recall
 				|_moveto_time",
-			"func":"info"
+			"func":"this"
 		},
 		{
 			"reg":"_after_has_what_thing
@@ -63,14 +70,14 @@
 #-----------------------------------------------------
 	"temptag":[
 		{
-			"reg":"_moveto",
+			"reg":"_moveto_time",
 			"start":{
-				"tag":"_yes",
-				"type":"filter"
-			},
-			"end":{
 				"tag":"",
 				"type":""
+			},
+			"end":{
+				"tag":"_moveto",
+				"type":"filter"
 			},
 			"type":"calc",
 			"level":"high",

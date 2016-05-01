@@ -2,16 +2,10 @@
 #-*- coding:utf-8 -*-
 import sys,os,json,copy
 import re,time,math
-reload(sys);
-sys.setdefaultencoding('utf-8');
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
+
 import common
-import scene_param as SceneParam
 from common import logging
+import scene_param as SceneParam
 from myexception import MyException
 from scene_base import SceneBase
 
@@ -59,10 +53,11 @@ class SceneTime(SceneBase):
 			tarray = time.split(':');
 			hour = int(tarray[0]);
 			tmin = int(tarray[1]);
-			if scope == 'min':
+			num = inters['num'];
+			if inters['scope'] == 'min':
 				if tdir == 'prev': tmin = tmin - int(num);
 				elif tdir == 'after': tmin = tmin + int(num);
-			elif scope == 'hour':
+			elif inters['scope'] == 'hour':
 				if tdir == 'prev': hour = hour - int(num);
 				elif tdir == 'after': hour = hour + int(num);
 			if tmin >= 60:
@@ -74,6 +69,7 @@ class SceneTime(SceneBase):
 			clock['time'] = str(hour) + ':' + str(tmin);
 
 	def _swap_cks_info(self,cks,struct,super_b):
+		common.print_dic(cks);
 		if len(cks) <> 2:
 			SceneParam._set_msg(struct,self.data['msg']['more_cks']);
 			return None;
@@ -110,7 +106,7 @@ class SceneTime(SceneBase):
 		SceneParam._set_msg(struct,self.data['msg']['ck_time']);
 
 	def _find_cks(self,struct,super_b):
-		match = self._get_match_info(struct['ttag']);
+		match = self._get_match_info(struct['ttag'],'template');
 		common.print_dic(match);
 		if match is None: return None;
 		if match['func'] == 't2t':
@@ -124,19 +120,34 @@ class SceneTime(SceneBase):
 			del struct['intervals'][0];
 			return cks;
 		if match['func'] == 'info':
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-			return cks;
+			tmatch = self._get_match_info(struct['ttag'],'temptag');
+			if not tmatch is None:
+				print 'go into _find tag name......'
+				name = SceneParam._find_tag_name(struct,tmatch);
+				if not name is None and len(name) > 0:
+					if super_b.clocks.has_key(name):
+						cks = [name];
+						return cks;
+			else:
+				print 'go into _find info cks......'
+				cks = SceneParam._find_cks_byinfo(struct,super_b);
+				return cks;
 		if match['func'] == 'tat':
 			print 'go into _find_time and time_cks......'
 			cks = SceneParam._find_cks_bytime(struct,super_b);
 			del struct['intervals'][0];
-			cks.append(SceneParam._find_cks_bytime(struct,super_b));
+			ecks = SceneParam._find_cks_bytime(struct,super_b);
 			del struct['intervals'][0];
+			for item in ecks: cks.append(item);
 			return cks;
+		if match['func'] == 'this':
+			if not super_b.myclock is None:
+				cks = [super_b.myclock['key']];
+				return cks;
 		return None;
 
-	def _get_match_info(self,ttag):
-		for temp in self.data['template']:
+	def _get_match_info(self,ttag,template):
+		for temp in self.data[template]:
 			comp = re.compile(temp['reg']);
 			match = comp.search(ttag);
 			if not match is None: return temp;

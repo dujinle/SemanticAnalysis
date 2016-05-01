@@ -43,7 +43,7 @@ class DistScene(SceneBase):
 			del struct['ck_reg'];
 
 	def _get_ck_name(self,struct):
-		if struct['ttag'].find('_getup'):
+		if struct['ttag'].find('_getup') <> -1:
 			struct['ck_name'] = u'起床';
 		else:
 			name = SceneParam._find_ck_name(struct,'_clock');

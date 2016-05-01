@@ -134,8 +134,8 @@ def _find_tag_name(struct,tdic):
 			if first_tag == -1: first_tag = idx;
 		idx = idx + 1;
 	if len(str_list) == 0: return None;
-	common.print_dic(str_list);
-	print first_tag,last_tag
+	#common.print_dic(str_list);
+	#print first_tag,last_tag
 
 	if tdic['ftag'] == 'break':
 		start = 0;
@@ -192,8 +192,10 @@ def _find_cks_bytime(struct,super_b):
 				cks.append(ck);
 		else:
 			if start[hid] <> 'null' and hour < start[hid]: continue;
-			if end[hid] <> 'null' and hour > end[hid]: continue;
 			if start[mid] <> 'null' and start[mid] > mins: continue;
+
+			if end[hid] <> 'null' and hour > end[hid]: continue;
+			if end[mid] == 'null' and hour == end[hid]: continue;
 			if end[mid] <> 'null' and end[mid] < mins: continue;
 			if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 				cks.append(ck);

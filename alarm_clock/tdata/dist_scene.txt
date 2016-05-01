@@ -18,7 +18,7 @@
 			|.*_time.*_cout
 			|.*_time.*_go
 			|.*_time.*_iwant
-			|.*_time.*_info",
+			|.*_time.*_info_yes",
 		"type":"ck_agenda_add"
 	},
 #添加起床闹钟场景入口
