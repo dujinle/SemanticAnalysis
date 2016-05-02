@@ -64,7 +64,7 @@ class SceneDel(SceneBase):
 			cks = SceneParam._find_cks_pastdue(super_b);
 		elif len(re.findall('((_cancle)|(_del))_all_clock',ttag)) > 0:
 			cks = super_b.clocks.keys();
-		elif len(re.findall('_all((_clock)|(_remind)).*(_cancle)|(_del)',ttag)) > 0:
+		elif len(re.findall('_all((_clock)|(_remind)).*((_cancle)|(_del))',ttag)) > 0:
 			cks = super_b.clocks.keys();
 		#处理 删除/取消.....闹钟/提醒
 		elif len(re.findall('((_cancle)|(_del)).*_clock',ttag)) > 0:

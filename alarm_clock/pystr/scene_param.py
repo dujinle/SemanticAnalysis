@@ -148,32 +148,40 @@ def _find_cks_bytime(struct,super_b):
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);
 		mins = int(clock['time'].split(':')[1]);
+		print hour,mins,able,start,end
 		if start[hid] == 'null' and end[hid] == 'null':
 			if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 				cks.append(ck);
 		elif start[0] == 'null':
-			if end[hid] <> 'null' and hour > end[hid]: return cks;
-			elif end[mid] <> 'null' and hour == end[hid] and mins > end[mid]: return cks;
+			if end[hid] <> 'null' and hour > end[hid]: continue;
+			elif end[mid] <> 'null' and hour == end[hid] and mins > end[mid]: continue;
 			elif clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 				cks.append(ck);
 		elif end[0] == 'null':
-			if start[hid] <> 'null' and hour < start[hid]: return cks;
-			elif start[mid] <> 'null' and mins < start[mid]: return cks;
+			if start[hid] <> 'null' and hour < start[hid]: continue;
+			elif start[mid] <> 'null' and mins < start[mid]: continue;
 			elif clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 				cks.append(ck);
 		else:
-			if start[hid] <> 'null' and hour < start[hid]: return cks;
-			if end[hid] <> 'null' and hour > end[hid]: return cks;
-			if start[mid] <> 'null' and start[mid] > mins: return cks;
-			if end[mid] <> 'null' and end[mid] < mins: return cks;
+			if start[hid] <> 'null' and hour < start[hid]: continue;
+			if end[hid] <> 'null' and hour > end[hid]: continue;
+			if start[mid] <> 'null' and start[mid] > mins: continue;
+			if end[mid] <> 'null' and end[mid] < mins: continue;
 			if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 				cks.append(ck);
 	return cks;
 
 def _find_cks_byinfo(struct,super_b):
 	cks = list();
-	common.print_dic(struct);
-	if struct.has_key('ck_name'):
+	if len(re.findall('_and.*_relate',struct['ttag'])) > 0:
+		startid = struct['text'].find(data['and']);
+		endid = struct['text'].find(data['relate']);
+		cinfo = struct['text'][startid + 1:endid];
+		for ck in super_b.clocks.keys():
+			clock = super_b.clocks[ck];
+			if clock.has_key('info') and clock['info'].find(cinfo) >= 0:
+				cks.append(ck);
+	elif struct.has_key('ck_name'):
 		cks.append(struct['ck_name']);
 		del struct['ck_name'];
 	elif struct['ttag'].find('_prev_prep_clock') <> -1:
@@ -191,38 +199,6 @@ def _find_cks_byinfo(struct,super_b):
 		if (idx + 1) >= len(mycks): idx = -1;
 		key = mycks[idx + 1];
 		cks.append(key);
-	elif len(re.findall('_and.*_relate',struct['ttag'])) > 0:
-		startid = struct['text'].find(data['and']);
-		endid = struct['text'].find(data['relate']);
-		cinfo = struct['text'][startid + 1:endid];
-		for ck in super_b.clocks.keys():
-			clock = super_b.clocks[ck];
-			if clock.has_key('info') and clock['info'].find(cinfo) > 0:
-				cks.append(ck);
-	if struct['ttag'].find('_moveto') <> -1:
-		tstr =_get_match_str(struct,'_moveto');
-		if tstr is None: return cks;
-		cinfo_id = struct['text'].find(tstr);
-		if cinfo_id == 0 or cinfo_id == -1: return cks;
-		cinfo = struct['text'][:cinfo_id];
-		if super_b.clocks.has_key(cinfo):
-			cks.append(cinfo);
-	elif struct['ttag'].find('_ahead') <> -1:
-		tstr =_get_match_str(struct,'_ahead');
-		if tstr is None: return cks;
-		cinfo_id = struct['text'].find(tstr);
-		if cinfo_id == 0 or cinfo_id == -1: return cks;
-		cinfo = struct['text'][:cinfo_id];
-		if super_b.clocks.has_key(cinfo):
-			cks.append(cinfo);
-	elif struct['ttag'].find('_clock') <> -1:
-		tstr =_get_match_str(struct,'_clock');
-		if tstr is None: return cks;
-		cinfo_id = struct['text'].find(tstr);
-		if cinfo_id == 0 or cinfo_id == -1: return cks;
-		cinfo = struct['text'][:cinfo_id];
-		if super_b.clocks.has_key(cinfo):
-			cks.append(cinfo);
 	return cks;
 
 def _find_cks_bytype(ttype,super_b):
@@ -238,15 +214,15 @@ def _find_cks_pastdue(super_b):
 	week = _get_cur_week();
 	left_able = 127;
 	if week > 0:
-		left_able = math.pow(2,7) - math.pow(2,week - 1);
+		left_able = math.pow(2,7) - math.pow(2,week);
 	mtime = _get_cur_time();
 	for ck in super_b.clocks:
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);
 		mins = int(clock['time'].split(':')[1]);
-		if int(left_able) & int(clock['able']['able']) > 1:
+		if int(left_able) & int(clock['able']['able']) == 0:
 			cks.append(ck);
-		elif int(left_able) & int(clock['able']['able']) == 1:
+		elif int(left_able) & int(clock['able']['able']) == math.pow(2,week):
 			if hour < mtime[3] or (hour == mtime[3] and mins < mtime[4]):
 				cks.append(ck);
 	return cks;

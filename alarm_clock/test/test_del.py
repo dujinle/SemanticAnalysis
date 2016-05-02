@@ -19,10 +19,14 @@ from tag_mager import MytagMager
 from wordseg import WordSeg
 from scene_engin import SEngin
 
-def analysis_result(struct,ans):
-	for key in ans:
+def analysis_result(struct,test):
+	for key in test['ans']:
 		if struct['mcks'].has_key(key):
 			return False;
+	if test.has_key('left'):
+		for key in test['left']:
+			if not struct['mcks'].has_key(key):
+				return False;
 	return True;
 
 wd = WordSeg();
@@ -49,8 +53,10 @@ for test in tests:
 	timer.encode(struct);
 	tag.encode(struct);
 	se.encode(struct);
-	if analysis_result(struct,test['ans']) == True:
+	if analysis_result(struct,test) == True:
 		print test['test'],'succ';
+		if test.has_key('print') and test['print'] == 'true':
+			common.print_dic(struct);
 	else:
 		print test['test'],'faile';
 		common.print_dic(struct);

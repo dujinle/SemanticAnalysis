@@ -1,11 +1,31 @@
 [
 	{
+		"time":"14:0",
+		"key":"喝下午茶",
+		"info":"喝下午茶",
+		"type":"agenda",
+		"able":{
+			"type":"week",
+			"able":"2"
+		}
+	},
+	{
+		"time":"14:0",
+		"key":"打高尔夫",
+		"info":"打高尔夫",
+		"type":"agenda",
+		"able":{
+			"type":"week",
+			"able":"2"
+		}
+	},
+	{
 		"time":"7:30",
 		"key":"7:30",
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"127"
 		}
 	},
 	{
@@ -15,7 +35,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"2"
 		}
 	},
 	{
@@ -24,7 +44,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"1"
 		}
 	},
 	{
@@ -54,7 +74,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"4"
+			"able":"64"
 		}
 	},
 	{
