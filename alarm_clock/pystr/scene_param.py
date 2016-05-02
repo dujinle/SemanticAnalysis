@@ -148,7 +148,7 @@ def _find_cks_bytime(struct,super_b):
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);
 		mins = int(clock['time'].split(':')[1]);
-		print hour,mins,able,start,end
+		#print hour,mins,able,start,end
 		if start[hid] == 'null' and end[hid] == 'null':
 			if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 				cks.append(ck);
@@ -239,7 +239,7 @@ def _find_cks_prep(struct,super_b):
 	cks = list();
 	for s in struct['inlist']:
 		if data['num'].has_key(s):
-			num = data['num'][s];
+			num = int(data['num'][s]);
 			cks.append(super_b.clocks.keys()[num - 1]);
 	return cks;
 

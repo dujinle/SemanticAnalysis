@@ -122,15 +122,24 @@
 			|(_time)*_remind(_all)*_del
 			|(_time)*_remind(_all)*_cancle
 			|(_time)*_remind(_all)*_no_le
-			|_cancle_time.*_clock
 			|_only_left_time
 			|_del.*_clock
 			|_del.*_remind
+			|_del.*_nouse
 			|_cancle.*_clock
 			|_cancle.*_remind
-			|_time(_all)*_no
+			|_cancle.*_nouse
+			|_time.*_no
+			|_time.*_del
+			|_time.*_cancle
 			|_prep.*_del
+			|_prep.*_no_le
+			|_prep.*_cancle
+			|_del.*_prep
+			|_cancle.*_prep
 			|_nouse.*_del
+			|_nouse.*_no_le
+			|_nouse.*_cancle
 			|(_del)|(_cancle)
 			|_time_rest
 			|_just_that_no",

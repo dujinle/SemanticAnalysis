@@ -82,6 +82,8 @@ class SceneDel(SceneBase):
 			cks = self._get_cks_by_tag(struct,super_b,None);
 		elif len(re.findall('_prep((_del)|(_cancle))',ttag)) > 0:
 			cks = SceneParam._find_cks_prep(struct,super_b);
+		elif len(re.findall('((_del)|(_cancle)).*_prep',ttag)) > 0:
+			cks = SceneParam._find_cks_prep(struct,super_b);
 		elif len(re.findall('_just_that((_no)|(_del)|(_cancle))',ttag)) > 0:
 			if super_b.myclock is None: return None;
 			cks = list();

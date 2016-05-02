@@ -1,7 +1,7 @@
 [
 	{
-		"time":"14:0",
 		"key":"喝下午茶",
+		"time":"14:0",
 		"info":"喝下午茶",
 		"type":"agenda",
 		"able":{
@@ -10,8 +10,8 @@
 		}
 	},
 	{
-		"time":"14:0",
 		"key":"打高尔夫",
+		"time":"14:0",
 		"info":"打高尔夫",
 		"type":"agenda",
 		"able":{
@@ -20,8 +20,8 @@
 		}
 	},
 	{
-		"time":"7:30",
 		"key":"7:30",
+		"time":"7:30",
 		"type":"agenda",
 		"able":{
 			"type":"week",

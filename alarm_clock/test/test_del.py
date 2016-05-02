@@ -44,6 +44,7 @@ tests = common.read_json('./mdel.test');
 for test in tests:
 	#init data
 	ck_list = common.read_json('./mdel.init');
+	se.clocks.clear();
 	for ck in ck_list:
 		se.clocks[ck['key']] = ck;
 	se.myclock = ck_list[0];
