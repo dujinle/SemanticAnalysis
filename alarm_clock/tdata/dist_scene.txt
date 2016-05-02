@@ -150,14 +150,19 @@
 		"reg":
 			"(_see)*_has_some_clock
 			|(_see)*_has_some_remind
-			|_time_has_some_thing
-			|_time_has_what_thing
+			|_time_has_some.*_thing
+			|_time_has_what.*_thing
+			|_after_has_some
+			|_after_has_what
+			|_clock_yes_wtime
+			|_remind_yes_wtime
+			|_clock_yes_what_shihou
+			|_remind_yes_what_shihou
 			|_see.*_clock
 			|_see.*_remind
-			|_has_what_thing
-			|_yes_what_info
-			|_clock_yes_what
-			|_info_yes_what",
+			|_time_yes_what_info
+			|_prep_info_yes_what
+			|_time_info_yes_what",
 		"type":"ck_search"
 	},
 #修改时间场景入口

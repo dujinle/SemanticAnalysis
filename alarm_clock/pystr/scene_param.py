@@ -243,6 +243,35 @@ def _find_cks_prep(struct,super_b):
 			cks.append(super_b.clocks.keys()[num - 1]);
 	return cks;
 
+def _find_cks_after(struct,super_b):
+	cks = list();
+	curtime = _get_cur_time();
+	week = _get_cur_week();
+	able = math.pow(2,week);
+	for ck in super_b.clocks.keys():
+		clock = super_b.clocks[ck];
+		hour = int(clock['time'].split(':')[0]);
+		mins = int(clock['time'].split(':')[1]);
+		if curtime[3] < hour or (curtime[3] == hour and curtime[4] <= mins):
+			if clock['type'] == 'agenda' and int(clock['able']['able']) & int(able) > 0:
+				cks.append(ck);
+	return cks;
+
+def _find_cks_tagtime(tag,super_b):
+	cks = list();
+	time = data[tag]['time'];
+	tarray = time.split(':');
+	week = _get_cur_week();
+	able = math.pow(2,week);
+	for ck in super_b.clocks.keys():
+		clock = super_b.clocks[ck];
+		hour = int(clock['time'].split(':')[0]);
+		mins = int(clock['time'].split(':')[1]);
+		if int(tarray[0]) < hour or (int(tarray[0]) == hour and int(tarray[1]) <= mins):
+			if clock['type'] == 'agenda' and int(clock['able']['able']) & int(able) > 0:
+				cks.append(ck);
+	return cks;
+
 def _get_match_str(struct,tag):
 	comp = re.compile(data[tag]['str']);
 	match = comp.search(struct['text']);

@@ -36,37 +36,29 @@ class SceneSearch(SceneBase):
 		if struct['ttag'].find('_see_has_some_clock') <> -1:
 			cks = super_b.clocks.keys();
 			return cks;
-		elif struct['ttag'].find('_time_has_some_thing') <> -1\
-			or struct['ttag'].find('_time_has_what_thing') <> -1\
-			or struct['ttag'].find('_time_has_some_prep_thing') <> -1\
-			or struct['ttag'].find('_time_yes_what_info') <> -1\
-			or struct['ttag'].find('_clock_yes_what') <> -1:
+		elif len(re.findall('_time_has_some.*_thing',struct['ttag'])) > 0:
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			return cks;
+		elif len(re.findall('_time_has_what.*_thing',struct['ttag'])) > 0:
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			return cks;
+		elif len(re.findall('_time.*_yes_what_info',struct['ttag'])) > 0:
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			return cks;
+		elif len(re.findall('_remind_yes((_what_shihou)|(_wtime))',struct['ttag'])) > 0:
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+			return cks;
+		elif len(re.findall('_clock_yes((_what_shihou)|(_wtime))',struct['ttag'])) > 0:
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+			return cks;
+		elif len(re.findall('_time_clock_yes_what',struct['ttag'])) > 0:
 			cks = SceneParam._find_cks_bytime(struct,super_b);
 			return cks;
 		elif struct['ttag'].find('_after_has_what_thing') <> -1:
-			curtime = SceneParam._get_cur_time();
-			week = SceneParam._get_cur_week();
-			able = math.pow(2,week);
-			for ck in super_b.clocks.keys():
-				clock = super_b.clocks[ck];
-				hour = int(clock['time'].split(':')[0]);
-				mins = int(clock['time'].split(':')[1]);
-				if curtime[3] < hour or (curtime[3] == hour and curtime[4] <= mins):
-					if clock['type'] == 'agenda' and int(clock['able']['able']) & int(able) > 0:
-						cks.append(ck);
+			cks = SceneParam._find_cks_after(struct,super_b);
 			return cks;
 		elif struct['ttag'].find('_workoff_after_has_some') <> -1:
-			time = SceneParam.data['work_off']['time'];
-			tarray = time.split(':');
-			week = SceneParam._get_cur_week();
-			able = math.pow(2,week);
-			for ck in super_b.clocks.keys():
-				clock = super_b.clocks[ck];
-				hour = int(clock['time'].split(':')[0]);
-				mins = int(clock['time'].split(':')[1]);
-				if int(tarray[0]) < hour or (int(tarray[0]) == hour and int(tarray[1]) <= mins):
-					if clock['type'] == 'agenda' and int(clock['able']['able']) & int(able) > 0:
-						cks.append(ck);
+			cks = SceneParam._find_cks_tagtime('workoff',super_b);
 			return cks;
 		elif struct['ttag'].find('_prep_info_yes_what') <> -1:
 			inum = SceneParam._get_cks_num(struct);
