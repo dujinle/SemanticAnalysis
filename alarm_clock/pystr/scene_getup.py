@@ -34,13 +34,14 @@ class SceneGetup(SceneBase):
 					struct['result']['msg'] = self.data['msg']['set_time'][0];
 					struct['step'] = 'set_time';
 					return None;
-				else:
-					SceneParam._find_time(struct);
-					SceneParam._calc_able(struct);
-			elif struct['step'] == 'set_time':
+			elif struct['step'] <> 'trans':
 				SceneParam._find_time(struct);
 				SceneParam._calc_able(struct);
-			self._set_clock(struct,super_b);
+				if self._set_clock(struct,super_b) == -1:
+					msg_id = SceneParam._get_random_id(len(self.data['msg']['unknow_time']));
+					struct['result']['msg'] = self.data['msg']['unknow_time'][msg_id];
+					struct['step'] = 'end';
+					return None;
 			self._analysis_mytag(struct,super_b);
 			if super_b.myclock.has_key('name'):
 				super_b.myclock['key'] = super_b.myclock['name'];
@@ -81,10 +82,11 @@ class SceneGetup(SceneBase):
 	def _set_clock(self,struct,super_b):
 		myclock = super_b.myclock;
 		myclock['type'] = 'getup';
-		if struct.has_key('ck_time'):
-			times = struct['ck_time']['time'];
-			myclock['time'] = times;
-			del struct['ck_time'];
+		if not struct.has_key('ck_time'): return -1;
+		times = struct['ck_time']['time'];
+		myclock['time'] = times;
+		del struct['ck_time'];
+
 		if struct.has_key('ck_able'):
 			myclock['able'] = struct['ck_able'];
 			del struct['ck_able'];

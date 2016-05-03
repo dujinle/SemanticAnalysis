@@ -36,16 +36,16 @@ class SceneAgenda(SceneBase):
 					struct['result']['msg'] = self.data['msg']['set_time'][msg_id];
 					struct['step'] = 'set_time';
 					return None;
-				else:
-					SceneParam._find_time(struct);
-					SceneParam._calc_able(struct);
-					self._set_clock(struct,super_b);
 			elif struct['step'] == 'trans':
 				self._set_agenda_info(struct,super_b);
-			elif struct['step'] == 'set_time':
+			else:
 				SceneParam._find_time(struct);
 				SceneParam._calc_able(struct);
-				self._set_clock(struct,super_b);
+				if self._set_clock(struct,super_b) == -1:
+					msg_id = SceneParam._get_random_id(len(self.data['msg']['unknow_time']));
+					struct['result']['msg'] = self.data['msg']['unknow_time'][msg_id];
+					struct['step'] = 'end';
+					return None;
 			if super_b.myclock.has_key('info'):
 				super_b.clocks[super_b.myclock['info']] = super_b.myclock;
 				super_b.myclock['key'] = super_b.myclock['info'];
@@ -67,11 +67,12 @@ class SceneAgenda(SceneBase):
 
 	def _set_clock(self,struct,super_b):
 		myclock = super_b.myclock;
-		if struct.has_key('ck_time'):
-			times = struct['ck_time']['time'];
-			myclock['type'] = 'agenda';
-			myclock['time'] = times;
-			del struct['ck_time'];
+		if not struct.has_key('ck_time'): return -1;
+		times = struct['ck_time']['time'];
+		myclock['type'] = 'agenda';
+		myclock['time'] = times;
+		del struct['ck_time'];
+
 		if struct.has_key('ck_able'):
 			myclock['able'] = struct['ck_able'];
 			del struct['ck_able'];

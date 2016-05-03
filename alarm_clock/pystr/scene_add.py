@@ -25,10 +25,7 @@ class SceneAdd(SceneBase):
 
 			#启动时响应回复
 			if struct['step'] == 'start':
-				msg_id = SceneParam._get_random_id(len(self.data['msg']['start_msg']));
-				struct['result']['msg'] = self.data['msg']['start_msg'][msg_id];
 				super_b.myclock = dict();
-				#self._send_msg(struct['result'])
 				#开始询问时间设置
 				if struct['ttag'].find('time') == -1:
 					self._set_name(struct,super_b);
@@ -36,18 +33,12 @@ class SceneAdd(SceneBase):
 					struct['result']['msg'] = self.data['msg']['set_time'][msg_id];
 					struct['step'] = 'set_time';
 					return None;
-				else:
-					SceneParam._find_time(struct);
-					SceneParam._calc_able(struct);
-					if self._set_time(struct,super_b) == -1:
-						return None;
-					self._set_able(struct,super_b);
-					self._set_name(struct,super_b);
-			elif struct['step'] == 'set_time':
-				SceneParam._find_time(struct);
-				SceneParam._calc_able(struct);
-				if self._set_time(struct,super_b) == -1: return None;
-				self._set_able(struct,super_b);
+			SceneParam._find_time(struct);
+			SceneParam._calc_able(struct);
+			if self._set_time(struct,super_b) == -1:
+				struct['step'] = 'end';
+				return None;
+			self._set_able(struct,super_b);
 			struct['step'] = 'trans';
 		except Exception as e:
 			raise MyException(format(e));
@@ -64,22 +55,17 @@ class SceneAdd(SceneBase):
 				#时间设置完成回应信息
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['add_getup_ck']));
 				struct['result']['msg'] = self.data['msg']['add_getup_ck'][msg_id];
-				#todo send msg......
-				#self._send_msg(struct['result'])
 			else:
 				struct['ck_scene'] = 'ck_agenda_add';
 				myclock['type'] = 'agenda';
 				#时间设置完成回应信息
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['add_agenda_ck']));
 				struct['result']['msg'] = self.data['msg']['add_agenda_ck'][msg_id];
-				#todo send msg......
-				#self._send_msg(struct['result'])
 			myclock['time'] = struct['ck_time']['time'];
 			del struct['ck_time'];
 		else:
 			msg_id = SceneParam._get_random_id(len(self.data['msg']['unknow_time']));
 			struct['result']['msg'] = self.data['msg']['unknow_time'][msg_id];
-			struct['step'] = 'end';
 			return -1;
 		if struct.has_key('intervals'): del struct['intervals'];
 		return 0;
