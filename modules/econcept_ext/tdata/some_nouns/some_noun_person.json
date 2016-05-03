@@ -14,6 +14,26 @@
 						}
 					}
 				}
+			},
+			"智商":{
+				"笨蛋":{
+					"_prop":{
+						"type":"N",
+						"stype":"STUPID"
+					}
+				},
+				"蠢":{
+					"_prop":{
+						"type":"N",
+						"stype":"STUPID"
+					}
+				},
+				"狗日":{
+					"_prop":{
+						"type":"N",
+						"stype":"STUPID"
+					}
+				}
 			}
 		},
 		"人的社会属性":{

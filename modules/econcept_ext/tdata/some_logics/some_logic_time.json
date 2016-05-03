@@ -10,5 +10,29 @@
 			"type":"LT",
 			"stype":"DURATION"
 		}
+	},
+	"每天":{
+		"_prop":{
+			"type":"LT",
+			"stype":"EVERYDAY"
+		}
+	},
+	"刚才":{
+		"_prop":{
+			"type":"LT",
+			"stype":"JUST"
+		}
+	},
+	"刚刚":{
+		"_prop":{
+			"type":"LT",
+			"stype":"JUST"
+		}
+	},
+	"以后":{
+		"_prop":{
+			"type":"LT",
+			"stype":"LATER"
+		}
 	}
 }

@@ -20,5 +20,12 @@
 				"stype":"MATERIAL"
 			}
 		}
+	},
+	"垃圾":{
+		"_prop":{
+			"type":"N",
+			"stype":"RUBBISH"
+		}
 	}
+
 }

@@ -27,6 +27,12 @@
 				"type":"RP",
 				"stype":"YOU"
 			}
+		},
+		"你":{
+			"_prop":{
+				"type":"RP",
+				"stype":"YOU"
+			}
 		}
 	},
 	"内容":{

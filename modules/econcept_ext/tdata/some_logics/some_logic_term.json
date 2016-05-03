@@ -55,6 +55,24 @@
 				"type":"LNO",
 				"stype":"UNUSE"
 			}
+		},
+		"提前":{
+			"_prop":{
+				"type":"LV",
+				"stype":"AHEAD"
+			}
+		},
+		"提早":{
+			"_prop":{
+				"type":"LV",
+				"stype":"AHEAD"
+			}
+		},
+		"再":{
+			"_prop":{
+				"type":"LV",
+				"stype":"AGAIN"
+			}
 		}
 	},
 	"能力":{
@@ -68,6 +86,32 @@
 			"_prop":{
 				"type":"LM",
 				"stype":"CAN"
+			}
+		}
+	},
+	"逻辑关系":{
+		"把":{
+			"_prop":{
+				"type":"LT",
+				"stype":"BA3"
+			}
+		},
+		"和":{
+			"_prop":{
+				"type":"LT",
+				"stype":"AND"
+			}
+		},
+		"与":{
+			"_prop":{
+				"type":"LT",
+				"stype":"AND"
+			}
+		},
+		"跟":{
+			"_prop":{
+				"type":"LT",
+				"stype":"AND"
 			}
 		}
 	}

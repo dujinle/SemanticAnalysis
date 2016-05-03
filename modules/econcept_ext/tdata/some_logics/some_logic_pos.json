@@ -5,6 +5,24 @@
 			"stype":"NEAR"
 		}
 	},
+	"上":{
+		"_prop":{
+			"type":"LP",
+			"stype":"UP"
+		}
+	},
+	"下":{
+		"_prop":{
+			"type":"LP",
+			"stype":"DOWN"
+		}
+	},
+	"前":{
+		"_prop":{
+			"type":"LP",
+			"stype":"PREV"
+		}
+	},
 	"后":{
 		"_prop":{
 			"type":"LP",
@@ -21,6 +39,12 @@
 		"_prop":{
 			"type":"LP",
 			"stype":"INNER"
+		}
+	},
+	"后面":{
+		"_prop":{
+			"type":"LP",
+			"stype":"LATER"
 		}
 	}
 }

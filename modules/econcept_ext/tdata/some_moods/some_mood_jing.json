@@ -7,24 +7,42 @@
 						"type":"M",
 						"stype":"GOOD"
 					}
+				},
+				"过期":{
+					"_prop":{
+						"type":"M",
+						"stype":"PASTDUE"
+					}
 				}
 			},
 			"状态":{
 				"关机":{
 					"_prop":{
-						"type":"RV",
+						"type":"M",
 						"stype":"SHUTDOWN"
 					}
 				},
 				"停":{
 					"_prop":{
-						"type":"RV",
+						"type":"M",
 						"stype":"STOP"
+					}
+				},
+				"响":{
+					"_prop":{
+						"type":"M",
+						"stype":"RING"
 					}
 				}
 			}
 		},
 		"程度":{
+			"够":{
+				"_prop":{
+					"type":"M",
+					"stype":"ENOUGH"
+				}
+			},
 			"判断":{
 				"辨别":{
 					"真":{
@@ -41,7 +59,25 @@
 						"type":"M",
 						"stype":"IMPORT"
 					}
-				}	
+				},
+				"为止":{
+					"_prop":{
+						"type":"M",
+						"stype":"TILL"
+					}
+				},
+				"有关":{
+					"_prop":{
+						"type":"M",
+						"stype":"RELATE_TO"
+					}
+				},
+				"没用":{
+					"_prop":{
+						"type":"M",
+						"stype":"UNUSE"
+					}
+				}
 			},
 			"比较":{
 				"级别":{
@@ -49,6 +85,14 @@
 						"_prop":{
 							"type":"M",
 							"stype":"SAMPLE"
+						}
+					}
+				},
+				"输赢":{
+					"赢":{
+						"_prop":{
+							"type":"M",
+							"stype":"WIN"
 						}
 					}
 				}
@@ -69,6 +113,18 @@
 						"_prop":{
 							"type":"M",
 							"stype":"LIKE"
+						}
+					},
+					"烦":{
+						"_prop":{
+							"type":"M",
+							"stype":"BOTHER"
+						}
+					},
+					"吵":{
+						"_prop":{
+							"type":"M",
+							"stype":"NOISY"
 						}
 					}
 				}
@@ -111,6 +167,20 @@
 						"type":"M",
 						"stype":"QUIET"
 					}
+				},
+				"好听":{
+					"_prop":{
+						"type":"M",
+						"stype":"NICE"
+					}
+				}
+			}
+		},
+		"生命":{
+			"死":{
+				"_prop":{
+					"type":"M",
+					"stype":"DIE"
 				}
 			}
 		}

@@ -25,6 +25,12 @@
 								"type":"N",
 								"stype":"XINDAYANG"
 							}
+						},
+						"会议":{
+							"_prop":{
+								"type":"N",
+								"stype":"MEETING"
+							}
 						}
 					},
 					"董事":{
@@ -60,6 +66,12 @@
 								"stype":"ACLOCK"
 							}
 						},
+						"闹铃":{
+							"_prop":{
+								"type":"N",
+								"stype":"ACLOCK"
+							}
+						},						
 						"手机":{
 							"_prop":{
 								"type":"N",
@@ -123,6 +135,24 @@
 				"_prop":{
 					"type":"N",
 					"stype":"AGENDA"
+				},
+				"行程":{
+					"_prop":{
+						"type":"N",
+						"stype":"AGENDA"
+					}
+				}
+			},
+			"计划":{
+				"_prop":{
+					"type":"N",
+					"stype":"PLAN"
+				},
+				"安排":{
+					"_prop":{
+						"type":"N",
+						"stype":"PLAN"
+					}
 				}
 			}
 		},
@@ -136,6 +166,24 @@
 					"_prop":{
 						"type":"N",
 						"stype":"NEW_SONGS"
+					}
+				},
+				"歌曲":{
+					"_prop":{
+						"type":"N",
+						"stype":"SONGS"
+					}
+				},
+				"铃声":{
+					"_prop":{
+						"type":"N",
+						"stype":"BELL"
+					}
+				},
+				"铃音":{
+					"_prop":{
+						"type":"N",
+						"stype":"BELL"
 					}
 				}
 			}
@@ -241,6 +289,24 @@
 						"type":"N",
 						"stype":"CONTENT"
 					}
+				},
+				"名称":{
+					"_prop":{
+						"type":"N",
+						"stype":"NAME"
+					}
+				}
+			}
+		},
+		"风格":{
+			"_prop":{
+				"type":"N",
+				"stype":"STYPE"
+			},
+			"花样":{
+				"_prop":{
+					"type":"N",
+					"stype":"STYPE"
 				}
 			}
 		},
@@ -249,8 +315,20 @@
 				"事情":{
 					"_prop":{
 						"type":"N",
-						"stype":"MATTER"
+						"stype":"THING"
 					}
+				},
+				"事":{
+					"_prop":{
+						"type":"N",
+						"stype":"THING"
+					}
+				},
+				"事项":{
+					"_prop":{
+						"type":"N",
+						"stype":"MATTER"
+					}					
 				}
 			}
 		}

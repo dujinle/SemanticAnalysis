@@ -22,6 +22,11 @@
 			"stype":"SHOU",
 			"str":"首"
 		},
+		"项":{
+			"type":"QS",
+			"stype":"XIANG",
+			"str":"项"	
+		},
 		"点":{
 			"type":"QU",
 			"stype":"DIAN",
@@ -51,6 +56,18 @@
 			"type":"QS",
 			"stype":"HAO",
 			"str":"号"
+		},
+		"次":{
+			"type":"QS",
+				"stype":"CI",
+				"str":"次"
+			}
+		},
+		"下":{
+			"type":"QS",
+				"stype":"XIA",
+				"str":"下"
+			}
 		}
 	}
 }

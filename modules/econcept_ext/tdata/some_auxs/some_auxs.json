@@ -1,32 +1,50 @@
 {
 	"啦":{
-		"type":"AUX",
-		"stype":"LA",
-		"str":"啦"
+		"_prop":{
+			"type":"AUX",
+			"stype":"LA"
+		}
 	},
 	"哦":{
-		"type":"AUX",
-		"stype":"O",
-		"str":"哦"
+		"_prop":{
+			"type":"AUX",
+			"stype":"O"
+		}
 	},
 	"哟":{
-		"type":"AUX",
-		"stype":"YO",
-		"str":"哟"
+		"_prop":{
+			"type":"AUX",
+			"stype":"YO"
+		}
 	},
 	"的":{
-		"type":"AUX",
-		"stype":"DE",
-		"str":"的"
+		"_prop":{
+			"type":"AUX",
+			"stype":"DE"
+		}
 	},
 	"吧":{
-		"type":"AUX",
-		"stype":"BA",
-		"str":"吧"
+		"_prop":{
+			"type":"AUX",
+			"stype":"BA"
+		}
 	},
 	"啊":{
-		"type":"AUX",
-		"stype":"AH",
-		"str":"啊"
+		"_prop":{
+			"type":"AUX",
+			"stype":"AH"
+		}
+	},
+	"了":{
+		"_prop":{
+			"type":"AUX",
+			"stype":"LE"
+		}
+	},
+	"吧":{
+		"_prop":{
+			"type":"AUX",
+			"stype":"BA"
+		}
 	}
 }

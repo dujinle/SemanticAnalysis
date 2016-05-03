@@ -88,12 +88,30 @@
 							"type":"RV",
 							"stype":"DEMONSTRATE"
 						}
+					},
+					"新建":{
+						"_prop":{
+							"type":"RV",
+							"stype":"BUILD"
+						}
+					},
+					"添加":{
+						"_prop":{
+							"type":"RV",
+							"stype":"ADD"
+						}
 					}
 				},
 				"下班":{
 					"_prop":{
 						"type":"RV",
 						"stype":"CLOSED"
+					}
+				},
+				"开会":{
+					"_prop":{
+						"type":"RV",
+						"stype":"MEETING"
 					}
 				}
 			},
@@ -117,10 +135,20 @@
 					}
 				},
 				"休息":{
+					"_prop":{
+						"type":"RV",
+						"stype":"REST"
+					},
 					"睡":{
 						"_prop":{
 							"type":"RV",
 							"stype":"SLEEP"
+						}
+					},
+					"睡会":{
+						"_prop":{
+							"type":"RV",
+							"stype":"SLEEP_WILL"
 						}
 					}
 				},
@@ -135,6 +163,18 @@
 						"_prop":{
 							"type":"RV",
 							"stype":"REFUEL"
+						}
+					}
+				},
+				"起床":{
+					"_prop":{
+						"type":"RV",
+						"stype":"GETUP"
+					},
+					"醒":{
+						"_prop":{
+							"type":"RV",
+							"stype":"WAKE"
 						}
 					}
 				}
@@ -176,6 +216,86 @@
 						"stype":"CONTACT"
 					}
 				}
+			}
+		},
+		"设备管理":{
+			"发动":{
+				"_prop":{
+					"type":"RV",
+					"stype":"LAUNCH"
+				}
+			},
+			"取消":{
+				"_prop":{
+					"type":"RV",
+					"stype":"CANCEL"
+				}
+			},
+			"打开":{
+				"_prop":{
+					"type":"RV",
+					"stype":"OPEN"
+				}
+			},
+			"开启":{
+				"_prop":{
+					"type":"RV",
+					"stype":"OPEN"
+				}
+			},
+			"删除":{
+				"_prop":{
+					"type":"RV",
+					"stype":"DELETE"
+				}
+			},
+			"删掉":{
+				"_prop":{
+					"type":"RV",
+					"stype":"DELETE"
+				}
+			},
+			"删了":{
+				"_prop":{
+					"type":"RV",
+					"stype":"DELETE"
+				}
+			},
+			"干掉":{
+				"_prop":{
+					"type":"RV",
+					"stype":"KILL"
+				}
+			},
+			"关闭":{
+				"_prop":{
+					"type":"RV",
+					"stype":"CLOSE"
+				}
+			},
+			"关了":{
+				"_prop":{
+					"type":"RV",
+					"stype":"CLOSE"
+				}
+			},
+			"关掉":{
+				"_prop":{
+					"type":"RV",
+					"stype":"CLOSE"
+				}
+			},
+			"设":{
+				"_prop":{
+					"type":"RV",
+					"stype":"SET"
+				}	
+			},
+			"设置":{
+				"_prop":{
+					"type":"RV",
+					"stype":"SET"
+				}	
 			}
 		}
 	},
@@ -230,10 +350,34 @@
 							"type":"RV",
 							"stype":"EAT"
 						}
+					},
+					"叫":{
+						"_prop":{
+							"type":"RV",
+							"stype":"CALL"
+						}
+					},
+					"call":{
+						"_prop":{
+							"type":"RV",
+							"stype":"CALL"
+						}
+					},
+					"喊":{
+						"_prop":{
+							"type":"RV",
+							"stype":"CALL"
+						}				
 					}
 				},
 				"眼部":{
 					"看":{
+						"_prop":{
+							"type":"RV",
+							"stype":"SEE"
+						}
+					},
+					"看看":{
 						"_prop":{
 							"type":"RV",
 							"stype":"SEE"
@@ -260,6 +404,12 @@
 						"stype":"SEND"
 					}
 				},
+				"闹":{
+					"_prop":{
+						"type":"RV",
+						"stype":"MAKE_NOISE"
+					}
+				},
 				"选":{
 					"_prop":{
 						"type":"RV",
@@ -278,6 +428,12 @@
 						"stype":"DECIDE"
 					}
 				},
+				"订":{
+					"_prop":{
+						"type":"RV",
+						"stype":"DECIDE"						
+					}
+				},
 				"发":{
 					"_prop":{
 						"type":"RV",
@@ -290,10 +446,94 @@
 						"stype":"JIE"
 					}
 				},
-				"发动":{
+				"弄":{
 					"_prop":{
 						"type":"RV",
-						"stype":"LAUNCH"
+						"stype":"FETCH"
+					}
+				},
+				"搞":{
+					"_prop":{
+						"type":"RV",
+						"stype":"FETCH"
+					}
+				},
+				"调":{
+					"_prop":{
+						"type":"RV",
+						"stype":"FETCH"
+					}
+				},
+				"建":{
+					"_prop":{
+						"type":"RV",
+						"stype":"BUILD"
+					}
+				},
+				"折腾":{
+					"_prop":{
+						"type":"RV",
+						"stype":"TOSS"
+					}
+				},
+				"倒腾":{
+					"_prop":{
+						"type":"RV",
+						"stype":"TOSS"
+					}
+				},
+				"增加":{
+					"_prop":{
+						"type":"RV",
+						"stype":"ADD"
+					}		
+				},
+				"换":{
+					"_prop":{
+						"type":"RV",
+						"stype":"CHANGE"
+					}
+				},
+				"出去":{
+					"_prop":{
+						"type":"RV",
+						"stype":"GET_OUT"
+					}
+				},
+				"等":{
+					"_prop":{
+						"type":"RV",
+						"stype":"WAIT"
+					}
+				},
+				"留下":{
+					"_prop":{
+						"type":"RV",
+						"stype":"LEFT"
+					}
+				},
+				"剩下":{
+					"_prop":{
+						"type":"RV",
+						"stype":"LEFT"
+					}
+				},
+				"等会":{
+					"_prop":{
+						"type":"RV",
+						"stype":"WAIT_MOMENT"
+					}
+				},
+				"等一下":{
+					"_prop":{
+						"type":"RV",
+						"stype":"WAIT_MOMENT"
+					}
+				},
+				"等下":{
+					"_prop":{
+						"type":"RV",
+						"stype":"WAIT_MOMENT"
 					}
 				}
 			}
