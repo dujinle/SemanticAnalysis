@@ -36,7 +36,7 @@ class SceneAgenda(SceneBase):
 					struct['result']['msg'] = self.data['msg']['set_time'][msg_id];
 					struct['step'] = 'set_time';
 					return None;
-			elif struct['step'] == 'trans':
+			if struct['step'] == 'trans':
 				self._set_agenda_info(struct,super_b);
 			else:
 				SceneParam._find_time(struct);

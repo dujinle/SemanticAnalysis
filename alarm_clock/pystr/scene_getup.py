@@ -34,7 +34,7 @@ class SceneGetup(SceneBase):
 					struct['result']['msg'] = self.data['msg']['set_time'][0];
 					struct['step'] = 'set_time';
 					return None;
-			elif struct['step'] <> 'trans':
+			if struct['step'] <> 'trans':
 				SceneParam._find_time(struct);
 				SceneParam._calc_able(struct);
 				if self._set_clock(struct,super_b) == -1:
