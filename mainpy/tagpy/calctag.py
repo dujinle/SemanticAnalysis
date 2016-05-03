@@ -79,12 +79,12 @@ class Calc(Base):
 						struct['dir'] = '-';
 					elif struct['dir'] == '-':
 						struct['dir'] = '+';
-			
+			'''
 			if struct.has_key('Nt'):
 				ntype = struct['Nt'].get('type');
 				if ntype == 'vnum':
 					struct['dir'] = '+'
-			
+			'''
 		except Exception as e:
 			raise MyException(format(e));
 
