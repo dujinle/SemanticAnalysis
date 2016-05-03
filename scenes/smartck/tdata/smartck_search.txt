@@ -1,0 +1,142 @@
+#查询闹钟场景设置
+{
+#反馈的信息列表
+	"msg":{
+		"set_start":["好的,这就帮您看一下"],
+		"ck_unknow":["闹钟没有找到哦..."],
+		"ck_info":["闹钟内容是%s"],
+		"ck_num":["我看了一下，找到了%d个闹钟"],
+		"ck_infos":["%s等%d闹钟已经找到"]
+	},
+#-----------------------------------------------------
+#灵活配置查询闹钟的事件
+#t2t==>find_cks time_to_time
+#time==>find_cks_bytime
+#info==>find_cks_byinfo
+#after==>find_cks_after_time
+#all==>find_all_cks
+#num==>get_cks_num
+#-----------------------------------------------------
+	"template":[
+		{
+			"reg":"_time_to_time_has_some
+				|_time_to_time_has_what",
+			"func":"t2t"
+		},
+		{
+			"reg":"_prep_info_yes_what
+				|see.*_prep_clock
+				|see.*_prep_remind",
+			"func":"num"
+		},
+		{
+			"reg":"_time_has_some.*_thing
+				|_time_has_some.*_clock
+				|_time_has_some.*_remind
+				|_time_has_what.*_thing
+				|_time_has_what.*_clock
+				|_time_has_what.*_remind
+				|_time.*_has_what.*_agenda
+				|_time.*_yes_what_info
+				|_time_info_yes_what
+				|_time_clock_yes_what
+				|_time_agenda.*_has_what
+				|_time_agenda
+				|_time_agenda.*_yes_what",
+			"func":"time"
+		},
+		{
+			"reg":"_see_all_clock
+				|_see_has_some_clock
+				|_see_has_some_remind",
+			"func":"all"
+		},
+		{
+			"reg":"_after_has_what_thing
+				|_after_has_what_agenda
+				|_time_left_what_agenda
+				|_time_left_what_thing
+				|_workoff_after_has_some
+				|_workoff_after_has_what",
+			"func":"after"
+		},
+		{
+			"reg":"_remind_yes_what_shihou
+				|_remind_yes_wtime
+				|_clock_yes_what_shihou
+				|_clock_yes_wtime
+				|_and.*_relate_clock.*_has
+				|_and.*_relate_remind.*_has
+				|_and.*_relate_clock.*_yes
+				|_and.*_relate_remind.*_yes
+				|_orderin_wtime
+				|_wtime_yes
+				|_yes_wtime
+				|_at_wtime
+				|_see.*_clock
+				|_see.*_remind",
+			"func":"info"
+		}
+	],
+#-----------------------------------------------------
+#获取闹钟的标签信息
+#-----------------------------------------------------
+	"temptag":[
+		{
+			"reg":"_and.*_orderin_wtime",
+			"start":{
+				"tag":"_and",
+				"type":"left"
+			},
+			"end":{
+				"tag":"_orderin",
+				"type":"filter"
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		},
+		{
+			"reg":"_wtime_yes",
+			"start":{
+				"tag":"_yes",
+				"type":"filter"
+			},
+			"end":{
+				"tag":"",
+				"type":""
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		},
+		{
+			"reg":"_yes_wtime",
+			"start":{
+				"tag":"",
+				"type":""
+			},
+			"end":{
+				"tag":"_yes",
+				"type":"filter"
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		},
+		{
+			"reg":"_at_wtime",
+			"start":{
+				"tag":"",
+				"type":""
+			},
+			"end":{
+				"tag":"_at",
+				"type":"filter"
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		}
+	]
+}

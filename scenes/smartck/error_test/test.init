@@ -1,0 +1,46 @@
+{
+  "查询跑步": {
+    "able": {
+      "able": 32,
+      "repeat": "repeat",
+      "type": "week"
+    },
+    "type": "getup",
+    "name": "查询跑步",
+    "key": "查询跑步",
+    "time": "5:0"
+  },
+  "跑步": {
+    "info": "跑步",
+    "able": {
+      "able": 32,
+      "repeat": "repeat",
+      "type": "week"
+    },
+    "type": "agenda",
+    "key": "跑步",
+    "time": "6:0"
+  },
+  "项目会要开": {
+    "info": "项目会要开",
+    "able": {
+      "able": 32,
+      "repeat": "repeat",
+      "type": "week"
+    },
+    "type": "agenda",
+    "key": "项目会要开",
+    "time": "9:39"
+  },
+  "接孩子": {
+    "info": "接孩子",
+    "able": {
+      "able": 32,
+      "repeat": "repeat",
+      "type": "week"
+    },
+    "type": "agenda",
+    "key": "接孩子",
+    "time": "16:30"
+  }
+}

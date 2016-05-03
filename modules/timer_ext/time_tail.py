@@ -14,7 +14,6 @@ class TimeTail():
 	def load_data(self): pass;
 
 	def encode(self,struct):
-#		common.print_dic(struct);
 		for item in struct['time_stc']:
 			astr = item['str'] + self.after;
 			pstr = item['str'] + self.prev;
@@ -29,6 +28,7 @@ class TimeTail():
 			self.year_type_match(item);
 			self.remove_item_ext(item);
 		self.remove_time_item(struct);
+		self.time_stamp_middle(struct);
 
 	def fetch_time_after(self,item,istr):
 		item['str'] = istr;
@@ -95,3 +95,13 @@ class TimeTail():
 			item['etime'][time_common.tmenu['year']] = year;
 			item['etime'][time_common.tmenu['month']] = month;
 			item['etime'][time_common.tmenu['day']] = day;
+
+	def time_stamp_middle(self,struct):
+		for item in struct['time_stc']:
+			if item['stime'][time_common.tmenu['enable']] == -1:
+				continue;
+			if item['etime'][time_common.tmenu['enable']] == -1:
+				continue;
+			s_stamp = time_common._get_time_stamp(item['stime']);
+			e_stamp = time_common._get_time_stamp(item['etime']);
+			item['mvalue'] = (s_stamp + e_stamp) / 2;
