@@ -2,7 +2,7 @@
 #-*- coding:utf-8 -*-
 import sys,os,common
 from pdeal_replace import PDealReplace
-from pdeal_hanzi2num import PdealHan2num
+from pdeal_hanzi2num import PDealHan2num
 from myexception import MyException
 
 base_path = os.path.dirname(__file__);

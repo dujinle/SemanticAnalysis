@@ -94,7 +94,7 @@ class Mager:
 #		'''
 		return self.struct;
 
-#'''
+'''
 try:
 	mg = Mager();
 	mg.init();
@@ -111,4 +111,4 @@ try:
 			common.print_dic(mg.encode(sarr[0]));
 except Exception as e:
 	raise e;
-#'''
+'''
