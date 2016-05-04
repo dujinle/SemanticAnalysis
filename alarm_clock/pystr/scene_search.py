@@ -36,6 +36,12 @@ class SceneSearch(SceneBase):
 		if struct['ttag'].find('_see_has_some_clock') <> -1:
 			cks = super_b.clocks.keys();
 			return cks;
+		elif len(re.findall('_time_to_time_has_some.*_thing',struct['ttag'])) > 0:
+			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+			return cks;
+		elif len(re.findall('_time_to_time_has_what.*_thing',struct['ttag'])) > 0:
+			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+			return cks;
 		elif len(re.findall('_time_has_some.*_thing',struct['ttag'])) > 0:
 			cks = SceneParam._find_cks_bytime(struct,super_b);
 			return cks;
