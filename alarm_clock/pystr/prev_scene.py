@@ -28,7 +28,7 @@ class PrevScene(SceneBase):
 			for ints in inters:
 				tstr = ints['str'].replace('_','');
 				struct['rep'].append(tstr);
-				struct['text'] = struct['text'].replace(tstr,'time',1);
+				struct['text'] = struct['text'].replace(tstr,'time#',1);
 
 	def _replace_str(self,struct):
 		for reg in self.data['rep']:
@@ -37,4 +37,4 @@ class PrevScene(SceneBase):
 			compstr = re.compile(regstr);
 			match = compstr.search(struct['text']);
 			if not match is None:
-				struct['text'] = struct['text'].replace(match.group(0),value,1);
+				struct['text'] = struct['text'].replace(match.group(0),value);

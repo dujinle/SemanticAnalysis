@@ -29,13 +29,6 @@ class Concept(SceneBase):
 					struct['text'] = struct['text'].replace('time',tdic['mystr'],1);
 					clocks.append(tdic);
 					del struct['rep'][0];
-				elif st.find('time') <> -1:
-					tdic = dict();
-					tdic['type'] = '_time';
-					tdic['mystr'] = struct['rep'][0];
-					struct['text'] = struct['text'].replace('time',tdic['mystr']);
-					clocks.append(tdic);
-					del struct['rep'][0];
 				else:
 					tag = False;
 					for key in self.data.keys():
@@ -45,6 +38,7 @@ class Concept(SceneBase):
 					if tag == False:
 						clocks.append(st);
 			if struct.has_key('rep'): del struct['rep'];
+			struct['text'] = struct['text'].replace('#','');
 
 		except MyException as e: raise e;
 

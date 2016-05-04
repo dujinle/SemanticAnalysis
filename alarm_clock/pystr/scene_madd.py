@@ -31,17 +31,13 @@ class SceneMadd(SceneBase):
 					struct['result']['msg'] = self.data['msg']['un_see'][0];
 					struct['step'] = 'end';
 					return None;
-				if struct['ttag'].find('time') <> -1:
-					self._add_more_cks(ck_num,struct,super_b);
-					struct['step'] = 'end';
-				else:
+				struct['ck_num'] = ck_num;
+				if struct['ttag'].find('time') == -1:
 					struct['result']['msg'] = (self.data['msg']['set_mtime'][0] %(ck_num));
 					struct['step'] = 'set_time';
-					struct['ck_num'] = ck_num;
 					return None;
-			elif struct['step'] == 'set_time':
-				self._add_more_cks(struct['ck_num'],struct,super_b);
-				del struct['ck_num'];
+			self._add_more_cks(struct['ck_num'],struct,super_b);
+			del struct['ck_num'];
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(format(e));

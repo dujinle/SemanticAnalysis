@@ -39,7 +39,7 @@ class DistScene(SceneBase):
 			match = reg_comp.search(tag);
 			if match is None: continue;
 			if struct.has_key('ck_reg'):
-				if len(match.group(0)) <= len(struct['ck_reg']):
+				if len(match.group(0)) < len(struct['ck_reg']):
 					continue;
 			struct['ck_reg'] = match.group(0);
 			struct['ck_scene'] = key;
