@@ -97,6 +97,9 @@ class SceneAgenda(SceneBase):
 				myclock['info'] = tname;
 			elif struct['ttag'].find('_meeting') <> -1:
 				myclock['info'] = self.data['meeting'];
+			elif struct['ttag'].find('_orderin') <> -1:
+				tname = SceneParam._find_tag_pname(struct,'_orderin');
+				myclock['info'] = tname;
 			elif struct['ttag'].find('_remind_me') <> -1:
 				tname = SceneParam._find_tag_name(struct,'_me');
 				myclock['info'] = tname;

@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import os,sys,json
+from collections import OrderedDict
 
 #global params
 PASS = 1;
@@ -23,10 +24,12 @@ def read_json(dfile):
 		line = line.replace('\r','').replace('\n','').replace('\t','');
 		if len(line) <= 0 or line[0] == '#':
 			continue;
+		if line[0] == '>' or line[0] == '<':
+			continue;
 		ondata.append(line);
 	all_test = ''.join(ondata);
 	try:
-		ojson = json.loads(all_test);
+		ojson = json.loads(all_test,object_pairs_hook=OrderedDict);
 		return ojson;
 	except Exception as e:
 		raise MyException('load json file failed[' + dfile + ']');

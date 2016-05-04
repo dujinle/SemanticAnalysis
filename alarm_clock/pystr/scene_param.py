@@ -95,10 +95,15 @@ def _find_ck_name(struct,stag):
 					else: name = cl['mystr'] + name;
 			if isinstance(cl,dict) and cl['type'] == stag:
 				tag = True;
+				if idx == 0: break;
+				cn = struct['clocks'][idx - 1];
+				if isinstance(cn,dict): break;
+				if cn <> u'的': break;
 			idx = idx - 1;
 		return name;
 	return None;
 
+#get the name info after the label
 def _find_tag_name(struct,strs):
 	ttag = struct['ttag'];
 	if ttag.find(strs) <> -1:
@@ -119,6 +124,32 @@ def _find_tag_name(struct,strs):
 			if isinstance(cl,dict) and cl['type'] == strs:
 				tag = True;
 			idx = idx + 1;
+		if len(name) == 0: return None;
+		return name;
+	return None;
+
+#get the name info before the lable
+def _find_tag_pname(struct,strs):
+	ttag = struct['ttag'];
+	if ttag.find(strs) <> -1:
+		idx = len(struct['clocks']) - 1;
+		tag = False;
+		name = '';
+		while True:
+			if idx < 0: break;
+			cl = struct['clocks'][idx];
+			if tag == True:
+				if isinstance(cl,dict) and idx == 0: break;
+				if isinstance(cl,dict) == False:
+					name = cl + name;
+				else:
+					cn = struct['clocks'][idx - 1];
+					if isinstance(cn,dict): break;
+					else: name =  cl['mystr'] + name;
+			if isinstance(cl,dict) and cl['type'] == strs:
+				tag = True;
+			idx = idx - 1;
+		if len(name) == 0: return None;
 		return name;
 	return None;
 
@@ -344,13 +375,6 @@ def _find_cks_time_to_time(struct,super_b):
 					if mins > end[4]: continue;
 			cks.append(ck);
 	return cks;
-
-def _get_match_str(struct,tag):
-	comp = re.compile(data[tag]['str']);
-	match = comp.search(struct['text']);
-	if match is None: return None;
-	tstr = match.group(0);
-	return tstr;
 
 def _get_cks_num(struct):
 	inum = 0;
