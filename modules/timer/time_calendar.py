@@ -233,11 +233,39 @@ def GetSolarFullWeek(year,month,idx,week):
 
 def GetSolarTerm(year,solar_idx):
 	return SolarTerm.GetSolarTerm(year,solar_idx);
+
+def GetTimeStamp(t_time):
+	try:
+		tupletime = list(t_time);
+		if tupletime[0] == 'null': return 0;
+		if tupletime[1] == 'null': tupletime[1] = 0;
+		if tupletime[2] == 'null': tupletime[2] = 0;
+		if tupletime[3] == 'null': tupletime[3] = 0;
+		if tupletime[4] == 'null': tupletime[4] = 0;
+		if tupletime[5] == 'null': tupletime[5] = 0;
+		if tupletime[6] == 'null': tupletime[6] = 0;
+		if tupletime[7] == 'null': tupletime[7] = 0;
+		if tupletime[8] == 'null': tupletime[8] = 0;
+		while len(tupletime) < 9:
+			tupletime.append(0);
+		return time.mktime(tupletime);
+	except Exception as e:
+		print format(e);
+		return 0;
+
+def GetTimeFromStamp(stamp):
+	time_tuple = time.localtime(stamp);
+	return time_tuple;
+
 '''
 if __name__ == '__main__':
-	print TolunarDate(2016,3,20);
-	print GetSolarWeek(2016,7,2,3);
-	print GetSolarFullWeek(2016,7,0,1);
-	print GetSolarTerm(2016,1);
+	tlist = [2016,10,16,'null','null','null'];
+	stamp = GetTimeStamp(tlist);
+	print stamp;
+	print GetTimeFromStamp(stamp);
+	#print TolunarDate(2016,3,20);
+	#print GetSolarWeek(2016,7,2,3);
+	#print GetSolarFullWeek(2016,7,0,1);
+	#print GetSolarTerm(2016,1);
 
 '''

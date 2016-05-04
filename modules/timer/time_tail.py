@@ -77,6 +77,7 @@ class TTail(Base):
 				del struct['scope'];
 			time_common._make_sure_time(start,tid);
 			time_common._make_sure_time(end,tid);
+			self._calc_mid_value(my_interval);
 			del struct['prev_func']
 			return 0;
 		except MyException as e: raise e;
@@ -111,3 +112,11 @@ class TTail(Base):
 			if start[idx] == end[idx]: end[idx] = end[idx] + 1;
 		elif prev_func == 'time_wt' or prev_func == 'time_ft':
 			if start[idx] == end[idx]: end[idx] = end[idx] + 1;
+
+	def _calc_mid_value(self,my_interval):
+		s_stamp = time_calendar.GetTimeStamp(my_interval['start']);
+		if s_stamp == 0: return None;
+		e_stamp = time_calendar.GetTimeStamp(my_interval['end']);
+		if e_stamp == 0: return None;
+		m_stamp = (s_stamp + e_stamp) / 2;
+		my_interval['mvalue'] = m_stamp;

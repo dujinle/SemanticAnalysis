@@ -6,7 +6,7 @@ import sys,os,json,re
 #============================================
 ''' import MyException module '''
 base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../../commons'));
+sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
 import config
 month = [31,31,28,31,30,31,30,31,31,30,31,30,31];
