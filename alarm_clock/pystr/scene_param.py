@@ -43,6 +43,12 @@ def _find_time(struct):
 				tdic['time'] = str(times[3]) + ':' + str(times[4]);
 			tdic['str'] = myinterval['str'];
 			struct['ck_time'] = tdic;
+		elif myinterval.has_key('mvalue'):
+			times = time.localtime(myinterval['mvalue']);
+			tdic = dict();
+			tdic['time'] = str(times[3]) + ':' + str(times[4]);
+			tdic['str'] = myinterval['str'];
+			struct['ck_time'] = tdic;
 
 def _calc_able(struct):
 	if struct.has_key('ck_date'):
@@ -114,10 +120,10 @@ def _find_tag_name(struct,strs):
 			if idx >= len(struct['clocks']): break;
 			cl = struct['clocks'][idx];
 			if tag == True:
-				if isinstance(cl,dict) and idx == len(struct['clocks']) - 1: break;
+				if isinstance(cl,dict) and idx == len(struct['clocks']): break;
 				if isinstance(cl,dict) == False:
 					name = name + cl;
-				else:
+				elif cl['type'] == '_time':
 					cn = struct['clocks'][idx + 1];
 					if isinstance(cn,dict): break;
 					else: name = name + cl['mystr'];
@@ -142,7 +148,7 @@ def _find_tag_pname(struct,strs):
 				if isinstance(cl,dict) and idx == 0: break;
 				if isinstance(cl,dict) == False:
 					name = cl + name;
-				else:
+				elif cl['type'] == '_time':
 					cn = struct['clocks'][idx - 1];
 					if isinstance(cn,dict): break;
 					else: name =  cl['mystr'] + name;
