@@ -272,6 +272,79 @@ def _find_cks_tagtime(tag,super_b):
 				cks.append(ck);
 	return cks;
 
+def _find_cks_time_to_time(struct,super_b):
+	cks = list();
+	inter_1 = struct['intervals'][0];
+	inter_2 = struct['intervals'][1];
+	start = inter_1['start'];
+	if start[0] == 'null': start = inter_1['end'];
+	end = inter_2['start'];
+	if end[0] == 'null': end = inter_2['end'];
+	sweek = _get_week(start[0],start[1],start[2]);
+	eweek = _get_week(end[0],end[1],end[2]);
+	able = diff = 0;
+	if sweek > eweek: eweek = eweek + 7;
+	if sweek == eweek: diff = 1;
+	able = 0;
+	idx = sweek;
+	while True:
+		if sweek > eweek: break;
+		able = able + math.pow(2,sweek);
+		sweek = sweek + 1;
+
+	if inter_1['scope'] == 'day' and inter_2['scope'] == 'day':
+		for ck in super_b.clocks:
+			clock = super_b.clocks[ck];
+			if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
+				cks.append(ck);
+	elif inter_1['scope'] <> 'day' and inter_2['scope'] == 'day':
+		for ck in super_b.clocks:
+			clock = super_b.clocks[ck];
+			hour = int(clock['time'].split(':')[0]);
+			mins = int(clock['time'].split(':')[1]);
+			if hour < start[3] and int(clock['able']['able']) & int(math.pow(2,idx)) > 0:
+				continue;
+			elif int(clock['able']['able']) & int(able) <= 0:
+				continue;
+			cks.append(ck);
+	elif inter_1['scope'] == 'day' and inter_2['scope'] <> 'day':
+		for ck in super_b.clocks:
+			clock = super_b.clocks[ck];
+			hour = int(clock['time'].split(':')[0]);
+			mins = int(clock['time'].split(':')[1]);
+			if hour > end[3] and int(clock['able']['able']) & int(math.pow(2,eweek)) > 0:
+				continue;
+			elif hour == end[3] and int(clock['able']['able']) & int(math.pow(2,eweek)) > 0:
+				if end[4] <> 'null' and end[4] < mins:
+					continue;
+			elif int(clock['able']['able']) & int(able) <= 0:
+				continue;
+			cks.append(ck);
+	elif inter_1['scope'] <> 'day' and inter_2['scope'] <> 'day':
+		for ck in super_b.clocks:
+			clock = super_b.clocks[ck];
+			hour = int(clock['time'].split(':')[0]);
+			mins = int(clock['time'].split(':')[1]);
+			if diff == 0:
+				if hour < start[3] and int(clock['able']['able']) & int(math.pow(2,idx)) > 0:
+					continue;
+				if hour > end[3] and int(clock['able']['able']) & int(math.pow(2,eweek)) > 0:
+					continue;
+				if hour == end[3] and int(clock['able']['able']) & int(math.pow(2,eweek)) > 0:
+					if end[4] <> 'null' and end[4] < mins:
+						continue;
+				if int(clock['able']['able']) & int(able) <= 0:
+					continue;
+			else:
+				if hour < start[3]: continue;
+				if start[4] <> 'null' and hour == start[3]:
+					if start[4] > mins: continue;
+				if hour > end[3]: continue;
+				if end[4] <> 'null' and hour == end[3]:
+					if mins > end[4]: continue;
+			cks.append(ck);
+	return cks;
+
 def _get_match_str(struct,tag):
 	comp = re.compile(data[tag]['str']);
 	match = comp.search(struct['text']);

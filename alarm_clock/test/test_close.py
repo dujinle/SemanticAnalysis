@@ -41,6 +41,7 @@ struct['result'] = dict();
 tests = common.read_json('./mclose.test');
 for test in tests:
 	#init data
+	se.clocks.clear();
 	ck_list = common.read_json('./mclose.init');
 	for ck in ck_list:
 		se.clocks[ck['key']] = ck;
@@ -53,6 +54,8 @@ for test in tests:
 	se.encode(struct);
 	if analysis_result(struct,test['ans']) == True:
 		print test['test'],'succ';
+		if test.has_key('print') and test['print'] == 'true':
+			common.print_dic(struct);
 	else:
 		print test['test'],'faile';
 		common.print_dic(struct);

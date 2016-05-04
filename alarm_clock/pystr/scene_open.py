@@ -28,8 +28,6 @@ class SceneOpen(SceneBase):
 
 			if struct['step'] == 'start':
 				SceneParam._set_msg(struct,self.data['msg']['set_start']);
-				#self.send_msg(struct);
-				#开始参数设置向导
 				self._set_clock_open(struct,super_b);
 				struct['step'] = 'end';
 		except Exception as e:

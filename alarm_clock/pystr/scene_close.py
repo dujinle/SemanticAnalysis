@@ -38,35 +38,12 @@ class SceneClose(Base):
 	def _which_ck_close(self,struct,super_b):
 		cks = list();
 		if struct['ttag'].find('_time_to_time') <> -1:
-			start = struct['intervals'][0]['start'];
-			end = struct['intervals'][1]['start'];
-			hid = 3;
-			mid = 4;
-			for ck in super_b.clocks:
-				clock = super_b.clocks[ck];
-				hour = int(clock['time'].split(':')[0]);
-				mins = int(clock['time'].split(':')[1]);
-				if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
-					if hour < end[hid] or (hour == end[hid] and end[mid] >= mins):
-						cks.append(ck);
+			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+			del struct['intervals'][0];
+			del struct['intervals'][0];
 		elif struct['ttag'].find('_time') <> -1:
-			start = struct['intervals'][0]['start'];
-			end = struct['intervals'][0]['end'];
-			hid = 3;
-			mid = 4;
-			for ck in super_b.clocks:
-				clock = super_b.clocks[ck];
-				hour = int(clock['time'].split(':')[0]);
-				mins = int(clock['time'].split(':')[1]);
-				if start[0] == 'null':
-					if hour < end[hid] or (hour == end[hid] and mins <= end[mid]):
-						cks.append(ck);
-				elif end[0] == 'null':
-					if hour < start[hid] or (hour == start[hid] and mins <= start[mid]):
-						cks.append(ck);
-				else:
-					if hour == start[hid] and mins == start[mid]:
-						cks.append(ck);
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			del struct['intervals'][0];
 		elif len(re.findall('((_remind)|(_clock))(_all)*(_close)',struct['ttag'])) > 0:
 			cks = SceneParam._find_cks_byinfo(struct,super_b);
 			if len(cks) == 0: cks = super_b.clocks.keys();

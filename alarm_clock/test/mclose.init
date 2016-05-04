@@ -5,7 +5,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"4"
 		}
 	},
 	{
@@ -15,13 +15,31 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"4"
 		}
 	},
 	{
 		"key":"3:0",
 		"type":"agenda",
 		"time":"3:0",
+		"able":{
+			"type":"week",
+			"able":"4"
+		}
+	},
+	{
+		"key":"2:0",
+		"type":"agenda",
+		"time":"2:0",
+		"able":{
+			"type":"week",
+			"able":"8"
+		}
+	},
+	{
+		"key":"5:0",
+		"type":"agenda",
+		"time":"5:0",
 		"able":{
 			"type":"week",
 			"able":"8"
