@@ -90,26 +90,30 @@ class SceneAgenda(SceneBase):
 	def _set_agenda_info(self,struct,super_b):
 		try:
 			myclock = super_b.myclock;
+			temp = self._get_match_info(struct['ttag']);
+			if not temp is None:
+				info = SceneParam._find_tag_name(struct,temp);
+				if not info is None: myclock['info'] = info;
 			if struct['ttag'].find('_cout') <> -1:
 				myclock['info'] = self.data['cout'];
-			elif struct['ttag'].find('_go') <> -1:
-				tname = SceneParam._find_tag_name(struct,'_go');
-				myclock['info'] = tname;
 			elif struct['ttag'].find('_meeting') <> -1:
 				myclock['info'] = self.data['meeting'];
-			elif struct['ttag'].find('_orderin') <> -1:
-				tname = SceneParam._find_tag_pname(struct,'_orderin');
-				myclock['info'] = tname;
-			elif struct['ttag'].find('_remind_me') <> -1:
-				tname = SceneParam._find_tag_name(struct,'_me');
-				myclock['info'] = tname;
-			elif struct['ttag'].find('_info') <> -1:
-				for content in self.data['infois']:
-					if struct['text'].find(content) <> -1:
-						tid = struct['text'].find(content) + len(content);
-						myclock['info'] = struct['text'][tid:];
-						break;
-			if myclock.has_key('info') and myclock['info'] == '':
-				del myclock['info'];
 		except Exception as e:
 			raise MyException(format(e));
+
+	def _get_match_info(self,ttag):
+		pidx = len(ttag);
+		cidx = -1;
+		idx = 0;
+		for temp in self.data['template']:
+			comp = re.compile(temp['reg']);
+			match = comp.search(ttag);
+			if not match is None:
+				pp = ttag.find(match.group(0));
+				if pp < pidx:
+					pidx = pp;
+					cidx = idx;
+			idx = idx + 1;
+		if cidx == -1: return None;
+		return self.data['template'][cidx];
+

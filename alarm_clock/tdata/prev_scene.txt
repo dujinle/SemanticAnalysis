@@ -15,8 +15,8 @@
 	],
 	"filter":[
 		{
-			"reg":"time#茶",
-			"value":"下午茶"
+			"reg":"下午茶",
+			"type":"del"
 		}
 	]
 }

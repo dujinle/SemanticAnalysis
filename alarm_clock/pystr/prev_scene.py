@@ -17,9 +17,9 @@ class PrevScene(SceneBase):
 
 	def encode(self,struct):
 		try:
+			self._filter_time_str(struct);
 			self._replace_time_tag(struct);
 			self._replace_str(struct);
-			self._filter_time_str(struct);
 		except MyException as e: raise e;
 
 	def _replace_time_tag(self,struct):
@@ -49,19 +49,18 @@ class PrevScene(SceneBase):
 				pid = struct['text'].find(match.group(0));
 				tlen = len(match.group(0));
 				pstr = struct['text'][:pid];
-				tstr = struct['text'][pid + tlen:];
-				cur = 0;
-				if pstr.find('time') <> -1:
-					cur = self._get_tag_ptime(pstr);
-				if tstr.find('time') <> -1 and cur == 0:
-					del struct['intervals'][cur];
-				elif cur > 0:
-					del struct['intervals'][cur];
+				cur = self._get_tag_ptime(struct,pstr);
+				del struct['intervals'][cur];
 
-	def _get_tag_ptime(self,tstr):
+	def _get_tag_ptime(self,struct,tstr):
 		tnum = 0;
-		while True:
-			if tstr.find('time') == -1: break;
-			tnum = tnum + 1;
-			tstr = tstr.replace('time','');
+		for inter in struct['intervals']:
+			time_str = inter['str'].replace('_','');
+			pid = tstr.find(time_str);
+			if pid == -1:
+				break;
+			else:
+				tnum = tnum + 1;
+				tstr = tstr[pid + len(time_str):];
+		return tnum;
 

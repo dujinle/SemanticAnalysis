@@ -17,5 +17,31 @@
 		"ck_exist":["闹钟已经存在啦"],
 		"unknow_time":["没的时间呢，我可不等你了","没找到时间，帮您暂停了"],
 		"set_succ":["%s提醒设置好了","放心吧，%s提醒已经设好啦","搞定！我会准时提醒您%s的啦"]
-	}
+	},
+	"template":[
+		{
+			"reg":"_go",
+			"start":"_go",
+			"end":"",
+			"ftag":"break"
+		},
+		{
+			"reg":"_orderin",
+			"start":"",
+			"end":"_orderin",
+			"ftag":"break"
+		},
+		{
+			"reg":"_remind_me",
+			"start":"_me",
+			"end":"",
+			"ftag":"break"
+		},
+		{
+			"reg":"_info_yes",
+			"start":"_yes",
+			"end":"",
+			"ftag":"continue"
+		}
+	]
 }
