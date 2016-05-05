@@ -2,9 +2,11 @@
 #-*- coding:utf-8 -*-
 import os,sys,json
 from collections import OrderedDict
+from myexception import MyException
 
 #global params
 PASS = 1;
+ENABLE = 8;
 #============================================
 ''' import MyException module '''
 base_path = os.path.dirname(__file__);
@@ -32,8 +34,9 @@ def read_json(dfile):
 	try:
 		ojson = json.loads(all_test,object_pairs_hook=OrderedDict);
 		return ojson;
-	except Exception as e:
-		raise e;
+	except Exception:
+		print 'read',dfile,'failed......';
+		raise MyException(sys.exc_info());
 
 def readfile(dfile):
 	fp = open(dfile,'r');

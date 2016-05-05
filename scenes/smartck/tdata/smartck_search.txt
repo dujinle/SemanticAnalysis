@@ -19,63 +19,22 @@
 #-----------------------------------------------------
 	"template":[
 		{
-			"reg":"_time_to_time_has_some
-				|_time_to_time_has_what",
+			"reg":"TIMETOTIME",
 			"func":"t2t"
 		},
 		{
-			"reg":"_prep_info_yes_what
-				|see.*_prep_clock
-				|see.*_prep_remind",
+			"reg":"NUNIT",
 			"func":"num"
 		},
 		{
-			"reg":"_time_has_some.*_thing
-				|_time_has_some.*_clock
-				|_time_has_some.*_remind
-				|_time_has_what.*_thing
-				|_time_has_what.*_clock
-				|_time_has_what.*_remind
-				|_time.*_has_what.*_agenda
-				|_time.*_yes_what_info
-				|_time_info_yes_what
-				|_time_clock_yes_what
-				|_time_agenda.*_has_what
-				|_time_agenda
-				|_time_agenda.*_yes_what",
-			"func":"time"
-		},
-		{
-			"reg":"_see_all_clock
-				|_see_has_some_clock
-				|_see_has_some_remind",
-			"func":"all"
-		},
-		{
-			"reg":"_after_has_what_thing
-				|_after_has_what_agenda
-				|_time_left_what_agenda
-				|_time_left_what_thing
-				|_workoff_after_has_some
-				|_workoff_after_has_what",
+			"reg":"(AFTERHAVEWHAT)",
 			"func":"after"
 		},
 		{
-			"reg":"_remind_yes_what_shihou
-				|_remind_yes_wtime
-				|_clock_yes_what_shihou
-				|_clock_yes_wtime
-				|_and.*_relate_clock.*_has
-				|_and.*_relate_remind.*_has
-				|_and.*_relate_clock.*_yes
-				|_and.*_relate_remind.*_yes
-				|_orderin_wtime
-				|_wtime_yes
-				|_yes_wtime
-				|_at_wtime
-				|_see.*_clock
-				|_see.*_remind",
-			"func":"info"
+			"reg":"(SEE.*ALL)
+				|(SEE.*HAVEHOWMANY)
+				|(SEE.*HAVEWHAT)",
+			"func":"all"
 		}
 	],
 #-----------------------------------------------------

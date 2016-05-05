@@ -45,6 +45,7 @@ def _fetch_time(struct):
 			tdic['time'] = str(times[3]) + ':' + str(times[4]);
 			tdic['str'] = item['str'];
 			struct['ck_time'] = tdic;
+		struct['stc'].remove(item);
 		break;
 
 def _calc_able(struct):
@@ -199,17 +200,32 @@ def _find_cks_bytime(struct,super_b):
 				cks.append(ck);
 	return cks;
 
+def _find_cks_by_relate(struct,super_b):
+	cks = list();
+	tdic = _make_tag_dic('AND','filter','RELATETO','filter','continue');
+	info = _find_tag_name(struct,tdic);
+	if info is None: return cks;
+	for ck in super_b.clocks.keys():
+		clock = super_b.clocks[ck];
+		if clock.has_key('info') and clock['info'].find(info) >= 0:
+			cks.append(ck);
+	return cks;
+
+def _find_cks_by_sample(struct,super_b):
+	cks = list();
+	if struct.has_key('ck_tag'):
+		ck_tag = struct['ck_tag'];
+		if ck_tag['type'] == 'time':
+			return self._find_cks_bytime(struct,super_b);
+		else:
+			if super_b.clocks.has_key(struct['ck_name']):
+				cks.append(struct['ck_name']);
+				del struct['ck_name'];
+				return cks;
+
 def _find_cks_byinfo(struct,super_b):
 	cks = list();
-	if len(re.findall('_and.*_relate',struct['ttag'])) > 0:
-		tdic = _make_tag_dic('_and','filter','_relate','filter','continue');
-		info = _find_tag_name(struct,tdic);
-		if info is None: return cks;
-		for ck in super_b.clocks.keys():
-			clock = super_b.clocks[ck];
-			if clock.has_key('info') and clock['info'].find(info) >= 0:
-				cks.append(ck);
-	elif struct.has_key('ck_name'):
+	if struct.has_key('ck_name'):
 		if super_b.clocks.has_key(struct['ck_name']):
 			cks.append(struct['ck_name']);
 		del struct['ck_name'];
@@ -266,22 +282,35 @@ def _find_cks_nouse(super_b):
 
 def _find_cks_by_num(struct,super_b):
 	cks = list();
-	for s in struct['inlist']:
-		if data['num'].has_key(s):
-			num = int(data['num'][s]);
-			keys = super_b.clocks.keys();
+	keys = super_b.clocks.keys();
+	for istr in struct['stseg']:
+		if not struct['stc'].has_key(istr): continue;
+		item = struct['stc'][istr];
+		if item['type'] == 'NUM':
+			num = int(item['str']);
 			if num - 1 < 0 or num - 1 >= len(keys): return cks;
-			cks.append(keys[num - 1]);
+			cks.append(keys[num] - 1);
+		elif item['type'] == 'NUNIT':
+			num = int(item['stc'][0]['str']);
+			if num - 1 < 0 or num - 1 >= len(keys): return cks;
+			cks.append(keys[num] - 1);
 	return cks;
 
 def _find_cks_time_to_time(struct,super_b):
 	cks = list();
-	inter_1 = struct['Times'][0];
-	inter_2 = struct['Times'][1];
-	start = inter_1['start'];
-	if start[0] == 'null': start = inter_1['end'];
-	end = inter_2['start'];
-	if end[0] == 'null': end = inter_2['end'];
+	inter_1 = inter_2 = None;
+	for istr in struct['stseg']:
+		if not struct['stc'].has_key(istr): continue;
+		item = struct['stc'][istr];
+		if item['type'] == 'TIME':
+			if inter_1 is None: inter_1 = dict(item);
+			else:
+				inter_2 = dict(item);
+				break;
+	start = inter_1['stime'];
+	if start[common.enable] == '-1': start = inter_1['etime'];
+	end = inter_2['stime'];
+	if end[common.enable] == '-1': end = inter_2['etime'];
 	able,diff,sweek,eweek = _get_time_to_time_able(start,end);
 	#print able,diff
 	if inter_1['scope'] == 'day' and inter_2['scope'] == 'day':
@@ -366,36 +395,37 @@ def _find_cks_time_and_time(struct,super_b):
 			cks.append(ck);
 	return cks;
 
-def _find_cks_after_time(struct,super_b):
+def _find_cks_after(struct,super_b):
 	cks = list();
 	time = list(_get_cur_time());
 	cur_week = _get_cur_week();
 	able = math.pow(2,cur_week);
-	if struct['ttag'].find('_time') <> -1:
-		itime = struct['Times'][0];
-		if itime['scope'] <> 'day': return cks;
-		start = itime['start'];
-		end = itime['end'];
-		if start[0] == 'null':
+	for istr in struct['stseg']:
+		if not struct['stc'].has_key(istr): continue;
+		item = struct['stc'][istr];
+		if item['type'] <> 'TIME': continue;
+
+		start = item['stime'];
+		end = item['etime'];
+		if start[common.enable] == '-1':
 			week = _get_week(end[0],end[1],end[2]);
 			able = math.pow(2,week);
-		elif end[0] == 'null':
+			if end[3] <> 'null': time[3] = int(end[3]);
+			if end[4] <> 'null': time[4] = int(end[4]);
+		elif end[common.enable] == '-1':
 			week = _get_week(start[0],start[1],start[2]);
 			able = math.pow(2,week);
+			if start[3] <> 'null': time[3] = int(start[3]);
+			if start[4] <> 'null': time[4] = int(start[4]);
 		else:
 			week = _get_week(start[0],start[1],start[2]);
 			able = math.pow(2,week);
 			eweek = _get_week(end[0],end[1],end[2]);
 			if eweek - week > 1 or eweek - week < -1:
 				able = able + math.pow(2,week + 1);
-	else:
-		for key in data['common'].keys():
-			if struct['ttag'].find(key) <> -1:
-				if not data['common'][key].has_key('time'): return cks;
-				tstr = data['common'][key]['time'];
-				time[3] = int(tstr.split(':')[0]);
-				time[4] = int(tstr.split(':')[1]);
-				break;
+			if start[3] <> 'null': time[3] = int(start[3]);
+			if start[4] <> 'null': time[4] = int(start[4]);
+		break;
 	for ck in super_b.clocks.keys():
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);

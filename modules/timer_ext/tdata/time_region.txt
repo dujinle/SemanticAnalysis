@@ -533,6 +533,13 @@
 	},
 	{
 		"type":"date",
+		"scope":"hour",
+		"region":[18,18],
+		"reg":"下班",
+		"func":"equal"
+	},
+	{
+		"type":"date",
 		"scope":"day",
 		"region":[21,30],
 		"reg":"下旬",

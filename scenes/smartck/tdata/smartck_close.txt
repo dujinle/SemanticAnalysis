@@ -10,48 +10,35 @@
 #灵活配置查询闹钟的事件
 #t2t==>find_cks time_to_time
 #time==>find_cks_bytime
-#info==>find_cks_byinfo
+#relate==>find_cks_byrelate
 #after==>find_cks_after_time
 #all==>find_all_cks
 #num==>get_cks_num
 #-----------------------------------------------------
 	"template":[
 		{
-			"reg":"_time_to_time.*_close
-				|_close_time_to_time",
+			"reg":"(TIMETOTIME.*CLOSE)
+				|(CLOSETIMETOTIME)",
 			"func":"t2t"
 		},
 		{
-			"reg":"_prep_close
-				|_close.*_prep",
+			"reg":"(NUNIT.*CLOSE)
+				|(CLOSE.*NUNIT)",
 			"func":"num"
 		},
 		{
-			"reg":"_close_time.*_clock
-				|_close_time.*_remind
-				|_close_time.*_agenda
-				|_time.*_clock_close
-				|_time.*_remind_close
-				|_time.*_agenda_close",
-			"func":"time"
+			"reg":"(AND.*RELATETO.*ALLCLOSE)
+				|(CLOSE(ALL)*.*RELATETO)",
+			"func":"relate"
 		},
 		{
-			"reg":"_close.*_clock
-				|_close.*_remind
-				|_close.*_agenda
-				|.*_clock.*_close
-				|.*_remind.*_close
-				|.*_agenda.*_close",
-			"func":"info"
-		},
-		{
-			"reg":"_close(_all)*_clock
-				|_close(_all)*_remind
-				|_close(_all)*_agenda
-				|(_all)*_clock_close
-				|(_all)*_remind_close
-				|(_all)*_agenda_close",
+			"reg":"(CLOSEALL.*)
+				|(ALL.*CLOSE)",
 			"func":"all"
+		},
+		{
+			"reg":"CLOSE",
+			"func":"sample"
 		},
 		{
 			"reg":"_after_clock(_all)*_close

@@ -3,13 +3,16 @@
 import sys,os,re,common
 from common import logging
 from myexception import MyException
-import scene_param as SceneParam
-from base import Base
+from scene_base import SceneBase
+import com_funcs as SceneParam
+import smartck_common as SmartckCom
 
-class SceneClose(Base):
+class SceneClose(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
+			if not struct.has_key('ck_scene'): return None;
+			if struct['ck_scene'] <> 'ck_close': return None;
 			logging.info('go into scene close action......');
 			if not struct.has_key('step'): struct['step'] = 'start';
 
@@ -45,21 +48,17 @@ class SceneClose(Base):
 		for match in ms:
 			if match['func'] == 't2t':
 				print 'go into _find_cks_time_to_time......'
-				cks = SceneParam._find_cks_time_to_time(struct,super_b);
+				cks = SmartckCom._find_cks_time_to_time(struct,super_b);
 				if cks is None or len(cks) == 0: continue;
 				return cks;
-			if match['func'] == 'time':
-				print 'go into _find_cks_time......'
-				cks = SceneParam._find_cks_bytime(struct,super_b);
+			if match['func'] == 'num':
+				print 'go into _find_num cks......'
+				cks = SmartckCom._find_cks_by_num(struct,super_b);
 				if cks is None or len(cks) == 0: continue;
 				return cks;
-			if match['func'] == 'info':
-				print 'go into _find_cks_info......'
-				cks = SceneParam._find_cks_byinfo(struct,super_b);
-				if cks is None or len(cks) == 0: continue;
-				return cks;
-			if match['func'] == 'pastdue':
-				cks = SceneParam._find_cks_pastdue(super_b);
+			if match['func'] == 'relate':
+				print 'go into _find_relate cks......'
+				cks = SmartckCom._find_cks_by_relate(struct,super_b);
 				if cks is None or len(cks) == 0: continue;
 				return cks;
 			if match['func'] == 'all':
@@ -67,18 +66,9 @@ class SceneClose(Base):
 				cks = super_b.clocks.keys();
 				if cks is None or len(cks) == 0: continue;
 				return cks;
-			if match['func'] == 'num':
-				print 'go into _find_num cks......'
-				cks = SceneParam._find_cks_by_num(struct,super_b);
-				if cks is None or len(cks) == 0: continue;
-				return cks;
-			if match['func'] == 'just':
-				cks = list();
-				if not super_b.myclock is None: cks.append(super_b.myclock['key']);
-				if cks is None or len(cks) == 0: continue;
-				return cks;
-			if match['func'] == 'nouse':
-				cks = SceneParam._find_cks_nouse(super_b);
+			if match['func'] == 'sample':
+				print 'go into _find_cks_sample......'
+				cks = SmartckCom._find_cks_sample(struct,super_b);
 				if cks is None or len(cks) == 0: continue;
 				return cks;
 		return None;
