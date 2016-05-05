@@ -33,7 +33,6 @@ def _find_time(struct):
 			or myinterval['scope'] == 'min' or myinterval['scope'] == 'sec':
 			tdic = dict();
 			tdic['date'] = str(times[0]) + '/' + str(times[1]) + '/' + str(times[2]);
-			tdic['type'] = myinterval['type'];
 			struct['ck_date'] = tdic;
 		if times[3] <> 'null':
 			tdic = dict();
@@ -115,7 +114,6 @@ def _find_tag_name(struct,tdic):
 	idx = ftag = 0;
 	first_tag = last_tag = -1;
 	str_list = list();
-	common.print_dic(tdic);
 	for ck in struct['clocks']:
 		if tdic['start'] == '': ftag = 1;
 		#break than go to the index of end

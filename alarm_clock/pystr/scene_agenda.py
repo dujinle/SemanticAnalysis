@@ -92,12 +92,13 @@ class SceneAgenda(SceneBase):
 			myclock = super_b.myclock;
 			temp = self._get_match_info(struct['ttag']);
 			if not temp is None:
-				info = SceneParam._find_tag_name(struct,temp);
-				if not info is None: myclock['info'] = info;
-			if struct['ttag'].find('_cout') <> -1:
-				myclock['info'] = self.data['cout'];
-			elif struct['ttag'].find('_meeting') <> -1:
-				myclock['info'] = self.data['meeting'];
+				common.print_dic(temp);
+				if temp.has_key('type'): print 'get type......'
+				if temp['type'] == 'value':
+					myclock['info'] = temp['value'];
+				elif temp['type'] == 'calc':
+					info = SceneParam._find_tag_name(struct,temp);
+					if not info is None: myclock['info'] = info;
 		except Exception as e:
 			raise MyException(format(e));
 
@@ -109,6 +110,9 @@ class SceneAgenda(SceneBase):
 			comp = re.compile(temp['reg']);
 			match = comp.search(ttag);
 			if not match is None:
+				if temp['type'] == 'value':
+					cidx = idx;
+					break;
 				pp = ttag.find(match.group(0));
 				if pp < pidx:
 					pidx = pp;
