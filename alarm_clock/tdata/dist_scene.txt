@@ -28,6 +28,7 @@
 			|_new.*_info.*_remind
 			|_time.*_cout
 			|_time.*_go
+			|_time.*_iwant
 			|_time.*_info",
 		"type":"ck_agenda_add"
 	},

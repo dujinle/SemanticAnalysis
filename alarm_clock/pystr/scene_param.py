@@ -115,45 +115,52 @@ def _find_tag_name(struct,tdic):
 	first_tag = last_tag = -1;
 	str_list = list();
 	for ck in struct['clocks']:
-		if tdic['start'] == '': ftag = 1;
+		if tdic['start']['tag'] == '': ftag = 1;
 		#break than go to the index of end
 		if isinstance(ck,dict):
-			if tdic['end'] <> '' and ck['type'] == tdic['end']:
+			if tdic['end']['tag'] <> '' and ck['type'] == tdic['end']['tag']:
+				if tdic['end']['type'] == 'left':
+					str_list.append(ck['mystr']);
+					last_tag = idx;
 				break;
-			elif tdic['start'] <> '' and ck['type'] == tdic['start']:
+			elif tdic['start']['tag'] <> '' and ck['type'] == tdic['start']['tag']:
+				if tdic['start']['type'] == 'left':
+					str_list.append(ck['mystr']);
+					if first_tag == -1: first_tag = idx;
 				ftag = 1;
 			elif ftag == 1:
-				if tdic['start'] == '':first_tag = idx;
-				if tdic['end'] == '' and last_tag == -1: last_tag = idx;
+				last_tag = idx;
 				str_list.append(ck['mystr']);
-				idx = idx + 1;
+				if first_tag == -1: first_tag = idx;
 		elif ftag == 1:
+			last_tag = idx;
 			str_list.append(ck);
-			idx = idx + 1;
+			if first_tag == -1: first_tag = idx;
+		idx = idx + 1;
+	if len(str_list) == 0: return None;
+	common.print_dic(str_list);
+	print first_tag,last_tag
+
 	if tdic['ftag'] == 'break':
-		if first_tag == -1:first_tag = 0;
-		if last_tag == -1: last_tag = len(str_list);
-		name = ''.join(str_list[first_tag:last_tag]);
+		start = 0;
+		end = len(str_list);
+		while True:
+			ck = struct['clocks'][first_tag];
+			if isinstance(ck,dict):
+				first_tag = first_tag + 1;
+				start = start + 1;
+			else:
+				break;
+		while True:
+			ck = struct['clocks'][last_tag];
+			if isinstance(ck,dict):
+				last_tag = last_tag - 1;
+				end = end - 1;
+			else:
+				break;
+		name = ''.join(str_list[start:end]);
 	else:
 		name = ''.join(str_list);
-	return name;
-
-#get the name info before the lable
-def _find_tag_pname(struct,strs):
-	ttag = struct['ttag'];
-	idx = len(struct['clocks']) - 1;
-	tag = False;
-	name = '';
-	while True:
-		if idx < 0: break;
-		cl = struct['clocks'][idx];
-		if tag == True:
-			if isinstance(cl,dict):break;
-			name = cl + name;
-		if isinstance(cl,dict) and cl['type'] == strs:
-			tag = True;
-		idx = idx - 1;
-	if len(name) == 0: return None;
 	return name;
 
 def _find_cks_bytime(struct,super_b):

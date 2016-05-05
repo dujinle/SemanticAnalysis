@@ -17,12 +17,13 @@
 >>start 'agenda alarm scene'
 	"_go":["去"],
 	"_me":["我"],
+	"_iwant":["我要"],
 	"_remind":["提醒"],
 	"_orderin":["订在"],
 	"_cout":["出门","出去"],
 	"_meeting":["会议","开会"],
+	"_info":["内容","事项","名称"],
 	"_agenda":["日程","行程","安排"],
-	"_info":["内容","事项","名称","我要"],
 <<end
 >>start 'stop alarm scene'
 	"_die":["死"],

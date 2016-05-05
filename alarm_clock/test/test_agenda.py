@@ -20,25 +20,24 @@ from wordseg import WordSeg
 from scene_engin import SEngin
 
 def analysis_result(struct,ans):
-	if type(ans) == dict:
-		key = ans['key'];
-		if not struct['mcks'].has_key(key): return False;
-		clock = struct['mcks'][key];
-		if ans.has_key('time'):
-			if ans['time'] == clock['time']:
-				return True;
-			else:
-				return False;
-		elif ans.has_key('info'):
-			if ans['info'] == clock['info']:
-				return True;
-			else:
-				return False;
-		elif ans.has_key('able'):
-			if int(ans['able']) == int(clock['able']['able']):
-				return True;
-			else:
-				return False;
+	key = ans['key'];
+	if not struct['mcks'].has_key(key): return False;
+	clock = struct['mcks'][key];
+	if ans.has_key('time'):
+		if ans['time'] == clock['time']:
+			return True;
+		else:
+			return False;
+	if ans.has_key('info'):
+		if ans['info'] == clock['info']:
+			return True;
+		else:
+			return False;
+	if ans.has_key('able'):
+		if int(ans['able']) == int(clock['able']['able']):
+			return True;
+		else:
+			return False;
 	return True;
 
 

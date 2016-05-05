@@ -46,16 +46,16 @@ class SceneAgenda(SceneBase):
 					struct['result']['msg'] = self.data['msg']['unknow_time'][msg_id];
 					struct['step'] = 'end';
 					return None;
-			if super_b.myclock.has_key('info'):
-				super_b.clocks[super_b.myclock['info']] = super_b.myclock;
-				super_b.myclock['key'] = super_b.myclock['info'];
-				msg_id = SceneParam._get_random_id(len(self.data['msg']['set_succ']));
-				struct['result']['msg'] = (self.data['msg']['set_succ'][msg_id] %(super_b.myclock['info']));
-			elif super_b.myclock.has_key('name'):
+			if super_b.myclock.has_key('name'):
 				super_b.myclock['key'] = super_b.myclock['name'];
 				super_b.clocks[super_b.myclock['key']] = super_b.myclock;
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['set_succ']));
 				struct['result']['msg'] = (self.data['msg']['set_succ'][msg_id] %(super_b.myclock['name']));
+			elif super_b.myclock.has_key('info'):
+				super_b.clocks[super_b.myclock['info']] = super_b.myclock;
+				super_b.myclock['key'] = super_b.myclock['info'];
+				msg_id = SceneParam._get_random_id(len(self.data['msg']['set_succ']));
+				struct['result']['msg'] = (self.data['msg']['set_succ'][msg_id] %(super_b.myclock['info']));
 			else:
 				super_b.clocks[super_b.myclock['time']] = super_b.myclock;
 				super_b.myclock['key'] = super_b.myclock['time'];
@@ -92,8 +92,6 @@ class SceneAgenda(SceneBase):
 			myclock = super_b.myclock;
 			temp = self._get_match_info(struct['ttag']);
 			if not temp is None:
-				common.print_dic(temp);
-				if temp.has_key('type'): print 'get type......'
 				if temp['type'] == 'value':
 					myclock['info'] = temp['value'];
 				elif temp['type'] == 'calc':
@@ -115,8 +113,9 @@ class SceneAgenda(SceneBase):
 					break;
 				pp = ttag.find(match.group(0));
 				if pp < pidx:
-					pidx = pp;
-					cidx = idx;
+					if temp['level'] == 'high' or cidx == -1:
+						pidx = pp;
+						cidx = idx;
 			idx = idx + 1;
 		if cidx == -1: return None;
 		return self.data['template'][cidx];

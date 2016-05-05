@@ -15,7 +15,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"2"
+			"able":"4"
 		}
 	},
 	{
@@ -34,7 +34,7 @@
 		"time":"12:0",
 		"able":{
 			"type":"week",
-			"able":"2"
+			"able":"4"
 		}
 	},
 	{
@@ -43,7 +43,7 @@
 		"time":"22:0",
 		"able":{
 			"type":"week",
-			"able":"2"
+			"able":"4"
 		}
 	}
 ]
