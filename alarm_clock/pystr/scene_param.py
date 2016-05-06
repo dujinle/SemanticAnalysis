@@ -169,22 +169,9 @@ def _find_cks_bytime(struct,super_b):
 	inter = struct['intervals'][0];
 	start = inter['start'];
 	end = inter['end'];
-
-	able = week = 0;
+	able = _get_time_able(start,end);
 	hid = 3;
 	mid = 4;
-	if start[0] == 'null':
-		week = _get_week(end[0],end[1],end[2]);
-		able = math.pow(2,week);
-	elif end[0] == 'null':
-		week = _get_week(start[0],start[1],start[2]);
-		able = math.pow(2,week);
-	else:
-		week = _get_week(start[0],start[1],start[2]);
-		able = math.pow(2,week);
-		eweek = _get_week(end[0],end[1],end[2]);
-		if eweek - week > 1 or eweek - week < -1:
-			able = able + math.pow(2,week + 1);
 	for ck in super_b.clocks:
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);
@@ -292,17 +279,7 @@ def _find_cks_time_to_time(struct,super_b):
 	if start[0] == 'null': start = inter_1['end'];
 	end = inter_2['start'];
 	if end[0] == 'null': end = inter_2['end'];
-	sweek = _get_week(start[0],start[1],start[2]);
-	eweek = _get_week(end[0],end[1],end[2]);
-	able = diff = 0;
-	if sweek > eweek: eweek = eweek + 7;
-	if sweek == eweek: diff = 1;
-	able = 0;
-	idx = sweek;
-	while True:
-		if sweek > eweek: break;
-		able = able + math.pow(2,sweek);
-		sweek = sweek + 1;
+	able,diff = _get_time_to_time_able(start,end);
 
 	if inter_1['scope'] == 'day' and inter_2['scope'] == 'day':
 		for ck in super_b.clocks:
@@ -397,19 +374,36 @@ def _find_cks_after_time(struct,super_b):
 				cks.append(ck);
 	return cks;
 
-'''
-def _find_cks_by_num(struct,super_b):
-	cks = list();
-	inum = 0;
-	nums = data['num'].keys();
-	for num in nums:
-		if struct['text'].find(num) <> -1:
-			inum = data['num'][num];
-			break;
-	keys = super_b.clocks.keys();
-	cks.append(keys[inum - 1]);
-	return cks;
-'''
+def _get_time_to_time_able(start,end):
+	sweek = _get_week(start[0],start[1],start[2]);
+	eweek = _get_week(end[0],end[1],end[2]);
+	able = diff = 0;
+	if sweek > eweek: eweek = eweek + 7;
+	if sweek == eweek: diff = 1;
+	able = 0;
+	idx = sweek;
+	while True:
+		if sweek > eweek: break;
+		able = able + math.pow(2,sweek);
+		sweek = sweek + 1;
+	return (able,diff);
+
+def _get_time_able(start,end):
+	able = 0;
+	if start[0] == 'null':
+		week = _get_week(end[0],end[1],end[2]);
+		able = math.pow(2,week);
+	elif end[0] == 'null':
+		week = _get_week(start[0],start[1],start[2]);
+		able = math.pow(2,week);
+	else:
+		week = _get_week(start[0],start[1],start[2]);
+		able = math.pow(2,week);
+		eweek = _get_week(end[0],end[1],end[2]);
+		if eweek - week > 1 or eweek - week < -1:
+			able = able + math.pow(2,week + 1);
+	return able;
+
 def _get_cur_week():
 	times = time.localtime();
 	return times[6];
