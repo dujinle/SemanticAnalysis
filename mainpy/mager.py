@@ -10,6 +10,7 @@ import collections
 base_path = os.path.dirname(__file__);
 
 sys.path.append(os.path.join(base_path,'./voice'));
+sys.path.append(os.path.join(base_path,'./temperature'));
 sys.path.append(os.path.join(base_path,'./wordsegs'));
 sys.path.append(os.path.join(base_path,'../commons'));
 #==============================================================
@@ -18,12 +19,14 @@ from wordseg import WordSeg
 import common,config
 from myexception import MyException
 from voice_mager import VoiceMager
+from temp_mager import TempMager
 
 class Mager:
 	def __init__(self):
 		self.wordseg = WordSeg();
 		self.modules = dict();
 		self.modules['Voice'] = VoiceMager(self.wordseg);
+		self.modules['Temp'] = TempMager(self.wordseg);
 
 	def init(self):
 		try:
