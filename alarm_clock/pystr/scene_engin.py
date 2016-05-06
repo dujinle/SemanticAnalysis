@@ -162,4 +162,4 @@ class SEngin():
 			if struct.has_key('ck_scene'): del struct['ck_scene'];
 			msg_id = SceneParam._get_random_id(len(err_msg));
 			struct['result']['msg'] = err_msg[msg_id];
-			raise MyException(format(e));
+			raise e;

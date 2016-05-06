@@ -16,6 +16,7 @@ sys.path.append(os.path.join(base_path,'../../modules/prev_deal'));
 #==============================================================
 
 import common,config
+from common import logging
 from scene_engin import SEngin
 from scene_replace import SceneReplace
 from time_mager import TimeMager
@@ -51,10 +52,10 @@ class SceneMager:
 			self.mytag.encode(self.struct);
 			self.engine.encode(self.struct);
 			return self.struct;
-		except MyException as e:
-			res = common.get_dicstr(self.struct);
-			res = e.value + '\n' +res;
-			raise MyException(res);
+		except Exception as e:
+			logging.error(sys.exc_info()[0]);
+			logging.error(sys.exc_info()[1]);
+			print sys.exc_info()[0],sys.exc_info()[1];
 
 '''
 try:

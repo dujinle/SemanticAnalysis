@@ -31,7 +31,7 @@ class SceneDel(SceneBase):
 					self._del_cks(cks,super_b,struct);
 			struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise e;
 
 	def _del_cks(self,cks,super_b,struct):
 		info = '';
@@ -54,13 +54,17 @@ class SceneDel(SceneBase):
 					if clk.has_key('info'): info = clk['info'];
 					del super_b.clocks[ck];
 					delnum = delnum + 1
-		msg_id = SceneParam._get_random_id(len(self.data['msg']['del_cks']));
-		struct['result']['msg'] = self.data['msg']['del_cks'][msg_id];
+				else:
+					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+					return None;
+		SceneParam._set_msg(struct,self.data['msg']['del_cks']);
 
 	def _get_match_cks(self,struct,super_b):
 		cks = list();
 		ttag = struct['ttag'];
-		if len(re.findall('((_del)|(_cancle))_pastdue_clock',ttag)) > 0:
+		if struct.has_key('ck_name'):
+			cks.append(struct['ck_name']);
+		elif len(re.findall('((_del)|(_cancle))_pastdue_clock',ttag)) > 0:
 			cks = SceneParam._find_cks_pastdue(super_b);
 		elif len(re.findall('((_cancle)|(_del))_all_clock',ttag)) > 0:
 			cks = super_b.clocks.keys();
