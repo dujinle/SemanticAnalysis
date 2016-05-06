@@ -84,5 +84,8 @@ dfiles = {
 	},
 	'Mytag':{
 		"1":os.path.join(abspath,'data','mytag','mytag.txt')
+	},
+	"PDeal":{
+		"1":os.path.join(abspath,'data','pdeal','pdeal_replace.txt')
 	}
 };

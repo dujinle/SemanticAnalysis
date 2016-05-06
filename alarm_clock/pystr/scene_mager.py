@@ -12,6 +12,7 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 sys.path.append(os.path.join(base_path,'../../modules/timer'));
 sys.path.append(os.path.join(base_path,'../../modules/wordsegs'));
 sys.path.append(os.path.join(base_path,'../../modules/mytag'));
+sys.path.append(os.path.join(base_path,'../../modules/prev_deal'));
 #==============================================================
 
 import common,config
@@ -19,6 +20,7 @@ from scene_engin import SEngin
 from scene_replace import SceneReplace
 from time_mager import TimeMager
 from tag_mager import MytagMager
+from pdeal_mager import PDealMager
 from wordseg import WordSeg
 from myexception import MyException
 
@@ -27,24 +29,24 @@ class SceneMager:
 		self.wordseg = WordSeg();
 		self.timer = TimeMager(self.wordseg);
 		self.mytag = MytagMager(self.wordseg);
+		self.pdeal = PDealMager(self.wordseg);
 		self.engine = SEngin(self.wordseg);
 		self.struct = collections.OrderedDict();
-		self.scene_rep = SceneReplace();
 
 	def init(self,dtype):
 		try:
 			fdir = config.dfiles[dtype];
 			self.timer.init('Timer');
 			self.mytag.init('Mytag');
+			self.pdeal.init('PDeal');
 			self.engine.init(fdir);
-			self.scene_rep.load_data(fdir + '/scene_replace.txt');
 		except MyException as e: raise e;
 
 	def encode(self,inlist):
 		self.struct['text'] = inlist;
 		self.struct['result'] = dict();
 		try:
-			self.scene_rep.encode(self.struct);
+			self.pdeal.encode(self.struct);
 			self.timer.encode(self.struct);
 			self.mytag.encode(self.struct);
 			self.engine.encode(self.struct);
