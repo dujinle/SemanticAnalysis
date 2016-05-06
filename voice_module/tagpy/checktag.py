@@ -15,6 +15,8 @@ class PM(Base):
 	def _check(self,struct):
 		try:
 			self.check_input(struct);
+			if struct.has_key('Z'): return ;
+
 			inlist = struct['inlist'];
 			taglist = struct['taglist'];
 			reg = '';

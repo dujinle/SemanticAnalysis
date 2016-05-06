@@ -109,9 +109,18 @@ try:
 	mg = Mager();
 	mg.init('Voice');
 	#mg.write_file();
+<<<<<<< HEAD
 	#common.print_dic(mg.encode(u'把声音调大点'));
 	#mg.sp_deal('del',{'value':u'大点'});
 	common.print_dic(mg.encode(u'把声音调到最大'));
+=======
+	#mg.sp_deal('del',{'value':u'静音'});
+	#mg.deal_data('M','add',{'value':u'音'});
+	#common.print_dic(mg.encode(u'静音'));
+	#mg.sp_deal('del',{'value':u'最大声'});
+	#common.print_dic(mg.encode(u'大点声'));
+	common.print_dic(mg.encode(u'再整点'));
+>>>>>>> 98209940d4a279b07ed59b34836042f930f8adee
 except MyException as e:
 	print e.value;
 '''

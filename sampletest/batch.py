@@ -19,7 +19,7 @@ if __name__ == '__main__':
 		print 'Usage:%s file > outfile' %sys.argv[0];
 		sys.exit(-1);
 	mg = Mager();
-	mg.init();
+	mg.init('Voice');
 	infile = sys.argv[1];
 	try:
 		fp = open(infile,'r');
@@ -32,8 +32,10 @@ if __name__ == '__main__':
 				continue;
 			array = line.split(' ');
 			dirs = array[1];
-			value = array[2];
-			sys.stdout.write(array[0] + ' \t' + array[1] + '\t' + array[2]);
+			value = 'NULL';
+			if len(array) == 3:
+				value = array[2];
+			sys.stdout.write(array[0] + ' \t' + array[1] + '\t' + value);
 			struct = mg.encode(array[0].decode('utf-8'));
 			if struct.has_key('dir'):
 				if cmp(dirs,struct['dir']) <> 0:

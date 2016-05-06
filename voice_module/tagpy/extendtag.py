@@ -151,16 +151,19 @@ class M1(Base):
 class Z(Base):
 
 	def encode(self,struct):
-		return;
 		try:
-			self.check_input(struct);
-			m1data = self.data['Z'];
-			match(m1data,struct,'Z');
+			if not struct.has_key('text'):
+				raise MyException('the struct dic not found the key[text]');
+			text = struct['text'];
+			Zdata = self.data['Z'];
+			for data in Zdata:
+				if data['reg'] == text:
+					struct['Z'] = data;
+					break;
 		except Exception as e:
 			raise MyException(format(e));
 
 	def _add(self,data):
-		return ;
 		try:
 			x1data = self.data['Z'];
 			insert(x1data,data,'Z');
@@ -168,7 +171,6 @@ class Z(Base):
 			raise MyException(format(e));
 
 	def _del(self,data):
-		return ;
 		try:
 			x1data = self.data['Z'];
 			remove(x1data,data);
