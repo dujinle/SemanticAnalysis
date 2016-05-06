@@ -38,7 +38,7 @@ import scene_param as SceneParam
 msg = [
 	u'我还在实习期，还需要多点时间熟悉情况',
 	u'难死宝宝了，让我再学习学习吧',
-	u'这事儿现在搞不定，您再等等呗'
+	u'这事儿现在搞不定，请您再等等，好不好嘛'
 ];
 err_msg = ["好头疼，我得再学习学习..."];
 class SEngin():
