@@ -10,8 +10,11 @@ function GetResult(){
 	}
 	var sptext = document.getElementById("sptext");
 	var restext  = document.getElementById("retext");
+	sptext.innerText = null;
+	restext.innerText = null;
 	var jdata = {
-		'text':intext.value
+		'text':intext.value,
+		'mdl':$mdl
 	};
 	var obj = null;
 	$.ajax({
@@ -65,6 +68,7 @@ function DealWords(type,action,vid,did){
 		}
 	}
 	idata.type = type;
+	idata.mdl = $mdl;
 	if(dir != null){
 		idata.dir = dir;
 	}
@@ -94,10 +98,14 @@ function DealWords(type,action,vid,did){
 
 function save_data(){
 	var obj = null;
+	data = {
+		'mdl':$mdl
+	};
 	$.ajax({
 		async:false,
 		url: $basepath + 'save_data',
 		type:'get',
+		data:JSON.stringify(data),
 		success:function(data){
 			obj = data;
 		},
