@@ -164,10 +164,18 @@ def _find_tag_name(struct,tdic):
 
 def _find_cks_bytime(struct,super_b):
 	cks = list();
-	if struct['ttag'].find('_time') == -1: return cks;
-	inter = struct['Times'][0];
-	start = inter['start'];
-	end = inter['end'];
+	inter = None;
+	for istr in struct['stseg']:
+		if not struct['stc'].has_key(istr): continue;
+		item = struct['stc'][istr];
+		if item['type'] == 'TIME':
+			inter = dict(item);
+			del struct['stc'][istr];
+			break;
+	if inter is None: return cks;
+
+	start = inter['stime'];
+	end = inter['etime'];
 	able = _get_time_able(start,end);
 	hid = 3;
 	mid = 4;
@@ -254,6 +262,20 @@ def _find_cks_bytype(ttype,super_b):
 			cks.append(ck);
 	return cks;
 
+def _find_cks_by_only(struct,super_b):
+	cks = _find_cks_by_sample(struct,super_b);
+	if cks == None: return list();
+	cks = list();
+	idx = 0;
+	while True:
+		keys = super_b.clocks.keys();
+		if idx >= len(keys): break;
+		ck = super_b.clocks[keys[idx]];
+		if ck['key'] in cks: continue;
+		cks.append(ck['key']);
+		idx = idx + 1;
+	return cks;
+
 def _find_cks_pastdue(super_b):
 	cks = list();
 	week = _get_cur_week();
@@ -303,9 +325,12 @@ def _find_cks_time_to_time(struct,super_b):
 		if not struct['stc'].has_key(istr): continue;
 		item = struct['stc'][istr];
 		if item['type'] == 'TIME':
-			if inter_1 is None: inter_1 = dict(item);
+			if inter_1 is None:
+				inter_1 = dict(item);
+				del struct['stc'][istr];
 			else:
 				inter_2 = dict(item);
+				del struct['stc'][istr];
 				break;
 	start = inter_1['stime'];
 	if start[common.enable] == '-1': start = inter_1['etime'];
@@ -370,10 +395,20 @@ def _find_cks_time_to_time(struct,super_b):
 
 def _find_cks_time_and_time(struct,super_b):
 	cks = list();
-	inter_1 = struct['Times'][0];
-	inter_2 = struct['Times'][1];
-	start = inter_1['start'];
-	end = inter_2['start'];
+	inter_1 = inter_2 = None;
+	for istr in struct['stseg']:
+		if not struct['stc'].has_key(istr): continue;
+		item = struct['stc'][istr];
+		if item['type'] == 'TIME':
+			if inter_1 is None:
+				inter_1 = dict(item);
+				del struct['stc'][istr];
+			else:
+				inter_2 = dict(item);
+				del struct['stc'][istr];
+				break;
+	start = inter_1['stime'];
+	end = inter_2['stime'];
 	if start[0] == 'null' or end[0] == 'null': return cks;
 	stime = etime = '';
 	if start[3] == 'null' or end[3] == 'null': return cks;

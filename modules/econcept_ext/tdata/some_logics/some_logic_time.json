@@ -34,5 +34,11 @@
 			"type":"LT",
 			"stype":"LATER"
 		}
+	},
+	"待会":{
+		"_prop":{
+			"type":"LT",
+			"stype":"A_MOMENT"
+		}
 	}
 }

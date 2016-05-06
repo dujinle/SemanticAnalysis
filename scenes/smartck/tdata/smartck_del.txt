@@ -17,121 +17,36 @@
 #-----------------------------------------------------
 	"template":[
 		{
-			"reg":"_del_pastdue_clock
-				|_cancle_pastdue_clock
-				|_pastdue_clock.*_cancle
-				|_pastdue_clock.*_del
-				|_pastdue_clock.*_no",
+			"reg":"PASTDUE",
 			"func":"pastdue"
 		},
 		{
-			"reg":"_time_to_time_clock.*_cancle
-				|_time_to_time_remind.*_cancle
-				|_time_to_time_agenda.*_cancle
-				|_time_to_time_clock.*_no
-				|_time_to_time_remind.*_no
-				|_time_to_time_agenda.*_no
-				|_time_to_time_agenda.*_del
-				|_time_to_time_clock.*_del
-				|_time_to_time_remind.*_del",
+			"reg":"TIMETOTIME",
 			"func":"t2t"
 		},
 		{
-			"reg":"_cancle_all_clock
-				|_del_all_clock
-				|_del_all_agenda
-				|_all_clock.*_cancle
-				|_all_clock.*_del
-				|_all_clock.*_no_le
-				|_all_remind.*_cancle
-				|_all_remind.*_del
-				|_all_remind.*_no_le
-				|_all_agenda.*_cancle
-				|_all_agenda.*_del
-				|_all_agenda.*_no_le",
-			"func":"all"
-		},
-		{
-			"reg":"_cancle_time.*_clock
-				|_cancle_time.*_remind
-				|_cancle_time.*_agenda
-				|_del_time.*_clock
-				|_del_time.*_remind
-				|_del_time.*_agenda
-				|_time_rest
-				|_only_left_time
-				|_time(_clock)*(_all)*.*_del
-				|_time(_clock)*(_all)*.*_cancle
-				|_time(_clock)*(_all)*.*_no
-				|_time(_remind)*(_all)*.*_del
-				|_time(_remind)*(_all)*.*_cancle
-				|_time(_remind)*(_all)*.*_no
-				|_time(_agenda)*(_all)*.*_del
-				|_time(_agenda)*(_all)*.*_cancle
-				|_time(_agenda)*(_all)*.*_no",
-			"func":"time"
-		},
-		{
-			"reg":"_and.*_relate_clock(_all)*_del
-				|_and.*_relate_clock(_all)*_cancle
-				|_and.*_relate_clock(_all)*_no
-				|_and.*_relate_remind(_all)*_del
-				|_and.*_relate_remind(_all)*_cancle
-				|_and.*_relate_remind(_all)*_no
-				|_and.*_relate_agenda(_all)*_del
-				|_and.*_relate_agenda(_all)*_cancle
-				|_and.*_relate_agenda(_all)*_no
-				|.*_clock_del
-				|.*_clock_no
-				|.*_clock_cancle
-				|.*_remind_del
-				|.*_remind_no
-				|.*_remind_cancle
-				|.*_agenda_del
-				|.*_agenda_no
-				|.*_agenda_cancle
-				|_del.*_clock
-				|_del.*_remind
-				|_del.*_agenda
-				|_cancle.*_clock
-				|_cancle.*_remind
-				|_cancle.*_agenda",
-			"func":"info"
-		},
-		{
-			"reg":"_prep(_clock)*_del
-				|_prep(_clock)*_cancle
-				|_prep(_clock)*_no
-				|_prep(_remind)*_del
-				|_prep(_remind)*_cancle
-				|_prep(_remind)*_no
-				|_prep(_agenda)*_del
-				|_prep(_agenda)*_cancle
-				|_prep(_agenda)*_no
-				|_del.*_prep
-				|_cancle.*_prep",
+			"reg":"NUNIT",
 			"func":"num"
 		},
 		{
-			"reg":"_just_that.*_no
-				|_just_that.*_del
-				|_just_that.*_cancle
-				|_just_clock_no
-				|_just_clock_del
-				|_just_clock_cancle
-				|_just_agenda_no
-				|_just_agenda_del
-				|_just_agenda_cancle
-				|_just_remind_no
-				|_just_remind_del
-				|_just_remind_cancle",
+			"reg":"ALL",
+			"func":"all"
+		},
+		{
+			"reg":"AND.*RELATETO",
+			"func":"relate"
+		},
+		{
+			"reg":"JUST",
 			"func":"just"
 		},
 		{
-			"reg":"_nouse.*_no
-				|_nouse.*_del
-				|_nouse.*_cancle",
-			"func":"nouse"
+			"reg":"UNUSE",
+			"func":"unuse"
+		},
+		{
+			"reg":"ONLYLEFT",
+			"func":"only_left"
 		}
 	]
 }

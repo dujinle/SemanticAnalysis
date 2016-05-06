@@ -7,11 +7,11 @@
 		"ck_unknow":["没有找到指定的闹钟"]
 	},
 	"deal_tag":{
-		"_again_sleep":{
+		"AGAINSLEEP":{
 			"value":5,
 			"scope":"min"
 		},
-		"_moment_recall":{
+		"AMOMENTAGAINRING":{
 			"value":5,
 			"scope":"min"
 		}

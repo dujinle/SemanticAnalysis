@@ -1,35 +1,27 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json,copy
+import sys,os,common
 import re,time
-reload(sys);
-sys.setdefaultencoding('utf-8');
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
-import common
 from myexception import MyException
 from common import logging
-import scene_param as SceneParam
-
+import com_funcs as SceneParam
+import smartck_common as SmartckCom
 from scene_base import SceneBase
-class SceneBell(SceneBase):
+
+class SmartckBell(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
 			logging.info('go into set alarm bell');
+			if not struct.has_key('ck_scene'): return None;
+			if struct['ck_scene'] <> 'ck_bell': return None;
 			if super_b.myclock is None:
 				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
-				struct['code'] = 'exit';
+				struct['step'] = 'end';
 				return None;
 			if not struct.has_key('step'): struct['step'] = 'start';
 
 			if struct['step'] == 'start':
-				SceneParam._set_msg(struct,self.data['msg']['set_start']);
-				#self.send_msg(struct);
-				#开始参数设置向导
 				SceneParam._set_msg(struct,self.data['msg']['set_bell_type']);
 				struct['step'] = 'set_bell_type';
 			elif struct['step'] == 'set_bell_type':
@@ -49,23 +41,25 @@ class SceneBell(SceneBase):
 		myclock = super_b.myclock;
 		if not myclock.has_key('bell'): myclock['bell'] = dict();
 
-		for ck in struct['clocks']:
-			if ck['type'] == '_music':
+		for istr in struct['stseg']:
+			if not struct['stc'].has_key(istr): continue;
+			item = struct['stc'][istr];
+			if item['type'] == 'MUSIC':
 				myclock['bell']['type'] = 'music';
 				break;
-			elif ck['type'] == '_bell':
+			elif item['type'] == 'BELL':
 				myclock['bell']['type'] = 'ring';
 				break;
 		if not myclock['bell'].has_key('type'):
 			myclock['bell']['type'] = 'ring';
-			#SceneParam._set_msg(struct,self.data['msg']['type_unknow']);
-			#self.send_msg(struct);
 		return myclock['bell']['type'];
 
 	def _make_sure_bell(self,struct,super_b):
 		myclock = super_b.myclock;
-		for ck in struct['clocks']:
-			if ck['type'] == '_yes':
+		for istr in struct['stseg']:
+			if not struct['stc'].has_key(istr): continue;
+			item = struct['stc'][istr];
+			if item['type'] == 'YES':
 				myclock['bell']['name'] = 'bird';
 				myclock['bell']['addr'] = 'bird.mp3';
 				break;

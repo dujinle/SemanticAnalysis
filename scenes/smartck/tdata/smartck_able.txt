@@ -4,5 +4,23 @@
 		"set_start":["好的,这就帮您设置"],
 		"set_able_succ":["已经为您修改好了呢","搞定了，放心吧！"],
 		"ck_unknow":["没有找到指定的闹钟"]
-	}
+	},
+	"template":[
+		{
+			"reg":"NOTNEEDCALLMEGETUP",
+			"func":"close_getup"
+		},
+		{
+			"reg":"WORKDAY",
+			"func":"workday_ring"
+		},
+		{
+			"reg":"EVERYDAY",
+			"func":"everyday_ring"
+		},
+		{
+			"reg":"PASSWORKEND",
+			"func":"workend_close"
+		}
+	]
 }

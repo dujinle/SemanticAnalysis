@@ -1,29 +1,24 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json,copy
+import sys,os,common
 import re,time
-reload(sys);
-sys.setdefaultencoding('utf-8');
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
-import common
 from myexception import MyException
 from common import logging
-import scene_param as SceneParam
+import com_funcs as SceneParam
+import smartck_common as SmartckCom
 from scene_base import SceneBase
 
 #直接设置铃声提示音的场景
-class SceneSBell(SceneBase):
+class SmartckSBell(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
 			logging.info('go into set alarm bell......');
+			if not struct.has_key('ck_scene'): return None;
+			if struct['ck_scene'] <> 'ck_sbell': return None;
 			if super_b.myclock is None:
 				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
-				struct['code'] = 'exit';
+				struct['step'] = 'end';
 				return None;
 			if not struct.has_key('step'): struct['step'] = 'start';
 
@@ -36,13 +31,13 @@ class SceneSBell(SceneBase):
 	def _encode_bell(self,struct,super_b):
 		myclock = super_b.myclock;
 		for tm in self.data['rings']:
-			if tm in struct['inlist']:
+			if tm in struct['stseg']:
 				if not myclock.has_key('bell'): myclock['bell'] = dict();
 				myclock['bell'].update(self.data['rings'][tm]);
 				myclock['bell']['name'] = tm;
 				break;
 		for tm in self.data['music']:
-			if tm in struct['inlist']:
+			if tm in struct['stseg']:
 				if not myclock.has_key('bell'): myclock['bell'] = dict();
 				myclock['bell'].update(self.data['music'][tm]);
 				myclock['bell']['name'] = tm;
