@@ -23,13 +23,17 @@ class ResultHandler(RequestHandler):
 			if not self.body_json.has_key('text'):
 				self.except_handle('the url data format error');
 				return ;
+			if not self.body_json.has_key('mdl'):
+				self.except_handle('not found argumen mdl');
+				return ;
+			mdl = self.body_json['mdl'];
 			itest = self.body_json['text'];
 			if len(itest) == 0:
 				self.except_handle('the param text is empty');
 				return ;
-			logging.info('input:%s' %itest);
+			logging.info('mdl:%s input:%s' %(mdl,itest));
 			mager = self.get_mager();
-			sres = mager.encode(itest);
+			sres = mager.encode(itest,mdl);
 			ret = dict();
 			ret['text'] = sres['text'];
 			ret['inlist'] = sres['inlist'];

@@ -23,6 +23,10 @@ class AddHandler(RequestHandler):
 			if not self.body_json.has_key('type'):
 				self.except_handle('the url data format error');
 				return ;
+			if not self.body_json.has_key('mdl'):
+				self.except_handle('the module type not found');
+				return ;
+			mdl = self.body_json['mdl'];
 			ctype = self.body_json['type'];
 			data = self.body_json['value'];
 			logging.info(ctype + ' add words:' + data);
@@ -30,8 +34,8 @@ class AddHandler(RequestHandler):
 			if ctype == 'SP':
 				mager.sp_deal('add',self.body_json);
 			else:
-				mager.deal_data(ctype,'add',self.body_json);
-			self.write(self.gen_result(0,ctype + ' add words:' + data + ' success',None));
+				mager.deal_data(mdl,ctype,'add',self.body_json);
+			self.write(self.gen_result(0,('mdl:%s ctype:%s add words:%s success' %(mdl,ctype,data)),None));
 		except Exception,e:
 			self.except_handle(format(e));
 			return ;

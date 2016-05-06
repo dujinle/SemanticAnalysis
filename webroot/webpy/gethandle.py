@@ -21,11 +21,15 @@ class GetHandler(RequestHandler):
 	def post(self):
 		try:
 			if not self.body_json.has_key('type'):
-				self.except_handle('the url data format error');
+				self.except_handle('not found argument type');
 				return ;
+			if not self.body_json.has_key('mdl'):
+				self.except_handle('not found module type');
+				return ;
+			mdl = self.body_json['mdl'];
 			ctype = self.body_json['type'];
 			mager = self.get_mager();
-			rest = mager.deal_data(ctype,'get',None);
+			rest = mager.deal_data(mdl,ctype,'get',None);
 			print rest;
 			self.write(self.gen_result(0,ctype + ' get words success',rest));
 		except Exception,e:
