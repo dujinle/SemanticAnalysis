@@ -1,17 +1,5 @@
 #通过tag组合分类不同的场景参数信息
 {
-#添加闹钟场景进入
-	"ck_add":{
-		"reg":
-			"_pverb_prep.*_clock
-			|_time.*_call(_me)*
-			|_anew_open_clock
-			|_set.*_clock
-			|_new.*_clock
-			|_clock_set
-			|_clock",
-		"type":"ck_add"
-	},
 #添加日程提醒场景入口
 	"ck_agenda_add":{
 		"reg":
@@ -26,11 +14,11 @@
 			|_orderin_time
 			|_time.*_meeting
 			|_new.*_info.*_remind
-			|_time.*_come
-			|_time.*_cout
-			|_time.*_go
-			|_time.*_iwant
-			|_time.*_info",
+			|.*_time.*_come
+			|.*_time.*_cout
+			|.*_time.*_go
+			|.*_time.*_iwant
+			|.*_time.*_info",
 		"type":"ck_agenda_add"
 	},
 #添加起床闹钟场景入口
@@ -128,6 +116,7 @@
 			|_only_left_time
 			|_del.*_clock
 			|_del.*_remind
+			|_del.*_agenda
 			|_del.*_nouse
 			|_cancle.*_clock
 			|_cancle.*_remind
@@ -185,5 +174,17 @@
 			|_info_swap
 			|_pass_time_recall",
 		"type":"ck_mo_time"
+	},
+#添加闹钟场景进入
+	"ck_add":{
+		"reg":
+			"_pverb_prep.*_clock
+			|_time.*_call(_me)*
+			|_anew_open_clock
+			|_set.*_clock
+			|_new.*_clock
+			|_clock_set
+			|_clock",
+		"type":"ck_add"
 	}
 }

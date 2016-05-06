@@ -61,7 +61,7 @@ class SceneDel(SceneBase):
 
 	def _find_cks(self,struct,super_b):
 		match = self._get_match_info(struct['ttag']);
-		#common.print_dic(match);
+		common.print_dic(match);
 		if match is None: return None;
 		if match['func'] == 't2t':
 			print 'go into _find_cks_time_to_time......'

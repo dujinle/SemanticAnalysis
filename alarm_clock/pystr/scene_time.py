@@ -158,12 +158,9 @@ class SceneTime(SceneBase):
 	def _change_able(self,struct,cks,super_b):
 		inter = struct['intervals'][0];
 		if inter['scope'] <> 'day': return None;
-		if inter['start'][3] <> 0 or inter['end'][3] <> 0: return None;
 		start = inter['start'];
 		end = inter['end'];
-		week = SceneParam._get_week(start[0],start[1],start[2]);
-		able = math.pow(2,week);
-		if end[3] - start[3] > 1: able = able + math.pow(2,week + 1);
+		able = SceneParam._get_time_able(start,end);
 		for ck in cks:
 			clock = super_b.clocks[ck];
 			if not clock.has_key('able'):
@@ -173,8 +170,11 @@ class SceneTime(SceneBase):
 
 	def _reset_time(self,struct,cks,super_b):
 		inter = struct['intervals'][0];
-		if inter['start'][3] == 0 and inter['end'][3] == 0: return None;
-		time = str(inter['start'][3]) + ':' + str(inter['start'][4]);
+		if inter['start'][3] == 'null' and inter['end'][3] == 'null': return None;
+		if inter['start'][4] == 'null':
+			time = str(inter['start'][3]) + ':0';
+		else:
+			time = str(inter['start'][3]) + ':' + str(inter['start'][4]);
 		for ck in cks:
 			clock = super_b.clocks[ck];
 			clock['time'] = time;

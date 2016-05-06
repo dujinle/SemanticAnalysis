@@ -27,6 +27,8 @@ class DistScene(SceneBase):
 			name = SceneParam._find_ck_name(struct,'_clock');
 			if name is None:
 				name = SceneParam._find_ck_name(struct,'_remind');
+			if name is None:
+				name = SceneParam._find_ck_name(struct,'_agenda');
 			if not name is None and len(name) > 0:
 				struct['ck_name'] = name;
 			self._find_scene(tag,struct);
@@ -39,11 +41,9 @@ class DistScene(SceneBase):
 			reg_comp = re.compile(calc_key['reg']);
 			match = reg_comp.search(tag);
 			if match is None: continue;
-			if struct.has_key('ck_reg'):
-				if len(match.group(0)) < len(struct['ck_reg']):
-					continue;
 			struct['ck_reg'] = match.group(0);
 			struct['ck_scene'] = key;
+			break;
 		if struct.has_key('ck_reg'):
 			print struct['ck_reg'];
 			del struct['ck_reg'];

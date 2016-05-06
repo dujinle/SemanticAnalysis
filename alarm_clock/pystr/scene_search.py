@@ -36,7 +36,7 @@ class SceneSearch(SceneBase):
 
 	def _find_cks(self,struct,super_b):
 		match = self._get_match_info(struct['ttag']);
-		#common.print_dic(match);
+		common.print_dic(match);
 		if match is None: return None;
 		if match['func'] == 't2t':
 			print 'go into _find_cks_time_to_time......'
@@ -49,6 +49,7 @@ class SceneSearch(SceneBase):
 			cks = SceneParam._find_cks_byinfo(struct,super_b);
 			return cks;
 		if match['func'] == 'after':
+			print 'go into _find_cks_after......'
 			cks = SceneParam._find_cks_after_time(struct,super_b);
 			return cks;
 		if match['func'] == 'all':

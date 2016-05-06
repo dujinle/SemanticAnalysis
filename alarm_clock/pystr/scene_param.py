@@ -268,7 +268,9 @@ def _find_cks_by_num(struct,super_b):
 	for s in struct['inlist']:
 		if data['num'].has_key(s):
 			num = int(data['num'][s]);
-			cks.append(super_b.clocks.keys()[num - 1]);
+			keys = super_b.clocks.keys();
+			if num - 1 < 0 or num - 1 >= len(keys): return cks;
+			cks.append(keys[num - 1]);
 	return cks;
 
 def _find_cks_time_to_time(struct,super_b):
@@ -403,6 +405,14 @@ def _get_time_able(start,end):
 		if eweek - week > 1 or eweek - week < -1:
 			able = able + math.pow(2,week + 1);
 	return able;
+
+def _get_num_cks(struct):
+	num = 0;
+	for s in struct['inlist']:
+		if data['num'].has_key(s):
+			num = int(data['num'][s]);
+			return num;
+	return num;
 
 def _get_cur_week():
 	times = time.localtime();

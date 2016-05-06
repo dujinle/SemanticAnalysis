@@ -26,7 +26,7 @@ class SceneMadd(SceneBase):
 
 			#启动时响应回复
 			if struct['step'] == 'start':
-				ck_num = SceneParam._get_cks_num(struct);
+				ck_num = SceneParam._get_num_cks(struct);
 				if ck_num == 1 or ck_num == 0:
 					struct['result']['msg'] = self.data['msg']['un_see'][0];
 					struct['step'] = 'end';

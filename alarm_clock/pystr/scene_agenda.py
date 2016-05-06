@@ -90,13 +90,16 @@ class SceneAgenda(SceneBase):
 	def _set_agenda_info(self,struct,super_b):
 		try:
 			myclock = super_b.myclock;
-			temp = self._get_match_info(struct['ttag']);
-			if not temp is None:
-				if temp['type'] == 'value':
-					myclock['info'] = temp['value'];
-				elif temp['type'] == 'calc':
-					info = SceneParam._find_tag_name(struct,temp);
-					if not info is None: myclock['info'] = info;
+			if struct.has_key('ck_name'):
+				myclock['info'] = struct['ck_name'];
+			else:
+				temp = self._get_match_info(struct['ttag']);
+				if not temp is None:
+					if temp['type'] == 'value':
+						myclock['info'] = temp['value'];
+					elif temp['type'] == 'calc':
+						info = SceneParam._find_tag_name(struct,temp);
+						if not info is None: myclock['info'] = info;
 		except Exception as e:
 			raise e;
 
