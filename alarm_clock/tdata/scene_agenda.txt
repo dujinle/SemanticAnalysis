@@ -40,6 +40,20 @@
 			"ftag":"continue"
 		},
 		{
+			"reg":"_time.*_come",
+			"start":{
+				"tag":"_come",
+				"type":"left"
+			},
+			"end":{
+				"tag":"",
+				"type":""
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		},
+		{
 			"reg":"_go",
 			"start":{
 				"tag":"_go",

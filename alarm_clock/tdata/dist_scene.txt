@@ -26,6 +26,7 @@
 			|_orderin_time
 			|_time.*_meeting
 			|_new.*_info.*_remind
+			|_time.*_come
 			|_time.*_cout
 			|_time.*_go
 			|_time.*_iwant
@@ -154,8 +155,11 @@
 			|(_see)*_has_some_remind
 			|_time_has_some.*_thing
 			|_time_has_what.*_thing
+			|_time(_all)*_has_what_agenda
 			|_after_has_some
 			|_after_has_what
+			|_time_left_what
+			|_time_left_some
 			|_clock_yes_wtime
 			|_remind_yes_wtime
 			|_clock_yes_what_shihou
@@ -164,6 +168,8 @@
 			|_see.*_remind
 			|_time_yes_what_info
 			|_prep_info_yes_what
+			|_time_agenda.*_yes_what
+			|_time_agenda.*_has_what
 			|_time_info_yes_what",
 		"type":"ck_search"
 	},

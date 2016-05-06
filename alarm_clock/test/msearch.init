@@ -1,3 +1,4 @@
+#2016/5/7 星期6 测试时间
 [
 	{
 		"time":"10:0",
@@ -5,7 +6,16 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"16"
+			"able":"32"
+		}
+	},
+	{
+		"time":"8:0",
+		"key":"8:0",
+		"type":"agenda",
+		"able":{
+			"type":"week",
+			"able":"32"
 		}
 	},
 	{
@@ -15,7 +25,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"4"
+			"able":"32"
 		}
 	},
 	{
@@ -34,7 +44,7 @@
 		"time":"12:0",
 		"able":{
 			"type":"week",
-			"able":"4"
+			"able":"32"
 		}
 	},
 	{
@@ -43,7 +53,16 @@
 		"time":"22:0",
 		"able":{
 			"type":"week",
-			"able":"4"
+			"able":"32"
+		}
+	},
+	{
+		"key":"11:0",
+		"time":"11:0",
+		"type":"agenda",
+		"able":{
+			"type":"week",
+			"able":"64"
 		}
 	}
 ]

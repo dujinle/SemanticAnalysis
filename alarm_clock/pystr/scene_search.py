@@ -26,71 +26,55 @@ class SceneSearch(SceneBase):
 				#self.send_msg(struct);
 				#开始参数设置向导
 				cks = self._find_cks(struct,super_b);
-				self._post_clocks(cks,struct,super_b);
+				if cks is None or len(cks) == 0:
+					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+				else:
+					self._post_clocks(cks,struct,super_b);
 				struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
 	def _find_cks(self,struct,super_b):
-		cks = list();
-		if struct.has_key('ck_name'):
-			cks.append(struct['ck_name']);
-		elif struct['ttag'].find('_see_has_some_clock') <> -1:
+		match = self._get_match_info(struct['ttag']);
+		#common.print_dic(match);
+		if match is None: return None;
+		if match['func'] == 't2t':
+			print 'go into _find_cks_time_to_time......'
+			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+			return cks;
+		if match['func'] == 'time':
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			return cks;
+		if match['func'] == 'info':
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+			return cks;
+		if match['func'] == 'after':
+			cks = SceneParam._find_cks_after_time(struct,super_b);
+			return cks;
+		if match['func'] == 'all':
+			print 'go into _find_all_cks......'
 			cks = super_b.clocks.keys();
 			return cks;
-		elif len(re.findall('_time_to_time_has_some.*_thing',struct['ttag'])) > 0:
-			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+		if match['func'] == 'num':
+			cks = SceneParam._find_cks_by_num(struct,super_b);
 			return cks;
-		elif len(re.findall('_time_to_time_has_what.*_thing',struct['ttag'])) > 0:
-			cks = SceneParam._find_cks_time_to_time(struct,super_b);
-			return cks;
-		elif len(re.findall('_time_has_some.*_thing',struct['ttag'])) > 0:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			return cks;
-		elif len(re.findall('_time_has_what.*_thing',struct['ttag'])) > 0:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			return cks;
-		elif len(re.findall('_time.*_yes_what_info',struct['ttag'])) > 0:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			return cks;
-		elif len(re.findall('_remind_yes((_what_shihou)|(_wtime))',struct['ttag'])) > 0:
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-			return cks;
-		elif len(re.findall('_clock_yes((_what_shihou)|(_wtime))',struct['ttag'])) > 0:
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-			return cks;
-		elif len(re.findall('_time_clock_yes_what',struct['ttag'])) > 0:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			return cks;
-		elif struct['ttag'].find('_after_has_what_thing') <> -1:
-			cks = SceneParam._find_cks_after(struct,super_b);
-			return cks;
-		elif struct['ttag'].find('_workoff_after_has_some') <> -1:
-			cks = SceneParam._find_cks_tagtime('workoff',super_b);
-			return cks;
-		elif struct['ttag'].find('_prep_info_yes_what') <> -1:
-			inum = SceneParam._get_cks_num(struct);
-			keys = super_b.clocks.keys();
-			cks.append(keys[inum - 1]);
-			return cks;
-		elif len(re.findall('see.*_prep_clock',struct['ttag'])) > 0:
-			inum = SceneParam._get_cks_num(struct);
-			keys = super_b.clocks.keys();
-			cks.append(keys[inum - 1]);
-			return cks;
-		return cks;
+		return None;
 
 	def _post_clocks(self,cks,struct,super_b):
 		struct['result']['clocks'] = list();
-		if len(cks) > 0:
-			for ck in cks:
-				if super_b.clocks.has_key(ck):
-					clock = super_b.clocks[ck];
-					struct['result']['clocks'].append(clock);
-				else:
-					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
-					return None;
-			msg_id = SceneParam._get_random_id(len(self.data['msg']['ck_num']));
-			struct['result']['msg'] = (self.data['msg']['ck_num'][msg_id] %len(cks));
-		else:
-			SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+		for ck in cks:
+			if super_b.clocks.has_key(ck):
+				clock = super_b.clocks[ck];
+				struct['result']['clocks'].append(clock);
+			else:
+				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+				return None;
+		msg_id = SceneParam._get_random_id(len(self.data['msg']['ck_num']));
+		struct['result']['msg'] = (self.data['msg']['ck_num'][msg_id] %len(cks));
+
+	def _get_match_info(self,ttag):
+		for temp in self.data['template']:
+			comp = re.compile(temp['reg']);
+			match = comp.search(ttag);
+			if not match is None: return temp;
+		return None;

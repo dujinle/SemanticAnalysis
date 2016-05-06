@@ -89,15 +89,11 @@ def _find_ck_name(struct,stag):
 			if idx < 0: break;
 			cl = struct['clocks'][idx];
 			if tag == True:
-				if isinstance(cl,dict) and idx == 0: break;
+				if isinstance(cl,dict): break;
 				if isinstance(cl,dict) == False and cl == u'的':
 					pass;
 				elif isinstance(cl,dict) == False:
 					name = cl + name;
-				else:
-					cn = struct['clocks'][idx - 1];
-					if isinstance(cn,dict): break;
-					else: name = cl['mystr'] + name;
 			if isinstance(cl,dict) and cl['type'] == stag:
 				tag = True;
 				if idx == 0: break;
@@ -219,9 +215,9 @@ def _find_cks_bytime(struct,super_b):
 def _find_cks_byinfo(struct,super_b):
 	cks = list();
 	if len(re.findall('_and.*_relate',struct['ttag'])) > 0:
-		startid = struct['text'].find(data['and']);
-		endid = struct['text'].find(data['relate']);
-		cinfo = struct['text'][startid + 1:endid];
+		tdic = _make_tag_dic('_and','filter','_relate','filter','continue');
+		info = _find_tag_name(struct,tdic);
+		if info is None: return cks;
 		for ck in super_b.clocks.keys():
 			clock = super_b.clocks[ck];
 			if clock.has_key('info') and clock['info'].find(cinfo) >= 0:
@@ -234,8 +230,8 @@ def _find_cks_byinfo(struct,super_b):
 		cur_key = super_b.myclock['key'];
 		mycks = super_b.clocks.keys();
 		idx = mycks.index(cur_key);
-		key = mycks[idx - 1];
-		cks.append(key);
+		if idx == 0: return cks;
+		cks.append(mycks[idx - 1]);
 	elif struct['ttag'].find('_next_prep_clock') <> -1:
 		if super_b.myclock is None: return cks;
 		cur_key = super_b.myclock['key'];
@@ -286,35 +282,6 @@ def _find_cks_prep(struct,super_b):
 		if data['num'].has_key(s):
 			num = int(data['num'][s]);
 			cks.append(super_b.clocks.keys()[num - 1]);
-	return cks;
-
-def _find_cks_after(struct,super_b):
-	cks = list();
-	curtime = _get_cur_time();
-	week = _get_cur_week();
-	able = math.pow(2,week);
-	for ck in super_b.clocks.keys():
-		clock = super_b.clocks[ck];
-		hour = int(clock['time'].split(':')[0]);
-		mins = int(clock['time'].split(':')[1]);
-		if curtime[3] < hour or (curtime[3] == hour and curtime[4] <= mins):
-			if clock['type'] == 'agenda' and int(clock['able']['able']) & int(able) > 0:
-				cks.append(ck);
-	return cks;
-
-def _find_cks_tagtime(tag,super_b):
-	cks = list();
-	time = data[tag]['time'];
-	tarray = time.split(':');
-	week = _get_cur_week();
-	able = math.pow(2,week);
-	for ck in super_b.clocks.keys():
-		clock = super_b.clocks[ck];
-		hour = int(clock['time'].split(':')[0]);
-		mins = int(clock['time'].split(':')[1]);
-		if int(tarray[0]) < hour or (int(tarray[0]) == hour and int(tarray[1]) <= mins):
-			if clock['type'] == 'agenda' and int(clock['able']['able']) & int(able) > 0:
-				cks.append(ck);
 	return cks;
 
 def _find_cks_time_to_time(struct,super_b):
@@ -370,6 +337,7 @@ def _find_cks_time_to_time(struct,super_b):
 			clock = super_b.clocks[ck];
 			hour = int(clock['time'].split(':')[0]);
 			mins = int(clock['time'].split(':')[1]);
+			#print hour,mins,start,end
 			if diff == 0:
 				if hour < start[3] and int(clock['able']['able']) & int(math.pow(2,idx)) > 0:
 					continue;
@@ -390,15 +358,56 @@ def _find_cks_time_to_time(struct,super_b):
 			cks.append(ck);
 	return cks;
 
-def _get_cks_num(struct):
+def _find_cks_after_time(struct,super_b):
+	cks = list();
+	time = list(_get_cur_time());
+	cur_week = _get_cur_week();
+	able = math.pow(2,cur_week);
+	if struct['ttag'].find('_time') <> -1:
+		itime = struct['intervals'][0];
+		if itime['scope'] <> 'day': return cks;
+		start = itime['start'];
+		end = itime['end'];
+		if start[0] == 'null':
+			week = _get_week(end[0],end[1],end[2]);
+			able = math.pow(2,week);
+		elif end[0] == 'null':
+			week = _get_week(start[0],start[1],start[2]);
+			able = math.pow(2,week);
+		else:
+			week = _get_week(start[0],start[1],start[2]);
+			able = math.pow(2,week);
+			eweek = _get_week(end[0],end[1],end[2]);
+			if eweek - week > 1 or eweek - week < -1:
+				able = able + math.pow(2,week + 1);
+	else:
+		for key in data['common'].keys():
+			if struct['ttag'].find(key) <> -1:
+				if not data['common'][key].has_key('time'): return cks;
+				tstr = data['common'][key]['time'];
+				time[3] = int(tstr.split(':')[0]);
+				time[4] = int(tstr.split(':')[1]);
+				break;
+	for ck in super_b.clocks.keys():
+		clock = super_b.clocks[ck];
+		hour = int(clock['time'].split(':')[0]);
+		mins = int(clock['time'].split(':')[1]);
+		if time[3] < hour or (time[3] == hour and time[4] <= mins):
+			if clock['type'] == 'agenda' and int(clock['able']['able']) & int(able) > 0:
+				cks.append(ck);
+	return cks;
+
+def _find_cks_by_num(struct,super_b):
+	cks = list();
 	inum = 0;
-	global data;
 	nums = data['num'].keys();
 	for num in nums:
 		if struct['text'].find(num) <> -1:
 			inum = data['num'][num];
 			break;
-	return inum;
+	keys = super_b.clocks.keys();
+	cks.append(keys[inum - 1]);
+	return cks;
 
 def _get_cur_week():
 	times = time.localtime();
@@ -442,4 +451,14 @@ def _degbu_info(struct):
 			cks.append(ck + '|' + clock['time']);
 		struct['cks'] = cks;
 	if struct.has_key('intervals'): del struct['intervals'];
+
+def _make_tag_dic(start,stype,end,etype,ctype):
+	tdic = dict();
+	tdic['start'] = dict();
+	tdic['start']['tag'] = start;
+	tdic['start']['type'] = stype;
+	tdic['end']['tag'] = end;
+	tdic['end']['type'] = etype;
+	tdic['ftag'] = ctype;
+	return tdic;
 

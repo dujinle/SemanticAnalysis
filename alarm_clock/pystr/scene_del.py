@@ -62,9 +62,7 @@ class SceneDel(SceneBase):
 	def _get_match_cks(self,struct,super_b):
 		cks = list();
 		ttag = struct['ttag'];
-		if struct.has_key('ck_name'):
-			cks.append(struct['ck_name']);
-		elif len(re.findall('((_del)|(_cancle))_pastdue_clock',ttag)) > 0:
+		if len(re.findall('((_del)|(_cancle))_pastdue_clock',ttag)) > 0:
 			cks = SceneParam._find_cks_pastdue(super_b);
 		elif len(re.findall('((_cancle)|(_del))_all_clock',ttag)) > 0:
 			cks = super_b.clocks.keys();
@@ -94,6 +92,8 @@ class SceneDel(SceneBase):
 			cks.append(super_b.myclock['key']);
 		elif len(re.findall('_nouse((_no)|(_del)|(_cancle))',ttag)) > 0:
 			cks = SceneParam._find_cks_nouse(super_b);
+		elif struct.has_key('ck_name'):
+			cks.append(struct['ck_name']);
 		return cks
 
 	def _get_cks_by_tag(self,struct,super_b,tag):
