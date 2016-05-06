@@ -34,7 +34,7 @@
 	},
 #添加起床闹钟场景入口
 	"ck_getup_add":{
-		"reg":"_time_wake
+		"reg":"_time.*_wake
 			|(_time)*_call_me_wake
 			|_set(_prep)*_wake_clock
 			|_new(_prep)*_wake_clock",
