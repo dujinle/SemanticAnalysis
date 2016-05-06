@@ -16,20 +16,27 @@ RUN echo Asia/Shanghai > /etc/timezone && dpkg-reconfigure --frontend noninterac
 ADD https://github.com/dujinle/WeEnv/blob/master/sources.list /etc/apt/sources.list
 ADD https://github.com/dujinle/WeEnv/blob/master/local /var/lib/locales/supported.d/local
 
+EXPOSE 8082
+
 RUN locale-gen --purge
-RUN export LANG='zh_CN.UTF-8'
+ENV LANG zh_CN.UTF-8
+ENV LC_ALL zh_CN.UTF-8
 
-RUN mkdir /root/commons
-COPY commons /root/commons
 
-RUN mkdir /root/mainpy
-COPY mainpy /root/mainpy
+RUN mkdir /root/SemanticAnalysis
+RUN mkdir /root/SemanticAnalysis/commons
+COPY commons /root/SemanticAnalysis/commons
 
-RUN mkdir /root/webroot
-COPY webroot /root/webroot
+RUN mkdir /root/SemanticAnalysis/mainpy
+COPY mainpy /root/SemanticAnalysis/mainpy
 
-RUN mkdir /root/data
-COPY data /root/data
+RUN mkdir /root/SemanticAnalysis/webroot
+COPY webroot /root/SemanticAnalysis/webroot
 
-COPY semantic /root/semantic
+RUN mkdir /root/SemanticAnalysis/data
+COPY data /root/SemanticAnalysis/data
 
+COPY semantic /root/SemanticAnalysis/semantic
+RUN chmod +x /root/SemanticAnalysis/semantic
+
+CMD /root/SemanticAnalysis/semantic start
