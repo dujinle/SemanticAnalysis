@@ -20,7 +20,7 @@ class SceneSBell(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
-			logging.info('go into set alarm bell');
+			logging.info('go into set alarm bell......');
 			if super_b.myclock is None:
 				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
 				struct['code'] = 'exit';
@@ -31,7 +31,7 @@ class SceneSBell(SceneBase):
 				self._encode_bell(struct,super_b);
 				struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _encode_bell(self,struct,super_b):
 		myclock = super_b.myclock;

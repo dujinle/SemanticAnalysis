@@ -41,7 +41,7 @@ class SceneAdd(SceneBase):
 			self._set_able(struct,super_b);
 			struct['step'] = 'trans';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _set_time(self,struct,super_b):
 		myclock = super_b.myclock;

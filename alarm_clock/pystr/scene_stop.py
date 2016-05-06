@@ -34,7 +34,7 @@ class SceneStop(SceneBase):
 				self._set_clock_stop(struct,super_b);
 				struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _set_clock_stop(self,struct,super_b):
 		myclock = super_b.myclock;

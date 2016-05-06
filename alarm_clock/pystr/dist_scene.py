@@ -30,7 +30,8 @@ class DistScene(SceneBase):
 			if not name is None and len(name) > 0:
 				struct['ck_name'] = name;
 			self._find_scene(tag,struct);
-		except MyException as e: raise e;
+		except Exception as e:
+			raise MyException(sys.exc_info());
 
 	def _find_scene(self,tag,struct):
 		for key in self.data.keys():

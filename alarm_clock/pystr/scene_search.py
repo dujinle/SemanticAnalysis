@@ -29,11 +29,13 @@ class SceneSearch(SceneBase):
 				self._post_clocks(cks,struct,super_b);
 				struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _find_cks(self,struct,super_b):
 		cks = list();
-		if struct['ttag'].find('_see_has_some_clock') <> -1:
+		if struct.has_key('ck_name'):
+			cks.append(struct['ck_name']);
+		elif struct['ttag'].find('_see_has_some_clock') <> -1:
 			cks = super_b.clocks.keys();
 			return cks;
 		elif len(re.findall('_time_to_time_has_some.*_thing',struct['ttag'])) > 0:
@@ -80,14 +82,15 @@ class SceneSearch(SceneBase):
 
 	def _post_clocks(self,cks,struct,super_b):
 		struct['result']['clocks'] = list();
-		first_ck = None;
-		for ck in cks:
-			clock = super_b.clocks[ck];
-			if first_ck is None: first_ck = clock;
-			struct['result']['clocks'].append(clock);
 		if len(cks) > 0:
+			for ck in cks:
+				if super_b.clocks.has_key(ck):
+					clock = super_b.clocks[ck];
+					struct['result']['clocks'].append(clock);
+				else:
+					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+					return None;
 			msg_id = SceneParam._get_random_id(len(self.data['msg']['ck_num']));
 			struct['result']['msg'] = (self.data['msg']['ck_num'][msg_id] %len(cks));
 		else:
-			msg_id = SceneParam._get_random_id(len(self.data['msg']['ck_unknow']));
-			struct['result']['msg'] = self.data['msg']['ck_unknow'][msg_id]
+			SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);

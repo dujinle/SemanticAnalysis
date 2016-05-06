@@ -40,7 +40,7 @@ class SceneMadd(SceneBase):
 			del struct['ck_num'];
 			struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _set_time(self,struct,super_b):
 		myclock = super_b.myclock;

@@ -63,7 +63,7 @@ class SceneAgenda(SceneBase):
 				struct['result']['msg'] = (self.data['msg']['set_succ'][msg_id] %(''));
 			struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _set_clock(self,struct,super_b):
 		myclock = super_b.myclock;
@@ -98,7 +98,7 @@ class SceneAgenda(SceneBase):
 					info = SceneParam._find_tag_name(struct,temp);
 					if not info is None: myclock['info'] = info;
 		except Exception as e:
-			raise MyException(format(e));
+			raise e;
 
 	def _get_match_info(self,ttag):
 		pidx = len(ttag);

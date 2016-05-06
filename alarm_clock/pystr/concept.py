@@ -40,7 +40,8 @@ class Concept(SceneBase):
 			if struct.has_key('rep'): del struct['rep'];
 			struct['text'] = struct['text'].replace('#','');
 
-		except MyException as e: raise e;
+		except Exception as e:
+			raise MyException(sys.exc_info());
 
 	def _match_item(self,strs,clocks,mtype):
 		mdata = self.data[mtype];

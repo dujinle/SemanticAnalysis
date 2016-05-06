@@ -31,7 +31,7 @@ class SceneDel(SceneBase):
 					self._del_cks(cks,super_b,struct);
 			struct['step'] = 'end';
 		except Exception as e:
-			raise e;
+			raise MyException(sys.exc_info());
 
 	def _del_cks(self,cks,super_b,struct):
 		info = '';

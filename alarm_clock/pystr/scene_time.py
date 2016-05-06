@@ -28,7 +28,7 @@ class SceneTime(SceneBase):
 				self._change_cks(struct,super_b);
 				struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _change_cks(self,struct,super_b):
 		if struct['ttag'].find('_ahead_time') <> -1:

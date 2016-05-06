@@ -145,6 +145,7 @@ def _find_tag_name(struct,tdic):
 		start = 0;
 		end = len(str_list);
 		while True:
+			if first_tag >= len(struct['clocks']): break;
 			ck = struct['clocks'][first_tag];
 			if isinstance(ck,dict):
 				first_tag = first_tag + 1;
@@ -152,12 +153,15 @@ def _find_tag_name(struct,tdic):
 			else:
 				break;
 		while True:
+			if last_tag < 0: break;
 			ck = struct['clocks'][last_tag];
 			if isinstance(ck,dict):
 				last_tag = last_tag - 1;
 				end = end - 1;
 			else:
 				break;
+		if end <= 0: return None;
+		if start >= len(str_list): return None;
 		name = ''.join(str_list[start:end]);
 	else:
 		name = ''.join(str_list);

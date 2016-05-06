@@ -43,7 +43,7 @@ class SceneBell(SceneBase):
 				self._make_sure_bell(struct,super_b);
 				struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _set_bell_type(self,struct,super_b):
 		myclock = super_b.myclock;

@@ -69,25 +69,28 @@ class SEngin():
 		self.scene_sbell = SceneSBell();
 
 	def init(self,fdir):
-		self.scene_con.load_data(fdir + '/concept.txt');
-		self.prev_scene.load_data(fdir + '/prev_scene.txt');
-		self.dist_scene.load_data(fdir + '/dist_scene.txt');
+		try:
+			self.scene_con.load_data(fdir + '/concept.txt');
+			self.prev_scene.load_data(fdir + '/prev_scene.txt');
+			self.dist_scene.load_data(fdir + '/dist_scene.txt');
 
-		self.scene_add.load_data(fdir + '/scene_add.txt');
-		self.scene_getup.load_data(fdir + '/scene_getup.txt');
-		self.scene_agenda.load_data(fdir + '/scene_agenda.txt');
-		self.scene_search.load_data(fdir + '/scene_search.txt');
-		self.scene_delay.load_data(fdir + '/scene_delay.txt');
-		self.scene_stop.load_data(fdir + '/scene_stop.txt');
-		self.scene_open.load_data(fdir + '/scene_open.txt');
-		self.scene_close.load_data(fdir + '/scene_close.txt');
-		self.scene_prompt.load_data(fdir + '/scene_prompt.txt');
-		self.scene_able.load_data(fdir + '/scene_able.txt');
-		self.scene_del.load_data(fdir + '/scene_del.txt');
-		self.scene_madd.load_data(fdir + '/scene_madd.txt');
-		self.scene_time.load_data(fdir + '/scene_time.txt');
-		self.scene_bell.load_data(fdir + '/scene_bell.txt');
-		self.scene_sbell.load_data(fdir + '/scene_sbell.txt');
+			self.scene_add.load_data(fdir + '/scene_add.txt');
+			self.scene_getup.load_data(fdir + '/scene_getup.txt');
+			self.scene_agenda.load_data(fdir + '/scene_agenda.txt');
+			self.scene_search.load_data(fdir + '/scene_search.txt');
+			self.scene_delay.load_data(fdir + '/scene_delay.txt');
+			self.scene_stop.load_data(fdir + '/scene_stop.txt');
+			self.scene_open.load_data(fdir + '/scene_open.txt');
+			self.scene_close.load_data(fdir + '/scene_close.txt');
+			self.scene_prompt.load_data(fdir + '/scene_prompt.txt');
+			self.scene_able.load_data(fdir + '/scene_able.txt');
+			self.scene_del.load_data(fdir + '/scene_del.txt');
+			self.scene_madd.load_data(fdir + '/scene_madd.txt');
+			self.scene_time.load_data(fdir + '/scene_time.txt');
+			self.scene_bell.load_data(fdir + '/scene_bell.txt');
+			self.scene_sbell.load_data(fdir + '/scene_sbell.txt');
+		except Exception as e:
+			raise e;
 
 
 	def _init(self,struct):

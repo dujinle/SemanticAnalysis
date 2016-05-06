@@ -22,7 +22,7 @@ class SceneBase(RequestHandler):
 			if dfile is None: return;
 			self.data = common.read_json(dfile);
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def deal_data(self,fname,action,data):
 		_class = str(self.__class__);
@@ -36,7 +36,7 @@ class SceneBase(RequestHandler):
 
 	def check_input(self,struct):
 		if not struct.has_key('inlist'):
-			raise MyException('the struct has not contain the key [inlist]');
+			raise Exception('the struct has not contain the key [inlist]');
 
 	def write_file(self,dfile):
 		try:
@@ -47,7 +47,7 @@ class SceneBase(RequestHandler):
 			fd.write(data);
 			fd.close();
 		except Exception as e:
-			raise MyException(format(e));
+			raise e;
 
 	def _add(self,data): pass;
 	def _del(self,data): pass;

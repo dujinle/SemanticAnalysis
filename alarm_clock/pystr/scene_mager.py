@@ -53,9 +53,8 @@ class SceneMager:
 			self.engine.encode(self.struct);
 			return self.struct;
 		except Exception as e:
-			logging.error(sys.exc_info()[0]);
-			logging.error(sys.exc_info()[1]);
-			print sys.exc_info()[0],sys.exc_info()[1];
+			logging.error(str(e));
+			print e;
 
 '''
 try:

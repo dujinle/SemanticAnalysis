@@ -33,7 +33,7 @@ class SceneClose(Base):
 					struct['result']['msg'] = (self.data['msg']['close_succ'][msg_id]);
 			struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _which_ck_close(self,struct,super_b):
 		cks = list();

@@ -20,6 +20,7 @@ class SceneGetup(SceneBase):
 	def encode(self,struct,super_b):
 		try:
 			print 'go into scene get up......';
+			logging.info('go into scene get up......');
 			if not struct.has_key('step'): struct['step'] = 'start';
 			if struct['step'] == 'start' and SceneParam._if_exist(struct,super_b):
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['ck_exist']));
@@ -50,7 +51,7 @@ class SceneGetup(SceneBase):
 			super_b.clocks[super_b.myclock['key']] = super_b.myclock;
 			struct['step'] = 'end';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _analysis_mytag(self,struct,super_b):
 		ck = super_b.myclock;

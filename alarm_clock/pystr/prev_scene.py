@@ -19,7 +19,8 @@ class PrevScene(SceneBase):
 		try:
 			self._filter_time_str(struct);
 			self._replace_time_tag(struct);
-		except MyException as e: raise e;
+		except Exception as e:
+			raise MyException(sys.exc_info());
 
 	def _replace_time_tag(self,struct):
 		if struct.has_key('intervals') and len(struct['intervals']) > 0:
