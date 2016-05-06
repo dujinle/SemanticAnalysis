@@ -220,7 +220,7 @@ def _find_cks_byinfo(struct,super_b):
 		if info is None: return cks;
 		for ck in super_b.clocks.keys():
 			clock = super_b.clocks[ck];
-			if clock.has_key('info') and clock['info'].find(cinfo) >= 0:
+			if clock.has_key('info') and clock['info'].find(info) >= 0:
 				cks.append(ck);
 	elif struct.has_key('ck_name'):
 		cks.append(struct['ck_name']);
@@ -276,7 +276,7 @@ def _find_cks_nouse(super_b):
 			cks.append(ck);
 	return cks;
 
-def _find_cks_prep(struct,super_b):
+def _find_cks_by_num(struct,super_b):
 	cks = list();
 	for s in struct['inlist']:
 		if data['num'].has_key(s):
@@ -397,6 +397,7 @@ def _find_cks_after_time(struct,super_b):
 				cks.append(ck);
 	return cks;
 
+'''
 def _find_cks_by_num(struct,super_b):
 	cks = list();
 	inum = 0;
@@ -408,7 +409,7 @@ def _find_cks_by_num(struct,super_b):
 	keys = super_b.clocks.keys();
 	cks.append(keys[inum - 1]);
 	return cks;
-
+'''
 def _get_cur_week():
 	times = time.localtime();
 	return times[6];
@@ -457,6 +458,7 @@ def _make_tag_dic(start,stype,end,etype,ctype):
 	tdic['start'] = dict();
 	tdic['start']['tag'] = start;
 	tdic['start']['type'] = stype;
+	tdic['end'] = dict();
 	tdic['end']['tag'] = end;
 	tdic['end']['type'] = etype;
 	tdic['ftag'] = ctype;

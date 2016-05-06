@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import common
-import os
+import os,sys
 import json
 from myexception import MyException
 from handler import RequestHandler

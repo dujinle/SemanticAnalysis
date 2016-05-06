@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import traceback
+import traceback,sys
 class MyException(Exception):
 
 	def __init__(self,info):

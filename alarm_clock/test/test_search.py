@@ -11,11 +11,13 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 sys.path.append(os.path.join(base_path,'../../modules/timer'));
 sys.path.append(os.path.join(base_path,'../../modules/wordsegs'));
 sys.path.append(os.path.join(base_path,'../../modules/mytag'));
+sys.path.append(os.path.join(base_path,'../../modules/prev_deal'));
 sys.path.append(os.path.join(base_path,'../pystr'));
 #============================================
 import common,config
 from time_mager import TimeMager
 from tag_mager import MytagMager
+from pdeal_mager import PDealMager
 from wordseg import WordSeg
 from scene_engin import SEngin
 
@@ -35,9 +37,11 @@ def analysis_result(struct,ans):
 wd = WordSeg();
 timer = TimeMager(wd);
 tag = MytagMager(wd);
+pdeal = PDealMager(wd);
 se = SEngin(wd);
 
 se.init('../tdata/');
+pdeal.init('PDeal');
 timer.init('Timer');
 tag.init('Mytag');
 

@@ -92,7 +92,6 @@ class SEngin():
 		except Exception as e:
 			raise e;
 
-
 	def _init(self,struct):
 		if struct.has_key('clocks'): del struct['clocks'];
 		if struct.has_key('ck_name'): del struct['ck_name'];

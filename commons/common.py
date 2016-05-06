@@ -28,16 +28,16 @@ def read_json(dfile):
 			continue;
 		ondata.append(line);
 	all_test = ''.join(ondata);
+	#print dfile,all_test
 	try:
 		ojson = json.loads(all_test,object_pairs_hook=OrderedDict);
 		return ojson;
 	except Exception as e:
-		raise MyException('load json file failed[' + dfile + ']');
+		raise e;
 
 def readfile(dfile):
 	fp = open(dfile,'r');
-	if fp is None:
-		raise MyException('open file ' + dfile + ' failed!');
+	if fp is None: raise Exception('fp is null');
 	res = dict();
 	while True:
 		rline = fp.readline();

@@ -24,7 +24,7 @@ class SceneDel(SceneBase):
 			if not struct.has_key('step'): struct['step'] = 'start';
 			#启动时响应回复
 			if struct['step'] == 'start':
-				cks = self._get_match_cks(struct,super_b);
+				cks = self._find_cks(struct,super_b);
 				if cks is None or len(cks) == 0:
 					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
 				else:
@@ -59,6 +59,39 @@ class SceneDel(SceneBase):
 					return None;
 		SceneParam._set_msg(struct,self.data['msg']['del_cks']);
 
+	def _find_cks(self,struct,super_b):
+		match = self._get_match_info(struct['ttag']);
+		#common.print_dic(match);
+		if match is None: return None;
+		if match['func'] == 't2t':
+			print 'go into _find_cks_time_to_time......'
+			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+			return cks;
+		if match['func'] == 'time':
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			return cks;
+		if match['func'] == 'info':
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+			return cks;
+		if match['func'] == 'pastdue':
+			cks = SceneParam._find_cks_pastdue(super_b);
+			return cks;
+		if match['func'] == 'all':
+			print 'go into _find_all_cks......'
+			cks = super_b.clocks.keys();
+			return cks;
+		if match['func'] == 'num':
+			cks = SceneParam._find_cks_by_num(struct,super_b);
+			return cks;
+		if match['func'] == 'just':
+			cks = list();
+			if not super_b.myclock is None: cks.append(super_b.myclock['key']);
+			return cks;
+		if match['func'] == 'nouse':
+			cks = SceneParam._find_cks_nouse(super_b);
+			return cks;
+		return None;
+	'''
 	def _get_match_cks(self,struct,super_b):
 		cks = list();
 		ttag = struct['ttag'];
@@ -113,4 +146,11 @@ class SceneDel(SceneBase):
 			cks = list();
 			cks.append(super_b.myclock['key']);
 		return cks;
+	'''
 
+	def _get_match_info(self,ttag):
+		for temp in self.data['template']:
+			comp = re.compile(temp['reg']);
+			match = comp.search(ttag);
+			if not match is None: return temp;
+		return None;
