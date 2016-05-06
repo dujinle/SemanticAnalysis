@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import pgsql,collections
+import collections
 import common
 from common import logging
 from myexception import MyException

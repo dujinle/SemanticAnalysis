@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import os,sys,json
-import psycopg2
+#import psycopg2
 
 #============================================
 ''' import MyException module '''
@@ -10,6 +10,7 @@ sys.path.append(base_path);
 
 #============================================
 from logger import *
+'''
 p_conn = None;
 def pg_conncet(dbname='mytag',user='postgres',password='123456',host='172.17.42.1',port='5432'):
 	global p_conn;
@@ -31,3 +32,4 @@ def pg_close_conn(conn):
 	conn = None;
 
 def pg_rollback(conn): conn.rollback();
+'''
