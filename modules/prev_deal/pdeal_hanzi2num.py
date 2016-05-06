@@ -21,6 +21,6 @@ class PDealHan2num(PDealBase):
 				match = comp.findall(struct['text']);
 				for im in match:
 					numstr = Han2Num.cn2dig(im);
-					struct['text'] = struct['text'].replace(im,numstr,1);
+					struct['text'] = struct['text'].replace(im,str(numstr),1);
 		except Exception :
 			raise MyException(sys.exc_info());
