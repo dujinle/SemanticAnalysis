@@ -1,3 +1,4 @@
+#2016/5/7 星期6 测试日期
 [
 	{
 		"key":"喝下午茶",
@@ -6,7 +7,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"2"
+			"able":"32"
 		}
 	},
 	{
@@ -16,7 +17,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"2"
+			"able":"32"
 		}
 	},
 	{
@@ -35,7 +36,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"2"
+			"able":"32"
 		}
 	},
 	{
@@ -44,7 +45,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"1"
+			"able":"16"
 		}
 	},
 	{
@@ -53,7 +54,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"64"
 		},
 		"status":{
 			"type":"close"
@@ -65,7 +66,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"workend",
-			"able":"32"
+			"able":"64"
 		}
 	},
 	{
@@ -84,7 +85,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"64"
 		}
 	},
 	{
