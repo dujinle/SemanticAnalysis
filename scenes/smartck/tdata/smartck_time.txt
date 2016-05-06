@@ -38,31 +38,5 @@
 			"reg":"AFTER",
 			"func":"after"
 		}
-	],
-#-----------------------------------------------------
-#获取闹钟的标签信息
-#-----------------------------------------------------
-	"temptag":[
-		{
-			"reg":"_moveto_time",
-			"start":{
-				"tag":"",
-				"type":""
-			},
-			"end":{
-				"tag":"_moveto",
-				"type":"filter"
-			},
-			"type":"calc",
-			"level":"high",
-			"ftag":"continue"
-		},
-		{
-			"reg":"_cout.*_clock
-				|_cout.*_remind
-				|_cout.*_agenda",
-			"type":"value",
-			"value":"出门"
-		}
 	]
 }

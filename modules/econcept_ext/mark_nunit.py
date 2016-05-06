@@ -84,6 +84,7 @@ class MarkNunit():
 		if not struct.has_key('SomeUnits'): return -1;
 		if not struct.has_key(self.key): struct[self.key] = list();
 		pid = 0;
+		test = struct['text'];
 		while True:
 			if pid >= len(struct['SomeNums']): break;
 			pit = struct['SomeNums'][pid];
@@ -94,18 +95,19 @@ class MarkNunit():
 				vit = struct['SomeUnits'][tid];
 				pstr = pit['str'] + vit['str'];
 				comp = re.compile(pstr);
-				match = comp.search(struct['text']);
+				match = comp.search(test);
 				if not match is None:
 					pstr = match.group(0);
 					tdic = dict();
 					tdic['str'] = pstr;
 					tdic['type'] = 'NUNIT';
-					tdic['stype'] = 'NUM';
+					tdic['stype'] = 'NUNIT';
 					tdic['stc'] = [pit,vit];
 					struct[self.key].append(tdic);
 					del struct['SomeUnits'][tid];
 					del struct['SomeNums'][pid];
 					tid = tid - 1;
 					pid = pid - 1;
+					test = test.replace(pstr,'',1);
 				tid = tid + 1;
 			pid = pid + 1;

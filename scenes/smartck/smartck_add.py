@@ -13,7 +13,7 @@ class SmartckAdd(SceneBase):
 
 	def encode(self,struct,super_b):
 		if not struct.has_key('ck_scene'): return None;
-		if struct['ck_scene'] <> 'scene_add': return None;
+		if struct['ck_scene'] <> 'ck_add': return None;
 		try:
 			print 'go into scene add action......';
 			if not struct.has_key('step'): struct['step'] = 'start';
@@ -24,10 +24,10 @@ class SmartckAdd(SceneBase):
 			if struct['step'] == 'start':
 				super_b.myclock = dict();
 				#开始设置必须的参数
-				self.set_ck_param(struct);
+				self.set_ck_param(struct,super_b);
 				return None;
 			elif struct['step'] == 'set_time':
-				self.set_ck_param(struct);
+				self.set_ck_param(struct,super_b);
 				return None;
 			struct['step'] = 'trans';
 		except Exception as e:
@@ -37,7 +37,7 @@ class SmartckAdd(SceneBase):
 		self._set_time(struct,super_b);
 		self._set_name(struct,super_b);
 		self._set_able(struct,super_b);
-		self._check_param(super_b);
+		self._check_param(struct,super_b);
 
 	def _set_time(self,struct,super_b):
 		myclock = super_b.myclock;
@@ -74,7 +74,8 @@ class SmartckAdd(SceneBase):
 			del struct['ck_name'];
 
 	def _check_param(self,struct,super_b):
-		if not super_b.has_key('ck_time'):
+		myclock = super_b.myclock;
+		if not myclock.has_key('ck_time'):
 			SceneParam._set_msg(struct,self.data['msg']['set_time']);
 			struct['step'] = 'set_time';
 		else:

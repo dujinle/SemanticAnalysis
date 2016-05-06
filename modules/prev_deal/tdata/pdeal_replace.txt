@@ -28,12 +28,17 @@
 	"time_rep":[
 		{
 			"reg":"昨晚",
-			"func":"repalce",
+			"func":"replace",
 			"value":"昨天晚上"
 		},
 		{
+			"reg":"两点",
+			"func":"replace",
+			"value":"2点"
+		},
+		{
 			"reg":"明晚",
-			"func":"repalce",
+			"func":"replace",
 			"value":"明天晚上"
 		},
 		{

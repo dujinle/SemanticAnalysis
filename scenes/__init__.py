@@ -10,6 +10,7 @@ from cmsage.msg_mager import MsgMager
 from dtravel.travel_mager import TravelMager
 from cnavigate.nav_mager import NavMager
 from cshop.shop_mager import ShopMager
+from smartck.smartck_mager import SmartckMager
 
 __ALL__ = [
 	NewsMager,
@@ -22,5 +23,6 @@ __ALL__ = [
 	MsgMager,
 	TravelMager,
 	NavMager,
-	ShopMager
+	ShopMager,
+	SmartckMager
 ];

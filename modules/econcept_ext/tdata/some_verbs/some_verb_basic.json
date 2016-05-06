@@ -431,7 +431,7 @@
 				"订":{
 					"_prop":{
 						"type":"RV",
-						"stype":"DECIDE"						
+						"stype":"DECIDE"
 					}
 				},
 				"发":{
@@ -534,6 +534,12 @@
 					"_prop":{
 						"type":"RV",
 						"stype":"WAIT_MOMENT"
+					}
+				},
+				"帮":{
+					"_prop":{
+						"type":"RV",
+						"stype":"HELP"
 					}
 				}
 			}

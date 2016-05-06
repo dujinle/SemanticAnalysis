@@ -7,6 +7,7 @@ from myexception import MyException
 #global params
 PASS = 1;
 ENABLE = 8;
+debug = True;
 #============================================
 ''' import MyException module '''
 base_path = os.path.dirname(__file__);

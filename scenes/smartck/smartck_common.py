@@ -1,23 +1,14 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,common
+import os,sys,common
 import re,time,random
 import math,datetime
 from common import logging
 from myexception import MyException
 
 base_path = os.path.dirname(__file__);
-dfile = os.path.join(base_path,'../tdata/scene_param.txt')
+dfile = os.path.join(base_path,'./tdata/smartck_common.txt')
 data = common.read_json(dfile);
-
-def _if_exist(struct,super_b):
-	if struct.has_key('ck_name'):
-		ck_name = struct['ck_name'];
-		if super_b.clocks.has_key(ck_name): return True;
-	if struct.has_key('ck_time'):
-		ck_time = struct['ck_time']['time'];
-		if super_b.clocks.has_key(ck_time): return True;
-	return False;
 
 def _fetch_time(struct):
 	for istr in struct['stseg']:
@@ -62,46 +53,31 @@ def _calc_able(struct):
 		del struct['ck_date'];
 		struct['ck_able'] = tdic;
 
-def _save_tag(super_b):
-	try:
-		mydic = dict();
-		mydic['value'] = super_b.myclock['time'];
-		mydic['type'] = 'time';
-		mydic['name'] = super_b.myclock['name'];
-		sql = 'insert into mytags (tag,creat_time) values (' \
-			+ '\'' + json.dumps(mydic) + '\',' \
-			+ '\'now\'' + ')';
-		cur = pgsql.pg_cursor(super_b.p_conn);
-		pgsql.pg_query(cur,sql,None);
-		pgsql.pg_commit(super_b.p_conn);
-		pgsql.pg_close_cursor(cur);
-	except Exception as e:
-		raise e;
+def _find_ck_name(struct):
+	reg_str = '';
+	for item in data['template']:
+		match = re.findall(item['reg'],struct['ttag']);
+		for itr in match:
+			if itr == '': continue;
+			reg_str = itr;
+			break;
+	ck_name = '';
+	while True:
+		if len(reg_str) == 0: break;
 
-def _find_ck_name(struct,stag):
-	ttag = struct['ttag'];
-	if ttag.find(stag) <> -1:
-		idx = len(struct['clocks']) - 1;
-		tag = False;
-		name = '';
-		while True:
-			if idx < 0: break;
-			cl = struct['clocks'][idx];
-			if tag == True:
-				if isinstance(cl,dict): break;
-				if isinstance(cl,dict) == False and cl == u'的':
-					pass;
-				elif isinstance(cl,dict) == False:
-					name = cl + name;
-			if isinstance(cl,dict) and cl['type'] == stag:
-				tag = True;
-				if idx == 0: break;
-				cn = struct['clocks'][idx - 1];
-				if isinstance(cn,dict): break;
-				if cn <> u'的': break;
-			idx = idx - 1;
-		return name;
-	return None;
+		for istr in struct['stseg']:
+			if not struct['stc'].has_key(istr):
+				if reg_str.find(istr) == 0:
+					ck_name = ck_name + istr;
+					reg_str = reg_str[len(istr) - 1:];
+			else:
+				item = struct['stc'][istr];
+				comp = re.compile(item['type']);
+				mm = comp.match(reg_str);
+				if mm is None: continue;
+				ck_name = ck_name + istr;
+				reg_str = reg_str[len(istr) - 1:];
+	return ck_name;
 
 #get the name info after the label
 def _find_tag_name(struct,tdic):

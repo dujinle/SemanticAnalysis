@@ -32,6 +32,7 @@ class PDealReplace(PDealBase):
 				if item == '': continue;
 				if reg['func'] == 'replace':
 					struct['text'] = struct['text'].replace(item,reg['value'],1);
+					print struct['text'];
 				elif reg['func'] == 'add':
 					mstr = item + reg['value'];
 					if struct['text'].find(mstr) == -1:
@@ -40,4 +41,3 @@ class PDealReplace(PDealBase):
 					mstr = item.replace(reg['value'],'');
 					mstr = mstr + u'30分';
 					struct['text'] = struct['text'].replace(item,mstr,1);
-

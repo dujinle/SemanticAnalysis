@@ -7,7 +7,8 @@ from common import logging
 import com_funcs as SceneParam
 import smartck_common as SmartckCom
 from scene_base import SceneBase
-class SceneSearch(SceneBase):
+
+class SmartckSearch(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:

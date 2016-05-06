@@ -9,7 +9,6 @@ import collections
 ''' import tagpy wordsegs '''
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'./commons'));
-
 #==============================================================
 
 import common,config
@@ -39,6 +38,7 @@ class Mager:
 		self.modules['Travel'] = TravelMager();
 		self.modules['Naviga'] = NavMager();
 		self.modules['Shop'] = ShopMager();
+		self.modules['Alarm'] = SmartckMager();
 
 
 	def set_step(self,step): self.struct['step'] = step;
@@ -74,6 +74,7 @@ class Mager:
 		self.timer.encode(self.struct);
 		self.mytag.encode(self.struct);
 		self.concpt.encode(self.struct);
+
 		if not mdl is None:
 			self.struct['scene'] = mdl;
 		elif not self.struct.has_key('scene'):
@@ -94,21 +95,20 @@ class Mager:
 #		'''
 		return self.struct;
 
-#'''
-try:
-	mg = Mager();
-	mg.init();
-	while True:
-		istr = raw_input("raw_input: ");
-		if istr == 'q' or istr == 'bye': break;
-		print istr;
-		sarr = istr.decode('utf8').split(' ');
-		if len(sarr) == 2:
-			common.print_dic(mg.encode(sarr[0],sarr[1]));
-		elif len(sarr) == 3:
-			common.print_dic(mg.encode(sarr[0],sarr[1],sarr[2]));
-		else:
-			common.print_dic(mg.encode(sarr[0]));
-except Exception as e:
-	raise e;
-#'''
+if common.debug == True:
+	try:
+		mg = Mager();
+		mg.init();
+		while True:
+			istr = raw_input("raw_input: ");
+			if istr == 'q' or istr == 'bye': break;
+			print istr;
+			sarr = istr.decode('utf8').split(' ');
+			if len(sarr) == 2:
+				common.print_dic(mg.encode(sarr[0],sarr[1]));
+			elif len(sarr) == 3:
+				common.print_dic(mg.encode(sarr[0],sarr[1],sarr[2]));
+			else:
+				common.print_dic(mg.encode(sarr[0]));
+	except Exception as e:
+		raise e;

@@ -30,6 +30,8 @@ class ConTail():
 	def fetch_cept(self,stc,cepts):
 		for ib in cepts:
 			istr = ib['str'];
+			if stc.has_key(istr) and stc[istr]['type'] == 'TIME':
+				continue;
 			stc[istr] = dict(ib);
 
 	def _fetch_ckey(self,struct,ckey,ctype):
@@ -41,5 +43,7 @@ class ConTail():
 				inter['stype'] = ctype;
 				inter['type'] = ctype;
 			inter['str'] = istr;
+			if stc.has_key(istr) and stc[istr]['type'] == 'TIME':
+				continue;
 			stc[istr] = dict(inter);
 		del struct[ckey];

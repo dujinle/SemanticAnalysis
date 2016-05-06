@@ -12,6 +12,7 @@ from common import logging
 from myexception import MyException
 from scene_mager import SceneMager
 import com_funcs as SceneCommon
+import smartck_common as SmartckCom
 
 from smartck_dist import SmartckDist
 from smartck_data import SmartckData
@@ -31,7 +32,7 @@ from smartck_time import SmartckTime
 from smartck_bell import SmartckBell
 from smartck_sbell import SmartckSBell
 
-class SmartckMager(smartckMager):
+class SmartckMager(SceneMager):
 	def __init__(self):
 		self.tag_objs = list();
 		self.dfiles = [
@@ -50,6 +51,7 @@ class SmartckMager(smartckMager):
 			os.path.join(base_path,'tdata','smartck_time.txt'),
 			os.path.join(base_path,'tdata','smartck_bell.txt'),
 			os.path.join(base_path,'tdata','smartck_sbell.txt'),
+			os.path.join(base_path,'tdata','smartck_dist.txt'),
 			os.path.join(base_path,'tdata','smartck_data.txt')
 		];
 
@@ -89,6 +91,7 @@ class SmartckMager(smartckMager):
 
 	def encode(self,struct):
 		try:
+			print 'go into alarm scene......';
 			self._init(struct);
 			self.smartck_dist.dist_encode(struct);
 
@@ -100,12 +103,12 @@ class SmartckMager(smartckMager):
 			if struct.has_key('step') and struct['step'] == 'end':
 				del struct['step'];
 				del struct['ck_scene'];
-			struct['mcks'] = self.clocks;
-			smartckParam._degbu_info(struct);
+			struct['mcks'] = self.fdata.clocks;
+			SmartckCom._degbu_info(struct);
 			self._tail(struct);
 
 		except Exception as e:
 			if struct.has_key('step'): del struct['step']
 			if struct.has_key('ck_scene'): del struct['ck_scene'];
-			SceneCommon._set_msg(struct,fdata.get_err_msg());
-			raise e;
+			SceneCommon._set_msg(struct,self.fdata.get_err_msg());
+			raise MyException(sys.exc_info());

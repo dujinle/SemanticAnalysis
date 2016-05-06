@@ -21,7 +21,11 @@ class SmartckMadd(SceneBase):
 			#启动时响应回复
 			if struct['step'] == 'start':
 				ck_num = self._get_ck_num(struct);
-				if ck_num == 1 or ck_num == 0:
+				if ck_num == 1:
+					struct['ck_scene'] = 'ck_add';
+					del struct['step'];
+					return None;
+				elif ck_num == 0:
 					SceneParam._set_msg(struct,self.data['msg']['un_see']);
 					struct['step'] = 'end';
 					return None;

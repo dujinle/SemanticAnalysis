@@ -6,7 +6,7 @@ from common import logging
 from myexception import MyException
 from scene_base import SceneBase
 import com_funcs as SceneParam
-import scene_param as SmartckCom
+import smartck_common as SmartckCom
 
 class SmartckGetup(SceneBase):
 

@@ -7,7 +7,7 @@ import com_funcs as SceneParam
 from scene_base import SceneBase
 import smartck_common as SmartckCom
 
-class SceneOpen(SceneBase):
+class SmartckOpen(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
