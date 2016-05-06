@@ -13,6 +13,23 @@ EXPOSE 80
 
 RUN echo Asia/Shanghai > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
 
+ADD https://github.com/dujinle/WeEnv/blob/master/sources.list /etc/apt/sources.list
+ADD https://github.com/dujinle/WeEnv/blob/master/local /var/lib/locales/supported.d/local
+
+RUN locale-gen --purge
+RUN export LANG='zh_CN.UTF-8'
+
 RUN mkdir /root/commons
 COPY commons /root/commons
+
+RUN mkdir /root/mainpy
+COPY mainpy /root/mainpy
+
+RUN mkdir /root/webroot
+COPY webroot /root/webroot
+
+RUN mkdir /root/data
+COPY data /root/data
+
+COPY semantic /root/semantic
 
