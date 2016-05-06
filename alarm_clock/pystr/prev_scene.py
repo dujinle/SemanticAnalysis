@@ -19,7 +19,6 @@ class PrevScene(SceneBase):
 		try:
 			self._filter_time_str(struct);
 			self._replace_time_tag(struct);
-			self._replace_str(struct);
 		except MyException as e: raise e;
 
 	def _replace_time_tag(self,struct):
@@ -31,16 +30,9 @@ class PrevScene(SceneBase):
 				struct['rep'].append(tstr);
 				struct['text'] = struct['text'].replace(tstr,'time#',1);
 
-	def _replace_str(self,struct):
-		for reg in self.data['rep']:
-			regstr = reg['reg'];
-			value = reg['value'];
-			compstr = re.compile(regstr);
-			match = compstr.search(struct['text']);
-			if not match is None:
-				struct['text'] = struct['text'].replace(match.group(0),value);
-
 	def _filter_time_str(self,struct):
+		if not struct.has_key('intervals'):
+			return None;
 		for reg in self.data['filter']:
 			regstr = reg['reg'];
 			compstr = re.compile(regstr);

@@ -17,13 +17,16 @@ from time_mager import TimeMager
 from tag_mager import MytagMager
 from wordseg import WordSeg
 from scene_engin import SEngin
+from scene_replace import SceneReplace
 
 wd = WordSeg();
 timer = TimeMager(wd);
 tag = MytagMager(wd);
 se = SEngin(wd);
+srep = SceneReplace();
 
 se.init('../tdata/');
+srep.load_data('../tdata/scene_replace.txt');
 timer.init('Timer');
 tag.init('Mytag');
 
@@ -34,6 +37,7 @@ while True:
 	mstr = raw_input('Enter your input: ');
 	if mstr == 'q': break;
 	struct['text'] = mstr.decode('utf-8');
+	srep.encode(struct);
 	timer.encode(struct);
 	tag.encode(struct);
 	se.encode(struct);

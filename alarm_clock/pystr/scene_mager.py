@@ -16,10 +16,10 @@ sys.path.append(os.path.join(base_path,'../../modules/mytag'));
 
 import common,config
 from scene_engin import SEngin
+from scene_replace import SceneReplace
 from time_mager import TimeMager
 from tag_mager import MytagMager
 from wordseg import WordSeg
-
 from myexception import MyException
 
 class SceneMager:
@@ -29,6 +29,7 @@ class SceneMager:
 		self.mytag = MytagMager(self.wordseg);
 		self.engine = SEngin(self.wordseg);
 		self.struct = collections.OrderedDict();
+		self.scene_rep = SceneReplace();
 
 	def init(self,dtype):
 		try:
@@ -36,12 +37,14 @@ class SceneMager:
 			self.timer.init('Timer');
 			self.mytag.init('Mytag');
 			self.engine.init(fdir);
+			self.scene_rep.load_data(fdir + '/scene_replace.txt');
 		except MyException as e: raise e;
 
 	def encode(self,inlist):
 		self.struct['text'] = inlist;
 		self.struct['result'] = dict();
 		try:
+			self.scene_rep.encode(self.struct);
 			self.timer.encode(self.struct);
 			self.mytag.encode(self.struct);
 			self.engine.encode(self.struct);
