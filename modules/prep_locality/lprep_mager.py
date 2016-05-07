@@ -5,6 +5,7 @@ import sys,os
 import common,config
 from myexception import MyException
 from mark_lprep import MarkLPrep
+from calc_lprep import CalcLPrep
 
 class LPrepMager:
 	def __init__(self):
@@ -12,6 +13,7 @@ class LPrepMager:
 
 		# mark tag objs #
 		self.tag_objs.append(MarkLPrep());
+		self.tag_objs.append(CalcLPrep());
 
 	def init(self,dtype):
 		try:

@@ -19,7 +19,7 @@ nmager = LPrepMager();
 nmager.init('LPrep');
 
 struct = dict();
-struct['text'] = u'上面';
+struct['text'] = u'东北方';
 struct['inlist'] = wd.tokens(struct['text']);
 nmager.encode(struct);
 common.print_dic(struct);

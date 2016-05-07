@@ -37,22 +37,6 @@ dfiles = {
 		"10":os.path.join(abspath,'data','temperature','PM.txt'),
 		"11":os.path.join(abspath,'data','temperature','Num.txt')
 	},
-	'TimerV1':{
-		"1":os.path.join(abspath,'data','timer','UT.txt'),
-		"2":os.path.join(abspath,'data','timer','NT.txt'),
-		"3":os.path.join(abspath,'data','timer','WT.txt'),
-		"4":os.path.join(abspath,'data','timer','QT.txt'),
-		"5":os.path.join(abspath,'data','timer','FT.txt'),
-		"6":os.path.join(abspath,'data','timer','UTE.txt'),
-		"7":os.path.join(abspath,'data','timer','NTE.txt'),
-		"8":os.path.join(abspath,'data','timer','WTE.txt'),
-		"9":os.path.join(abspath,'data','timer','FTE.txt'),
-		"10":None,"11":None,"12":None,"13":None,
-		"14":None,"15":None,"16":None,
-		"17":os.path.join(abspath,'data','timer','TM.txt'),
-		"18":os.path.join(abspath,'data','timer','TS.txt'),
-		"19":os.path.join(abspath,'data','timer','AS.txt')
-	},
 	'Timer':{
 		"1":os.path.join(abspath,'data','timer','TReplace.txt'),
 		"2":os.path.join(abspath,'data','timer','TFront.txt'),
@@ -64,6 +48,18 @@ dfiles = {
 		"8":os.path.join(abspath,'data','timer','TSolarterm.txt'),
 		"9":os.path.join(abspath,'data','timer','TDecade.txt'),
 		"10":os.path.join(abspath,'data','timer','TMood.txt')
+	},
+	"TMood":{
+		"1":os.path.join(abspath,'modules','tmood','tdata','time_mood.txt')
+	},
+	"LPrep":{
+		"1":os.path.join(abspath,'modules','prep_locality','tdata','prep_locality.txt'),
+		"2":None
+	},
+	"Nunit":{
+		"1":os.path.join(abspath,'modules','num_unit','tdata','num.txt'),
+		"2":os.path.join(abspath,'modules','num_unit','tdata','unit.txt'),
+		"3":None
 	},
 	'Local':{
 		"1":os.path.join(abspath,'data','location','HD')
@@ -86,6 +82,6 @@ dfiles = {
 		"1":os.path.join(abspath,'data','mytag','mytag.txt')
 	},
 	"PDeal":{
-		"1":os.path.join(abspath,'data','pdeal','pdeal_replace.txt')
+		"1":os.path.join(abspath,'modules','prev_deal','tdata','pdeal_replace.txt')
 	}
 };

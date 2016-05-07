@@ -17,11 +17,11 @@ class MarkLPrep():
 	def encode(self,struct):
 		try:
 			if not struct.has_key('lprep'): struct['lprep'] = list();
-			self._mark_tmood_tag(struct);
+			self._mark_lprep_tag(struct);
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
-	def _mark_tmood_tag(self,struct):
+	def _mark_lprep_tag(self,struct):
 		for tag in struct['inlist']:
 			tdic = self._mark_words(tag);
 			if not tdic is None:
