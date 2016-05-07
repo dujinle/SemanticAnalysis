@@ -40,6 +40,12 @@
 								"stype":"BOARD"
 							}
 						}
+					},
+					"项目会":{
+						"_prop":{
+							"type":"N",
+							"stype":"MEETING"
+						}
 					}
 				}
 			}
@@ -128,6 +134,18 @@
 								"stype":"FLIGHT"
 							}
 						}
+					}
+				}
+			},
+			"节假日":{
+				"_prop":{
+					"type":"N",
+					"stype":"HOLIDAYS"
+				},
+				"工作日":{
+					"_prop":{
+						"type":"N",
+						"stype":"WORKDAY"
 					}
 				}
 			},

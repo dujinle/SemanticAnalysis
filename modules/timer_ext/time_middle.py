@@ -16,9 +16,9 @@ class TimeMiddle():
 
 	def load_data(self):
 		try:
-			if self.data is None: self.data = list();
+			if self.data is None: self.data = dict();
 			for f in self.dfiles:
-				self.data.extend(common.read_json(f));
+				self.data.update(common.read_json(f));
 		except Exception :
 			raise MyException(sys.exc_info());
 
@@ -35,7 +35,7 @@ class TimeMiddle():
 			raise MyException(sys.exc_info());
 
 	def match_item(self,struct,key):
-		for item in self.data:
+		for item in self.data['models']:
 			comp = re.compile(item['reg']);
 			match = comp.search(struct['text']);
 			if match is None: continue;
@@ -122,6 +122,7 @@ class TimeMiddle():
 		for item in struct['time_stc']:
 			lstr = match.group() + item['str'];
 			if lstr <> mstr: continue;
+			if self.filter_merge(struct,item['str']) == True: continue;
 			item['str'] = lstr;
 			item['stime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
 			item['etime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
@@ -179,3 +180,13 @@ class TimeMiddle():
 				eid = slen;
 				sid = sid + 1;
 		struct['time_stc'] = left_list;
+
+	def filter_merge(self,struct,lstr):
+		for item in self.data['filter']:
+			tstr = lstr + item['reg'];
+			if item['dir'] == '-': tstr = item['reg'] + lstr;
+			comp = re.compile(tstr);
+			match = comp.search(struct['text']);
+			if not match is None:
+				return True;
+		return False;

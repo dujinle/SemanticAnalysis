@@ -37,6 +37,21 @@
 			"value":"2点"
 		},
 		{
+			"reg":"1个钟头*",
+			"func":"replace",
+			"value":"1小时"
+		},
+		{
+			"reg":"半个钟头*",
+			"func":"replace",
+			"value":"30分钟"
+		},
+		{
+			"reg":"半个小时",
+			"func":"replace",
+			"value":"30分钟"
+		},
+		{
 			"reg":"明晚",
 			"func":"replace",
 			"value":"明天晚上"

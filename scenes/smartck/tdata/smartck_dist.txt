@@ -10,16 +10,47 @@
 			|CALLMETIMEGO
 			|SET.*ACLOCK.*CONTENTIS
 			|DECIDEGETIMEGO.*ACLOCK
-			|TIME.*GOUT
+			|TIME[^NO]*GOUT
+			|TIME[^NO]*GO
+			|TIME[^NO]*GIVE
+			|TIME[^NO]*HAVE
+			|TIME[^NO]*COME
+			|ATTIME
+			|DECIDEATTIME
+			|.*ATTIME
+			|TIMEGOHOME
 			|TIMEGOJIE",
 		"type":"ck_agenda_add"
 	},
+#设置响铃周期场景入口
+	{
+		"reg":
+			"TIMENOT.*CALLMEGETUP
+			|WORKDAYRING
+			|PASSHOLIDAYS",
+		"type":"ck_able"
+	},
+#删除闹钟场景入口
+	{
+		"reg":
+			"DELETE
+			|TIMENOGO
+			|CANCEL
+			|ALLNOTNEEDRING
+			|UNUSEDEDELETE
+			|ONLYLEFT
+			|TIMEREST
+			|NUNITDELETE
+			|NOTNEED",
+		"type":"ck_del"
+	},
 #添加起床闹钟场景入口
 	{
-		"reg":"_time.*_wake
-			|(_time)*_call_me_wake
-			|_set(_prep)*_wake_clock
-			|_new(_prep)*_wake_clock",
+		"reg":"TIME[^NO]*GETUP
+			|CALLMEGETUP
+			|CALLMERAISEUP
+			|SET.*GETUP
+			|NEW.*GETUP",
 		"type":"ck_getup_add"
 	},
 #添加多个闹钟场景入口
@@ -39,8 +70,8 @@
 #设置闹钟提示音场景入口
 	{
 		"reg":
-			"_bell_set_to
-			|_bell_moveto",
+			"BELLSETTO
+			|BELLMOVETO",
 		"type":"ck_sbell"
 	},
 #设置响铃方式场景入口
@@ -50,14 +81,6 @@
 			|CONVERTEVERYDAYREMIND",
 		"type":"ck_prompt"
 	},
-#设置响铃周期场景入口
-	{
-		"reg":"_moveto_everyday_remind
-			|_time_no_call_me_wake
-			|_workday_call
-			|_pass_workday",
-		"type":"ck_able"
-	},
 #闹钟停止场景入口
 	{
 		"reg":
@@ -65,8 +88,8 @@
 			|GETUPLA
 			|RISEUPLE
 			|WAKELE
-			|OKLE
-			|DELE
+			|OKLEBA
+			|DELEDELE
 			|CANLA
 			|NOMAKENOISELE
 			|NOBOTHERLE
@@ -97,6 +120,11 @@
 			|WAITMETIME",
 		"type":"ck_delay"
 	},
+#添加闹钟场景进入
+	{
+		"reg":"ANEWOPEN.*ACLOCK",
+		"type":"ck_add"
+	},
 #打开闹钟场景入口
 	{
 		"reg":"OPENACLOCK
@@ -113,86 +141,35 @@
 			|AGENDA.*CLOSE",
 		"type":"ck_close"
 	},
-#删除闹钟场景入口
-	{
-		"reg":
-			"(_time)*_clock(_all)*_del
-			|(_time)*_clock(_all)*_cancle
-			|(_time)*_clock(_all)*_no_le
-			|(_time)*_remind(_all)*_del
-			|(_time)*_remind(_all)*_cancle
-			|(_time)*_remind(_all)*_no_le
-			|_only_left_time
-			|_del.*_clock
-			|_del.*_remind
-			|_del.*_agenda
-			|_del.*_nouse
-			|_cancle.*_clock
-			|_cancle.*_remind
-			|_cancle.*_nouse
-			|_time.*_no
-			|_time.*_del
-			|_time.*_cancle
-			|_prep.*_del
-			|_prep.*_no_le
-			|_prep.*_cancle
-			|_del.*_prep
-			|_cancle.*_prep
-			|_nouse.*_del
-			|_nouse.*_no_le
-			|_nouse.*_cancle
-			|(_del)|(_cancle)
-			|_time_rest
-			|_just_that_no",
-		"type":"ck_del"
-	},
 #闹钟查询场景入口
 	{
 		"reg":
-			"(_see)*_has_some_clock
-			|(_see)*_has_some_remind
-			|_time_has_some.*_thing
-			|_time_has_what.*_thing
-			|_time(_all)*_has_what_agenda
-			|_after_has_some
-			|_after_has_what
-			|_time_left_what
-			|_time_left_some
-			|_clock_yes_wtime
-			|_remind_yes_wtime
-			|_clock_yes_what_shihou
-			|_remind_yes_what_shihou
-			|_see.*_clock
-			|_see.*_remind
-			|_orderin_wtime
-			|_wtime_yes
-			|_yes_wtime
-			|_at_wtime
-			|_time_agenda
-			|_time_yes_what_info
-			|_prep_info_yes_what
-			|_time_agenda.*_yes_what
-			|_time_agenda.*_has_what
-			|_time_info_yes_what",
+			"SEEHAVEHOWMANY.*ACLOCK
+			|BESIDESHOWMANY.*THING
+			|SEE.*BESIDESWHATTHING
+			|CONTENTISWHAT
+			|BESIDESHOWMANY",
 		"type":"ck_search"
 	},
 #修改时间场景入口
 	{
 		"reg":
-			"_ahead.*_time(_call)*
-			|_moveto_time
-			|_clock_ahead_time
-			|_defer.*_time
-			|_ahead_time_remind
-			|_changeto_time
-			|_info_swap
-			|_pass_time_recall",
+			"ACLOCKAHEADTIME
+			|AHEADTIMEREMIND
+			|DELAYTIME
+			|TIMEDEMOVETOTIME
+			|TIMELATER.*DELAYTIME
+			|TIMEDEDELAYTIME
+			|PASSTIMEAGAINSAY
+			|MOVETOTIME
+			|ACLOCK.*DECONTENTSWAPNUNIT",
 		"type":"ck_mo_time"
 	},
 #添加闹钟场景进入
 	{
 		"reg":
-			"ADD.*ACLOCK
+			"ACLOCK
+			|ADD.*ACLOCK
 			|TOSS.*ACLOCK
 			|COME.*ACLOCK
 			|FETCH.*ACLOCK

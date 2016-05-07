@@ -36,7 +36,7 @@ def _fetch_time(struct):
 			tdic['time'] = str(times[3]) + ':' + str(times[4]);
 			tdic['str'] = item['str'];
 			struct['ck_time'] = tdic;
-		struct['stc'].remove(item);
+		del struct['stc'][istr];
 		break;
 
 def _calc_able(struct):

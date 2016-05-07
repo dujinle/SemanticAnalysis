@@ -63,6 +63,12 @@
 				"type":"QP",
 				"stype":"HOW_MANY"
 			}
+		},
+		"多久":{
+			"_prop":{
+				"type":"QP",
+				"stype":"HOW_LONG"
+			}
 		}
 	}
 }

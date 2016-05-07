@@ -44,7 +44,7 @@
 	{
 		"type":"date",
 		"scope":"week",
-		"reg":"((星期)|(周)|(礼拜))[3三]",
+		"reg":"礼拜[3三]",
 		"region":[2,3],
 		"func":"equal"
 	},

@@ -100,6 +100,12 @@
 							"type":"RV",
 							"stype":"ADD"
 						}
+					},
+					"删":{
+						"_prop":{
+							"type":"RV",
+							"stype":"DELETE"
+						}
 					}
 				},
 				"下班":{
@@ -261,6 +267,18 @@
 					"stype":"DELETE"
 				}
 			},
+			"关了":{
+				"_prop":{
+					"type":"RV",
+					"stype":"CLOSE"
+				}
+			},
+			"关":{
+				"_prop":{
+					"type":"RV",
+					"stype":"CLOSE"
+				}
+			},
 			"干掉":{
 				"_prop":{
 					"type":"RV",
@@ -367,7 +385,13 @@
 						"_prop":{
 							"type":"RV",
 							"stype":"CALL"
-						}				
+						}
+					},
+					"说":{
+						"_prop":{
+							"type":"RV",
+							"stype":"SAY"
+						}
 					}
 				},
 				"眼部":{
@@ -510,6 +534,18 @@
 					"_prop":{
 						"type":"RV",
 						"stype":"LEFT"
+					}
+				},
+				"留":{
+					"_prop":{
+						"type":"RV",
+						"stype":"LEFT"
+					}
+				},
+				"赶":{
+					"_prop":{
+						"type":"RV",
+						"stype":"OVERTAKE"
 					}
 				},
 				"剩下":{

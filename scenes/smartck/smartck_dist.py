@@ -16,9 +16,9 @@ class SmartckDist(SceneBase):
 			print 'dist scene...',func
 			if func <> 'None':
 				struct['ck_scene'] = func;
-			else:
-				if struct.has_key['ck_scene']: del struct['ck_scene'];
-			self._get_ck_name(struct);
+			elif struct.has_key('ck_scene'):
+				del struct['ck_scene'];
+#			self._get_ck_name(struct);
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
@@ -28,16 +28,17 @@ class SmartckDist(SceneBase):
 
 		reg = '';
 		for istr in struct['stseg']:
-
 			if not struct['stc'].has_key(istr): continue;
 			item = struct['stc'][istr];
 			if item.has_key('stype'):
 				reg = reg + item['stype'];
 		struct['ttag'] = reg;
+
 		for model in self.data['models']:
 			comp = re.compile(model['reg']);
 			match = comp.search(reg);
-			if not match is None: return model['type'];
+			if not match is None:
+				return model['type'];
 		return 'None';
 
 	def _get_ck_name(self,struct):
