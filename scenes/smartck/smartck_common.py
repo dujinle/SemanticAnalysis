@@ -54,29 +54,40 @@ def _calc_able(struct):
 		struct['ck_able'] = tdic;
 
 def _find_ck_name(struct):
-	reg_str = '';
+	mitem = reg_str = None;
 	for item in data['template']:
 		match = re.findall(item['reg'],struct['ttag']);
 		for itr in match:
 			if itr == '': continue;
+			mitem = dict(item);
 			reg_str = itr;
 			break;
+		if not mitem is None: break;
+	if mitem is None: return '';
+
+	times = 0;
 	ck_name = '';
 	while True:
+		if times >= 100: break;
 		if len(reg_str) == 0: break;
-
 		for istr in struct['stseg']:
 			if not struct['stc'].has_key(istr):
 				if reg_str.find(istr) == 0:
 					ck_name = ck_name + istr;
-					reg_str = reg_str[len(istr) - 1:];
-			else:
+					reg_str = reg_str[len(istr):];
+			elif mitem['type'] == 'value':
 				item = struct['stc'][istr];
-				comp = re.compile(item['type']);
+				if item['stype'] == reg_str:
+					ck_name = istr;
+					reg_str = reg_str[len(item['stype']):];
+			elif mitem['type'] == 'calc':
+				item = struct['stc'][istr];
+				comp = re.compile(item['stype']);
 				mm = comp.match(reg_str);
 				if mm is None: continue;
 				ck_name = ck_name + istr;
-				reg_str = reg_str[len(istr) - 1:];
+				reg_str = reg_str[len(item['stype']):];
+		times = times + 1;
 	return ck_name;
 
 #get the name info after the label

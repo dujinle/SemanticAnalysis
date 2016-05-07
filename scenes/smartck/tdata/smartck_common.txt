@@ -23,6 +23,50 @@
 	},
 	"template":[
 		{
+			"reg":"GOUT",
+			"type":"value"
+		},
+		{
+			"reg":"GOHOME",
+			"type":"value"
+		},
+		{
+			"reg":"MEETING",
+			"type":"value"
+		},
+		{
+			"reg":"CONTENTIS(.*)",
+			"type":"calc"
+		},
+		{
+			"reg":"GO(.*)REMEMBER",
+			"type":"calc"
+		},
+		{
+			"reg":"TIME.*GO(.*)DEACLOCK",
+			"type":"calc"
+		},
+		{
+			"reg":"TIME.*GO(.*)",
+			"type":"calc"
+		},
+		{
+			"reg":"TIME.*(GIVE.*){1,}",
+			"type":"calc"
+		},
+		{
+			"reg":"TIME.*(COME.*)",
+			"type":"calc"
+		},
+		{
+			"reg":"(.*[^DECIDE])ATTIME",
+			"type":"calc"
+		},
+		{
+			"reg":"TIMEHAVE(.*)",
+			"type":"calc"
+		},
+		{
 			"reg":"REMINDMETIME(.*)",
 			"type":"calc"
 		},
@@ -31,15 +75,7 @@
 			"type":"calc"
 		},
 		{
-			"reg":"CONTEXTIS(.*)",
-			"type":"calc"
-		},
-		{
-			"reg":"GO(.*)REMEMBER",
-			"type":"calc"
-		},
-		{
-			"reg":"GO(.*)",
+			"reg":"REMINDME(.*)TIME",
 			"type":"calc"
 		},
 		{
@@ -49,6 +85,10 @@
 		{
 			"reg":"BA3(.*)DECLOCK",
 			"type":"calc"
+		},
+		{
+			"reg":"GETUP",
+			"type":"value"
 		}
 	]
 }

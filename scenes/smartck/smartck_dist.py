@@ -18,7 +18,7 @@ class SmartckDist(SceneBase):
 				struct['ck_scene'] = func;
 			elif struct.has_key('ck_scene'):
 				del struct['ck_scene'];
-#			self._get_ck_name(struct);
+			self._get_ck_name(struct);
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
@@ -28,10 +28,12 @@ class SmartckDist(SceneBase):
 
 		reg = '';
 		for istr in struct['stseg']:
-			if not struct['stc'].has_key(istr): continue;
-			item = struct['stc'][istr];
-			if item.has_key('stype'):
-				reg = reg + item['stype'];
+			if not struct['stc'].has_key(istr):
+				reg = reg + istr;
+			else:
+				item = struct['stc'][istr];
+				if item.has_key('stype'):
+					reg = reg + item['stype'];
 		struct['ttag'] = reg;
 
 		for model in self.data['models']:
@@ -42,17 +44,14 @@ class SmartckDist(SceneBase):
 		return 'None';
 
 	def _get_ck_name(self,struct):
-		if struct['ttag'].find('WAKE') <> -1:
-			struct['ck_name'] = u'起床';
+		name = SmartckCom._find_ck_name(struct);
+		if name <> '':
+			struct['ck_name'] = name;
 		else:
-			name = SmartckCom._find_ck_name(struct);
-			if name <> '':
-				struct['ck_name'] = name;
-			else:
-				SmartckCom._fetch_time(struct);
-				if struct.has_key('ck_time'):
-					tdic = dict();
-					tdic['type'] = 'time';
-					tdic['name'] = struct['ck_time'];
-					struct['ck_tag'] = tdic;
+			SmartckCom._fetch_time(struct);
+			if struct.has_key('ck_time'):
+				tdic = dict();
+				tdic['type'] = 'time';
+				tdic['name'] = struct['ck_time']['time'];
+				struct['ck_tag'] = tdic;
 
