@@ -80,12 +80,14 @@ class SmartckMager(SceneMager):
 		struct['result'] = dict();
 		if struct.has_key('ck_name'): del struct['ck_name'];
 		if struct.has_key('ck_time'): del struct['ck_time'];
+		if struct.has_key('ck_tag'): del struct['ck_tag'];
 		if struct.has_key('ttag'): del struct['ttag'];
 
 	def _tail(self,struct):
 		if struct.has_key('ck_time'): del struct['ck_time'];
 		if struct.has_key('ttag'): del struct['ttag'];
 		if struct.has_key('tag'): del struct['tag'];
+		if struct.has_key('ck_tag'): del struct['ck_tag'];
 
 
 	def encode(self,struct):

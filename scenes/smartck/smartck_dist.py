@@ -46,6 +46,7 @@ class SmartckDist(SceneBase):
 	def _get_ck_name(self,struct):
 		name = SmartckCom._find_ck_name(struct);
 		if name <> '':
+			print 'fetch ck name:',name;
 			struct['ck_name'] = name;
 		else:
 			SmartckCom._fetch_time(struct,True);

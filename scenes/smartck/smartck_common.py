@@ -76,6 +76,8 @@ def _find_ck_name(struct):
 			break;
 		if not mitem is None: break;
 	if mitem is None: return '';
+	if reg_str.find('TIME') <> -1: return '';
+	print reg_str;
 
 	times = 0;
 	ck_name = '';
@@ -101,65 +103,6 @@ def _find_ck_name(struct):
 				reg_str = reg_str[len(item['stype']):];
 		times = times + 1;
 	return ck_name;
-
-#get the name info after the label
-def _find_tag_name(struct,tdic):
-	name = None;
-	idx = ftag = 0;
-	first_tag = last_tag = -1;
-	str_list = list();
-	for ck in struct['clocks']:
-		if tdic['start']['tag'] == '': ftag = 1;
-		#break than go to the index of end
-		if isinstance(ck,dict):
-			if tdic['end']['tag'] <> '' and ck['type'] == tdic['end']['tag']:
-				if tdic['end']['type'] == 'left':
-					str_list.append(ck['mystr']);
-					last_tag = idx;
-				break;
-			elif tdic['start']['tag'] <> '' and ck['type'] == tdic['start']['tag']:
-				if tdic['start']['type'] == 'left':
-					str_list.append(ck['mystr']);
-					if first_tag == -1: first_tag = idx;
-				ftag = 1;
-			elif ftag == 1:
-				last_tag = idx;
-				str_list.append(ck['mystr']);
-				if first_tag == -1: first_tag = idx;
-		elif ftag == 1:
-			last_tag = idx;
-			str_list.append(ck);
-			if first_tag == -1: first_tag = idx;
-		idx = idx + 1;
-	if len(str_list) == 0: return None;
-	#common.print_dic(str_list);
-	#print first_tag,last_tag
-
-	if tdic['ftag'] == 'break':
-		start = 0;
-		end = len(str_list);
-		while True:
-			if first_tag >= len(struct['clocks']): break;
-			ck = struct['clocks'][first_tag];
-			if isinstance(ck,dict):
-				first_tag = first_tag + 1;
-				start = start + 1;
-			else:
-				break;
-		while True:
-			if last_tag < 0: break;
-			ck = struct['clocks'][last_tag];
-			if isinstance(ck,dict):
-				last_tag = last_tag - 1;
-				end = end - 1;
-			else:
-				break;
-		if end <= 0: return None;
-		if start >= len(str_list): return None;
-		name = ''.join(str_list[start:end]);
-	else:
-		name = ''.join(str_list);
-	return name;
 
 def _find_cks_bytime(struct,super_b):
 	cks = list();
@@ -209,9 +152,9 @@ def _find_cks_bytime(struct,super_b):
 
 def _find_cks_by_relate(struct,super_b):
 	cks = list();
-	tdic = _make_tag_dic('AND','filter','RELATETO','filter','continue');
-	info = _find_tag_name(struct,tdic);
-	if info is None: return cks;
+	if not struct.has_key('ck_name'): return cks;
+
+	info = struct['ck_name'];
 	for ck in super_b.clocks.keys():
 		clock = super_b.clocks[ck];
 		if clock.has_key('info') and clock['info'].find(info) >= 0:
@@ -265,16 +208,11 @@ def _find_cks_bytype(ttype,super_b):
 def _find_cks_by_only(struct,super_b):
 	cks = _find_cks_by_sample(struct,super_b);
 	if cks == None: return list();
-	cks = list();
-	idx = 0;
-	while True:
-		keys = super_b.clocks.keys();
-		if idx >= len(keys): break;
-		ck = super_b.clocks[keys[idx]];
-		if ck['key'] in cks: continue;
-		cks.append(ck['key']);
-		idx = idx + 1;
-	return cks;
+	mcks = list();
+	for key in super_b.clocks.keys():
+		if key in cks: continue;
+		mcks.append(key);
+	return mcks;
 
 def _find_cks_pastdue(super_b):
 	cks = list();

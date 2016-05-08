@@ -43,40 +43,35 @@ class SmartckClose(SceneBase):
 		return close_num;
 
 	def _find_cks(self,struct,super_b):
-		ms = self._get_match_info(struct['ttag']);
-		if len(ms) == 0: return None;
-		for match in ms:
-			if match['func'] == 't2t':
-				print 'go into _find_cks_time_to_time......'
-				cks = SmartckCom._find_cks_time_to_time(struct,super_b);
-				if cks is None or len(cks) == 0: continue;
-				return cks;
-			if match['func'] == 'num':
-				print 'go into _find_num cks......'
-				cks = SmartckCom._find_cks_by_num(struct,super_b);
-				if cks is None or len(cks) == 0: continue;
-				return cks;
-			if match['func'] == 'relate':
-				print 'go into _find_relate cks......'
-				cks = SmartckCom._find_cks_by_relate(struct,super_b);
-				if cks is None or len(cks) == 0: continue;
-				return cks;
-			if match['func'] == 'all':
-				print 'go into _find_all_cks......'
-				cks = super_b.clocks.keys();
-				if cks is None or len(cks) == 0: continue;
-				return cks;
-			if match['func'] == 'sample':
-				print 'go into _find_cks_sample......'
-				cks = SmartckCom._find_cks_sample(struct,super_b);
-				if cks is None or len(cks) == 0: continue;
-				return cks;
+		match = self._get_match_info(struct['ttag']);
+		if match is None:
+			cks = SmartckCom._find_cks_by_sample(struct,super_b);
+			return cks;
+		elif match['func'] == 't2t':
+			print 'go into _find_cks_time_to_time......'
+			cks = SmartckCom._find_cks_time_to_time(struct,super_b);
+			return cks;
+		elif match['func'] == 'num':
+			print 'go into _find_num cks......'
+			cks = SmartckCom._find_cks_by_num(struct,super_b);
+			return cks;
+		elif match['func'] == 'time':
+			print 'go into _find_cks by time......'
+			cks = SmartckCom._find_cks_bytime(struct,super_b);
+			return cks;
+		elif match['func'] == 'relate':
+			print 'go into _find_relate cks......'
+			cks = SmartckCom._find_cks_by_relate(struct,super_b);
+			return cks;
+		elif match['func'] == 'all':
+			print 'go into _find_all_cks......'
+			cks = super_b.clocks.keys();
+			return cks;
 		return None;
 
 	def _get_match_info(self,ttag):
-		mtsc = list();
 		for temp in self.data['template']:
 			comp = re.compile(temp['reg']);
 			match = comp.search(ttag);
-			if not match is None: mtsc.append(temp);
-		return mtsc;
+			if not match is None: return temp;
+		return None;

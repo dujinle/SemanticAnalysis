@@ -17,40 +17,25 @@
 #-----------------------------------------------------
 	"template":[
 		{
-			"reg":"(TIMETOTIME.*CLOSE)
-				|(CLOSETIMETOTIME)",
+			"reg":"TIMETOTIME",
 			"func":"t2t"
 		},
 		{
-			"reg":"(NUNIT.*CLOSE)
-				|(CLOSE.*NUNIT)",
+			"reg":"NUNIT",
 			"func":"num"
 		},
 		{
-			"reg":"(AND.*RELATETO.*ALLCLOSE)
-				|(CLOSE(ALL)*.*RELATETO)",
+			"reg":"AND.*RELATETO",
 			"func":"relate"
 		},
 		{
-			"reg":"(CLOSEALL.*)
-				|(ALL.*CLOSE)",
+			"reg":"TIME.*ALL",
+			"func":"time"
+		},
+		{
+			"reg":"CLOSEACLOCK
+				|ALL",
 			"func":"all"
-		},
-		{
-			"reg":"CLOSE",
-			"func":"sample"
-		},
-		{
-			"reg":"_after_clock(_all)*_close
-				|_after_remind(_all)*_close
-				|_after_agenda(_all)*_close
-				|_close_after_clock
-				|_close_after_remind
-				|_close_after_agenda
-				|_time_left_clock(_all)*_close
-				|_time_left_remind(_all)*_close
-				|_time_left_agenda(_all)*_close",
-			"func":"after"
 		}
 	]
 }

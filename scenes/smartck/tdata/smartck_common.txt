@@ -63,6 +63,10 @@
 			"type":"calc"
 		},
 		{
+			"reg":"(?:BA3AND)(.*)RELATETO",
+			"type":"calc"
+		},
+		{
 			"reg":"(.*[^DECIDE])ATTIME",
 			"type":"calc"
 		},
@@ -91,7 +95,15 @@
 			"type":"calc"
 		},
 		{
-			"reg":"BA3(.*)DECLOCK",
+			"reg":"(?:BA3)(.*)DEACLOCK",
+			"type":"calc"
+		},
+		{
+			"reg":"(?:DELETE)(.*)DEACLOCK",
+			"type":"calc"
+		},
+		{
+			"reg":"(?:ONLYLEFT)(.*)DEACLOCK",
 			"type":"calc"
 		},
 		{

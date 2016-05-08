@@ -44,16 +44,23 @@ class SmartckDel(SceneBase):
 
 	def _find_cks(self,struct,super_b):
 		match = self._get_match_info(struct['ttag']);
-		if match is None: return None;
-		if match['func'] == 't2t':
+		if match is None:
+			cks = SmartckCom._find_cks_by_sample(struct,super_b);
+			return cks;
+		elif match['func'] == 't2t':
 			print 'go into _find_cks_time_to_time......'
-			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+			cks = SmartckCom._find_cks_time_to_time(struct,super_b);
 			return cks;
 		elif match['func'] == 'pastdue':
-			cks = SceneParam._find_cks_pastdue(super_b);
+			cks = SmartckCom._find_cks_pastdue(super_b);
 			return cks;
 		elif match['func'] == 'unuse':
-			cks = SceneParam._find_cks_nouse(super_b);
+			print 'go into _find__cks_unuse......'
+			cks = SmartckCom._find_cks_nouse(super_b);
+			return cks;
+		elif match['func'] == 'time':
+			print 'go into _find__cks_bytime......'
+			cks = SmartckCom._find_cks_bytime(struct,super_b);
 			return cks;
 		elif match['func'] == 'all':
 			print 'go into _find_all_cks......'
@@ -61,17 +68,15 @@ class SmartckDel(SceneBase):
 			return cks;
 		elif match['func'] == 'num':
 			print 'go into _find_num cks......'
-			cks = SceneParam._find_cks_by_num(struct,super_b);
+			cks = SmartckCom._find_cks_by_num(struct,super_b);
 			return cks;
 		elif match['func'] == 'just':
 			cks = list();
 			if not super_b.myclock is None: cks.append(super_b.myclock['key']);
 			return cks;
 		elif match['func'] == 'only_left':
-			cks = SceneParam._find_cks_by_only(struct,super_b);
-			return cks;
-		else:
-			cks = SceneParam._find_cks_by_sample(struct,super_b);
+			print 'go into _find_cks by only......'
+			cks = SmartckCom._find_cks_by_only(struct,super_b);
 			return cks;
 		return None;
 

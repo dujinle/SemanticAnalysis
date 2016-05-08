@@ -29,6 +29,14 @@
 			"func":"num"
 		},
 		{
+			"reg":"ONLYLEFT",
+			"func":"only_left"
+		},
+		{
+			"reg":"TIME.*ALL",
+			"func":"time"
+		},
+		{
 			"reg":"ALL",
 			"func":"all"
 		},
@@ -43,10 +51,6 @@
 		{
 			"reg":"UNUSE",
 			"func":"unuse"
-		},
-		{
-			"reg":"ONLYLEFT",
-			"func":"only_left"
 		}
 	]
 }
