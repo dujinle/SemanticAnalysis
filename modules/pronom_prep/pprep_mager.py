@@ -7,7 +7,6 @@ from myexception import MyException
 from mark_local_prep import MarkLocalPrep
 from mark_abs_pronom import MarkAbsPronom
 from mark_per_pronom import MarkPerPronom
-from calc_local_prep import CalcLocalPrep
 from pprep_tail import PPrepTail
 
 class PPrepMager:
@@ -18,8 +17,7 @@ class PPrepMager:
 		self.tag_objs.append(MarkLocalPrep());
 		self.tag_objs.append(MarkAbsPronom());
 		self.tag_objs.append(MarkPerPronom());
-		self.tag_objs.append(CalcLocalPrep());
-		self.tag_objs.append(PPrepTail());
+		#self.tag_objs.append(PPrepTail());
 
 	def init(self,dtype):
 		try:
