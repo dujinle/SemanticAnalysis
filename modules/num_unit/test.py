@@ -19,7 +19,7 @@ nmager = NunitMager();
 nmager.init('Nunit');
 
 struct = dict();
-struct['text'] = u'八十三个和八十三只';
+struct['text'] = u'八十三个和八十三';
 struct['inlist'] = wd.tokens(struct['text']);
 nmager.encode(struct);
 common.print_dic(struct);
