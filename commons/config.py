@@ -52,9 +52,11 @@ dfiles = {
 	"TMood":{
 		"1":os.path.join(abspath,'modules','tmood','tdata','time_mood.txt')
 	},
-	"LPrep":{
-		"1":os.path.join(abspath,'modules','prep_locality','tdata','prep_locality.txt'),
-		"2":None
+	"PrepPronom":{
+		"1":os.path.join(abspath,'modules','pronom_prep','tdata','prep_locality.txt'),
+		"2":os.path.join(abspath,'modules','pronom_prep','tdata','abs_pronom.txt'),
+		"3":os.path.join(abspath,'modules','pronom_prep','tdata','per_pronom.txt'),
+		"4":None,"5":None
 	},
 	"Nunit":{
 		"1":os.path.join(abspath,'modules','num_unit','tdata','num.txt'),

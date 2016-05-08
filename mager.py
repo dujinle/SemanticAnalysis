@@ -15,9 +15,12 @@ sys.path.append(os.path.join(base_path,'./bvoice/pystr'));
 sys.path.append(os.path.join(base_path,'./ctemperature/pystr'));
 
 sys.path.append(os.path.join(base_path,'./modules/timer'));
+sys.path.append(os.path.join(base_path,'./modules/tmood'));
 sys.path.append(os.path.join(base_path,'./modules/mytag'));
 sys.path.append(os.path.join(base_path,'./modules/wordsegs'));
 sys.path.append(os.path.join(base_path,'./modules/prev_deal'));
+sys.path.append(os.path.join(base_path,'./modules/num_unit'));
+sys.path.append(os.path.join(base_path,'./modules/pronom_prep'));
 #sys.path.append(os.path.join(base_path,'./location'));
 #sys.path.append(os.path.join(base_path,'./flight'));
 #sys.path.append(os.path.join(base_path,'./catering'));
@@ -33,6 +36,9 @@ from temp_mager import TempMager
 from time_cmager import TimeMager
 from tag_cmager import MytagMager
 from pdeal_cmager import PDealMager
+from nunit_mager import NunitMager
+from pprep_mager import PPrepMager
+from tmood_mager import TMoodMager
 
 from wordseg import WordSeg
 #from concept_mager import ConceptMager
@@ -47,6 +53,9 @@ class Mager:
 		self.timer = TimeMager();
 		self.mytag = MytagMager();
 		self.pdeal = PDealMager();
+		self.nunit = NunitMager();
+		self.pprep = PPrepMager();
+		self.tmood = TMoodMager();
 #		self.concept = ConceptMager();
 
 		self.struct = collections.OrderedDict();
@@ -65,6 +74,9 @@ class Mager:
 			self.timer.init('Timer');
 			self.mytag.init('Mytag');
 			self.pdeal.init('PDeal');
+			self.nunit.init('Nunit');
+			self.pprep.init('PrepPronom');
+			self.tmood.init('TMood');
 			for key in self.modules:
 				self.modules[key].init(key);
 		except Exception as e:
@@ -75,8 +87,11 @@ class Mager:
 		self.struct['text'] = text;
 		self.struct['inlist'] = self.wordseg.tokens(self.struct['text']);
 		self.pdeal.encode(self.struct);
+		self.tmood.encode(self.struct);
 		self.timer.encode(self.struct);
 		self.mytag.encode(self.struct);
+		self.nunit.encode(self.struct);
+		self.pprep.encode(self.struct);
 		if mdl is None:
 			pass;
 	#		mdl = self.concept.encode(struct);
@@ -86,13 +101,13 @@ class Mager:
 		return self.struct;
 
 
-'''
+#'''
 try:
 	mg = Mager();
 	mg.init();
 	#common.print_dic(mg.encode(u'把声音调大点'));
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	common.print_dic(mg.encode(u'把温度调高点','Temp'));
+	common.print_dic(mg.encode(u'给我一天时间','Alarm'));
 except Exception as e:
 	raise e;
-'''
+#'''
