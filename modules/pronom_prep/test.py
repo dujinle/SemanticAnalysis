@@ -12,14 +12,14 @@ sys.path.append(os.path.join(base_path,'../wordsegs'));
 #============================================
 import common,config
 from wordseg import WordSeg
-from lprep_mager import LPrepMager
+from pprep_mager import PPrepMager
 
 wd = WordSeg();
-nmager = LPrepMager();
-nmager.init('LPrep');
+nmager = PPrepMager();
+nmager.init('PrepPronom');
 
 struct = dict();
-struct['text'] = u'东北方';
+struct['text'] = u'我们';
 struct['inlist'] = wd.tokens(struct['text']);
 nmager.encode(struct);
 common.print_dic(struct);

@@ -4,7 +4,7 @@ import sys,re,common
 from myexception import MyException
 
 #merge the same type lprepmark
-class CalcLPrep():
+class CalcLocalPrep():
 	def __init__(self):
 		self.data = dict();
 

@@ -4,16 +4,20 @@ import sys,os
 
 import common,config
 from myexception import MyException
-from mark_lprep import MarkLPrep
-from calc_lprep import CalcLPrep
+from mark_local_prep import MarkLocalPrep
+from mark_abs_pronom import MarkAbsPronom
+from mark_per_pronom import MarkPerPronom
+from calc_local_prep import CalcLocalPrep
 
-class LPrepMager:
+class PPrepMager:
 	def __init__(self):
 		self.tag_objs = list();
 
 		# mark tag objs #
-		self.tag_objs.append(MarkLPrep());
-		self.tag_objs.append(CalcLPrep());
+		self.tag_objs.append(MarkLocalPrep());
+		self.tag_objs.append(MarkAbsPronom());
+		self.tag_objs.append(MarkPerPronom());
+		self.tag_objs.append(CalcLocalPrep());
 
 	def init(self,dtype):
 		try:
