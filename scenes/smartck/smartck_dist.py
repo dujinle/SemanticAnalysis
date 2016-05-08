@@ -48,7 +48,7 @@ class SmartckDist(SceneBase):
 		if name <> '':
 			struct['ck_name'] = name;
 		else:
-			SmartckCom._fetch_time(struct);
+			SmartckCom._fetch_time(struct,True);
 			if struct.has_key('ck_time'):
 				tdic = dict();
 				tdic['type'] = 'time';

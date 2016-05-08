@@ -94,7 +94,7 @@ class SmartckMager(SceneMager):
 			self._init(struct);
 			self.smartck_dist.dist_encode(struct);
 
-			'''
+#			'''
 			for obj in self.tag_objs:
 				obj.encode(struct,self.fdata);
 			if not struct.has_key('ck_scene'):
@@ -106,7 +106,7 @@ class SmartckMager(SceneMager):
 			struct['mcks'] = self.fdata.clocks;
 			SmartckCom._degbu_info(struct);
 			self._tail(struct);
-			'''
+#			'''
 		except Exception as e:
 			if struct.has_key('step'): del struct['step']
 			if struct.has_key('ck_scene'): del struct['ck_scene'];

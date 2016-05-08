@@ -38,35 +38,28 @@ class SmartckAgenda(SceneBase):
 		if super_b.myclock.has_key('name'):
 			super_b.myclock['key'] = super_b.myclock['name'];
 			super_b.clocks[super_b.myclock['key']] = super_b.myclock;
-			SceneParam._set_msg(self.data['msg']['set_succ']);
+			SceneParam._set_msg(struct,self.data['msg']['set_succ'],super_b.myclock['name']);
 		elif super_b.myclock.has_key('info'):
 			super_b.clocks[super_b.myclock['info']] = super_b.myclock;
 			super_b.myclock['key'] = super_b.myclock['info'];
-			SceneParam._set_msg(self.data['msg']['set_succ'],super_b.myclock['info']);
+			SceneParam._set_msg(struct,self.data['msg']['set_succ'],super_b.myclock['info']);
 		else:
 			super_b.clocks[super_b.myclock['time']] = super_b.myclock;
 			super_b.myclock['key'] = super_b.myclock['time'];
-			SceneParam._set_msg(self.data['msg']['set_succ']);
+			SceneParam._set_msg(struct,self.data['msg']['set_succ']);
 
 	def _set_agenda_info(self,struct,super_b):
 		self._set_time(struct,super_b);
 		self._set_name(struct,super_b);
 		self._set_able(struct,super_b);
 		self._check_param(struct,super_b);
+		common.print_dic(super_b.myclock);
 
 	def _set_time(self,struct,super_b):
 		myclock = super_b.myclock;
 		if struct.has_key('ck_time'):
-			times = struct['ck_time']['time'];
-			hour = int(times.split(':')[0]);
-			if hour >= self.data['common']['getup_time'][0] \
-				and hour <= self.data['common']['getup_time'][1]:
-				myclock['type'] = 'getup';
-				#时间设置完成回应信息
-			else:
-				SceneParam._set_msg(self.data['msg']['add_getup_ck']);
-				myclock['type'] = 'agenda';
-				#时间设置完成回应信息
+			myclock['type'] = 'agenda';
+			#时间设置完成回应信息
 			myclock['time'] = struct['ck_time']['time'];
 			del struct['ck_time'];
 
@@ -87,7 +80,7 @@ class SmartckAgenda(SceneBase):
 			del struct['ck_name'];
 
 	def _check_param(self,struct,super_b):
-		if not super_b.has_key('ck_time'):
+		if not super_b.myclock.has_key('time'):
 			SceneParam._set_msg(struct,self.data['msg']['set_time']);
 			struct['step'] = 'set_time';
 		else:

@@ -10,7 +10,7 @@ base_path = os.path.dirname(__file__);
 dfile = os.path.join(base_path,'./tdata/smartck_common.txt')
 data = common.read_json(dfile);
 
-def _fetch_time(struct):
+def _fetch_time(struct,isleft = False):
 	for istr in struct['stseg']:
 		if not struct['stc'].has_key(istr): continue;
 		item = struct['stc'][istr];
@@ -36,7 +36,7 @@ def _fetch_time(struct):
 			tdic['time'] = str(times[3]) + ':' + str(times[4]);
 			tdic['str'] = item['str'];
 			struct['ck_time'] = tdic;
-		del struct['stc'][istr];
+		if isleft == False: del struct['stc'][istr];
 		break;
 
 def _calc_able(struct):

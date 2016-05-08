@@ -146,13 +146,13 @@ class TimeMiddle():
 			lstr = item['str'] + match.group();
 			if lstr <> mstr: continue;
 			item['str'] = lstr;
-			item['stime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
-			item['etime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
+			item['stime'] = time_common._list_copy(time_common._create_null_time(),cur_time,4);
+			item['etime'] = time_common._list_copy(time_common._create_null_time(),cur_time,4);
 			if it['dir'] == '-':
 				item['stime'][idx] = item['stime'][idx] - int(item['num']);
 				item['etime'][is_enable_id] = -1;
 			else:
-				item['stime'][idx] = item['stime'][idx] + int(item['num']) + 1;
+				item['stime'][idx] = item['stime'][idx] + int(item['num']);
 				item['etime'][is_enable_id] = -1;
 			del item['num'];
 			item['scope'] = it['scope'];
