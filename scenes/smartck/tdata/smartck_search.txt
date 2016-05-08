@@ -23,18 +23,18 @@
 			"func":"t2t"
 		},
 		{
+			"reg":"(SEE.*ALL)
+				|(SEE.*HAVEHOWMANY)
+				|(SEE.*HAVEWHAT)",
+			"func":"all"
+		},
+		{
 			"reg":"NUNIT",
 			"func":"num"
 		},
 		{
 			"reg":"(AFTERHAVEWHAT)",
 			"func":"after"
-		},
-		{
-			"reg":"(SEE.*ALL)
-				|(SEE.*HAVEHOWMANY)
-				|(SEE.*HAVEWHAT)",
-			"func":"all"
 		}
 	]
 }

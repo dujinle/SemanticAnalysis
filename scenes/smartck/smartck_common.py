@@ -40,6 +40,18 @@ def _fetch_time(struct,isleft = False):
 		break;
 
 def _calc_able(struct):
+	for istr in struct['stseg']:
+		if not struct['stc'].has_key(istr): continue;
+		item = struct['stc'][istr];
+		if item['stype'] == 'EVERYDAY':
+			tdic = dict();
+			tdic['type'] = 'week';
+			tdic['repeat'] = 'repeat';
+			tdic['able'] = 127;
+			struct['ck_able'] = tdic;
+			if struct.has_key('ck_date'): del struct['ck_date'];
+			break;
+
 	if struct.has_key('ck_date'):
 		date = struct['ck_date'];
 		tdic = dict();
@@ -208,15 +220,16 @@ def _find_cks_by_relate(struct,super_b):
 
 def _find_cks_by_sample(struct,super_b):
 	cks = list();
+	if struct.has_key('ck_name'):
+		if super_b.clocks.has_key(struct['ck_name']):
+			cks.append(struct['ck_name']);
+			del struct['ck_name'];
+			return cks;
+
 	if struct.has_key('ck_tag'):
 		ck_tag = struct['ck_tag'];
 		if ck_tag['type'] == 'time':
-			return self._find_cks_bytime(struct,super_b);
-		else:
-			if super_b.clocks.has_key(struct['ck_name']):
-				cks.append(struct['ck_name']);
-				del struct['ck_name'];
-				return cks;
+			return _find_cks_bytime(struct,super_b);
 
 def _find_cks_byinfo(struct,super_b):
 	cks = list();
@@ -298,11 +311,11 @@ def _find_cks_by_num(struct,super_b):
 		if item['type'] == 'NUM':
 			num = int(item['str']);
 			if num - 1 < 0 or num - 1 >= len(keys): return cks;
-			cks.append(keys[num] - 1);
+			cks.append(keys[num - 1]);
 		elif item['type'] == 'NUNIT':
 			num = int(item['stc'][0]['str']);
 			if num - 1 < 0 or num - 1 >= len(keys): return cks;
-			cks.append(keys[num] - 1);
+			cks.append(keys[num - 1]);
 	return cks;
 
 def _find_cks_time_to_time(struct,super_b):
@@ -320,9 +333,9 @@ def _find_cks_time_to_time(struct,super_b):
 				del struct['stc'][istr];
 				break;
 	start = inter_1['stime'];
-	if start[common.enable] == '-1': start = inter_1['etime'];
+	if start[common.ENABLE] == '-1': start = inter_1['etime'];
 	end = inter_2['stime'];
-	if end[common.enable] == '-1': end = inter_2['etime'];
+	if end[common.ENABLE] == '-1': end = inter_2['etime'];
 	able,diff,sweek,eweek = _get_time_to_time_able(start,end);
 	#print able,diff
 	if inter_1['scope'] == 'day' and inter_2['scope'] == 'day':

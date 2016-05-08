@@ -98,7 +98,7 @@ class SmartckMager(SceneMager):
 			for obj in self.tag_objs:
 				obj.encode(struct,self.fdata);
 			if not struct.has_key('ck_scene'):
-				SceneCommon._set_msg(struct,fdata.get_unknow_msg());
+				SceneCommon._set_msg(struct,self.fdata.get_unknow_msg());
 
 			if struct.has_key('step') and struct['step'] == 'end':
 				del struct['step'];

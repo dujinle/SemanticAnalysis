@@ -32,15 +32,24 @@ class TimeReduce():
 			raise MyException(sys.exc_info());
 
 	def match_item(self,struct):
-		for item in self.data:
-			comp = re.compile(item['reg']);
-			match = comp.search(struct['text']);
-			if match is None: continue;
-			if item['type'] <> 'hour_hour': continue;
-			ret = self.get_match_items(struct,match.group());
-			if ret is None: continue;
-			ret = self.merge_match_item(ret[0],ret[1],item);
-			struct['time_stc'].append(ret);
+		text = struct['text'];
+		idx = 0;
+		while True:
+			match = None;
+			for item in self.data:
+				comp = re.compile(item['reg']);
+				match = comp.search(text);
+				if match is None: continue;
+				if item['type'] <> 'hour_hour': continue;
+				ret = self.get_match_items(struct,match.group());
+				if ret is None: continue;
+				ret = self.merge_match_item(ret[0],ret[1],item);
+				struct['time_stc'].append(ret);
+				text = text.replace(match.group(),'',1);
+				break;
+			if match is None: break;
+			idx = idx + 1;
+			if idx == 3: break;
 
 	def merge_time(self,struct):
 		left_list = list();
@@ -121,10 +130,12 @@ class TimeReduce():
 				if rstr.find(mstr) <> -1:
 					mdic = dict(it);
 					struct['time_stc'].remove(it);
+					struct['time_stc'].extend(left_list);
 					return [item,it];
 				if lstr.find(mstr) <> -1:
 					mdic = dict(item);
 					struct['time_stc'].remove(it);
+					struct['time_stc'].extend(left_list);
 					return [it,item];
 			if one_time == False:
 				left_list.append(item);

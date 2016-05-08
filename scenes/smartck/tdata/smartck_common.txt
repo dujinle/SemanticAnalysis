@@ -35,6 +35,10 @@
 			"type":"value"
 		},
 		{
+			"reg":"PLANE",
+			"type":"value"
+		},
+		{
 			"reg":"CONTENTIS(.*)",
 			"type":"calc"
 		},
@@ -63,6 +67,10 @@
 			"type":"calc"
 		},
 		{
+			"reg":"(.*[^DECIDE])AT",
+			"type":"calc"
+		},
+		{
 			"reg":"TIMEHAVE(.*)",
 			"type":"calc"
 		},
@@ -84,6 +92,10 @@
 		},
 		{
 			"reg":"BA3(.*)DECLOCK",
+			"type":"calc"
+		},
+		{
+			"reg":"(.*)DEACLOCK",
 			"type":"calc"
 		},
 		{

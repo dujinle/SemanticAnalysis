@@ -28,24 +28,25 @@ class SmartckSearch(SceneBase):
 
 	def _find_cks(self,struct,super_b):
 		match = self._get_match_info(struct['ttag'],'template');
-		if match is None: return None;
+		if match is None:
+			print 'go into _find_cks_by_sample......'
+			cks = SmartckCom._find_cks_by_sample(struct,super_b);
+			return cks;
 		if match['func'] == 't2t':
 			print 'go into _find_cks_time_to_time......'
-			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+			cks = SmartckCom._find_cks_time_to_time(struct,super_b);
 			return cks;
 		elif match['func'] == 'after':
 			print 'go into _find_cks_after......'
-			cks = SceneParam._find_cks_after(struct,super_b);
+			cks = SmartckCom._find_cks_after(struct,super_b);
 			return cks;
 		elif match['func'] == 'all':
 			print 'go into _find_all_cks......'
 			cks = super_b.clocks.keys();
 			return cks;
 		elif match['func'] == 'num':
-			cks = SceneParam._find_cks_by_num(struct,super_b);
-			return cks;
-		else:
-			cks = SceneParam._find_cks_by_sample(struct,super_b);
+			print 'go into _find_cks_by_num......'
+			cks = SmartckCom._find_cks_by_num(struct,super_b);
 			return cks;
 		return None;
 

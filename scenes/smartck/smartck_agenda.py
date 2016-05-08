@@ -53,7 +53,6 @@ class SmartckAgenda(SceneBase):
 		self._set_name(struct,super_b);
 		self._set_able(struct,super_b);
 		self._check_param(struct,super_b);
-		common.print_dic(super_b.myclock);
 
 	def _set_time(self,struct,super_b):
 		myclock = super_b.myclock;

@@ -1,6 +1,26 @@
 #通过tag组合分类不同的场景参数信息
 {
 	"models":[
+#闹钟查询场景入口
+	{
+		"reg":
+			"SEEHAVEHOWMANY.*ACLOCK
+			|SEENUNIT.*ALL
+			|SEE.*ACLOCK
+			|HAVEWHAT
+			|PLANISWHAT
+			|ISHOWMANY
+			|AGENDAISWHAT
+			|LEFTWHATPLAN
+			|DECIDEATHOWMANY
+			|DECIDEATWHAT
+			|BESIDESHOWMANY.*THING
+			|SEE.*BESIDESWHATTHING
+			|CONTENTISWHAT
+			|ISWHATCONTENT
+			|BESIDESHOWMANY",
+		"type":"ck_search"
+	},
 	{
 #添加日程提醒场景入口
 		"reg":
@@ -88,7 +108,7 @@
 			|GETUPLA
 			|RISEUPLE
 			|WAKELE
-			|OKLEBA
+			|OKLE
 			|DELEDELE
 			|CANLA
 			|NOMAKENOISELE
@@ -140,16 +160,6 @@
 			|REMIND.*CLOSE
 			|AGENDA.*CLOSE",
 		"type":"ck_close"
-	},
-#闹钟查询场景入口
-	{
-		"reg":
-			"SEEHAVEHOWMANY.*ACLOCK
-			|BESIDESHOWMANY.*THING
-			|SEE.*BESIDESWHATTHING
-			|CONTENTISWHAT
-			|BESIDESHOWMANY",
-		"type":"ck_search"
 	},
 #修改时间场景入口
 	{
