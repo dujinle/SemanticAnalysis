@@ -3,7 +3,7 @@
 import sys,re,common
 from myexception import MyException
 
-#merge the same type lprepmark
+#merge the same type Local Prep mark
 class CalcLocalPrep():
 	def __init__(self):
 		self.data = dict();
@@ -25,22 +25,22 @@ class CalcLocalPrep():
 		pid = tid = 0;
 
 		while True:
-			if tid >= len(struct['lprep']): break;
-			lprep = struct['lprep'][tid];
-			pprep = struct['lprep'][pid];
+			if tid >= len(struct['LocalPrep']): break;
+			lprep = struct['LocalPrep'][tid];
+			pprep = struct['LocalPrep'][pid];
 			tstr = pprep['str'] + lprep['str'];
 			if struct['text'].find(tstr) <> -1:
 				tdic = dict();
 				tdic['str'] = tstr;
-				tdic['type'] = 'LPREP';
+				tdic['type'] = 'LocalPrep';
 				tdic['stype'] = pprep['stype'] + '_' + lprep['stype'];
-				struct['lprep'][pid] = tdic;
-				del struct['lprep'][tid];
+				struct['LocalPrep'][pid] = tdic;
+				del struct['LocalPrep'][tid];
 				continue;
 			else:
 				pid = tid;
 			tid = tid + 1;
-		for lprep in struct['lprep']:
+		for lprep in struct['LocalPrep']:
 			self._merge_inlist(struct,lprep['str']);
 
 

@@ -16,23 +16,23 @@ class MarkLocalPrep():
 
 	def encode(self,struct):
 		try:
-			if not struct.has_key('lprep'): struct['lprep'] = list();
-			self._mark_lprep_tag(struct);
+			if not struct.has_key('LocalPrep'): struct['LocalPrep'] = list();
+			self._mark_LocalPrep_tag(struct);
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
-	def _mark_lprep_tag(self,struct):
+	def _mark_LocalPrep_tag(self,struct):
 		for tag in struct['inlist']:
 			tdic = self._mark_words(tag);
 			if not tdic is None:
-				struct['lprep'].append(tdic);
+				struct['LocalPrep'].append(tdic);
 
 	def _mark_words(self,tstr):
 		for key in self.data.keys():
 			item = self.data[key];
 			if tstr in item['reg']:
 				tdic = dict();
-				tdic['type'] = 'LPREP';
+				tdic['type'] = 'LocalPrep';
 				tdic['stype'] = key;
 				tdic['str'] = tstr;
 				return tdic;

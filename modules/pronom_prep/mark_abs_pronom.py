@@ -16,7 +16,7 @@ class MarkAbsPronom():
 
 	def encode(self,struct):
 		try:
-			if not struct.has_key('abspronom'): struct['abspronom'] = list();
+			if not struct.has_key('AbsPronom'): struct['AbsPronom'] = list();
 			self._mark_lprep_tag(struct);
 		except Exception as e:
 			raise MyException(sys.exc_info());
@@ -25,7 +25,7 @@ class MarkAbsPronom():
 		for tag in struct['inlist']:
 			tdic = self._mark_words(tag);
 			if not tdic is None:
-				struct['abspronom'].append(tdic);
+				struct['AbsPronom'].append(tdic);
 
 	def _mark_words(self,tstr):
 		for key in self.data.keys():
