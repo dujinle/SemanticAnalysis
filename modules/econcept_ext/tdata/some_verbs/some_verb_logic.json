@@ -35,6 +35,12 @@
 			"stype":"TO"
 		}
 	},
+	"成":{
+		"_prop":{
+			"type":"LV",
+			"stype":"BECOME"
+		}
+	},
 	"回":{
 		"_prop":{
 			"type":"LV",

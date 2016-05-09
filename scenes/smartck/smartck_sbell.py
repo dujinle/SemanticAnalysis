@@ -31,13 +31,13 @@ class SmartckSBell(SceneBase):
 	def _encode_bell(self,struct,super_b):
 		myclock = super_b.myclock;
 		for tm in self.data['rings']:
-			if tm in struct['stseg']:
+			if struct['text'].find(tm) <> -1:
 				if not myclock.has_key('bell'): myclock['bell'] = dict();
 				myclock['bell'].update(self.data['rings'][tm]);
 				myclock['bell']['name'] = tm;
 				break;
 		for tm in self.data['music']:
-			if tm in struct['stseg']:
+			if struct['text'].find(tm) <> -1:
 				if not myclock.has_key('bell'): myclock['bell'] = dict();
 				myclock['bell'].update(self.data['music'][tm]);
 				myclock['bell']['name'] = tm;

@@ -86,12 +86,13 @@
 			"BELLNOGOODLISTEN
 			|CHANGEGE.*BELL
 			|CHANGEGE.*STYPE",
-		"type":"ck_cbell"
+		"type":"ck_bell"
 	},
 #设置闹钟提示音场景入口
 	{
 		"reg":
 			"BELLSETTO
+			|BELLSETBECOME
 			|BELLMOVETO",
 		"type":"ck_sbell"
 	},

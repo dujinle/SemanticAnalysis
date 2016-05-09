@@ -12,12 +12,18 @@ class SmartckDist(SceneBase):
 
 	def dist_encode(self,struct):
 		try:
-			func = self._fetch_func(struct);
-			print 'dist scene...',func
-			if func <> 'None':
-				struct['ck_scene'] = func;
-			elif struct.has_key('ck_scene'):
-				del struct['ck_scene'];
+			reg_str = '';
+			for istr in struct['stseg']:
+				if not struct['stc'].has_key(istr):
+					reg_str = reg_str + istr;
+				else:
+					item = struct['stc'][istr];
+					if item.has_key('stype'): reg_str = reg_str + item['stype'];
+			struct['ttag'] = reg_str;
+			if not struct.has_key('ck_scene'):
+				func = self._fetch_func(struct);
+				print 'dist scene...',func
+				if func <> 'None': struct['ck_scene'] = func;
 			self._get_ck_name(struct);
 		except Exception as e:
 			raise MyException(sys.exc_info());
@@ -26,19 +32,9 @@ class SmartckDist(SceneBase):
 		if not struct.has_key('stc'): return 'None';
 		if not struct.has_key('stseg'): return 'None';
 
-		reg = '';
-		for istr in struct['stseg']:
-			if not struct['stc'].has_key(istr):
-				reg = reg + istr;
-			else:
-				item = struct['stc'][istr];
-				if item.has_key('stype'):
-					reg = reg + item['stype'];
-		struct['ttag'] = reg;
-
 		for model in self.data['models']:
 			comp = re.compile(model['reg']);
-			match = comp.search(reg);
+			match = comp.search(struct['ttag']);
 			if not match is None:
 				return model['type'];
 		return 'None';

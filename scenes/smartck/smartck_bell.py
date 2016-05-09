@@ -59,7 +59,7 @@ class SmartckBell(SceneBase):
 		for istr in struct['stseg']:
 			if not struct['stc'].has_key(istr): continue;
 			item = struct['stc'][istr];
-			if item['type'] == 'YES':
+			if item['type'] == 'YES' or item['type'] == 'OK':
 				myclock['bell']['name'] = 'bird';
 				myclock['bell']['addr'] = 'bird.mp3';
 				break;

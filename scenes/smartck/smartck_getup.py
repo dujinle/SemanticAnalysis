@@ -94,7 +94,8 @@ class SmartckGetup(SceneBase):
 			myclock['name'] = u'起床';
 
 	def _check_param(self,struct,super_b):
-		if not super_b.has_key('ck_time'):
+		myclock = super_b.myclock;
+		if not myclock.has_key('time'):
 			SceneParam._set_msg(struct,self.data['msg']['set_time']);
 			struct['step'] = 'set_time';
 		else:

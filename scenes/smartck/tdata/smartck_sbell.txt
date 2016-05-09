@@ -30,7 +30,7 @@
 		"大海":{
 			"addr":"dahai.mp3"
 		},
-		"波浪":{
+		"海浪":{
 			"addr":"bolang.mp3"
 		}
 	}
