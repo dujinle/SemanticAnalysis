@@ -1,0 +1,26 @@
+{
+	"FINISH":[
+		{
+			"reg":"(好|过|完)(了)*",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		},
+		{
+			"reg":"了|的|方|罢",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		}
+	],
+	"PROGRESSING":[
+		{
+			"reg":"着|住",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		},
+		{
+			"reg":"正(在)*",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		}
+	]
+}

@@ -8,6 +8,7 @@ from mark_local_prep import MarkLocalPrep
 from mark_abs_pronom import MarkAbsPronom
 from mark_per_pronom import MarkPerPronom
 from mark_prep_combine import MarkPrepCombine
+from mark_verb_combine import MarkVerbCombine
 from pprep_tail import PPrepTail
 
 class PPrepMager:
@@ -19,6 +20,7 @@ class PPrepMager:
 		self.tag_objs.append(MarkAbsPronom());
 		self.tag_objs.append(MarkPerPronom());
 		self.tag_objs.append(MarkPrepCombine());
+		self.tag_objs.append(MarkVerbCombine());
 		#self.tag_objs.append(PPrepTail());
 
 	def init(self,dtype):

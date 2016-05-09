@@ -19,10 +19,14 @@ nmager = PPrepMager();
 nmager.init('PrepPronom');
 
 struct = dict();
-struct['text'] = u'在家里';
+struct['text'] = u'在家里打完麻将了';
 struct['objs'] = [{
 	"str":"家",
 	"stype":"SP"
+}];
+struct['verbs'] = [{
+	"str":"打",
+	"stype":"VERB"
 }];
 
 
