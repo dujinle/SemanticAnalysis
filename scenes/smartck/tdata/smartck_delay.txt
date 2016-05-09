@@ -6,7 +6,7 @@
 		"ck_exist":["闹钟已经存在"],
 		"ck_unknow":["没有找到指定的闹钟"]
 	},
-	"deal_tag":{
+	"template":{
 		"AGAINSLEEP":{
 			"value":5,
 			"scope":"min"

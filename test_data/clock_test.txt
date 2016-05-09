@@ -159,6 +159,7 @@
 下午的安排不要了	Alarm	ck_del
 看看有几个闹钟	Alarm	ck_search
 下午还有多少个事情	Alarm	ck_search
+今天有什么日程安排	Alarm	ck_search
 看看后面还有什么事	Alarm	ck_search
 第3项的内容是什么	Alarm	ck_search
 下班以后还有几个	Alarm	ck_search

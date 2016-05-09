@@ -52,6 +52,11 @@
 			"value":"30分钟"
 		},
 		{
+			"reg":"明后天",
+			"func":"replace",
+			"value":"明天后天"
+		},
+		{
 			"reg":"明晚",
 			"func":"replace",
 			"value":"明天晚上"

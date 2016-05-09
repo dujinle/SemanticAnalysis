@@ -16,19 +16,19 @@ class SmartckDelay(SceneBase):
 			logging.info('go into set alarm delay');
 			if super_b.myclock is None:
 				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
-				struct['code'] = 'exit';
+				struct['step'] = 'end';
 				return None;
 			if not struct.has_key('step'): struct['step'] = 'start';
 
 			if struct['step'] == 'start':
 				self._set_clock_delay(struct,super_b);
-				struct['step'] = 'end';
+			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
 	def _set_clock_delay(self,struct,super_b):
 		myclock = super_b.myclock;
-		dtag = self.data['deal_tag'];
+		dtag = self.data['template'];
 		for key in dtag:
 			if struct['ttag'].find(key) <> -1:
 				tag = dtag[key];

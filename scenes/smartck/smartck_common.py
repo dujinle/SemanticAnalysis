@@ -77,7 +77,7 @@ def _find_ck_name(struct):
 		if not mitem is None: break;
 	if mitem is None: return '';
 	if reg_str.find('TIME') <> -1: return '';
-	print reg_str;
+	print 'ck_name reg str:',reg_str;
 
 	times = 0;
 	ck_name = '';

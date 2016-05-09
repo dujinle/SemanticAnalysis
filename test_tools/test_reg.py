@@ -3,6 +3,7 @@
 import sys,re
 
 
-comp = re.compile('[^ANEW]*OPENACLOCK');
-match = comp.search('ANEWOPENACLOCK');
-print match.group()
+comp = re.compile('(?:BA3)(.*)DEACLOCK');
+match = comp.findall('BA3参ADD年会DEACLOCKDELETE:q');
+for it in match:
+	print it;

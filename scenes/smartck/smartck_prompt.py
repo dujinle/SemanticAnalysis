@@ -23,7 +23,7 @@ class SmartckPrompt(SceneBase):
 
 			if struct['step'] == 'start':
 				self._set_clock_prompt(struct,super_b);
-				struct['step'] = 'end';
+			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(sys.exc_info());
 

@@ -47,6 +47,7 @@
 		"reg":
 			"TIMENOT.*CALLMEGETUP
 			|WORKDAYRING
+			|CONVERTEVERYDAYREMIND
 			|PASSHOLIDAYS",
 		"type":"ck_able"
 	},
@@ -97,8 +98,7 @@
 #设置响铃方式场景入口
 	{
 		"reg":"ONLYRINGNUNIT
-			|CALLWAKE.*TILL
-			|CONVERTEVERYDAYREMIND",
+			|CALLWAKE.*TILL",
 		"type":"ck_prompt"
 	},
 #闹钟停止场景入口

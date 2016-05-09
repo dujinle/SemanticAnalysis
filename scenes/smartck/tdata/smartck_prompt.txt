@@ -8,7 +8,7 @@
 	},
 	"template":[
 		{
-			"reg":"ONLYCALLONCE",
+			"reg":"ONLYRINGNUNIT",
 			"func":"once"
 		},
 		{

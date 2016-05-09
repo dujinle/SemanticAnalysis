@@ -25,13 +25,12 @@ class SmartckAble(SceneBase):
 			raise MyException(sys.exc_info());
 
 	def _encode_able(self,struct,super_b):
-		cks = None;
 		match = self._get_match_info(struct['ttag'],'template');
 		if match is None: return None;
 		if match['func'] == 'close_getup':
-			cks = SceneParam._find_cks_bytype('getup',super_b);
-
-			if len(cks) == 0:
+			print 'go into close_getup......';
+			cks = SmartckCom._find_cks_by_sample(struct,super_b);
+			if cks is None or len(cks) == 0:
 				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
 				return None;
 			for ck in cks:
@@ -39,7 +38,7 @@ class SmartckAble(SceneBase):
 				able = 127;
 				if clock.has_key('able'): able = int(clock['able']['able']);
 				for istr in struct['stseg']:
-					if not struct.has_key(istr): continue;
+					if not struct['stc'].has_key(istr): continue;
 					item = struct['stc'][istr];
 					if item['type'] <> 'TIME': continue;
 					if item['scope'] == 'day':
@@ -50,38 +49,41 @@ class SmartckAble(SceneBase):
 							able = able - math.pow(2,week);
 				clock['able']['able'] = able;
 		elif match['func'] == 'workday_ring':
-			cks = SceneParam._find_cks_by_sample(struct,super_b);
-			if len(cks) == 0 and super_b.myclock is None:
-				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
-				return None;
-			elif len(cks) == 0:
-				cks.append(super_b.myclock['key']);
+			print 'go into workday_ring......';
+			cks = SmartckCom._find_cks_by_sample(struct,super_b);
+			if cks is None or len(cks) == 0:
+				if super_b.myclock is None:
+					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+					return None;
+				cks = [super_b.myclock['key']];
 			for ck in cks:
 				clock = super_b.clocks[ck];
 				if not clock.has_key('able'):
 					clock['able'] = dict();
-					clock['able']['type'] = 'workday';
+					clock['able']['type'] = 'week';
 				clock['able']['able'] = math.pow(2,5) - 1;
 		elif match['func'] == 'workend_close':
-			cks = SceneParam._find_cks_by_sample(struct,super_b);
-			if len(cks) == 0 and super_b.myclock is None:
-				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
-				return None;
-			elif len(cks) == 0:
-				cks.append(super_b.myclock['key']);
+			print 'go into workend_close......';
+			cks = SmartckCom._find_cks_by_sample(struct,super_b);
+			if cks is None or len(cks) == 0:
+				if super_b.myclock is None:
+					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+					return None;
+				cks = [super_b.myclock['key']];
 			for ck in cks:
 				clock = super_b.clocks[ck];
 				if not clock.has_key('able'):
 					clock['able'] = dict();
-					clock['able']['type'] = 'workday';
+					clock['able']['type'] = 'week';
 				clock['able']['able'] = math.pow(2,5) - 1;
 		elif match['func'] == 'everyday_ring':
-			cks = SceneParam._find_cks_by_sample(struct,super_b);
-			if len(cks) == 0 and super_b.myclock is None:
-				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
-				return None;
-			elif len(cks) == 0:
-				cks.append(super_b.myclock['key']);
+			print 'go into everyday_ring......';
+			cks = SmartckCom._find_cks_by_sample(struct,super_b);
+			if cks is None or len(cks) == 0:
+				if super_b.myclock is None:
+					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+					return None;
+				cks = [super_b.myclock['key']];
 			for ck in cks:
 				clock = super_b.clocks[ck];
 				if not clock.has_key('able'):
