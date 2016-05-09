@@ -210,7 +210,8 @@ def _find_cks_byinfo(struct,super_b):
 			if clock.has_key('info') and clock['info'].find(info) >= 0:
 				cks.append(ck);
 	elif struct.has_key('ck_name'):
-		cks.append(struct['ck_name']);
+		if super_b.clocks.has_key(struct['ck_name']):
+			cks.append(struct['ck_name']);
 		del struct['ck_name'];
 	elif struct['ttag'].find('_prev_prep_clock') <> -1:
 		if super_b.myclock is None: return cks;

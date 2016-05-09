@@ -24,13 +24,7 @@ class DistScene(SceneBase):
 				if isinstance(ck,dict):
 					tag = tag + ck['type'];
 			struct['ttag'] = tag;
-			name = SceneParam._find_ck_name(struct,'_clock');
-			if name is None:
-				name = SceneParam._find_ck_name(struct,'_remind');
-			if name is None:
-				name = SceneParam._find_ck_name(struct,'_agenda');
-			if not name is None and len(name) > 0:
-				struct['ck_name'] = name;
+			self._get_ck_name(struct);
 			self._find_scene(tag,struct);
 		except Exception as e:
 			raise MyException(sys.exc_info());
@@ -47,3 +41,15 @@ class DistScene(SceneBase):
 		if struct.has_key('ck_reg'):
 			print struct['ck_reg'];
 			del struct['ck_reg'];
+
+	def _get_ck_name(self,struct):
+		if struct['ttag'].find('_getup'):
+			struct['ck_name'] = u'起床';
+		else:
+			name = SceneParam._find_ck_name(struct,'_clock');
+			if name is None:
+				name = SceneParam._find_ck_name(struct,'_remind');
+			if name is None:
+				name = SceneParam._find_ck_name(struct,'_agenda');
+			if not name is None and len(name) > 0:
+				struct['ck_name'] = name;

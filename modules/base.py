@@ -20,7 +20,7 @@ class Base:
 			if dfile is None: return;
 			self.data = common.read_json(dfile);
 		except Exception as e:
-			raise MyException(format(e));
+			raise e;
 
 	def deal_data(self,fname,action,data):
 		_class = str(self.__class__);
@@ -45,7 +45,7 @@ class Base:
 			fd.write(data);
 			fd.close();
 		except Exception as e:
-			raise MyException(format(e));
+			raise e;
 
 	def _add(self,data): pass;
 	def _del(self,data): pass;

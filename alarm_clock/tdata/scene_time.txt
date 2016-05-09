@@ -16,5 +16,72 @@
 		"swap_unknow":["没有找到要交换的闹钟"],
 		"swap_succ":["闹钟内容交换成功"],
 		"more_cks":["不支持多个闹钟进行交换"]
-	}
+	},
+#-----------------------------------------------------
+#灵活配置查询闹钟的事件
+#t2t==>find_cks time_to_time
+#time==>find_cks_bytime
+#info==>find_cks_byinfo
+#after==>find_cks_after_time
+#tat==>find_cks_time_and_time
+#-----------------------------------------------------
+	"template":[
+		{
+			"reg":"_time_to_time",
+			"func":"t2t"
+		},
+		{
+			"reg":"_time.*_ahead_time
+				|_time.*_defer_time
+				|_time.*_pass_time_recall
+				|_time.*_moveto_time",
+			"func":"time"
+		},
+		{
+			"reg":"_time_and_time",
+			"func":"tat"
+		},
+		{
+			"reg":"_ahead_time
+				|_defer_time
+				|_pass_time_recall
+				|_moveto_time",
+			"func":"info"
+		},
+		{
+			"reg":"_after_has_what_thing
+				|_after_has_what_agenda
+				|_time_left_what_agenda
+				|_time_left_what_thing
+				|_workoff_after_has_some
+				|_workoff_after_has_what",
+			"func":"after"
+		}
+	],
+#-----------------------------------------------------
+#获取闹钟的标签信息
+#-----------------------------------------------------
+	"temptag":[
+		{
+			"reg":"_moveto",
+			"start":{
+				"tag":"_yes",
+				"type":"filter"
+			},
+			"end":{
+				"tag":"",
+				"type":""
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		},
+		{
+			"reg":"_cout.*_clock
+				|_cout.*_remind
+				|_cout.*_agenda",
+			"type":"value",
+			"value":"出门"
+		}
+	]
 }

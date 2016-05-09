@@ -26,24 +26,33 @@ class SceneTime(SceneBase):
 			#启动时响应回复
 			if struct['step'] == 'start':
 				self._change_cks(struct,super_b);
-				struct['step'] = 'end';
+			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
 	def _change_cks(self,struct,super_b):
+		cks = self._find_cks(struct,super_b);
+		if cks is None or len(cks) == 0:
+			SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+			return None;
 		if struct['ttag'].find('_ahead_time') <> -1:
-			self._change_time_bytag('_ahead_time',struct,super_b,'prev');
+			self._change_time(cks,struct,'prev',super_b);
 		elif struct['ttag'].find('_defer_time') <> -1:
-			self._change_time_bytag('_defer_time',struct,super_b,'after');
+			self._change_time(cks,struct,'after',super_b);
 		elif struct['ttag'].find('_pass_time_recall') <> -1:
-			self._change_time_bytag('_pass_time_recall',struct,super_b,'after');
+			self._change_time(cks,struct,'after',super_b);
 		elif struct['ttag'].find('_moveto_time') <> -1:
-			self._reset_ck_bytag('_moveto_time',struct,super_b);
+			self._change_able(struct,cks,super_b);
+			self._reset_time(struct,cks,super_b);
 		elif struct['ttag'].find('_info_swap') <> -1:
-			self._swap_cks_info('_info_swap',struct,super_b);
+			self._swap_cks_info(cks,struct,super_b);
 		if struct.has_key('intervals'): del struct['intervals'];
 
-	def _change_time(self,cks,num,scope,tdir,super_b):
+	def _change_time(self,cks,struct,tdir,super_b):
+		inters = struct['intervals'][0];
+		if not inters.has_key('num'):
+			SceneParam._set_msg(struct,self.data['msg']['invalid_com']);
+			return None;
 		for ck in cks:
 			clock = super_b.clocks[ck];
 			time = clock['time'];
@@ -64,100 +73,20 @@ class SceneTime(SceneBase):
 				hour = hour - 1;
 			clock['time'] = str(hour) + ':' + str(tmin);
 
-	def _change_time_bytag(self,tag,struct,super_b,tdir):
-		ttag = struct['ttag'];
-		end = ttag.find(tag);
-		pre_tag = ttag[:end];
-		cks = None;
-		if pre_tag.find('time') <> -1:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			del struct['intervals'][0];
-		else:
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-		if (cks is None or len(cks) == 0) and super_b.myclock is None:
-			struct['result']['msg'] = self.data['msg']['ck_unknow'][0];
-			return None;
-		elif cks is None or len(cks) == 0:
-			cks = list();
-			cks.append(super_b.myclock['key']);
-		inters = struct['intervals'][0];
-		if not inters.has_key('num'):
-			struct['result']['msg'] = self.data['msg']['invalid_com'][0];
-			struct['ttag'] = ttag;
-			return None;
-		self._change_time(cks,inters['num'],inters['scope'],tdir,super_b);
-		if tdir == 'prev':
-			struct['result']['msg'] = (self.data['msg']['ahead_succ'][0] %(int(inters['num']),self.data[inters['scope']]));
-		elif tdir == 'after':
-			struct['result']['msg'] = (self.data['msg']['defer_succ'][0] %(int(inters['num']),self.data[inters['scope']]));
-
-	def _swap_cks_info(self,tag,struct,super_b):
-		end = struct['ttag'].find(tag);
-		pre_tag = struct['ttag'][:end];
-		cks = None;
-		if pre_tag.find('_and') == -1:
-			struct['result']['msg'] = self.data['msg']['swap_unknow'][0];
-			return None;
-		start_tag = pre_tag[:pre_tag.find('_and')];
-		struct['ttag'] = start_tag;
-		if start_tag.find('time') <> -1:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			del struct['intervals'][0];
-		else:
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-		if (cks is None or len(cks) == 0):
-			struct['result']['msg'] = self.data['msg']['swap_unknow'][0];
-			return None;
-		elif not cks is None and len(cks) > 1:
-			struct['result']['msg'] = self.data['msg']['more_cks'][0];
+	def _swap_cks_info(self,cks,struct,super_b):
+		if len(cks) <> 2:
+			SceneParam._set_msg(struct,self.data['msg']['more_cks']);
 			return None;
 		start_key = cks[0];
-		cks = None;
-		second_tag = pre_tag[pre_tag.find('_and') + 4:];
-		struct['ttag'] = second_tag;
-		if second_tag.find('time') <> -1:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			del struct['intervals'][0];
-		else:
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-
-		if (cks is None or len(cks) == 0):
-			struct['result']['msg'] = self.data['msg']['swap_unknow'][0];
-			return None;
-		elif not cks is None and len(cks) > 1:
-			struct['result']['msg'] = self.data['msg']['more_cks'][0];
-			return None;
-		second_key = cks[0];
+		second_key = cks[1];
 		start_ck = super_b.clocks[start_key];
 		second_ck = super_b.clocks[second_key];
 		super_b.clocks[start_key] = second_ck;
 		super_b.clocks[second_key] = start_ck;
-		struct['result']['msg'] = self.data['msg']['swap_succ'][0];
-
-	def _reset_ck_bytag(self,tag,struct,super_b):
-		ttag = struct['ttag'];
-		end = ttag.find(tag);
-		pre_tag = ttag[:end];
-		cks = None;
-		if pre_tag.find('_time') <> -1:
-			cks = SceneParam._find_cks_bytime(struct,super_b);
-			del struct['intervals'][0];
-		else:
-			cks = SceneParam._find_cks_byinfo(struct,super_b);
-
-		if (cks is None or len(cks) == 0) and super_b.myclock is None:
-			struct['result']['msg'] = self.data['msg']['ck_unknow'][0];
-			return None;
-		elif cks is None or len(cks) == 0:
-			if super_b.myclock.has_key('info'): cks.append(super_b.myclock['info']);
-			elif super_b.myclock.has_key('time'): cks.append(super_b.myclock['time']);
-		self._change_able(struct,cks,super_b);
-		self._reset_time(struct,cks,super_b);
-		struct['result']['msg'] = self.data['msg']['modify_succ'][0];
+		SceneParam._set_msg(struct,self.data['msg']['swap_succ']);
 
 	def _change_able(self,struct,cks,super_b):
 		inter = struct['intervals'][0];
-		if inter['scope'] <> 'day': return None;
 		start = inter['start'];
 		end = inter['end'];
 		able = SceneParam._get_time_able(start,end);
@@ -166,7 +95,7 @@ class SceneTime(SceneBase):
 			if not clock.has_key('able'):
 				clock['able'] = dict();
 			clock['able']['able'] = able;
-		struct['result']['msg'] = self.data['msg']['ck_able'][0];
+		SceneParam._set_msg(struct,self.data['msg']['ck_able']);
 
 	def _reset_time(self,struct,cks,super_b):
 		inter = struct['intervals'][0];
@@ -178,5 +107,37 @@ class SceneTime(SceneBase):
 		for ck in cks:
 			clock = super_b.clocks[ck];
 			clock['time'] = time;
-		struct['result']['msg'] = self.data['msg']['ck_time'][0];
+		SceneParam._set_msg(struct,self.data['msg']['ck_time']);
 
+	def _find_cks(self,struct,super_b):
+		match = self._get_match_info(struct['ttag']);
+		common.print_dic(match);
+		if match is None: return None;
+		if match['func'] == 't2t':
+			print 'go into _find_cks_time_to_time......'
+			cks = SceneParam._find_cks_time_to_time(struct,super_b);
+			del struct['intervals'][0];
+			del struct['intervals'][0];
+			return cks;
+		if match['func'] == 'time':
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			del struct['intervals'][0];
+			return cks;
+		if match['func'] == 'info':
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+			return cks;
+		if match['func'] == 'tat':
+			print 'go into _find_time and time_cks......'
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			del struct['intervals'][0];
+			cks.append(SceneParam._find_cks_bytime(struct,super_b));
+			del struct['intervals'][0];
+			return cks;
+		return None;
+
+	def _get_match_info(self,ttag):
+		for temp in self.data['template']:
+			comp = re.compile(temp['reg']);
+			match = comp.search(ttag);
+			if not match is None: return temp;
+		return None;
