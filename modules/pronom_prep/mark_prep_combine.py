@@ -39,7 +39,7 @@ class MarkPrepCombine():
 	def _mark_words(self,struct,reg_dic):
 		reg = reg_dic['calc_reg'].replace('KEY',reg_dic['reg']);
 		com = re.compile(reg);
-		if reg['pos'] == 'after' or reg['pos'] == 'prev':
+		if reg_dic['pos'] == 'after' or reg_dic['pos'] == 'prev':
 			for item in struct['objs']:
 				text = struct['text'].replace(item['str'],item['stype']);
 				match = com.search(text);
@@ -47,11 +47,11 @@ class MarkPrepCombine():
 				tdic = dict();
 				tdic['str'] = match.group(0).replace(item['stype'],item['str']);
 				if struct['text'].find(tdic['str']) <> -1:
-					tdic['stype'] = reg['key'];
+					tdic['stype'] = reg_dic['key'];
 					tdic['obj'] = item;
 					struct['PrepCom'].append(tdic);
 					return True;
-		elif reg['pos'] == 'mid':
+		elif reg_dic['pos'] == 'mid':
 			for i1 in struct['objs']:
 				text = struct['text'].replace(i1['str'],i1['stype']);
 				for i2 in struct['objs']:
@@ -61,7 +61,7 @@ class MarkPrepCombine():
 					tdic = dict();
 					tdic['str'] = match.group(0).replace(i1['stype'],i1['str']).replace(i2['stype'],i2['str']);
 					if struct['text'].find(tdic['str']) <> -1:
-						tdic['stype'] = reg['key'];
+						tdic['stype'] = reg_dic['key'];
 						tdic['objs'] = [i1,i2]
 						struct['PrepCom'].append(tdic);
 						return True;

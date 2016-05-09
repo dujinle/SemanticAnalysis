@@ -19,7 +19,13 @@ nmager = PPrepMager();
 nmager.init('PrepPronom');
 
 struct = dict();
-struct['text'] = u'东北方';
+struct['text'] = u'在家里';
+struct['objs'] = [{
+	"str":"家",
+	"stype":"SP"
+}];
+
+
 struct['inlist'] = wd.tokens(struct['text']);
 nmager.encode(struct);
 common.print_dic(struct);

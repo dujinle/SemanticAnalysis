@@ -4,7 +4,6 @@ import os,sys,re,common
 from myexception import MyException
 
 def _merge_some_words(struct,words,sid):
-
 	pid = struct['text'][sid:].find(words) + sid;
 	if pid == -1: return -1;
 	wlist = list(u'|'.join(struct['inlist']));
@@ -14,7 +13,9 @@ def _merge_some_words(struct,words,sid):
 		pw = wlist[tid];
 		if wid == pid and fid == 0:
 			fid = 1;
-			if pid <> 0 and pw <> u'|': wlist.insert(tid,u'|');
+			if pid <> 0 and pw <> u'|':
+				wlist.insert(tid,u'|');
+				tid = tid + 1;
 			if pw <> u'|': wid = wid + 1;
 		elif wid == pid + len(words):
 			if pw <> u'|':
