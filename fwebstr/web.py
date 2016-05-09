@@ -29,6 +29,7 @@ class Application(tornado.web.Application):
 
 if __name__=="__main__":
 
+	port = sys.argv[1];
 	server = Application();
-	server.listen(8082);
+	server.listen(port);
 	tornado.ioloop.IOLoop.instance().start();
