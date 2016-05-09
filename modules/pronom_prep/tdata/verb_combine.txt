@@ -22,5 +22,54 @@
 			"pos":"after",
 			"calc_reg":"VERB(KEY)"
 		}
+	],
+	"BACK":[
+		{
+			"reg":"回(来)*",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		}
+	],
+	"GO":[
+		{
+			"reg":"过(去)*",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		}
+	],
+	"IN":[
+		{
+			"reg":"进(去)*",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		}
+	],
+	"OUT":[
+		{
+			"reg":"出(来)*",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		}
+	],
+	"UP":[
+		{
+			"reg":"上|来|（上来）",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		}
+	],
+	"DOWN":[
+		{
+			"reg":"下|(下来)|(下去)",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		}
+	],
+	"APPEAR":[
+		{
+			"reg":"起|(起来)",
+			"pos":"after",
+			"calc_reg":"VERB(KEY)"
+		}
 	]
 }
