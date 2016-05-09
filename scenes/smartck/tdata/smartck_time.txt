@@ -35,7 +35,11 @@
 			"func":"tat"
 		},
 		{
-			"reg":"AFTER",
+			"reg":"XIAGEACLOCK",
+			"func":"next"
+		},
+		{
+			"reg":"TIMELATER",
 			"func":"after"
 		}
 	]

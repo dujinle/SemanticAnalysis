@@ -111,6 +111,10 @@
 			"type":"calc"
 		},
 		{
+			"reg":"(.*)MOVETOTIME",
+			"type":"calc"
+		},
+		{
 			"reg":"GETUP",
 			"type":"value"
 		}

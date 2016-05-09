@@ -141,6 +141,7 @@ class TimeModule():
 							item['etime'][idx] = int(inum);
 					else:
 						item['num'] = inum;
+						item['scope'] = scope;
 			except Exception:
 				raise MyException(sys.exc_info());
 

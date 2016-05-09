@@ -104,9 +104,21 @@ def _find_ck_name(struct):
 		times = times + 1;
 	return ck_name;
 
+def _find_cks_by_next(struct,super_b):
+	cks = list();
+	if super_b.myclock is None:return cks;
+	cur_key = super_b.myclock['key'];
+	ckeys = super_b.clocks.keys();
+	idx = ckeys.index(cur_key);
+	if idx + 1 >= len(ckeys):
+		cks.append(ckeys[0]);
+	else:
+		cks.append(ckeys[idx + 1]);
+	return cks;
+
 def _find_cks_bytime(struct,super_b):
 	cks = list();
-	inter = None;
+	inter = istr = None;
 	for istr in struct['stseg']:
 		if not struct['stc'].has_key(istr): continue;
 		item = struct['stc'][istr];
@@ -118,6 +130,9 @@ def _find_cks_bytime(struct,super_b):
 
 	start = inter['stime'];
 	end = inter['etime'];
+	if start[0] == 'null' or end[0] == 'null':
+		struct['stc'][istr] = inter;
+		return cks;
 	able = _get_time_able(start,end);
 	hid = 3;
 	mid = 4;
@@ -173,29 +188,6 @@ def _find_cks_by_sample(struct,super_b):
 		ck_tag = struct['ck_tag'];
 		if ck_tag['type'] == 'time':
 			return _find_cks_bytime(struct,super_b);
-
-def _find_cks_byinfo(struct,super_b):
-	cks = list();
-	if struct.has_key('ck_name'):
-		if super_b.clocks.has_key(struct['ck_name']):
-			cks.append(struct['ck_name']);
-		del struct['ck_name'];
-	elif struct['ttag'].find('_prev_prep_clock') <> -1:
-		if super_b.myclock is None: return cks;
-		cur_key = super_b.myclock['key'];
-		mycks = super_b.clocks.keys();
-		idx = mycks.index(cur_key);
-		if idx == 0: return cks;
-		cks.append(mycks[idx - 1]);
-	elif struct['ttag'].find('_next_prep_clock') <> -1:
-		if super_b.myclock is None: return cks;
-		cur_key = super_b.myclock['key'];
-		mycks = super_b.clocks.keys();
-		idx = mycks.index(cur_key);
-		if (idx + 1) >= len(mycks): idx = -1;
-		key = mycks[idx + 1];
-		cks.append(key);
-	return cks;
 
 def _find_cks_bytype(ttype,super_b):
 	cks = list();
@@ -380,12 +372,12 @@ def _find_cks_after(struct,super_b):
 
 		start = item['stime'];
 		end = item['etime'];
-		if start[common.enable] == '-1':
+		if start[common.ENABLE] == '-1':
 			week = _get_week(end[0],end[1],end[2]);
 			able = math.pow(2,week);
 			if end[3] <> 'null': time[3] = int(end[3]);
 			if end[4] <> 'null': time[4] = int(end[4]);
-		elif end[common.enable] == '-1':
+		elif end[common.ENABLE] == '-1':
 			week = _get_week(start[0],start[1],start[2]);
 			able = math.pow(2,week);
 			if start[3] <> 'null': time[3] = int(start[3]);
@@ -398,6 +390,7 @@ def _find_cks_after(struct,super_b):
 				able = able + math.pow(2,week + 1);
 			if start[3] <> 'null': time[3] = int(start[3]);
 			if start[4] <> 'null': time[4] = int(start[4]);
+		del struct['stc'][istr];
 		break;
 	for ck in super_b.clocks.keys():
 		clock = super_b.clocks[ck];
@@ -442,14 +435,6 @@ def _get_time_able(start,end):
 			able = able + math.pow(2,week + 1);
 	return able;
 
-def _get_num_cks(struct):
-	num = 0;
-	for s in struct['inlist']:
-		if data['num'].has_key(s):
-			num = int(data['num'][s]);
-			return num;
-	return num;
-
 def _get_cur_week():
 	times = time.localtime();
 	return times[6];
@@ -459,16 +444,6 @@ def _get_cur_time(): return time.localtime();
 def _get_week(year,month,day):
 	dat = datetime.date(year,month,day);
 	return dat.weekday();
-
-def _get_random_id(total):
-	ret = random.randint(0,total);
-	if ret == total:
-		ret = ret - 1;
-	return ret;
-
-def _set_msg(struct,datamsg):
-	msg_id = _get_random_id(len(datamsg));
-	struct['result']['msg'] = datamsg[msg_id];
 
 def _degbu_info(struct):
 	if struct.has_key('clocks'):
@@ -492,15 +467,4 @@ def _degbu_info(struct):
 			cks.append(ck + '|' + clock['time']);
 		struct['cks'] = cks;
 	if struct.has_key('Times'): del struct['Times'];
-
-def _make_tag_dic(start,stype,end,etype,ctype):
-	tdic = dict();
-	tdic['start'] = dict();
-	tdic['start']['tag'] = start;
-	tdic['start']['type'] = stype;
-	tdic['end'] = dict();
-	tdic['end']['tag'] = end;
-	tdic['end']['type'] = etype;
-	tdic['ftag'] = ctype;
-	return tdic;
 

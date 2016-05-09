@@ -13,7 +13,7 @@ class SmartckTime(SceneBase):
 	def encode(self,struct,super_b):
 		try:
 			if not struct.has_key('ck_scene'): return None;
-			if struct['ck_scene'] <> 'ck_time': return None;
+			if struct['ck_scene'] <> 'ck_mo_time': return None;
 			logging.info('go into scene modify time......');
 			if not struct.has_key('step'): struct['step'] = 'start';
 
@@ -45,6 +45,7 @@ class SmartckTime(SceneBase):
 			if not struct['stc'].has_key(istr): continue;
 			item = struct['stc'][istr];
 			if item['type'] <> 'TIME': continue;
+			if not item.has_key('num'): continue;
 			for ck in cks:
 				clock = super_b.clocks[ck];
 				time = clock['time'];
@@ -52,10 +53,10 @@ class SmartckTime(SceneBase):
 				hour = int(tarray[0]);
 				tmin = int(tarray[1]);
 				num = item['num'];
-				if inters['scope'] == 'min':
+				if item['scope'] == 'min':
 					if tdir == 'prev': tmin = tmin - int(num);
 					elif tdir == 'after': tmin = tmin + int(num);
-				elif inters['scope'] == 'hour':
+				elif item['scope'] == 'hour':
 					if tdir == 'prev': hour = hour - int(num);
 					elif tdir == 'after': hour = hour + int(num);
 				if tmin >= 60:
@@ -85,7 +86,7 @@ class SmartckTime(SceneBase):
 			if item['type'] <> 'TIME': continue;
 			start = item['stime'];
 			end = item['etime'];
-			able = SceneParam._get_time_able(start,end);
+			able = SmartckCom._get_time_able(start,end);
 			for ck in cks:
 				clock = super_b.clocks[ck];
 				if not clock.has_key('able'):
@@ -99,7 +100,7 @@ class SmartckTime(SceneBase):
 			if not struct['stc'].has_key(istr): continue;
 			item = struct['stc'][istr];
 			if item['type'] <> 'TIME': continue;
-			if item['stime'][3] == 'null' and item['end'][3] == 'null': return None;
+			if item['stime'][3] == 'null' and item['etime'][3] == 'null': return None;
 			if item['stime'][4] == 'null':
 				time = str(item['stime'][3]) + ':0';
 			else:
@@ -112,19 +113,25 @@ class SmartckTime(SceneBase):
 
 	def _find_cks(self,struct,super_b):
 		match = self._get_match_info(struct['ttag'],'template');
-		if match is None: return None;
-		if match['func'] == 't2t':
+		if match is None:
+			print 'go into _find_cks_sample......'
+			cks = SmartckCom._find_cks_by_sample(struct,super_b);
+			return cks;
+		elif match['func'] == 't2t':
 			print 'go into _find_cks_time_to_time......'
 			cks = SmartckCom._find_cks_time_to_time(struct,super_b);
 			return cks;
 		elif match['func'] == 'tat':
+			print 'go into _find_cks_time_and_time......'
 			cks = SmartckCom._find_cks_time_and_time(struct,super_b);
 			return cks;
 		elif match['func'] == 'after':
+			print 'go into _find_cks_after......'
 			cks = SmartckCom._find_cks_after(struct,super_b);
 			return cks;
-		else:
-			cks = SmartckCom._find_cks_by_sample(struct,super_b);
+		elif match['func'] == 'next':
+			print 'go into _find_cks_next......'
+			cks = SmartckCom._find_cks_by_next(struct,super_b);
 			return cks;
 		return None;
 
