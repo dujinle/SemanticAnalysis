@@ -77,7 +77,8 @@
 #添加多个闹钟场景入口
 	{
 		"reg":
-			"ADDNUNITACLOCK",
+			"ADDNUNITACLOCK
+			|SETNUNITACLOCK",
 		"type":"ck_madd"
 	},
 #修改闹钟铃声提示音场景入口

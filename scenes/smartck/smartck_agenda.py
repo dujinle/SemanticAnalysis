@@ -35,18 +35,19 @@ class SmartckAgenda(SceneBase):
 			raise MyException(sys.exc_info());
 
 	def _set_clock_info(self,struct,super_b):
-		if super_b.myclock.has_key('name'):
+		myclock = super_b.myclock;
+		if myclock.has_key('name') and myclock['name'] <> '':
 			super_b.myclock['key'] = super_b.myclock['name'];
 			super_b.clocks[super_b.myclock['key']] = super_b.myclock;
 			SceneParam._set_msg(struct,self.data['msg']['set_succ'],super_b.myclock['name']);
-		elif super_b.myclock.has_key('info'):
+		elif myclock.has_key('info') and myclock['info'] <> '':
 			super_b.clocks[super_b.myclock['info']] = super_b.myclock;
 			super_b.myclock['key'] = super_b.myclock['info'];
 			SceneParam._set_msg(struct,self.data['msg']['set_succ'],super_b.myclock['info']);
 		else:
 			super_b.clocks[super_b.myclock['time']] = super_b.myclock;
 			super_b.myclock['key'] = super_b.myclock['time'];
-			SceneParam._set_msg(struct,self.data['msg']['set_succ']);
+			SceneParam._set_msg(struct,self.data['msg']['set_succ'],'');
 
 	def _set_agenda_info(self,struct,super_b):
 		self._set_time(struct,super_b);
