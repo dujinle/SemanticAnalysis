@@ -36,6 +36,7 @@ class SmartckMager(SceneMager):
 	def __init__(self):
 		self.tag_objs = list();
 		self.dfiles = [
+			os.path.join(base_path,'tdata','smartck_madd.txt'),
 			os.path.join(base_path,'tdata','smartck_add.txt'),
 			os.path.join(base_path,'tdata','smartck_getup.txt'),
 			os.path.join(base_path,'tdata','smartck_agenda.txt'),
@@ -47,7 +48,6 @@ class SmartckMager(SceneMager):
 			os.path.join(base_path,'tdata','smartck_prompt.txt'),
 			os.path.join(base_path,'tdata','smartck_able.txt'),
 			os.path.join(base_path,'tdata','smartck_del.txt'),
-			os.path.join(base_path,'tdata','smartck_madd.txt'),
 			os.path.join(base_path,'tdata','smartck_time.txt'),
 			os.path.join(base_path,'tdata','smartck_bell.txt'),
 			os.path.join(base_path,'tdata','smartck_sbell.txt'),
@@ -58,6 +58,7 @@ class SmartckMager(SceneMager):
 		self.fdata = SmartckData();
 		self.smartck_dist = SmartckDist();
 
+		self.tag_objs.append(SmartckMadd());
 		self.tag_objs.append(SmartckAdd());
 		self.tag_objs.append(SmartckGetup());
 		self.tag_objs.append(SmartckAgenda());
@@ -69,7 +70,6 @@ class SmartckMager(SceneMager):
 		self.tag_objs.append(SmartckPrompt());
 		self.tag_objs.append(SmartckAble());
 		self.tag_objs.append(SmartckDel());
-		self.tag_objs.append(SmartckMadd());
 		self.tag_objs.append(SmartckTime());
 		self.tag_objs.append(SmartckBell());
 		self.tag_objs.append(SmartckSBell());

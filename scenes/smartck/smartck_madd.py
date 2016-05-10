@@ -62,6 +62,9 @@ class SmartckMadd(SceneBase):
 			if item['type'] == 'NUM':
 				num = int(item['str']);
 				return num;
+			elif item['type'] == 'NUNIT':
+				num = int(item['stc'][0]['str']);
+				return num;
 		return 0;
 
 	def _add_more_cks(self,struct,super_b):
@@ -70,8 +73,8 @@ class SmartckMadd(SceneBase):
 		while True:
 			if onum <= 0: break;
 			super_b.myclock = dict();
-			SceneParam._fetch_time(struct);
-			SceneParam._calc_able(struct);
+			SmartckCom._fetch_time(struct);
+			SmartckCom._calc_able(struct);
 			if not struct.has_key('ck_time'):
 				SceneParam._set_msg(struct,self.data['msg']['set_mtime']);
 				struct['step'] = 'set_time';
@@ -79,7 +82,7 @@ class SmartckMadd(SceneBase):
 				return None;
 			self._set_time(struct,super_b);
 			self._set_able(struct,super_b);
-			num = num - 1;
+			onum = onum - 1;
 			super_b.myclock['key'] = super_b.myclock['time'];
 			super_b.clocks[super_b.myclock['time']] = super_b.myclock;
-		SceneParam._set_msg(struct,self.data['msg']['madd_succ']);
+		SceneParam._set_msg(struct,self.data['msg']['madd_succ'],struct['ck_num']);
