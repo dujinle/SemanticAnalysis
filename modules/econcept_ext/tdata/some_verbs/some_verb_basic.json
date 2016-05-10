@@ -255,6 +255,12 @@
 					"stype":"DELETE"
 				}
 			},
+			"清除":{
+				"_prop":{
+					"type":"RV",
+					"stype":"DELETE"
+				}
+			},
 			"删掉":{
 				"_prop":{
 					"type":"RV",
