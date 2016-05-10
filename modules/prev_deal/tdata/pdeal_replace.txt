@@ -27,6 +27,11 @@
 	],
 	"time_rep":[
 		{
+			"reg":"两个",
+			"func":"replace",
+			"value":"2个"
+		},
+		{
 			"reg":"昨晚",
 			"func":"replace",
 			"value":"昨天晚上"

@@ -50,7 +50,6 @@ class SmartckAdd(SceneBase):
 				struct['ck_scene'] = 'ck_getup_add';
 				#时间设置完成回应信息
 			else:
-				SceneParam._set_msg(self.data['msg']['add_getup_ck']);
 				myclock['type'] = 'agenda';
 				struct['ck_scene'] = 'ck_agenda_add'
 				#时间设置完成回应信息
