@@ -55,6 +55,10 @@
 			"type":"calc"
 		},
 		{
+			"reg":"REMIND.*METIME(.*)",
+			"type":"calc"
+		},
+		{
 			"reg":"TIME.*(GIVE.*){1,}",
 			"type":"calc"
 		},
@@ -76,10 +80,6 @@
 		},
 		{
 			"reg":"TIMEHAVE(.*)",
-			"type":"calc"
-		},
-		{
-			"reg":"REMINDMETIME(.*)",
 			"type":"calc"
 		},
 		{
