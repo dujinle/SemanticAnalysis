@@ -17,7 +17,8 @@ from handler import RequestHandler
 class SaveHandler(RequestHandler):
 
 	@tornado.gen.coroutine
-	def get(self):
+	@common.json_loads_body
+	def post(self):
 		try:
 			if not self.body_json.has_key('mdl'):
 				self.except_handle('not found module type');

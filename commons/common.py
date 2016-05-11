@@ -8,8 +8,10 @@ PASS = 1;
 ''' import MyException module '''
 base_path = os.path.dirname(__file__);
 sys.path.append(base_path);
+
 #============================================
 from myexception import MyException
+from logger import *
 
 def read_json(dfile):
 	fid = open(dfile,'r');
@@ -49,6 +51,7 @@ def json_loads_body(func):
 	def wrapper(self, *args, **kwargs):
 		try:
 			if not self.request.body is None:
+				logging.info(self.request.body);
 				self.body_json = json.loads(self.request.body);
 		except Exception, e:
 			raise MyException(format(e));
