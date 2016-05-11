@@ -11,17 +11,18 @@ div#body_header {background-color:#FFF;}
 
 <link href="{{ static_url('css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
 <!--slider-->
-<script type="text/javascript">   var $basepath = 'http://218.240.151.116:28082/';</script>
 <script type="text/javascript" src="{{ static_url('scripts/modernizr.custom.53451.js') }}"></script>
 <script type="text/javascript" src="{{ static_url('scripts/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ static_url('scripts/jquery.gallery.js') }}"></script>
 <script type="text/javascript" src="{{ static_url('scripts/enjoyqw.js') }}"></script>
 <script type="text/javascript">
-		$(function() {
+
+	$(function() {
 			$('#dg-container').gallery({
 				autoplay	:	true
 			});
 		});
+	var $basepath = 'http://218.240.151.116:28082/';
 	function render(html){
 		var obj = null;
 		url = $basepath + html;

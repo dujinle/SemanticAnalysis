@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="{{ static_url("css/temperature.css") }}" type="text/css">
+	<script type="text/javascript"> var $basepath = 'http://218.240.151.116:28082/'; var $mdl="Temp"; </script>
+	<script type="text/javascript" src="{{ static_url('scripts/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('scripts/enjoyqw.js') }}"></script>
 	<!-- link rel="stylesheet" href="index.css" type="text/css" -->
     <title>Title</title>
 </head>
@@ -43,7 +46,7 @@
                 </div>
                 <div class="save">
                     <span class="save_text">保存修改:</span>
-                    <div class=""><input class="input_button" type="button" value="确定" onclick="save_data()"></div>
+                    <div class=""><input class="input_button" type="button" value="确定" onclick="save_data('Temp')"></div>
                 </div>
             </div>
             <div class="R_left">
@@ -192,8 +195,5 @@
         </div>
     </div>
 </div>
-<script src="{{ static_url('scripts/jquery-1.7.2.min.js')}}" type="text/javascript"></script>
-<script type="text/javascript">   var $basepath = 'http://218.240.151.116:22184/'; var $mdl = 'Temp'; </script>
-<script src="{{ static_url('scripts/enjoyqw.js')}}" type="text/javascript"></script>
 </body>
 </html>
