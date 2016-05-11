@@ -39,6 +39,8 @@ class SmartckTime(SceneBase):
 			self._reset_time(struct,cks,super_b);
 		elif struct['ttag'].find('CONTENTSWAP') <> -1:
 			self._swap_cks_info(cks,struct,super_b);
+		else:
+			SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
 
 	def _change_time(self,cks,struct,tdir,super_b):
 		for istr in struct['stseg']:
@@ -66,6 +68,8 @@ class SmartckTime(SceneBase):
 					tmin = tmin + 60;
 					hour = hour - 1;
 				clock['time'] = str(hour) + ':' + str(tmin);
+			SceneParam._set_msg(struct,self.data['msg']['ck_time']);
+			break;
 
 	def _swap_cks_info(self,cks,struct,super_b):
 		if len(cks) <> 2:
