@@ -56,12 +56,19 @@ dfiles = {
 		"1":os.path.join(abspath,'modules','pronom_prep','tdata','prep_locality.txt'),
 		"2":os.path.join(abspath,'modules','pronom_prep','tdata','abs_pronom.txt'),
 		"3":os.path.join(abspath,'modules','pronom_prep','tdata','per_pronom.txt'),
-		"4":None,"5":None
+		"4":os.path.join(abspath,'modules','pronom_prep','tdata','prep_combine.txt'),
+		"5":os.path.join(abspath,'modules','pronom_prep','tdata','verb_combine.txt'),
+		"6":None
 	},
 	"Nunit":{
 		"1":os.path.join(abspath,'modules','num_unit','tdata','num.txt'),
 		"2":os.path.join(abspath,'modules','num_unit','tdata','unit.txt'),
 		"3":None
+	},
+	"Concept":{
+		"1":os.path.join(abspath,'modules','econcept','tdata','noun_dic.data'),
+		"2":os.path.join(abspath,'modules','econcept','tdata','verb_dic.data'),
+		"3":os.path.join(abspath,'modules','econcept','tdata','gerund_dic.data')
 	},
 	'Local':{
 		"1":os.path.join(abspath,'data','location','HD')

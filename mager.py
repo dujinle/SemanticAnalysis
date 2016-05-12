@@ -20,6 +20,7 @@ sys.path.append(os.path.join(base_path,'./modules/mytag'));
 sys.path.append(os.path.join(base_path,'./modules/wordsegs'));
 sys.path.append(os.path.join(base_path,'./modules/prev_deal'));
 sys.path.append(os.path.join(base_path,'./modules/num_unit'));
+sys.path.append(os.path.join(base_path,'./modules/econcept'));
 sys.path.append(os.path.join(base_path,'./modules/pronom_prep'));
 #sys.path.append(os.path.join(base_path,'./location'));
 #sys.path.append(os.path.join(base_path,'./flight'));
@@ -39,6 +40,7 @@ from pdeal_cmager import PDealMager
 from nunit_mager import NunitMager
 from pprep_mager import PPrepMager
 from tmood_mager import TMoodMager
+from con_mager import ConMager
 
 from wordseg import WordSeg
 #from concept_mager import ConceptMager
@@ -56,6 +58,7 @@ class Mager:
 		self.nunit = NunitMager();
 		self.pprep = PPrepMager();
 		self.tmood = TMoodMager();
+		self.cmager = ConMager();
 #		self.concept = ConceptMager();
 
 		self.struct = collections.OrderedDict();
@@ -77,6 +80,7 @@ class Mager:
 			self.nunit.init('Nunit');
 			self.pprep.init('PrepPronom');
 			self.tmood.init('TMood');
+			self.cmager.init('Concept');
 			for key in self.modules:
 				self.modules[key].init(key);
 		except Exception as e:
@@ -91,10 +95,10 @@ class Mager:
 		self.timer.encode(self.struct);
 		self.mytag.encode(self.struct);
 		self.nunit.encode(self.struct);
+		self.cmager.encode(self.struct);
 		self.pprep.encode(self.struct);
-		if mdl is None:
-			pass;
-	#		mdl = self.concept.encode(struct);
+		if mdl is None: pass;
+		#mdl = self.concept.encode(struct);
 		if self.modules.has_key(mdl):
 			mobj = self.modules[mdl];
 			mobj.encode(self.struct);
@@ -107,7 +111,7 @@ try:
 	mg.init();
 	#common.print_dic(mg.encode(u'把声音调大点'));
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	common.print_dic(mg.encode(u'给我一天时间','Alarm'));
+	common.print_dic(mg.encode(u'我女儿下周去春游',None));
 except Exception as e:
 	raise e;
 #'''
