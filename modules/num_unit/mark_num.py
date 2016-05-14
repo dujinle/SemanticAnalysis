@@ -16,7 +16,7 @@ class MarkNum():
 
 	def encode(self,struct):
 		try:
-			if not struct.has_key('num_list'): struct['num_list'] = list();
+			if not struct.has_key('Nums'): struct['Nums'] = list();
 			self._mark_num(struct);
 			self._reset_inlist(struct);
 		except Exception:
@@ -25,7 +25,7 @@ class MarkNum():
 	#把数字组合在一起 并更新分词的列表
 	def _reset_inlist(self,struct):
 		sid = 0;
-		for item in struct['num_list']:
+		for item in struct['Nums']:
 			tstr = item['str'];
 			sid = Sutil._merge_some_words(struct,tstr,sid);
 
@@ -37,7 +37,7 @@ class MarkNum():
 				tdic = dict();
 				tdic['stype'] = 'NUM';
 				tdic['str'] = item;
-				struct['num_list'].append(tdic);
+				struct['Nums'].append(tdic);
 
 	def _match_num_reg(self,words):
 		for key in self.data:

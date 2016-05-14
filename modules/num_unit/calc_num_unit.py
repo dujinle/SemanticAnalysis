@@ -16,17 +16,15 @@ class CalcNumUnit():
 
 	def encode(self,struct):
 		try:
-			if not struct.has_key('nunit'): struct['nunit'] = list();
+			if not struct.has_key('Nunit'): struct['Nunit'] = list();
 			self._calc_num_unit(struct);
 			self._reset_inlist(struct);
-			if len(struct['unit_list']) == 0: del struct['unit_list'];
-			if len(struct['num_list']) == 0: del struct['num_list'];
 		except Exception:
 			raise MyException(sys.exc_info());
 
 	def _calc_num_unit(self,struct):
-		nlist = struct['num_list'];
-		ulist = struct['unit_list'];
+		nlist = struct['Nums'];
+		ulist = struct['Units'];
 		nid = uid = pid = 0;
 		while True:
 			if nid >= len(nlist): break;
@@ -37,12 +35,12 @@ class CalcNumUnit():
 				ustr = num['str'] + unit['str'];
 				if struct['text'].find(ustr) <> -1:
 					tdic = dict();
-					tdic['type'] = 'NUNIT';
+					tdic['type'] = 'Nunit';
 					tdic['str'] = ustr;
 					tdic['stc'] = list();
 					tdic['stc'].append(num);
 					tdic['stc'].append(unit);
-					struct['nunit'].append(tdic);
+					struct['Nunit'].append(tdic);
 					del ulist[uid],nlist[nid];
 					nid = nid - 1;
 					break;
@@ -52,6 +50,6 @@ class CalcNumUnit():
 
 	def _reset_inlist(self,struct):
 		tid = 0;
-		for item in struct['nunit']:
+		for item in struct['Nunit']:
 			tstr = item['str']
 			tid = Sutil._merge_some_words(struct,tstr,tid);

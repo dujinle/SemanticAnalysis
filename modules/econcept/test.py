@@ -12,6 +12,7 @@ from wordseg import WordSeg
 from net_data import NetData
 from mark_objs import MarkObjs
 from merge_objs import MergeObjs
+from merge_sds import MergeSbDoSth
 
 word_seg = WordSeg();
 net_data = NetData();
@@ -21,6 +22,7 @@ net_data.set_gerund_net(os.path.join(base_path,'./tdata/gerund_dic.data'));
 
 mk_objs = MarkObjs(net_data);
 me_objs = MergeObjs(net_data);
+ms_objs = MergeSbDoSth(net_data);
 
 struct = dict();
 fp = open('./test.txt','rb');
@@ -31,6 +33,7 @@ for line in fp.readlines():
 	struct['inlist'] = word_seg.tokens(struct['text']);
 	mk_objs.encode(struct);
 	me_objs.encode(struct);
+	ms_objs.encode(struct);
 	common.print_dic(struct);
 	break;
 

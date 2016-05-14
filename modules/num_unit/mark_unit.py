@@ -15,22 +15,22 @@ class MarkUnit():
 
 	def encode(self,struct):
 		try:
-			if not struct.has_key('unit_list'): struct['unit_list'] = list();
+			if not struct.has_key('Units'): struct['Units'] = list();
 			self._mark_unit(struct);
 			self._deal_unit(struct);
 		except Exception:
 			raise MyException(sys.exc_info());
 
 	def _mark_unit(self,struct):
-		for istr in struct['inlist']:
-			if self.data.has_key(istr):
+		for unit in self.data.keys():
+			if struct['text'].find(unit) <> -1:
 				tdic = dict();
 				tdic['stype'] = 'UNIT';
-				tdic['str'] = istr;
-				struct['unit_list'].append(tdic);
-		Sutil._sort_by_apper(struct,'unit_list');
+				tdic['str'] = unit;
+				struct['Units'].append(tdic);
+		Sutil._sort_by_apper(struct,'Units');
 
 	#把相邻的单位词合并成一个单位词
 	def _deal_unit(self,struct):
-		Sutil._merge_cont_tag(struct,'unit_list',self.data);
+		Sutil._merge_cont_tag(struct,'Units',self.data);
 

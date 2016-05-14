@@ -6,7 +6,9 @@ import common,config
 from myexception import MyException
 from mark_num import MarkNum
 from mark_unit import MarkUnit
+from mark_relat import MarkRelat
 from calc_num_unit import CalcNumUnit
+from nunit_tail import NunitTail
 
 
 class NunitMager:
@@ -16,7 +18,9 @@ class NunitMager:
 		# mark tag objs #
 		self.tag_objs.append(MarkNum());
 		self.tag_objs.append(MarkUnit());
+		self.tag_objs.append(MarkRelat());
 		self.tag_objs.append(CalcNumUnit());
+		self.tag_objs.append(NunitTail());
 
 	def init(self,dtype):
 		try:
@@ -33,4 +37,3 @@ class NunitMager:
 				obj.encode(struct);
 		except Exception as e:
 			raise e;
-

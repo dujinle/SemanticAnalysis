@@ -19,6 +19,7 @@ class MarkObjs():
 	def _mark_objs(self,struct):
 		noun = self.net_data.get_noun_net();
 		vbs = self.net_data.get_verb_net();
+		gerund = self.net_data.get_gerund_net();
 		idx = 0;
 		while True:
 			if idx >= len(struct['text']): break;
@@ -38,12 +39,23 @@ class MarkObjs():
 					idx = idx + len(wd) - 1;
 					wd = '';
 					break;
+				elif gerund.has_key(wd):
+					wc = gerund[wd];
+					struct['Objs'].append(wc);
+					idx = idx + len(wd) - 1;
+					wd = '';
+					break;
 			idx = idx + 1;
 
 		#把连续的动词合并为一个词,这里是因为分词的不理想导致动词的分开
-		Sutil._merge_cont_tag(struct,'Verbs');
+		#Sutil._merge_cont_tag(struct,'Verbs');
 		tid = 0;
 		for verb in struct['Verbs']:
-			if verb['str'] in struct['inlist']:
+			if verb['str'] in struct['inlist'] or len(verb['str']) == 1:
 				continue;
-			tid = Sutil._merge_some_words(verb['str'],tid);
+			tid = Sutil._merge_some_words(struct,verb['str'],tid);
+		tid = 0;
+		for verb in struct['Objs']:
+			if verb['str'] in struct['inlist'] or len(verb['str']) == 1:
+				continue;
+			tid = Sutil._merge_some_words(struct,verb['str'],tid);

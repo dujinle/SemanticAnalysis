@@ -5,6 +5,8 @@ import common,config
 from net_data import NetData
 from mark_objs import MarkObjs
 from merge_objs import MergeObjs
+from merge_sds import MergeSbDoSth
+from con_tail import ConTail
 
 class ConMager():
 	def __init__(self):
@@ -12,7 +14,9 @@ class ConMager():
 		self.net_data = NetData();
 
 		self.tag_objs.append(MarkObjs(self.net_data));
-		self.tag_objs.append( MergeObjs(self.net_data));
+		self.tag_objs.append(MergeObjs(self.net_data));
+		self.tag_objs.append(MergeSbDoSth(self.net_data));
+		self.tag_objs.append(ConTail());
 
 	def init(self,dtype):
 		try:
