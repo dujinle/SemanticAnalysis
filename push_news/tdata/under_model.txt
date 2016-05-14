@@ -1,0 +1,19 @@
+{
+	"get_num":4,
+	"msg":{
+		"unknow":["没有理解你的要求，你可以根据标题搜索新闻。"],
+		"get_news_info":["老板在你关注的%s新闻中，随机筛选了%d条，%s老板想听哪一条？"],
+		"no_news":["还没有新闻数据哦，请主人等待一下"],
+		"push_news":[""]
+	},
+	"models":[
+		{
+			"reg":"HASONE.*WHAT.*NEWS",
+			"func":"get"
+		},
+		{
+			"reg":"THAT",
+			"func":"get_info"
+		}
+	]
+}
