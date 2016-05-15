@@ -21,6 +21,20 @@
 			|BESIDESHOWMANY",
 		"type":"ck_search"
 	},
+#删除闹钟场景入口
+	{
+		"reg":
+			"DELETE
+			|TIME.*NO.*GO
+			|CANCEL
+			|ALLNOTNEEDRING
+			|UNUSEDEDELETE
+			|ONLYLEFT
+			|TIMEREST
+			|NUNITDELETE
+			|NOTNEED",
+		"type":"ck_del"
+	},
 	{
 #添加日程提醒场景入口
 		"reg":
@@ -30,11 +44,11 @@
 			|CALLMETIMEGO
 			|SET.*ACLOCK.*CONTENTIS
 			|DECIDEGETIMEGO.*ACLOCK
-			|TIME[^NO]*GOUT
-			|TIME[^NO]*GO
-			|TIME[^NO]*GIVE
-			|TIME[^NO]*HAVE
-			|TIME[^NO]*COME
+			|TIME.*GOUT
+			|TIME.*GO
+			|TIME.*GIVE
+			|TIME.*HAVE
+			|TIME.*COME
 			|ATTIME
 			|DECIDEATTIME
 			|.*ATTIME
@@ -50,20 +64,6 @@
 			|CONVERTEVERYDAYREMIND
 			|PASSHOLIDAYS",
 		"type":"ck_able"
-	},
-#删除闹钟场景入口
-	{
-		"reg":
-			"DELETE
-			|TIMENOGO
-			|CANCEL
-			|ALLNOTNEEDRING
-			|UNUSEDEDELETE
-			|ONLYLEFT
-			|TIMEREST
-			|NUNITDELETE
-			|NOTNEED",
-		"type":"ck_del"
 	},
 #添加起床闹钟场景入口
 	{
