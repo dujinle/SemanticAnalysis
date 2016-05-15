@@ -339,16 +339,10 @@
 							"stype":"DIAL"
 						}
 					},
-					"打开":{
+					"提":{
 						"_prop":{
 							"type":"RV",
-							"stype":"OPEN"
-						}
-					},
-					"关闭":{
-						"_prop":{
-							"type":"RV",
-							"stype":"CLOSE"
+							"stype":"CARRY"
 						}
 					}
 				}
@@ -483,6 +477,12 @@
 					}
 				},
 				"搞":{
+					"_prop":{
+						"type":"RV",
+						"stype":"FETCH"
+					}
+				},
+				"整":{
 					"_prop":{
 						"type":"RV",
 						"stype":"FETCH"

@@ -143,10 +143,34 @@
 			"stype":"MOVE_TO"
 		}
 	},
+	"调到":{
+		"_prop":{
+			"type":"LT",
+			"stype":"SET_TO"
+		}
+	},
 	"重新":{
 		"_prop":{
 			"type":"LT",
 			"stype":"ANEW"
+		}
+	},
+	"提高":{
+		"_prop":{
+			"type":"LT",
+			"stype":"INCREASE"
+		}
+	},
+	"增加":{
+		"_prop":{
+			"type":"LT",
+			"stype":"ADD"
+		}
+	},
+	"降低":{
+		"_prop":{
+			"type":"LT",
+			"stype":"LOWER"
 		}
 	}
 }
