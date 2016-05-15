@@ -29,7 +29,7 @@ if __name__ == '__main__':
 				ans = item['ans'];
 				if struct['mcks'].has_key(ans['key']):
 					clock = struct['mcks'][ans['key']];
-					if clock['time'] == ans['time'] and int(clock['able']['able']) == int(ans['able']):
+					if clock['time'] == ans['time']:# and int(clock['able']['able']) == int(ans['able']):
 						sys.stderr.write(item['case'] + 'succ\n');
 						continue;
 			sys.stderr.write(item['case'] + 'failed\n');

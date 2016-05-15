@@ -3,7 +3,7 @@
 import sys,re
 
 
-comp = re.compile('(?:BA3)(.*)DEACLOCK');
-match = comp.findall('BA3参ADD年会DEACLOCKDELETE:q');
+comp = re.compile('TIME.*(?:GO)(.*)');
+match = comp.findall('TIMEGOHITGOLF');
 for it in match:
 	print it;
