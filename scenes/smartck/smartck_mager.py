@@ -1,7 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import sys,os,common
-import pgsql,collections
 #==============================================================
 ''' import tagpy wordsegs '''
 base_path = os.path.dirname(__file__);
