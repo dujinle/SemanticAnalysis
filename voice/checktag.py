@@ -2,42 +2,35 @@
 #-*- coding:utf-8 -*-
 import sys,os
 from base import Base
-#============================================
-''' import MyException module '''
-
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
 from myexception import MyException
+from common import logging
 
 class PM(Base):
 
 	def _check(self,struct):
 		try:
-			self.check_input(struct);
 			if struct.has_key('Z'): return ;
 
 			inlist = struct['inlist'];
 			taglist = struct['taglist'];
 			reg = '';
 			for _tag in taglist:
-				if type(_tag) == dict:
+				if isinstance(_tag,dict):
 					reg = reg + _tag['type'];
 				elif _tag in inlist:
-					raise MyException('the word' + _tag + 'is unknow');
+					logging.info('unkown the words' + _tag);
 			regs = self.data['reg'];
 			if reg in regs:
 				struct['reg'] = reg;
 			else:
-				raise MyException('can`t find the reg[' + reg + '] from PM file');
+				logging.info('can`t find the reg[' + reg + '] from PM file');
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def encode(self,struct):
 		try:
 			self._check(struct);
-		except Exception as e:
-			raise MyException(format(e));
+		except Exception as e: raise e;
 
 	def _add(self,data):
 		try:
@@ -49,7 +42,7 @@ class PM(Base):
 					return;
 				regs.append(value);
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _del(self,data):
 		try:
@@ -60,4 +53,4 @@ class PM(Base):
 				idx = regs.index(invalue);
 				del regs[idx];
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());

@@ -7,33 +7,20 @@ import collections
 
 #==============================================================
 ''' import tagpy wordsegs '''
-abspath = os.path.abspath(__file__);
-base_path = os.path.split(abspath)[0];
-
-sys.path.append(base_path + '/tagpy');
-sys.path.append(base_path + '/wordsegs');
-sys.path.append(base_path + '/../commons');
+base_path = os.path.dirname(__file__);
+sys.path.append(os.path.join(base_path,'../commons'));
 #==============================================================
 
-from wordseg import WordSeg
-import common
-import config
+import common,config
 from myexception import MyException
-from marktag import M
-from marktag import C
-from marktag import F
-from marktag import X
-from extendtag import X1
-from extendtag import M1
-from extendtag import F1
-from extendtag import Z
+from marktag import M,C,F,X
+from extendtag import X1,M1,F1,Z
 from checktag import PM
 from calctag import Calc
 
-#@common.singleton
-class Mager:
-	def __init__(self):
-		self.wordseg = WordSeg();
+class VoiceMager:
+	def __init__(self,wordseg):
+		self.wordseg = wordseg;
 		self.tag_objs = list();
 
 		# mark tag objs #
@@ -57,23 +44,16 @@ class Mager:
 			for obj in self.tag_objs:
 				obj.load_data(dfiles[str(step)]);
 				step = step + 1;
-		except MyException as e:
+		except Exception as e:
 			raise e;
 
-	def encode(self,inlist):
-		struct = collections.OrderedDict();
-		struct['text'] = inlist;
-		struct['taglist'] = list();
+	def encode(self,struct):
 		try:
-			struct['inlist'] = self.wordseg.tokens(inlist);
 			for obj in self.tag_objs:
 				obj.init();
 				obj.encode(struct);
-			return struct;
-		except MyException as e:
-			res = common.get_dicstr(struct);
-			res = e.value + '\n' +res;
-			raise MyException(res);
+		except Exception as e:
+			raise e;
 
 	def deal_data(self,fname,action,data):
 		try:
@@ -83,44 +63,38 @@ class Mager:
 					continue;
 				elif not ret is None:
 					return ret;
-		except MyException as e:
+		except Exception as e:
 			raise e;
 
-	def sp_deal(self,action,word):
-		if self.wordseg is None:
-			raise MyException('the word seg obj is none');
-		try:
-			self.wordseg.deal_word(action,word);
-		except MyException as e:
-			raise e;
-
-	def write_file(self):
+	def write_file(self,dtype):
 		try:
 			step = 1;
-			dfiles = config.dfiles[config.dtype];
+			dfiles = config.dfiles[dtype];
 			for obj in self.tag_objs:
 				obj.write_file(dfiles[str(step)]);
 				step = step + 1;
-			self.wordseg.write_file();
-		except MyException as e:
+		except Exception as e:
 			raise e;
-'''
+#'''
 try:
-	mg = Mager();
+	sys.path.append('../modules/wordsegs');
+	from wordseg import WordSeg
+	wordseg = WordSeg();
+	mg = VoiceMager(wordseg);
 	mg.init('Voice');
+	struct = dict();
+	struct['text'] = u'连一点声音都没有';
+	struct['inlist'] = wordseg.tokens(struct['text']);
+	struct['taglist'] = list();
+	mg.encode(struct);
 	#mg.write_file();
-<<<<<<< HEAD
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	#mg.sp_deal('del',{'value':u'大点'});
-	common.print_dic(mg.encode(u'把声音调到最大'));
-=======
-	#mg.sp_deal('del',{'value':u'静音'});
+	common.print_dic(struct);
 	#mg.deal_data('M','add',{'value':u'音'});
 	#common.print_dic(mg.encode(u'静音'));
 	#mg.sp_deal('del',{'value':u'最大声'});
 	#common.print_dic(mg.encode(u'大点声'));
-	common.print_dic(mg.encode(u'再整点'));
->>>>>>> 98209940d4a279b07ed59b34836042f930f8adee
-except MyException as e:
-	print e.value;
-'''
+	#common.print_dic(mg.encode(u'再整点'));
+except Exception as e:
+	raise e;
+#'''

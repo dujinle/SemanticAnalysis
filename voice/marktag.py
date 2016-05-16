@@ -1,25 +1,17 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import sys,os
-#============================================
-''' import MyException module '''
-
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
 from base import Base
-
 from myexception import MyException
-
+from common import logging
 class X(Base):
 
 	def encode(self,struct):
 		try:
-			self.check_input(struct);
 			xdata = self.data['X'];
 			self.__match_x(xdata,struct);
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def __match_x(self,xdata,struct):
 		inlist = struct['inlist'];
@@ -50,9 +42,9 @@ class X(Base):
 				else:
 					xdata[tdir].append(value);
 			else:
-				raise MyException('X: input data has no key [dir|value]');
+				logging.error('X: input data has no key [dir|value]');
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _del(self,data):
 		try:
@@ -65,13 +57,12 @@ class X(Base):
 					del tdata[idx];
 					break;
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 class M(Base):
 
 	def encode(self,struct):
 		try:
-			self.check_input(struct);
 			inlist = struct['inlist'];
 			mdata = self.data['M'];
 			taglist = struct['taglist'];
@@ -87,7 +78,7 @@ class M(Base):
 			if self.data.has_key('attr'):
 				struct['attr'] = self.data.get('attr');
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _add(self,data):
 		try:
@@ -97,7 +88,7 @@ class M(Base):
 				return;
 			mdata.append(word);
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _del(self,data):
 		try:
@@ -108,13 +99,12 @@ class M(Base):
 				del mdata[idx];
 				return;
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 class C(Base):
 
 	def encode(self,struct):
 		try:
-			self.check_input(struct);
 			inlist = struct['inlist'];
 			keys = self.data.keys();
 			taglist = struct['taglist'];
@@ -134,7 +124,7 @@ class C(Base):
 						taglist.insert(idx,tdic);
 						break;
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _add(self,data):
 		try:
@@ -149,9 +139,10 @@ class C(Base):
 				else:
 					xdata[tdir].append(value);
 			else:
-				raise MyException('C: input data has no key [dir|value]');
+				logging.error('C: input data has no key [dir|value]');
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
+
 	def _del(self,data):
 		try:
 			xdata = self.data;
@@ -163,14 +154,13 @@ class C(Base):
 					del tdata[idx];
 					break;
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 
 class F(Base):
 
 	def encode(self,struct):
 		try:
-			self.check_input(struct);
 			inlist = struct['inlist'];
 			taglist = struct['taglist'];
 			keys = self.data.keys();
@@ -186,7 +176,7 @@ class F(Base):
 					#tdic.update(data);
 					taglist.insert(idx,tdic);
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _add(self,data):
 		try:
@@ -206,7 +196,8 @@ class F(Base):
 				tdic['dir'] = dirs;
 				fdata[value] = tdic;
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
+
 	def _del(self,data):
 		try:
 			fdata = self.data;
@@ -215,4 +206,4 @@ class F(Base):
 			if invalue in fkeys:
 				del fdata[invalue];
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());

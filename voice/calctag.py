@@ -2,12 +2,6 @@
 #-*- coding:utf-8 -*-
 import sys,os
 from base import Base
-#============================================
-''' import MyException module '''
-
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#============================================
 from myexception import MyException
 
 class Calc(Base):
@@ -21,7 +15,7 @@ class Calc(Base):
 			self.calc_dir(struct);
 			self.calc_level(struct);
 		except Exception as e:
-			raise MyException(format(e));
+			raise e;
 
 	def calc_level(self,struct):
 		try:
@@ -33,12 +27,16 @@ class Calc(Base):
 				if _tag['type'] == 'C':
 					self.level = _tag['level'];
 			if not level.has_key(self.level):
-				raise MyException('Num file has not level key[' + self.level + ']');
+				logging.error('Num file has not level key[' + self.level + ']');
+				return None;
 			struct['value'] = level[self.level];
 			if struct.has_key('Nt'):
 				struct['value'] = struct['Nt']['value'];
+			if struct.has_key('M1') and struct['M1']['reg'].find(u'连') <> -1:
+				struct['value'] = '10%';
+
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def calc_dir(self,struct):
 		try:
@@ -67,7 +65,8 @@ class Calc(Base):
 
 			if not mydir is None: self.dirs = mydir;
 			if not direct.has_key(self.dirs):
-				raise MyException('Num file has not the dir key[' + self.dirs + ']');
+				logging.error('Num file has not the dir key[' + self.dirs + ']');
+				return None;
 			struct['dir'] = direct[self.dirs];
 
 			if struct['dir'] == 'NEW':
@@ -80,5 +79,5 @@ class Calc(Base):
 					elif struct['dir'] == '-':
 						struct['dir'] = '+';
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
