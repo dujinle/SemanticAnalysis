@@ -17,6 +17,8 @@ from base import Base
 class TReplace(Base):
 	def encode(self,struct):
 		try:
+			if not struct.has_key('rep_dict'):
+				struct['rep_dict'] = dict();
 			self._str2num(struct);
 			self._replace(struct);
 			self._match_deal(struct);
@@ -40,6 +42,8 @@ class TReplace(Base):
 			(org_str,num_str) = self._hanzi2num(mdic);
 			input_str = input_str.replace(org_str,num_str,1);
 			struct['text'] = prev_str + input_str;
+			struct['rep_dict'][num_str] = org_str;
+
 
 	def _replace(self,struct):
 		for reg in self.data['replace']:
@@ -57,6 +61,7 @@ class TReplace(Base):
 			prev_str = struct['text'][:step_id];
 			input_str = input_str.replace(mdic['mstr'],mdic['value'],1);
 			struct['text'] = prev_str + input_str;
+			struct['rep_dict'][mdic['value']] = mdic['mstr'];
 
 	def _hanzi2num(self,mdic):
 		sub_reg = mdic['sub_reg'];
@@ -84,6 +89,7 @@ class TReplace(Base):
 			if mdic['func'] == 'add':
 				if input_str.find(mdic['value']) == -1:
 					input_str = input_str.replace(mdic['mstr'],mdic['mstr'] + mdic['value'],1);
+					struct['rep_dict'][mdic['mstr'] + mdic['value']] = mdic['mstr'];
 			if mdic['func'] == 'time':
 				pre_num = re.findall('[0-9]{1,}',input_str)[0];
 				if int(pre_num) <= 12:
@@ -91,5 +97,6 @@ class TReplace(Base):
 					input_str = input_str.replace(pre_num,num,1);
 			if mdic['func'] == 'hour_half':
 				input_str = input_str.replace(mdic['value'],u'30分',1);
+				struct['rep_dict'][u'30分'] = mdic['value'];
 			struct['text'] = prev_str + input_str;
 

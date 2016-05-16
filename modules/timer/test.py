@@ -44,7 +44,7 @@ tre.load_data('./tdata/TReplace.txt.han');
 tmood.load_data('./tdata/TMood.txt');
 
 struct = dict();
-struct['text'] = u'国际麻风节'#的的10点半给9月2号设置一个早上8点响的闹铃'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
+struct['text'] = u'周三八点'#的的10点半给9月2号设置一个早上8点响的闹铃'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
 struct['intervals'] = list();
 struct['mood'] = list();
 struct['my_inter_id'] = 0;

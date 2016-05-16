@@ -78,6 +78,7 @@ class TTail(Base):
 			time_common._make_sure_time(start,tid);
 			time_common._make_sure_time(end,tid);
 			self._calc_mid_value(my_interval);
+			self._undo_strs(struct,my_interval);
 			del struct['prev_func']
 			return 0;
 		except MyException as e: raise e;
@@ -120,3 +121,15 @@ class TTail(Base):
 		if e_stamp == 0: return None;
 		m_stamp = (s_stamp + e_stamp) / 2;
 		my_interval['mvalue'] = m_stamp;
+
+	def _undo_strs(self,struct,my_interval):
+		sp_str = my_interval['str'].split('_');
+		undo_str = '';
+		for istr in sp_str:
+			for key in struct['rep_dict']:
+				if istr.find(key) <> -1:
+					istr = istr.replace(key,struct['rep_dict'][key],1);
+					struct['text'] = struct['text'].replace(key,struct['rep_dict'][key],1);
+			undo_str = undo_str + '_' + istr;
+		my_interval['str'] = undo_str;
+		if struct.has_key('rep_dict'): del struct['rep_dict'];
