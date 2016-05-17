@@ -8,7 +8,7 @@ import collections
 #==============================================================
 ''' import tagpy wordsegs '''
 base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../commons'));
+sys.path.append(os.path.join(base_path,'../../commons'));
 #==============================================================
 
 import common,config
@@ -75,7 +75,7 @@ class VoiceMager:
 				step = step + 1;
 		except Exception as e:
 			raise e;
-#'''
+'''
 try:
 	sys.path.append('../modules/wordsegs');
 	from wordseg import WordSeg
@@ -97,4 +97,4 @@ try:
 	#common.print_dic(mg.encode(u'再整点'));
 except Exception as e:
 	raise e;
-#'''
+'''

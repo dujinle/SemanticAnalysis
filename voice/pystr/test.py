@@ -8,8 +8,8 @@ import collections
 #==============================================================
 ''' import tagpy wordsegs '''
 base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../commons'));
-sys.path.append(os.path.join(base_path,'../modules/wordsegs'));
+sys.path.append(os.path.join(base_path,'../../commons'));
+sys.path.append(os.path.join(base_path,'../../modules/wordsegs'));
 #==============================================================
 
 import common,config
