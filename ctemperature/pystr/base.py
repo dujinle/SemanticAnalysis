@@ -16,8 +16,7 @@ class Base:
 	def load_data(self,dfile):
 		try:
 			self.data = common.read_json(dfile);
-		except Exception as e:
-			raise MyException(format(e));
+		except Exception as e: raise e;
 
 	def deal_data(self,fname,action,data):
 		_class = str(self.__class__);
