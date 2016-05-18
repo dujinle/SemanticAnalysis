@@ -1,18 +1,11 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import sys,os,re
-reload(sys);
-sys.setdefaultencoding('utf-8');
-import common,config,music_com
+import common,config
+from base import Base
 from myexception import MyException
-class MSN:
-	def __init__(self):
-		self.data = None;
-	def init(self,dfile):
-		try:
-			self.data = music_com.readfile(dfile);
-		except MyException as e:
-			raise e;
+
+class MSR(Base):
 
 	def encode(self,struct):
 		self._match_msr(struct);
@@ -23,11 +16,11 @@ class MSN:
 		for instr in taglist:
 			if type(instr) == dict: continue;
 			tdic = dict();
-			tdic['type'] = 'music_msn'
+			tdic['type'] = 'music_msr'
 			tdic['value'] = instr;
 			idx = taglist.index(instr);
 			if self.data.has_key(instr):
-				tdic['scope'] = 'singname';
+				tdic['scope'] = 'singer';
 				taglist[idx] = tdic;
 
 	def _add(self,data):
@@ -36,7 +29,7 @@ class MSN:
 			if not self.data.has_key(value):
 				self.data[value] = 1;
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _del(self,data):
 		try:
@@ -44,7 +37,7 @@ class MSN:
 			if self.data.has_key(value):
 				del self.data[value];
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 
 	def _get(self,data):
 		return self.data;
@@ -58,4 +51,4 @@ class MSN:
 				fd.write(key + '\n');
 			fd.close();
 		except Exception as e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
