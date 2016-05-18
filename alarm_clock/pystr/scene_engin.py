@@ -40,17 +40,16 @@ msg = [
 	u'难死宝宝了，让我再学习学习吧',
 	u'这事儿现在搞不定，请您再等等，好不好嘛'
 ];
-err_msg = ["好头疼，我得再学习学习..."];
+err_msg = [u'好头疼，我得再学习学习...'];
 class SEngin():
 
-	def __init__(self,wordseg):
+	def __init__(self):
 		self.clocks = collections.OrderedDict();
 		self.myclock = None;
 
 		self.scene_con = Concept();
 		self.dist_scene = DistScene();
 		self.prev_scene = PrevScene();
-		self.wordseg = wordseg;
 
 		self.scene_add = SceneAdd();
 		self.scene_getup = SceneGetup();
@@ -93,18 +92,15 @@ class SEngin():
 			raise e;
 
 	def _init(self,struct):
+		struct['result'] = dict();
 		if struct.has_key('clocks'): del struct['clocks'];
 		if struct.has_key('ck_name'): del struct['ck_name'];
 		if struct.has_key('ck_time'): del struct['ck_time'];
-		if struct.has_key('result'): struct['result'] = dict();
 		if struct.has_key('ttag'): del struct['ttag'];
 
 	def _tail(self,struct):
-	#	if struct.has_key('clocks'): del struct['clocks'];
-	#	if struct.has_key('ck_name'): del struct['ck_name'];
 		if struct.has_key('ck_time'): del struct['ck_time'];
 		if struct.has_key('ttag'): del struct['ttag'];
-	#	if struct.has_key('inlist'): del struct['inlist'];
 		if struct.has_key('tag'): del struct['tag'];
 		if struct.has_key('mood'): del struct['mood'];
 
@@ -113,7 +109,6 @@ class SEngin():
 		try:
 			self._init(struct);
 			self.prev_scene.encode(struct);
-			struct['inlist'] = self.wordseg.tokens(struct['text']);
 
 			self.scene_con.encode(struct);
 			self.dist_scene.encode(struct);

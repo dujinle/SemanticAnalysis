@@ -1,16 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import sys,os
-reload(sys);
-sys.setdefaultencoding('utf-8');
-import collections
-
-#==============================================================
-''' import tagpy wordsegs '''
-base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
-#==============================================================
-
 import common,config
 from myexception import MyException
 from marktag import M,C,F,X
@@ -19,8 +9,7 @@ from checktag import PM
 from calctag import Calc
 
 class VoiceMager:
-	def __init__(self,wordseg):
-		self.wordseg = wordseg;
+	def __init__(self):
 		self.tag_objs = list();
 
 		# mark tag objs #
@@ -49,9 +38,13 @@ class VoiceMager:
 
 	def encode(self,struct):
 		try:
+			struct['taglist'] = list();
 			for obj in self.tag_objs:
 				obj.init();
 				obj.encode(struct);
+			del struct['taglist'];
+			if struct.has_key('F1'): del struct['F1'];
+			if struct.has_key('reg'): del struct['reg'];
 		except Exception as e:
 			raise e;
 
