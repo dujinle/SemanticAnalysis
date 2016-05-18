@@ -1,9 +1,12 @@
 {
 	"前":{
-		"reg":"time 前",
-		"interval":["-<","-"]
+		"reg":"t前",
+		"dir":"-",
+		"kpoint":"last"
+	},
+	"后":{
+		"reg":"t后",
+		"dir":"+",
+		"kpoint":"last"
 	}
 }
-
-
-

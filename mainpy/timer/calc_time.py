@@ -36,41 +36,51 @@ class Calc_Time_Notion:
 
 	def _calc_interval(self,struct):
 		taglist = struct.get('taglist');
+		if len(taglist) <= 0: return None;
+
 		struct['intervals'] = list();
 		start_time = list(self.curtime[:]);
 		end_time = list(self.curtime[:]);
 
-		flag = False;
-		for tag in taglist:
-			if type(tag) <> dict and flag == True:
-				interval = [time.mktime(start_time),time.mktime(end_time)];
-				struct['intervals'].append(interval);
-				flag = False;
-			elif tag['type'] == 'time':
-				self._calc_start_end_time(start_time,end_time,tag);
-				flag = True;
+		prev_tag = None;
+		idx = len(taglist) - 1;
+		while idx >= 0:
+			tag = taglist[idx];
+			if type(tag) <> dict: continue;
+			elif tag['type'] == 'ex_time':
+				if prev_tag is None: self._calc_start_end_time(start_time,end_time,tag);
+				elif prev_tag['type'].find('time') <> -1: self._fill_time(start_time,end_time,tag);
+				prev_tag = tag;
 			elif tag['type'] == 'num_time':
-				self._fill_time(start_time,end_time,tag);
-				flag = True;
-			elif flag == True:
-				interval = [time.mktime(start_time),time.mktime(end_time)];
-				struct['intervals'].append(interval);
-				flag = False;
+				if prev_tag is None: self._calc_start_end_time(start_time,end_time,tag);
+				elif prev_tag['type'].find('time') <> -1: self._fill_time(start_time,end_time,tag);
+				prev_tag = tag;
+			else:
+				prev_tag = None;
+			idx = idx - 1;
 			self._make_sure_time(start_time);
 			self._make_sure_time(end_time);
-		if flag == True:
-			interval = [time.mktime(start_time),time.mktime(end_time)];
-			struct['intervals'].append(interval);
 
 	def _fill_time(self,start_time,end_time,tag):
-		idx = self.ttype[tag['mytype']];
-		start_time[idx] = int(tag['num']);
-		end_time[idx] = int(tag['num']);
-		if tag.has_key('interval'):
-			start_time[idx] = int(tag['num']) + tag['interval'][0];
-			end_time[idx] = int(tag['num']) + tag['interval'][1];
+		idx = self.ttype[tag['scope']];
+		if tag['type'] == 'ex_time':
+			start_time[idx] = int(tag['num']);
+			end_time[idx] = int(tag['num']);
+		elif tag['type'] == 'num_time':
+			if tag['meaning'] == 'date':
+				start_time[idx] = int(tag['num']);
+				end_time[idx] = int(tag['num']);
+			else:
+				pass;
 
 	def _calc_start_end_time(self,start_time,end_time,tag):
+		idx = self.ttype[tag['scope']];
+		if tag['type'] == 'num_time':
+			if tag['meaning'] == 'date':
+				start_time[idx] = int(tag['num']);
+				end_time[idx] = int(tag['num']) + 1;
+				tag['interval'] = []
+			
 		interval = tag.get('interval');
 		idx = self.ttype[tag['scope']];
 		start_time[idx] = start_time[idx] + interval[0];
