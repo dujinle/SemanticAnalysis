@@ -13,9 +13,8 @@ import common,alarm_common
 from myexception import MyException
 
 #关闭闹钟
-class AlarmOff():
-
-	def __init__(self): pass;
+from base import Base
+class AlarmOff(Base):
 
 	#---------------------------
 	#7点40分的闹钟不要响了
@@ -24,9 +23,7 @@ class AlarmOff():
 	#---------------------------
 	def encode(self,struct,super_b):
 		try:
-			if not struct.has_key('clocks'):
-				struct['code'] = 'error';
-				return None;
+			if not struct.has_key('clocks'): return None;
 			clocktag = 0;
 			clocks = struct['clocks'];
 			for ck in clocks:
@@ -39,8 +36,9 @@ class AlarmOff():
 					cv['status'] = 'off';
 			elif clocktag == 1:
 				if super_b.myclock is None:
-					struct['code'] = 'error';
+					struct['result']['msg'] = self.data['not_found_ring'];
 				else:
 					super_b.myclock['status'] = 'off';
+					struct['result']['msg'] = self.data['off_ring_succ'];
 		except Exception as e:
 			raise MyException(format(e));

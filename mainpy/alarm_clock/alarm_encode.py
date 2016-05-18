@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import sys,os,json,copy
-import re,time,math
+import re,time,math,datetime
 reload(sys);
 sys.setdefaultencoding('utf-8');
 #============================================
@@ -21,14 +21,14 @@ class AlarmEncode(Base):
 			inlist = struct['inlist'];
 			if not struct.has_key('clocks'): struct['clocks'] = list();
 			clocks = struct['clocks'];
-			if struct.has_key('taglist'):
-				clocks.extend(struct['taglist']);
-				del struct['taglist'];
 			if struct.has_key('music'):
 				for music in struct['music']:
-					if type(music) == dict:
-						clocks.append(music);
+					if type(music) == dict: clocks.append(music);
 				del struct['music'];
+			if struct.has_key('mood'):
+				for mood in struct['mood']:
+					if type(mood) == dict: clocks.append(mood);
+				del struct['mood'];
 
 			for st in inlist:
 				for key in self.data.keys():
@@ -38,7 +38,6 @@ class AlarmEncode(Base):
 			self._find_time(struct);
 			self._analysis_able(struct);
 			self._analysis_bell(struct);
-			self._find_action(struct);
 		except MyException as e: raise e;
 
 	def _match_item(self,strs,clocks,mtype):
@@ -60,61 +59,22 @@ class AlarmEncode(Base):
 				tdic['type'] = mtype;
 				clocks.append(tdic);
 
-	#find this action [add del modify search other]
-	#|--|open|close|clock|no|ring|--|#
-	def _find_action(self,struct):
-		tag = 0;
-		for ck in struct['clocks']:
-			if ck['type'] == 'add':
-				struct['ck_action'] = 'add';
-				break;
-			elif ck['type'] == 'set':
-				for key in struct.keys():
-					if key.find('ck_') <> -1:
-						struct['ck_action'] = 'modify';
-						break;
-				if not struct.has_key('ck_action'): struct['ck_action'] = 'add';
-				break;
-			elif ck['type'] == 'del':
-				struct['ck_action'] = 'del';
-				break;
-			elif ck['type'] == 'search':
-				struct['ck_action'] = 'search';
-				break;
-			elif ck['type'] == 'off':
-				struct['ck_action'] = 'off';
-				break;
-			elif ck['type'] == 'open':
-				struct['ck_action'] = 'open';
-				break;
-			elif ck['type'] == 'no':
-				tag = tag | (1 << 2);
-			elif ck['type'] == 'ring':
-				tag = tag | (1 << 1);
-			elif ck['type'] == 'clock':
-				tag = tag | (1 << 3);
-			elif ck['type'] == 'off':
-				tag = tag | (1 << 4);
-		if tag & 6 > 0: struct['ck_action'] = 'off';
-		elif tag & 32 > 0: struct['ck_action'] = 'open';
-		elif tag & 10 > 0: struct['ck_action'] = 'open';
-
 	def _find_time(self,struct):
-		clocks = struct['clocks'];
-		tdic = dict();
-		for ck in clocks:
-			if ck['type'] == 'time_ut' or ck['type'] == 'time_ntut':
-				tstr = scope = '';
-				times = ck['interval'][0];
-				for tm in ck['times']:
-					tstr = tstr + tm['value'];
-					if tm['scope'] == 'day':
-						scope = str(times[2]);
-				tdic['scope'] = scope;
+		if struct.has_key('intervals') and len(struct['intervals']) > 0:
+			myinterval = struct['intervals'][0];
+			times = myinterval['start'];
+			if myinterval['scope'] == 'day' or myinterval['scope'] == 'month' \
+				or myinterval['scope'] == 'year':
+				tdic = dict();
+				tdic['date'] = str(times[0]) + '/' + str(times[1]) + '/' + str(times[2]);
+				tdic['type'] = myinterval['type'];
+				struct['ck_date'] = tdic;
+			if times[3] <> 0:
+				tdic = dict();
 				tdic['time'] = str(times[3]) + ':' + str(times[4]);
+				tdic['str'] = myinterval['str'];
 				struct['ck_time'] = tdic;
-				clocks.remove(ck);
-				break;
+			del struct['intervals'];
 
 	def _analysis_date(self,struct):
 		clocks = struct['clocks'];
@@ -147,8 +107,9 @@ class AlarmEncode(Base):
 		if delay == 3: struct['ck_delay'] = tdic['type'];
 
 	def _analysis_able(self,struct):
-		able = ept = 0;
+		able = ept = rate = 0;
 		clocks = struct['clocks'];
+		tdic = dict();
 		for ck in clocks:
 			if ck['type'] == 'able':
 				if ck['style'] == 'workday':
@@ -157,29 +118,43 @@ class AlarmEncode(Base):
 					able = math.pow(2,8) - 1;
 				elif ck['style'] == 'workend':
 					able = math.pow(2,7) - math.pow(2,5);
-			if ck['type'] == 'time_wt':
-				tm = ck['times'][0];
-				if tm.has_key('num'):
-					able = math.pow(2,int(tm['num']) - 1);
+			if ck['type'] == 'mood_tm':
+				if ck['mstr'] == u'每': rate = 1;
 			if ck['type'] == 'except': ept = 1;
-		if struct.has_key('ck_time'):
-			scope = struct['ck_time']['scope'];
-			if scope <> '':
-				curtime = time.localtime();
-				curday = curtime[2];
-				left = int(scope) - curday;
-				if left < 0: return ;
-				curweek = curtime[6];
-				lfweek = curweek + left;
-				able = math.pow(2,lfweek);
-
-		if ept == 1: able = math.pow(2,7) - 1 - able;
-		if able > 0: struct['ck_able'] = able;
+		if struct.has_key('ck_date'):
+			date = struct['ck_date'];
+			if date['type'] == 'time_ut' or date['type'] == 'time_nt':
+				tdic['repeat'] = 'once';
+				tdic['date'] = date['date'];
+				tdic['type'] = 'date';
+			if date['type'] == 'time_wt' and rate == 0:
+				tdic['repeat'] = 'once';
+				tdic['date'] = date['date'];
+				tdic['type'] = 'date';
+			if date['type'] == 'time_wt' and rate == 1:
+				dates = date['date'].split('/');
+				dat = datetime.date(int(dates[0]),int(dates[1]),int(dates[2]));
+				week = dat.weekday();
+				able = math.pow(2,week);
+				tdic['type'] = 'week';
+				tdic['repeat'] = 'repeat';
+				tdic['able'] = able;
+			del struct['ck_date'];
+		elif able > 0:
+			tdic['type'] = 'week';
+			tdic['able'] = able;
+			tdic['repeat'] = 'repeat';
+		if ept == 1 and tdic.has_key('type') and tdic['type'] == 'week':
+			able = math.pow(2,7) - 1 - able;
+			tdic['able'] = able;
+		if tdic.has_key('type'): struct['ck_able'] = tdic;
 
 	def _analysis_bell(self,struct):
 		clocks = struct['clocks'];
 		tdic = dict();
+		flag = False;
 		for ck in clocks:
 			if ck['type'].find('music') <> -1:
+				if ck['scope'] == 'singname': flag = True;
 				tdic[ck['scope']] = ck['value'];
-				struct['ck_bell'] = tdic;
+		if flag == True: struct['ck_bell'] = tdic;

@@ -19,8 +19,10 @@ class AlarmFname():
 		try:
 			self._remove_ckdesc(struct);
 			self._find_text(struct);
-			if not struct.has_key('ck_name') or struct['ck_name'] == 'null':
+			if not struct.has_key('ck_name') or struct['ck_name'] == '':
 				self._find_inlist(struct);
+			if struct.has_key('ck_name') and struct['ck_name'] == u'所有':
+				struct['ck_name'] = '';
 		except MyException as e: raise e;
 
 	#remove clock desc words like 这个 那个 这 那#
@@ -47,22 +49,25 @@ class AlarmFname():
 		if ckname_id >= 2 and inlist[ckname_id - 1] == u'的':
 			struct['ck_name'] = inlist[ckname_id - 2];
 		else:
-			struct['ck_name'] = 'null';
+			struct['ck_name'] = '';
 
 	#find the clock name from text#
 	def _find_text(self,struct):
 		if not struct.has_key('clocks'): return None;
+		if not struct.has_key('ck_time'): return None;
 		clocks = struct['clocks'];
 		text = struct['text'];
 		idx = -1;
 		for ck in clocks:
 			if ck['type'] == 'clock':
-				idx == text.find(ck['mystr']);
+				idx = text.find(ck['mystr']);
 				break;
 		if idx >= 2 and text[idx - 1] == u'的':
-			if text[:idx - 1].find('T') <> -1:
-				if struct.has_key('ck_time'):
-					struct['ck_name'] = struct['ck_time']['time'];
+			name_str = struct['ck_time']['str'].replace('_','');
+			pid = text.find(name_str);
+			if pid <> -1 and (pid + len(name_str)) == (idx - 1):
+				struct['ck_name'] = struct['ck_time']['time'];
+				del struct['ck_time'];
 		if not struct.has_key('ck_name'):
-			struct['ck_name'] = 'null';
+			struct['ck_name'] = '';
 

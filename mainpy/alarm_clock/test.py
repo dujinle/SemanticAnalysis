@@ -24,17 +24,24 @@ timer = TimeMager(wd);
 music = MusicMager(wd);
 timer.init('Timer');
 music.init('Music');
+
 ae.init('./tdata');
-#struct = timer.encode(u'7点40分的闹钟不要叫了');
-#struct = timer.encode(u'设置一个早上7点40分的闹铃');
-#ae.encode(struct);
-#common.print_dic(struct);
-#'''
+struct = dict();
+struct['result'] = dict();
+struct['tag'] = dict();
+struct['tag'][u'起床'] = {'value':'7:40','type':'time','vtype':'string'};
+'''
+tstr = u'设一个每周3的闹钟';
+struct.update(timer.encode(tstr));
+struct.update(music.encode(tstr));
+ae.encode(struct);
+common.print_dic(struct);
+'''
 while True:
 	mstr = raw_input('Enter your input: ');
 	if mstr == 'q': break;
-	struct = timer.encode(mstr.decode('utf-8'));
-	#struct.update(music.encode(mstr));
+	struct.update(timer.encode(mstr.decode('utf-8')));
+	struct.update(music.encode(struct['text']));
 	ae.encode(struct);
 	common.print_dic(struct);
 #'''

@@ -39,9 +39,10 @@ class AlarmMager:
 	def encode(self,inlist):
 		struct = collections.OrderedDict();
 		struct['text'] = inlist;
+		struct['result'] = dict();
 		try:
-			struct.update(self.timer.encode(inlist));
-			struct.update(self.music.encode(inlist));
+			struct.update(self.timer.encode(struct['text']));
+			struct.update(self.music.encode(struct['text']));
 			self.engine.encode(struct);
 			return struct;
 		except MyException as e:
@@ -56,7 +57,7 @@ try:
 	wordseg = WordSeg();
 	mg = AlarmMager(wordseg);
 	mg.init('Alarm');
-	common.print_dic(mg.encode(u'增加一个闹钟'));
+	common.print_dic(mg.encode(u'设置一个闹钟'));
 except MyException as e:
 	print e.value;
 '''
