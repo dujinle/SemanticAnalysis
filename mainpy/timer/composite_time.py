@@ -18,11 +18,6 @@ class CompositeTime(Base):
 	def __init__(self):
 		self.data = None;
 
-	def load_data(self,lfile):
-		try:
-			self.data = common.read_json(lfile);
-		except MyException as e: raise e;
-
 	def encode(self,struct):
 		try:
 			inlist = struct['inlist'];

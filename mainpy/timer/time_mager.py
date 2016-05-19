@@ -12,11 +12,11 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 #==============================================================
 
 import common,config
+from notion_time import TimeNotion
+from calc_time import CalcTimeInterval
+from units_time import LabelUnits
+from composite_time import CompositeTime
 from myexception import MyException
-from marktag import M,C,F,X
-from extendtag import X1,M1,F1,Z
-from checktag import PM
-from calctag import Calc
 
 class TimeMager:
 	def __init__(self,wordseg):
@@ -24,18 +24,10 @@ class TimeMager:
 		self.tag_objs = list();
 
 		# mark tag objs #
-		self.tag_objs.append(M());
-		self.tag_objs.append(C());
-		self.tag_objs.append(F());
-		self.tag_objs.append(X());
-		# extend tag objs #
-		self.tag_objs.append(X1());
-		self.tag_objs.append(M1());
-		self.tag_objs.append(F1());
-		self.tag_objs.append(Z());
-		# calc tag obj #
-		self.tag_objs.append(PM());
-		self.tag_objs.append(Calc());
+		self.tag_objs.append(LabelUnits());
+		self.tag_objs.append(TimeNotion());
+		self.tag_objs.append(CompositeTime());
+		self.tag_objs.append(CalcTimeInterval());
 
 	def init(self,dtype):
 		try:
@@ -44,15 +36,15 @@ class TimeMager:
 			for obj in self.tag_objs:
 				obj.load_data(dfiles[str(step)]);
 				step = step + 1;
-		except MyException as e:
-			raise e;
+		except MyException as e: raise e;
 
 	def encode(self,inlist):
 		struct = collections.OrderedDict();
 		struct['text'] = inlist;
-		struct['taglist'] = list();
 		try:
 			struct['inlist'] = self.wordseg.tokens(inlist);
+			struct['taglist'] = list();
+			struct['taglist'].extend(struct['inlist']);
 			for obj in self.tag_objs:
 				obj.init();
 				obj.encode(struct);
@@ -82,23 +74,17 @@ class TimeMager:
 				step = step + 1;
 		except MyException as e:
 			raise e;
-'''
+#'''
 try:
 	sys.path.append('../wordsegs');
 	from wordseg import WordSeg
 	wordseg = WordSeg();
-	mg = VoiceMager(wordseg);
-	mg.init('Voice');
+	mg = TimeMager(wordseg);
+	mg.init('Timer');
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	#mg.sp_deal('del',{'value':u'大点'});
-	common.print_dic(mg.encode(u'声音太吵了'));
-	#mg.sp_deal('del',{'value':u'静音'});
-	#mg.deal_data('M','add',{'value':u'音'});
-	#common.print_dic(mg.encode(u'静音'));
-	#mg.sp_deal('del',{'value':u'最大声'});
-	#common.print_dic(mg.encode(u'大点声'));
-	#common.print_dic(mg.encode(u'再整点'));
+	wordseg.deal_word('del',{'value':u'月前'});
+	common.print_dic(mg.encode(u'3月前'));
 except MyException as e:
 	print e.value;
-'''
+#'''

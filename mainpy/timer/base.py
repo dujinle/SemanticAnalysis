@@ -17,6 +17,7 @@ class Base:
 
 	def load_data(self,dfile):
 		try:
+			if dfile is None: return ;
 			self.data = common.read_json(dfile);
 		except Exception as e:
 			raise MyException(format(e));

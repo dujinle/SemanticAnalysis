@@ -18,10 +18,6 @@ class TimeNotion(Base):
 		self.data = None;
 		pass;
 
-	def load_data(self,tfile):
-		try: self.data = common.read_json(tfile);
-		except MyException as e: raise e;
-
 	def encode(self,struct):
 		try:
 			inlist = struct.get('inlist');
