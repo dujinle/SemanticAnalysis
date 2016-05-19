@@ -49,6 +49,8 @@ class Mager:
 		self.pdeal = PDealMager();
 #		self.concept = ConceptMager();
 
+		self.struct = collections.OrderedDict();
+
 		self.modules = dict();
 		self.modules['Voice'] = VoiceMager();
 		self.modules['Temp'] = TempMager();
@@ -68,20 +70,20 @@ class Mager:
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
-	def encode(self,text):
+	def encode(self,text,mdl = None):
 
-		struct = collections.OrderedDict();
-		struct['text'] = text;
-		struct['inlist'] = self.wordseg.tokens(struct['text']);
-		self.pdeal.encode(struct);
-		self.timer.encode(struct);
-		self.mytag.encode(struct);
-#		mdl = self.concept.encode(struct);
-		mdl = 'Temp';
+		self.struct['text'] = text;
+		self.struct['inlist'] = self.wordseg.tokens(self.struct['text']);
+		self.pdeal.encode(self.struct);
+		self.timer.encode(self.struct);
+		self.mytag.encode(self.struct);
+		if mdl is None:
+			pass;
+	#		mdl = self.concept.encode(struct);
 		if self.modules.has_key(mdl):
 			mobj = self.modules[mdl];
-			mobj.encode(struct);
-		return struct;
+			mobj.encode(self.struct);
+		return self.struct;
 
 
 #'''
@@ -90,7 +92,7 @@ try:
 	mg.init();
 	#common.print_dic(mg.encode(u'把声音调大点'));
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	common.print_dic(mg.encode(u'把温度调高点'));
+	common.print_dic(mg.encode(u'把温度调高点','Temp'));
 except Exception as e:
 	raise e;
 #'''

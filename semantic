@@ -3,7 +3,7 @@
 function start(){
 	web=$1;
 	if [[ "${web}x" == "x" ]];then
-		./webroot/web.py &
+		./fwebstr/web.py &
 		ps > .pidfile && echo "server start ......"
 		echo "start server,listening port 8082"
 	else
