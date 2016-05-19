@@ -1,0 +1,14 @@
+{
+	"MINE":{
+		"phone":"1234567890",
+		"name":"ABCD"
+	},
+	"FIRST":{
+		"phone":"1234567890",
+		"name":"ABCD"
+	},
+	"WIFE":{
+		"phone":"9090909090",
+		"name":"DDDDDD"
+	}
+}

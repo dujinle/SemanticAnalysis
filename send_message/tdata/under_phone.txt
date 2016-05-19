@@ -1,0 +1,16 @@
+{
+	"msg":{
+		"unknow":["没有找到相关的信息"],
+		"call_succ":["最重要的人，暖暖的"]
+	},
+	"models":[
+		{
+			"reg":"GIVEPHONE",
+			"func":"call"
+		},
+		{
+			"reg":"MUSIC",
+			"func":"get"
+		}
+	]
+}
