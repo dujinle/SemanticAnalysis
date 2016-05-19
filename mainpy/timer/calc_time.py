@@ -11,7 +11,7 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 import common,config
 from common import MyException
 
-class Calc_Time_Notion:
+class CalcTimeInterval:
 
 	def __init__(self):
 		self.data = None;
@@ -43,6 +43,7 @@ class Calc_Time_Notion:
 		end_time = list(self.curtime[:]);
 
 		prev_tag = None;
+		tail_flag = False;
 		idx = len(taglist) - 1;
 		while idx >= 0:
 			tag = taglist[idx];
@@ -50,16 +51,26 @@ class Calc_Time_Notion:
 			elif tag['type'] == 'ex_time':
 				if prev_tag is None: self._calc_start_end_time(start_time,end_time,tag);
 				elif prev_tag['type'].find('time') <> -1: self._fill_time(start_time,end_time,tag);
+				self._make_sure_time(start_time);
+				self._make_sure_time(end_time);
 				prev_tag = tag;
+				tail_flag = True;
 			elif tag['type'] == 'num_time':
 				if prev_tag is None: self._calc_start_end_time(start_time,end_time,tag);
 				elif prev_tag['type'].find('time') <> -1: self._fill_time(start_time,end_time,tag);
+				self._make_sure_time(start_time);
+				self._make_sure_time(end_time);
 				prev_tag = tag;
+				tail_flag = True;
 			else:
 				prev_tag = None;
+				self._make_sure_time(start_time);
+				self._make_sure_time(end_time);
+				struct['intervals'].append([start_time,end_time]);
+				tail_flag = False;
 			idx = idx - 1;
-			self._make_sure_time(start_time);
-			self._make_sure_time(end_time);
+		if tail_flag == True:
+			struct['intervals'].append([start_time,end_time]);
 
 	def _fill_time(self,start_time,end_time,tag):
 		idx = self.ttype[tag['scope']];
@@ -77,18 +88,38 @@ class Calc_Time_Notion:
 		idx = self.ttype[tag['scope']];
 		if tag['type'] == 'num_time':
 			if tag['meaning'] == 'date':
-				start_time[idx] = int(tag['num']);
-				end_time[idx] = int(tag['num']) + 1;
-				tag['interval'] = []
-			
-		interval = tag.get('interval');
-		idx = self.ttype[tag['scope']];
-		start_time[idx] = start_time[idx] + interval[0];
-		end_time[idx] = end_time[idx] + interval[1];
-		start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
-		end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
+				if not tag.has_key('interval'):
+					start_time[idx] = int(tag['num']);
+					end_time[idx] = int(tag['num']) + 1;
+				else:
+					interval = tag['interval'];
+					start_time[idx] = int(tag['num']);
+					end_time[idx] = int(tag['num'])
+					if interval[0] == '<<':
+						start_time.insert(0,'null');
+						end_time[idx] = end_time[idx] + interval[1];
+					if interval[1] == '>>':
+						start_time[idx] = start_time[idx] + interval[0];
+						end_time.insert(0,'null');
+			elif tag['meaning'] == 'number':
+				if not tag.has_key('interval'):
+					start_time[idx] = start_time[idx] + int(tag['num']);
+					end_time[idx] = end_time[idx] + int(tag['num']);
+				else:
+					interval = tag['interval'];
+					if interval[0] == '<<':
+						start_time.insert(0,'null');
+						end_time[idx] = end_time[idx] + interval[1];
+					elif interval[1] == '>>':
+						start_time[idx] = start_time[idx] + interval[0];
+						end_time.insert(0,'null');
+		if start_time[0] <> 'null':
+			start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
+		if end_time[0] <> 'null':
+			end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
 
 	def _make_sure_time(self,mytime):
+		if mytime[0] == 'null': return False;
 		if mytime[config.tm_sec] > 60:
 			mytime[config.tm_sec] = mytime[config.tm_sec] - 60;
 			mytime[config.tm_min] = mytime[config.tm_min] + 1;

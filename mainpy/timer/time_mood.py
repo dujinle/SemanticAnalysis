@@ -8,7 +8,6 @@ sys.setdefaultencoding('utf-8')
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #=================================================
-from base import Base
 import common
 from common import MyException
 
@@ -19,7 +18,7 @@ tm_hour = 3;
 tm_min = 4;
 tm_sec = 5;
 
-class TimeNotion(Base):
+class TimeMood:
 
 	def __init__(self):
 		self.data = None;
@@ -30,6 +29,11 @@ class TimeNotion(Base):
 	def init(self):
 		self.mytime = time.localtime();
 		print self.mytime;
+
+	def load_data(self,tfile):
+
+		try: self.data = common.read_json(tfile);
+		except MyException as e: raise e;
 
 	def encode(self,struct):
 		try:

@@ -8,10 +8,11 @@ sys.setdefaultencoding('utf-8')
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #=================================================
+from base import Base
 import common
 from common import MyException
 
-class Time_Notion:
+class TimeNotion(Base):
 
 	def __init__(self):
 		self.data = None;

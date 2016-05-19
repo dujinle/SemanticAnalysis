@@ -9,10 +9,11 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
+from base import Base
 import common
 from common import MyException
 
-class CompositeTime():
+class CompositeTime(Base):
 
 	def __init__(self):
 		self.data = None;
@@ -53,14 +54,14 @@ class CompositeTime():
 			times['value'] = times['value'] + key;
 			tdir = kdata['dir'];
 			if times['type'] == 'num_time':
-				if times['meaning'] == 'num':
+				if times['meaning'] == 'number':
 					if tdir == '-':
 						times['interval'] = ['<<',int(times['num']) * -1];
 					elif tdir == '+':
 						times['interval'] = [int(times['num']),'>>'];
 				elif times['meaning'] == 'date':
 					if tdir == '-':
-						times['interval'] = ['<<',-1];
+						times['interval'] = ['<<',0];
 					elif tdir == '+':
 						times['interval'] = [1,'>>'];
 			elif times.has_key('interval'):
@@ -72,3 +73,4 @@ class CompositeTime():
 		for tag in taglist:
 			if type(tag) == dict and tag['type'] == 'filter':
 				taglist.remove(tag);
+

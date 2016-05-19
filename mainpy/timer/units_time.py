@@ -10,17 +10,13 @@ base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
 import common,config
+from base import Base
 from common import MyException
 
-class LabelUnits():
+class LabelUnits(Base):
 
 	def __init__(self):
 		self.data = None;
-
-	def load_data(self,lfile):
-		try:
-			self.data = common.read_json(lfile);
-		except MyException as e: raise e;
 
 	def encode(self,struct):
 		try:
@@ -67,12 +63,3 @@ class LabelUnits():
 					same = self.data[y]['same'];
 					if x in same: rlist.append(y);
 		return rlist;
-'''
-lu = LabelUnits();
-lu.load_data('./unit_time.txt');
-struct = dict();
-struct['inlist'] = [u'2014',u'年',u'我们','03',u'月','18',u'号'];
-struct['taglist'] = [u'2014',u'年',u'我们','03',u'月','18',u'号'];
-lu.encode(struct);
-common.print_dic(struct);
-'''

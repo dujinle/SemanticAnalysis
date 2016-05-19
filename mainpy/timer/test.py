@@ -10,13 +10,15 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 
 import common,time
 from notion_time import Time_Notion
-from calc_time import Calc_Time_Notion
+from calc_time import CalcTimeInterval
 from units_time import LabelUnits
 from composite_time import CompositeTime
 
 struct = dict();
-struct['inlist'] = ['3',u'月',u'前'];
-struct['taglist'] = ['3',u'月',u'前'];
+#struct['inlist'] = ['3',u'月',u'前'];
+#struct['taglist'] = ['3',u'月',u'前'];
+struct['inlist'] = ['3',u'天',u'前'];
+struct['taglist'] = ['3',u'天',u'前'];
 #struct['start'] = list(time.localtime());
 #struct['end'] = list(time.localtime());
 #struct['inlist'] = [u'大前天',u'前'];
@@ -38,6 +40,6 @@ ct = CompositeTime();
 ct.load_data('./composite_time.txt');
 ct.encode(struct);
 
-#calc_time = Calc_Time_Notion();
-#calc_time.encode(struct);
+calc_time = CalcTimeInterval();
+calc_time.encode(struct);
 common.print_dic(struct);
