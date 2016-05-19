@@ -58,41 +58,11 @@
 				<textarea id="status_id" rows="37" cols="30" readonly></textarea>
 			</div>
 			<!-- 右侧左部设置-->
-			<div class="tu">
-			<div class="button-frame">
-				<input type="button" class="mid-button" id="tu-add" value="注入" onclick="add_ut()"/>
-				<input type="button" class="mid-button" id="tu-del" value="删除" onclick="del('UT','ut_text')"/>
-				<input type="button" class="mid-button" id="tu-show" value="获取" onclick="get('UT')"/>
-				<input type="button" class="mid-button" id="tu-describe" value="描述" onclick="describe('tu-describe')"/>
-				</div>
-				<div class="small-content">
-					<span class="text-big">时间单位(UT)：</span>
-					<input type="text" id="ut_text" size="10"/>
-					<span class="text-mid">单位：</span>
-					<select id="ut_scope" name="ut_scope">
-						<option value="null" >如：年月</option>
-						<option value="year">年</option>
-						<option value="month">月</option>
-						<option value="day">日</option>
-						<option value="hour">时</option>
-						<option value="min">分</option>
-						<option value="sec">秒</option>
-					</select>
-					<br />
-					<form class="one">
-						<span class="text-mid">匹配模板(RG)：</span>
-						<input type="text" class="ut_match" id="ut_match"  size="10" />
-						<span class="text-mid">类型：</span>
-						<input class="select" type="checkbox" name="ut_attr" value="num" />数量
-						<input class="select" type="checkbox" name="ut_attr" value="date" />时间
-					</form>
-					</div>
-			</div>
 			<div class="td">
 				<div class="button-frame">
 						<input type="button" class="mid-button" id="td-add" value="注入" onclick="add_nt()"/>
-						<input type="button" class="mid-button" id="td-del" value="删除" onclick="del('NT','nt_text')"/>
-						<input type="button" class="mid-button" id="td-show" value="获取" onclick="get('NT')"/>
+						<input type="button" class="mid-button" id="td-del" value="删除" onclick="del('TBucket','nt_text')"/>
+						<input type="button" class="mid-button" id="td-show" value="获取" onclick="get('TBucket')"/>
 						<input type="button" class="mid-button" id="td-describe" value="描述" onclick="describe('td-describe')"/>
 					</div>
 				<div class="small-content">
@@ -118,49 +88,30 @@
 					</form>
 					</div>
 			</div>
-			<div class="tc">
+			<div class="festival">
 				<div class="button-frame">
-					<input type="button" class="mid-button" id="tc-add" value="注入" onclick="add_tc"/>
-					<input type="button" class="mid-button" id="tc-del" value="删除" onclick="del('TC','tc_text')"/>
-					<input type="button" class="mid-button" id="tc-show" value="获取" onclick="get('TC')"/>
-					<input type="button" class="mid-button" id="tc-describe" value="描述" onclick="describe('tc-describe')"/>
+					<input type="button" class="mid-button" id="ft-add" value="注入" onclick="add_ft()"/>
+					<input type="button" class="mid-button" id="ft-del" value="删除" onclick="del('TFestival','ftname')"/>
+					<input type="button" class="mid-button" id="ft-show" value="获取" onclick="get('TFestival')"/>
+					<input type="button" class="mid-button" id="ft-describe" value="描述" onclick="describe('ft-describe')"/>
 				</div>
 				<div class="small-content">
-					<span class="text-big">特殊时间(CT)：</span>
-					<input type="text" id="tc_text" size="31"/>
+					<span class="text-big">节日时间(FT)：</span>
+					<input type="text" id="ftname" size="16" placeholder = "国庆节"/>
+					<input type="text" id="fttime" size="8" placeholder = "10/1"/>
 					<br/>
 					<form class="one">
-						<span class="text-mid">历法：</span>
-						<input  class="select" type="radio" name="tc-sel" value="gregorian" id="tc-1"/>公历
-						<input  class="select" type="radio" name="tc-sel" value="lunar" id="tc-2"/>农历
-					</form>
-				</div>
-			</div>
-			<div class="cd">
-				<div class="button-frame">
-					<input type="button" class="mid-button" id="cd-add" value="注入" onclick="add"/>
-					<input type="button" class="mid-button" id="cd-del" value="删除" onclick="del()"/>
-					<input type="button" class="mid-button" id="cd-show" value="获取" onclick="get()"/>
-					<input type="button" class="mid-button" id="cd-describe" value="描述" onclick="describe('cd-describe')"/>
-				</div>
-				<div class="small-content">
-					<span class="text-big">综合修饰(CT)：</span>
-					<input type="text" id="cd" size="10"/>
-					<span class="text-mid">模板：</span>
-					<input type="text" id="cd_text" size="7" placeholder="模板"/>
-					<br/>
-					<form class="one">
-						<span class="text-mid">dir：</span>
-						<input  class="select" type="radio" name="cd-sel" value="plus" id="cd-1"/>+
-						<input  class="select" type="radio" name="cd-sel" value="minus"id="cd-2"/>-
-					</form>
-				</div>
-			</div>
+					<span class="text-mid">历法：</span>
+                 <input  class="select" type="radio" name="ft-sel" value="solar" id="ft-1">公历
+                 <input  class="select" type="radio" name="ft-sel" value="lunar" id="ft-2"/>农历
+                 </form>
+                 </div>
+             </div>
 			<div class="tr">
 				<div class="button-frame">
 					<input type="button" class="mid-button" id="tr-add" value="注入" onclick="add_rt()"/>
-					<input type="button" class="mid-button" id="tr-del" value="删除" onclick="del('TM','tr')"/>
-					<input type="button" class="mid-button" id="tr-show" value="获取" onclick="get('TM')"/>
+					<input type="button" class="mid-button" id="tr-del" value="删除" onclick="del('TMood','tr')"/>
+					<input type="button" class="mid-button" id="tr-show" value="获取" onclick="get('TMood')"/>
 					<input type="button" class="mid-button" id="tr-describe" value="描述" onclick="describe('tr-describe')"/>
 				</div>
 				<div class="small-content">
@@ -179,8 +130,8 @@
              <div class="bs">
                  <div class="button-frame">
                  <input type="button" class="mid-button" id="bs-add" value="注入" onclick="add_bs()"/>
-                 <input type="button" class="mid-button" id="bs-del" value="删除" onclick="del('AS','bs')"/>
-                 <input type="button" class="mid-button" id="bs-show" value="获取" onclick="get('AS')"/>
+                 <input type="button" class="mid-button" id="bs-del" value="删除" onclick="del('TMood','bs')"/>
+                 <input type="button" class="mid-button" id="bs-show" value="获取" onclick="get('TMood')"/>
                      <input type="button" class="mid-button" id="bs-describe" value="描述" onclick="describe('bs-describe')"/>
                  </div>
                  <div class="small-content">
@@ -199,8 +150,8 @@
              <div class="ts">
                  <div class="button-frame">
                  <input type="button" class="mid-button" id="ts-add" value="注入" onclick="add_ts()"/>
-                 <input type="button" class="mid-button" id="ts-del" value="删除" onclick="del('TS','ts')"/>
-                 <input type="button" class="mid-button" id="ts-show" value="获取" onclick="get('TS')"/>
+                 <input type="button" class="mid-button" id="ts-del" value="删除" onclick="del('TMood','ts')"/>
+                 <input type="button" class="mid-button" id="ts-show" value="获取" onclick="get('TMood')"/>
                      <input type="button" class="mid-button" id="ts-describe" value="描述" onclick="describe('ts-describe')"/>
                  </div>
                  <div class="small-content">

@@ -1,0 +1,14 @@
+{
+	"time":["设置几点合适呢"],
+	"delay":["延迟响铃还是持续响铃"],
+	"freq":["请设置有效日期 全周,工作日,其他"],
+	"other":["you can add a aclock or del,modify one,also can search your aclocks"],
+	"add_suc":["添加闹钟成功"],
+	"mo_time_suc":["修改闹钟时间成功"],
+	"mo_ring_type":["修改响铃方式成功"],
+	"mo_ring_able":["修改响铃时间成功"],
+	"mo_ring_bell":["修改铃声成功"],
+	"del_ring_suc":["删除成功"],
+	"not_found_ring":["没有找到闹铃"],
+	"off_ring_succ":["关闭闹铃成功"]
+}

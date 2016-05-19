@@ -2,58 +2,6 @@
  * Created by liyongjiang on 2016/5/24.
  */
 //这些是测试函数
-function analyse() {
-    alert("analyse");
-}
-function add_ut() {
-	ut_obj = document.getElementById('ut_text');
-	ut_scope_obj = document.getElementById('ut_scope');
-	ut_attr_obj = document.getElementsByName('ut_attr');
-	ut_reg_obj = document.getElementById('ut_match');
-
-	ut_value = ut_obj.value;
-	ut_scope = ut_scope_obj.value;
-	ut_reg = ut_reg_obj.value;
-	var counter=0;
-	ut_attr = [];
-	for(var i = 0;i < ut_attr_obj.length;i++){
-		if(ut_attr_obj[i].checked){
-			ut_attr.push(ut_attr_obj[i].value);
-			counter++;
-		}
-	};
-	if(ut_value==""){
-		alert("未输入内容，请输入！")
-		return
-	};
-	if(document.getElementsByName("ut_scope")[0].selectedIndex==0){
-		alert("未选择年月日，请选择单位！")
-		return
-	};
-	if(counter==0){
-		alert("未选择类型，请选择类型！")
-		return
-	};
-	idata = new Object();
-	idata.type = 'UT';
-	idata.mdl = $mdl;
-	idata.value = ut_value;
-	idata.scope = ut_scope;
-	idata.attr = ut_attr;
-	idata.reg = ut_reg;
-	$.ajax({
-		async:false,
-		url: $basepath + 'add',
-		type:"post",
-		data:JSON.stringify(idata),
-		dataType:"text",
-		success:function(data){
-			obj = JSON.parse(data);
-		}
-	});
-	y = document.getElementById('status_id');
-	y.value = obj.message.replace(/#/g,'\n');
-}
 function del(type,vid) {
 	v_obj = document.getElementById(vid);
 	v_value = v_obj.value;
@@ -145,12 +93,11 @@ function add_nt() {
 		return
 	};
 	idata = new Object();
-	idata.type = 'NT';
+	idata.type = 'TBucket';
 	idata.mdl = $mdl;
 	idata.value = nt_value;
 	idata.scope = nt_scope;
 	idata.interval = nt_interval;
-	idata.nt_type = nt_type;
 	idata.func = nt_func;
 
 	$.ajax({
@@ -167,45 +114,42 @@ function add_nt() {
 	y.value = obj.message.replace(/#/g,'\n');
 }
 
-function add_word(){
-    alert("add_word");
-}
-function del_word(){
-    alert("del_word");
-}
-function save_word(){
-    alert("save_word");
-}
+//这个是festival函数
+function add_ft() {
+	ft_sel = document.getElementsByName('ft-sel');
+	ftname_obj = document.getElementById('ftname');
+	fttime_obj = document.getElementById('fttime');
 
-//这个是TR函数
-function add_tc() {
-	tc_sel = document.getElementsByName('tc-sel');
-	tc_obj = document.getElementById('tc-text');
-
-	tc_value = tc_obj.value;
-	tc_level = null;
+	ftname_value = ftname_obj.value;
+	fttime_value = fttime_obj.value;
+	ft_level = null;
 	var counter_type=0;
-	for(var i = 0;i < tc_sel.length;i++){
-		if(tc_sel[i].checked){
-			tc_level = tc_sel[i].value;
+	for(var i = 0;i < ft_sel.length;i++){
+		if(ft_sel[i].checked){
+			ft_level = ft_sel[i].value;
 			counter_type++;
 			break;
 		}
 	};
-	if(tc_value==""){
-		alert("未输入内容，请输入！")
+	if(ftname_value==""){
+		alert("未输入节日，请输入！")
 		return
 	};
 
+	if(fttime_value==""){
+		alert("未输入节日日期，请输入！")
+		return
+	};
 	if(counter_type==0){
 		alert("未时间历法，请选择历法！")
 		return
 	};
 	idata = new Object();
-	idata.type = 'TC';
+	idata.type = 'TFestival';
 	idata.mdl = $mdl;
-	idata.value = tc_value;
-	idata.level = tc_level;
+	idata.value = ftname_value;
+	idata.date = fttime_value;
+	idata.year_type = ft_level;
 
 	$.ajax({
 		async:false,
@@ -246,10 +190,11 @@ function add_rt() {
 		return
 	};
 	idata = new Object();
-	idata.type = 'TM';
+	idata.type = 'TMood';
 	idata.mdl = $mdl;
 	idata.value = rt_value;
 	idata.level = rt_level;
+	idata.dtype = 'mood_tm';
 
 	$.ajax({
 		async:false,
@@ -290,10 +235,11 @@ function add_bs() {
 		return
 	};
 	idata = new Object();
-	idata.type = 'AS';
+	idata.type = 'TMood';
 	idata.mdl = $mdl;
 	idata.value = bs_value;
 	idata.status = bs_status;
+	idata.dtype = 'mood_as'
 
 	$.ajax({
 		async:false,
@@ -334,10 +280,11 @@ function add_ts() {
 		return
 	};
 	idata = new Object();
-	idata.type = 'TS';
+	idata.type = 'TMood';
 	idata.mdl = $mdl;
 	idata.value = ts_value;
 	idata.status = ts_status;
+	idata.dtype = 'mood_ts';
 
 	$.ajax({
 		async:false,
@@ -360,7 +307,7 @@ function describe( dum) {
     else if (dum == "td-describe") {
         document.getElementById("status_id").value = "时间修饰：对时间的一个修饰，如上月，昨天，明天中的上、昨、明，都是对时间的修饰。\n 区间：为修饰一个区间判断，是多长时间，如昨天就是[-1,0],明天是[1,2]"
     }
-	else if (dum == "tc-describe") {
+	else if (dum == "ft-describe") {
 		document.getElementById("status_id").value = "特殊时间：一些特殊的时间，比如春节、中秋、夏至、冬至等等，需要特殊处理的时间"
 	}
     else if (dum == "cd-describe") {

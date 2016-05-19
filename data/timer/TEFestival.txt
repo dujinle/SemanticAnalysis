@@ -1,84 +1,83 @@
 {
-	"regs":[
-		{
-			"reg":"国际麻风节",
-			"month":1,
-			"week":7,
-			"week_idx":0
-		},
-		{
-			"reg":"母亲节",
-			"month":5,
-			"week":7,
-			"week_idx":2
-		},
-		{
-			"reg":"全国助残日",
-			"month":5,
-			"week":7,
-			"week_idx":3
-		},
-		{
-			"reg":"父亲节",
-			"month":6,
-			"week":7,
-			"week_idx":3
-		},
-		{
-			"reg":"国际和平日",
-			"month":9,
-			"week":2,
-			"week_idx":3
-		},
-		{
-			"reg":"全国国防教育日",
-			"month":9,
-			"week":6,
-			"week_idx":3
-		},
-		{
-			"reg":"国际聋人节",
-			"month":9,
-			"week":7,
-			"week_idx":4
-		},
-		{
-			"reg":"世界住房日",
-			"month":10,
-			"week":1,
-			"week_idx":1
-		},
-		{
-			"reg":"加拿大感恩节",
-			"month":10,
-			"week":1,
-			"week_idx":2
-		},
-		{
-			"reg":"国际减轻自然灾害日",
-			"month":10,
-			"week":3,
-			"week_idx":2
-		},
-		{
-			"reg":"世界爱眼日",
-			"month":10,
-			"week":4,
-			"week_idx":2
-		},
-		{
-			"reg":"美国感恩节",
-			"month":11,
-			"week":4,
-			"week_idx":0
-		},
-		{
-			"reg":"中小学生安全教育日",
-			"month":3,
-			"week":1,
-			"week_idx":0,
-			"week_type":"full"
-		}
-	]
+  "regs": [
+    {
+      "week": 7, 
+      "week_idx": 0, 
+      "reg": "国际麻风节", 
+      "month": 1
+    }, 
+    {
+      "week": 7, 
+      "week_idx": 2, 
+      "reg": "母亲节", 
+      "month": 5
+    }, 
+    {
+      "week": 7, 
+      "week_idx": 3, 
+      "reg": "全国助残日", 
+      "month": 5
+    }, 
+    {
+      "week": 7, 
+      "week_idx": 3, 
+      "reg": "父亲节", 
+      "month": 6
+    }, 
+    {
+      "week": 2, 
+      "week_idx": 3, 
+      "reg": "国际和平日", 
+      "month": 9
+    }, 
+    {
+      "week": 6, 
+      "week_idx": 3, 
+      "reg": "全国国防教育日", 
+      "month": 9
+    }, 
+    {
+      "week": 7, 
+      "week_idx": 4, 
+      "reg": "国际聋人节", 
+      "month": 9
+    }, 
+    {
+      "week": 1, 
+      "week_idx": 1, 
+      "reg": "世界住房日", 
+      "month": 10
+    }, 
+    {
+      "week": 1, 
+      "week_idx": 2, 
+      "reg": "加拿大感恩节", 
+      "month": 10
+    }, 
+    {
+      "week": 3, 
+      "week_idx": 2, 
+      "reg": "国际减轻自然灾害日", 
+      "month": 10
+    }, 
+    {
+      "week": 4, 
+      "week_idx": 2, 
+      "reg": "世界爱眼日", 
+      "month": 10
+    }, 
+    {
+      "week": 4, 
+      "week_idx": 0, 
+      "reg": "美国感恩节", 
+      "month": 11
+    }, 
+    {
+      "week": 1, 
+      "week_type": "full", 
+      "week_idx": 0, 
+      "reg": "中小学生安全教育日", 
+      "month": 3
+    }
+  ]
 }
-

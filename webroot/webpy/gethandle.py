@@ -29,8 +29,8 @@ class GetHandler(RequestHandler):
 			mdl = self.body_json['mdl'];
 			ctype = self.body_json['type'];
 			mager = self.get_mager();
+			logging.info('get info ' + mdl + ' ' + ctype);
 			rest = mager.deal_data(mdl,ctype,'get',None);
-			print rest;
 			self.write(self.gen_result(0,ctype + ' get words success',rest));
 		except Exception,e:
 			self.except_handle('get ' + ctype + ' failed');

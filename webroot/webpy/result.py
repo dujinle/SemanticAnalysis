@@ -36,24 +36,22 @@ class ResultHandler(RequestHandler):
 			sres = mager.encode(itest,mdl);
 			ret = dict();
 			ret['text'] = sres['text'];
-			ret['inlist'] = sres['inlist'];
+			ret['inlist'] = sres.get('inlist');
+
 			if mdl == 'Timer':
-				if sres.has_key('taglist'):
-					ret['taglist'] = list();
-					for tag in sres['taglist']:
-						if tag.has_key('interval'):
-							tdic = dict();
-							tdic['strs'] = ''
-							for tm in tag['times']:
-								tdic['strs'] = tdic['strs'] + tm['value'];
-							start = tag['interval'][0];
-							end = tag['interval'][1];
-							tdic['interval'] = list();
-							tdic['interval'].append('-'.join([str(i) for i in start]));
-							tdic['interval'].append('-'.join([str(i) for i in end]));
-							ret['taglist'].append(tdic);
-						elif tag['type'].find('mood_') <> -1:
-							ret['taglist'].append(tag);
+				ret['result'] = list();
+				if sres.has_key('intervals') and len(sres['intervals']) > 0:
+					for tag in sres['intervals']:
+						tdic = dict();
+						tdic['strs'] = tag['str'];
+						start = tag['start'];
+						end = tag['end'];
+						tdic['interval'] = list();
+						tdic['interval'].append('-'.join([str(i) for i in start]));
+						tdic['interval'].append('-'.join([str(i) for i in end]));
+						ret['result'].append(tdic);
+				elif sres.has_key('mood') and len(sres['mood']) > 0:
+					ret['result'].append(sres['mood']);
 			elif mdl == 'Local':
 				if sres.has_key('locals'):
 					ret['locals'] = sres['locals'];
@@ -63,9 +61,12 @@ class ResultHandler(RequestHandler):
 			elif mdl == 'Catering':
 				if sres.has_key('catering'):
 					ret['catering'] = sres['catering'];
-			elif mdl == 'Flight' or mdl == 'Alarm':
+			elif mdl == 'Alarm':
+				common.print_dic(sres);
+				if sres.has_key('result'): ret = sres['result'];
+				else: ret = sres;
+			elif mdl == 'Flight':
 				ret = sres;
-				#ret['flight'] = sres['flight'];
 			else:
 				ret['value'] = sres['value'];
 				ret['dir'] = sres['dir'];

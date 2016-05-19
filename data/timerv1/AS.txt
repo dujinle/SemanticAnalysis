@@ -1,0 +1,90 @@
+{
+  "战前": {
+    "status": "start", 
+    "type": "mood_as"
+  }, 
+  "节后": {
+    "status": "end", 
+    "type": "mood_as"
+  }, 
+  "饭后": {
+    "status": "end", 
+    "type": "mood_as"
+  }, 
+  "课间": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "完": {
+    "status": "end", 
+    "type": "mood_as"
+  }, 
+  "饭中": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "节中": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "事前": {
+    "status": "start", 
+    "type": "mood_as"
+  }, 
+  "课前": {
+    "status": "start", 
+    "type": "mood_as"
+  }, 
+  "节前": {
+    "status": "start", 
+    "type": "mood_as"
+  }, 
+  "战时": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "正在": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "战后": {
+    "status": "end", 
+    "type": "mood_as"
+  }, 
+  "饭前": {
+    "status": "start", 
+    "type": "mood_as"
+  }, 
+  "开始": {
+    "status": "start", 
+    "type": "mood_as"
+  }, 
+  "身后": {
+    "status": "end", 
+    "type": "mood_as"
+  }, 
+  "事中": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "生前": {
+    "status": "start", 
+    "type": "mood_as"
+  }, 
+  "正": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "战中": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "事后": {
+    "status": "end", 
+    "type": "mood_as"
+  }, 
+  "课后": {
+    "status": "end", 
+    "type": "mood_as"
+  }
+}

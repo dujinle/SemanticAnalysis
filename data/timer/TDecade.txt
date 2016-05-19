@@ -1,26 +1,35 @@
 {
   "regs": [
     {
-      "scope": "decade_desc",
-      "reg": "[0-3]*[0-9]世纪初(期)*",
-      "interval":[0,30]
-    },
+      "scope": "decade_desc", 
+      "interval": [
+        0, 
+        30
+      ], 
+      "reg": "[0-3]*[0-9]世纪初(期)*"
+    }, 
     {
-      "scope": "decade_desc",
-      "reg": "[0-3]*[0-9]世纪中期",
-      "interval":[31,70]
-    },
+      "scope": "decade_desc", 
+      "interval": [
+        31, 
+        70
+      ], 
+      "reg": "[0-3]*[0-9]世纪中期"
+    }, 
     {
-      "scope": "decade_desc",
-      "reg": "[0-3]*[0-9]世纪后期",
-      "interval":[71,100]
-    },
+      "scope": "decade_desc", 
+      "interval": [
+        71, 
+        100
+      ], 
+      "reg": "[0-3]*[0-9]世纪后期"
+    }, 
     {
-      "scope": "decade",
+      "scope": "decade", 
       "reg": "[0-3]*[0-9]世纪"
-    },
+    }, 
     {
-      "scope": "years",
+      "scope": "years", 
       "reg": "[1-9]0年代"
     }
   ]

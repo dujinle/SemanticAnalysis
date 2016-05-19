@@ -31,6 +31,7 @@ class AddHandler(RequestHandler):
 			data = self.body_json['value'];
 			logging.info(ctype + ' add words:' + data);
 			mager = self.get_mager();
+			print self.body_json
 			if ctype == 'SP':
 				mager.sp_deal('add',self.body_json);
 			else:

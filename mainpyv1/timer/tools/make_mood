@@ -1,0 +1,28 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
+
+import sys,json
+reload(sys);
+sys.setdefaultencoding('utf-8');
+
+def adjust_tbucket(dfile):
+	df = open(dfile,'r');
+	buf = df.readlines();
+
+	mydata = json.loads(''.join(buf));
+	mdic = dict();
+	mdic['regs'] = list();
+	idx = 0;
+	for reg in mydata.keys():
+		reg_dic = mydata[reg];
+		reg_dic['reg'] = reg;
+		mdic['regs'].append(reg_dic);
+	return mdic;
+
+
+if __name__ == '__main__':
+	if len(sys.argv) <= 1:
+		print 'Usage: %s infile' %(sys.argv[0]);
+		sys.exit(-1);
+	dic = adjust_tbucket(sys.argv[1])
+	print json.dumps(dic,indent = 2,separators=(',',':'),ensure_ascii=False)

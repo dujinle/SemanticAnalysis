@@ -36,7 +36,7 @@ class DelHandler(RequestHandler):
 				mager.sp_deal('del',self.body_json);
 			else:
 				mager.deal_data(mdl,ctype,'del',self.body_json);
-			self.write(self.gen_result(0,( 'mdl:%s ctype:%s del words:%s success' %(mdl,ctype,data),None));
+			self.write(self.gen_result(0,( 'mdl:%s ctype:%s del words:%s success' %(mdl,ctype,data) ),None));
 		except Exception,e:
 			self.except_handle(format(e));
 			return ;
