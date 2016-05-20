@@ -47,20 +47,21 @@ class TMood(Base):
 	def _add(self,data):
 		if not data.has_key('type'):
 			raise MyException('not found type value');
-		if not data.has_key('reg'):
+		if not data.has_key('value'):
 			raise MyException('not found reg value');
-		tdic['reg'] = data['reg'];
+		tdic = dict();
+		tdic['reg'] = data['value'];
 		tdic['type'] = data['dtype'];
 		if data.has_key('status'):
 			tdic['status'] = data['status'];
 		elif data.has_key('level'):
 			tdic['level'] = data['level'];
-		self.data['regs'].append(data);
+		self.data['regs'].append(tdic);
 
 	def _del(self,data):
-		if not data.has_key('reg'):
+		if not data.has_key('value'):
 			raise MyException('not found reg value');
-		istr = data['reg'];
+		istr = data['value'];
 		for item in self.data['regs']:
 			if item['reg'] == istr:
 				self.data['regs'].remove(item);

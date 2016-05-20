@@ -29,7 +29,8 @@ class TFestival(Base):
 			my_inter_id = struct['my_inter_id'];
 			my_interval = struct['intervals'][my_inter_id];
 
-			my_interval['str'] = my_interval['str'] + mdic['mstr'];
+			my_interval['str'] = my_interval['str'] + '_' + mdic['mstr'];
+			if not my_interval.has_key('type'): my_interval['type'] = 'time_ft';
 			self._convert_festival_day(my_interval,mdic);
 			struct['step_id'] = step_id + len(mdic['mstr']);
 			if not struct.has_key('scope'): struct['scope'] = 'year';
@@ -68,20 +69,22 @@ class TFestival(Base):
 		my_interval['start'][idx] = my_interval['end'][idx] = day;
 
 	def _add(self,data):
-		if not data.has_key('scope'):
-			raise MyException('not found scope value');
-		if not data.has_key('reg'):
+		if not data.has_key('value'):
 			raise MyException('not found reg value');
-		if not data.has_key('func'):
-			raise MyException('not found func value');
-		if not data.has_key('interval') or type(data['interval']) <> list:
-			raise MyException('not found interval list');
-		self.data['regs'].append(data);
+		if not data.has_key('date'):
+			raise MyException('not found date value');
+		if not data.has_key('year_type'):
+			raise MyException('not found year type');
+		tdic = dict();
+		tdic['date'] = data['year_type'];
+		tdic['reg'] = data['value'];
+		tdic['year_type'] = data['year_type']
+		self.data['regs'].append(tdic);
 
 	def _del(self,data):
-		if not data.has_key('reg'):
+		if not data.has_key('value'):
 			raise MyException('not found reg value');
-		istr = data['reg'];
+		istr = data['value'];
 		for item in self.data['regs']:
 			if item['reg'] == istr:
 				self.data['regs'].remove(item);
@@ -101,7 +104,8 @@ class TEFestival(Base):
 			my_inter_id = struct['my_inter_id'];
 			my_interval = struct['intervals'][my_inter_id];
 
-			my_interval['str'] = my_interval['str'] + mdic['mstr'];
+			my_interval['str'] = my_interval['str'] + '_' + mdic['mstr'];
+			if not my_interval.has_key('type'): my_interval['type'] = 'time_ft';
 			self._convert_efestival_day(my_interval,mdic);
 			struct['step_id'] = step_id + len(mdic['mstr']);
 			if not struct.has_key('scope'): struct['scope'] = 'year';

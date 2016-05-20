@@ -10,6 +10,8 @@ class Dictionary(_Dictionary):
 		('words', os.path.join(os.path.dirname(__file__), 'data', 'singer.dic')),
 		('words', os.path.join(os.path.dirname(__file__), 'data', 'catering.dic')),
 		('words', os.path.join(os.path.dirname(__file__), 'data', 'quanguo_sqx.dic')),
+		('words', os.path.join(os.path.dirname(__file__), 'data', 'music_name.dic')),
+		('words', os.path.join(os.path.dirname(__file__), 'data', 'airline.dic')),
 	)
 
 	@staticmethod

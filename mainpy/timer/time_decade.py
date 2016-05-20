@@ -31,7 +31,8 @@ class TDecade(Base):
 			my_inter_id = struct['my_inter_id'];
 			my_interval = struct['intervals'][my_inter_id];
 
-			my_interval['str'] = my_interval['str'] + mdic['mstr'];
+			my_interval['str'] = my_interval['str'] + '_' + mdic['mstr'];
+			if not my_interval.has_key('type'): my_interval['type'] = 'time_dt';
 			self._convert_decade_day(my_interval,mdic);
 			struct['step_id'] = step_id + len(mdic['mstr']);
 			struct['prev_func'] = 'time_dt';
@@ -93,6 +94,7 @@ class TDecade(Base):
 				start[idx] = curtime[idx] + lf_year - 16;
 				end[idx] = curtime[idx] + lf_year - 16;
 			my_interval['str'] = my_interval['str'] + left_tag['mstr'];
+			if not my_interval.has_key('type'): my_interval['type'] = 'time_dt';
 			time_common._make_sure_time(start,idx);
 			time_common._make_sure_time(end,idx);
 			struct['prev_func'] = 'time_dt';

@@ -57,7 +57,8 @@ class TNormal(Base):
 			return None;
 		start[idx] = int(mdic['num']);
 		end[idx] = int(mdic['num']);
-		my_interval['str'] = my_interval['str'] + mdic['mstr'];
+		my_interval['str'] = my_interval['str'] + '_' + mdic['mstr'];
+		if not my_interval.has_key('type'): my_interval['type'] = 'time_ut';
 
 #明天 昨晚 上午......#
 class TBucket(Base):
@@ -97,7 +98,7 @@ class TBucket(Base):
 		start = my_interval['start'];
 		end = my_interval['end'];
 		idx = time_common.tmenu[mdic['scope']];
-		my_interval['str'] = my_interval['str'] + mdic['mstr'];
+		my_interval['str'] = my_interval['str'] + '_' + mdic['mstr'];
 		match = re.findall(u'大{1,}',mdic['mstr']);
 		expend_day = 0;
 		if len(match) > 0:
@@ -111,6 +112,7 @@ class TBucket(Base):
 			curtime = time.localtime();
 			start[idx] = curtime[idx] + int(mdic['interval'][0]) + expend_day;
 			end[idx] = curtime[idx] + int(mdic['interval'][0]) + expend_day;
+		if not my_interval.has_key('type'): my_interval['type'] = 'time_nt';
 
 	def _convert_front_date(self,struct):
 		if struct.has_key('prev_func') and struct['prev_func'] == 'time_fot':
@@ -149,6 +151,7 @@ class TBucket(Base):
 				end[idx] = curtime[idx] + left_tag['interval'][1];
 				struct['scope'] = 'year';
 			my_interval['str'] = my_interval['str'] + left_tag['mstr'];
+			if not my_interval.has_key('type'): my_interval['type'] = 'time_nt';
 			time_common._make_sure_time(start,idx);
 			time_common._make_sure_time(end,idx);
 			struct['prev_func'] = 'time_bt';
@@ -157,18 +160,23 @@ class TBucket(Base):
 	def _add(self,data):
 		if not data.has_key('scope'):
 			raise MyException('not found scope value');
-		if not data.has_key('reg'):
-			raise MyException('not found reg value');
+		if not data.has_key('value'):
+			raise MyException('not found value');
 		if not data.has_key('func'):
 			raise MyException('not found func value');
-		if not data.has_key('interval') or type(data['interval']) <> list:
+		if not data.has_key('interval'):
 			raise MyException('not found interval list');
-		self.data['regs'].append(data);
+		tdic = dict();
+		tdic['scope'] = data['scope'];
+		tdic['interval'] = json.loads(data['interval']);
+		tdic['func'] = data['func'];
+		tdic['reg'] = data['value'];
+		self.data['regs'].append(tdic);
 
 	def _del(self,data):
-		if not data.has_key('reg'):
+		if not data.has_key('value'):
 			raise MyException('not found reg value');
-		istr = data['reg'];
+		istr = data['value'];
 		for item in self.data['regs']:
 			if item['reg'] == istr:
 				self.data['regs'].remove(item);

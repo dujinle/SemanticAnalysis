@@ -16,6 +16,7 @@ sys.path.append(os.path.join(base_path,'./location'));
 sys.path.append(os.path.join(base_path,'./flight'));
 sys.path.append(os.path.join(base_path,'./catering'));
 sys.path.append(os.path.join(base_path,'./music'));
+sys.path.append(os.path.join(base_path,'./alarm_clock'));
 sys.path.append(os.path.join(base_path,'./wordsegs'));
 sys.path.append(os.path.join(base_path,'../commons'));
 #==============================================================
@@ -30,6 +31,7 @@ from local_mager import LocalMager
 from music_mager import MusicMager
 from catering_mager import CateringMager
 from flight_mager import FlightMager
+from alarm_mager import AlarmMager
 
 class Mager:
 	def __init__(self):
@@ -42,6 +44,7 @@ class Mager:
 		self.modules['Music'] = MusicMager(self.wordseg);
 		self.modules['Catering'] = CateringMager(self.wordseg);
 		self.modules['Flight'] = FlightMager(self.wordseg);
+		self.modules['Alarm'] = AlarmMager(self.wordseg);
 
 	def init(self):
 		try:
@@ -98,7 +101,7 @@ try:
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'把声音调大点'));
 	#mg.sp_deal('del',{'value':u'大点'});
-	common.print_dic(mg.encode(u'明天上午到上地七街的机票','Flight'));
+	common.print_dic(mg.encode(u'设置一个闹钟','Alarm'));
 	#mg.sp_deal('del',{'value':u'静音'});
 	#mg.deal_data('M','add',{'value':u'音'});
 	#common.print_dic(mg.encode(u'静音'));

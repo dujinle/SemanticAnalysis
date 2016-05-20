@@ -69,6 +69,7 @@ class TimeMager:
 				for obj in self.tag_objs:
 					obj.init();
 					ret += obj.encode(struct);
+					if struct['step_id'] >= len(struct['text']): break;
 				if ret == -9:
 					self.tail.encode(struct);
 					struct['step_id'] = struct['step_id'] + 1;
