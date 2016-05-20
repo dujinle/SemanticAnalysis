@@ -28,9 +28,9 @@ class LocalMager:
 
 		# mark tag objs #
 		self.tag_objs.append(AD());
-		self.tag_objs.append(CM());
 		self.tag_objs.append(CR());
 		self.tag_objs.append(CELL());
+		self.tag_objs.append(CM());
 
 	def init(self,dtype):
 		try:

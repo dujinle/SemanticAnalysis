@@ -24,7 +24,7 @@ class CM:
 		taglist = struct['locals'];
 		strs = '';
 		for tag in taglist:
-			if type(tag) == dict and tag['type'] == 'locals':
+			if type(tag) == dict and tag['type'].find('local') <> -1:
 				strs = strs + 'L';
 			else:
 				strs = strs + tag;
@@ -37,12 +37,11 @@ class CM:
 				mt = match.group(0);
 				idx = strs.find(mt);
 				first = self._num_tag(strs,idx);
-				print first,strs,mt
 				idx = 0;
 				while True:
 					if first <= 0: break;
 					tag = taglist[idx];
-					if type(tag) == dict and tag['type'] == 'locals':
+					if type(tag) == dict and tag['type'].find('local') <> -1:
 						first = first - 1;
 					idx = idx + 1;
 				first = idx - 1;
@@ -61,9 +60,11 @@ class CM:
 		for m in sames:
 			mystr = strs;
 			mystr = mystr.replace(m,'D',1);
+			print m,mystr
 			comp = re.compile(self.reg);
 			match = comp.search(mystr);
-			return match;
+			if not match is None: return match;
+		return None;
 
 
 	def _num_tag(self,strs,idx):
