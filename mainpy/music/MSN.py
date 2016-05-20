@@ -5,7 +5,7 @@ reload(sys);
 sys.setdefaultencoding('utf-8');
 import common,config,music_com
 from myexception import MyException
-class MSR:
+class MSN:
 	def __init__(self):
 		self.data = None;
 	def init(self,dfile):
@@ -23,11 +23,11 @@ class MSR:
 		for instr in taglist:
 			if type(instr) == dict: continue;
 			tdic = dict();
-			tdic['type'] = 'music_msr'
+			tdic['type'] = 'music_msn'
 			tdic['value'] = instr;
 			idx = taglist.index(instr);
 			if self.data.has_key(instr):
-				tdic['scope'] = 'singer';
+				tdic['scope'] = 'singname';
 				taglist[idx] = tdic;
 
 	def _add(self,data):
