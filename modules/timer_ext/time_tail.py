@@ -29,6 +29,7 @@ class TimeTail():
 			self.remove_item_ext(item);
 		self.remove_time_item(struct);
 		self.time_stamp_middle(struct);
+		self.fetch_rep(struct);
 
 	def fetch_time_after(self,item,istr):
 		item['str'] = istr;
@@ -105,3 +106,16 @@ class TimeTail():
 			s_stamp = time_common._get_time_stamp(item['stime']);
 			e_stamp = time_common._get_time_stamp(item['etime']);
 			item['mvalue'] = (s_stamp + e_stamp) / 2;
+
+	def fetch_rep(self,struct):
+		for item in struct['time_stc']:
+			dlen = 0;
+			ditem = None;
+			for rep in struct['rep_stc']:
+				if item['str'].find(rep['rstr']) <> -1:
+					if dlen >= len(rep['ostr']): continue;
+					ditem = rep;
+					dlen = len(rep['ostr']);
+			if not ditem is None:
+				item['str'] = item['str'].replace(ditem['rstr'],ditem['ostr'],1);
+				struct['text'] = struct['text'].replace(ditem['rstr'],ditem['ostr'],1);

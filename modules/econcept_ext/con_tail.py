@@ -25,6 +25,7 @@ class ConTail():
 				if not struct.has_key(key): continue;
 				self.fetch_cept(struct,struct[key]);
 				del struct[key];
+			self.fetch_stc_same(struct);
 
 		except Exception as e:
 			raise MyException(sys.exc_info());
@@ -52,3 +53,22 @@ class ConTail():
 				continue;
 			stc[istr] = dict(inter);
 		del struct[ckey];
+
+	def fetch_stc_same(self,struct):
+		if len(struct['stc_same']) <= 0: return None;
+
+		idx = 0;
+		while True:
+			if len(struct['stc_same']) <= 1: break;
+			if idx >= len(struct['stc_same']): break;
+			prev = struct['stc_same'][idx];
+			tid = idx + 1;
+			while True:
+				if tid >= len(struct['stc_same']): break;
+				item = struct['stc_same'][tid];
+				if prev['str'] == item['str'] and prev['type'] == item['type']:
+					del struct['stc_same'][tid];
+					break;
+				tid = tid + 1;
+			idx = idx + 1;
+

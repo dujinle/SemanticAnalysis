@@ -25,7 +25,7 @@ class PDealHan2num(PDealBase):
 					struct['text'] = struct['text'].replace(im,str(numstr),1);
 					tdic = dict();
 					tdic['ostr'] = im;
-					tdic['rstr'] = numstr;
+					tdic['rstr'] = str(numstr);
 					struct['rep_stc'].append(tdic);
 		except Exception :
 			raise MyException(sys.exc_info());
