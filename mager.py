@@ -39,6 +39,7 @@ class Mager:
 		self.modules['Naviga'] = NavMager();
 		self.modules['Shop'] = ShopMager();
 		self.modules['Alarm'] = SmartckMager();
+		self.modules['Envir'] = EnvirMager();
 
 
 	def set_step(self,step): self.struct['step'] = step;
