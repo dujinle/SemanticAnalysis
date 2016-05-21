@@ -77,18 +77,6 @@
 						"type":"LNO",
 						"stype":"NOT_NEED"
 					}
-				},
-				"没有":{
-					"_prop":{
-						"type":"LNO",
-						"stype":"NONE"
-					}
-				},
-				"没":{
-					"_prop":{
-						"type":"LNO",
-						"stype":"NONE"
-					}
 				}
 			},
 			"肯定":{

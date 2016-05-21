@@ -13,12 +13,6 @@
 						"type":"M",
 						"stype":"PASTDUE"
 					}
-				},
-				"清":{
-					"_prop":{
-						"type":"M",
-						"stype":"CLEAR"
-					}
 				}
 			},
 			"状态":{
@@ -50,18 +44,6 @@
 					"_prop":{
 						"type":"M",
 						"stype":"CLOSED"
-					}
-				},
-				"静音":{
-					"_prop":{
-						"type":"M",
-						"stype":"SILENCE"
-					}
-				},
-				"无声":{
-					"_prop":{
-						"type":"M",
-						"stype":"SILENCE"
 					}
 				}
 			},
@@ -261,24 +243,6 @@
 							"stype":"WIN"
 						}
 					}
-				},
-				"更":{
-					"_prop":{
-						"type":"M",
-						"stype":"EVEN"
-					}
-				},
-				"很":{
-					"_prop":{
-						"type":"M",
-						"stype":"VERY"
-					}
-				},
-				"非常":{
-					"_prop":{
-						"type":"M",
-						"stype":"VERY"
-					}
 				}
 			}
 		}
@@ -364,14 +328,6 @@
 					"_prop":{
 						"type":"M",
 						"stype":"NICE"
-					}
-				}
-			},
-			"触觉":{
-				"冷":{
-					"_prop":{
-						"type":"M",
-						"stype":"COLD"
 					}
 				}
 			}

@@ -1,0 +1,16 @@
+{
+	"models":[
+		{
+			"reg":"VOICE
+				|VOLUME
+				|SILENCE",
+			"func":"volume"
+		},
+		{
+			"reg":"TEMPERATURE
+				|HOT
+				|COOL",
+			"func":"temp"
+		}
+	]
+}

@@ -11,11 +11,6 @@
 			"stype":"GE",
 			"str":"个"
 		},
-		"度":{
-			"type":"QS",
-			"stype":"DU",
-			"str":"度"
-		},
 		"条":{
 			"type":"QS",
 			"stype":"TIAO",

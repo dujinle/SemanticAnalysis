@@ -59,12 +59,6 @@
 			"stype":"ADD"
 		}
 	},
-	"减":{
-		"_prop":{
-			"type":"LV",
-			"stype":"SUBTRACT"
-		}
-	},
 	"继续":{
 		"_prop":{
 			"type":"LV",
@@ -167,12 +161,6 @@
 			"stype":"INCREASE"
 		}
 	},
-	"增高":{
-		"_prop":{
-			"type":"LT",
-			"stype":"RISE"
-		}
-	},
 	"增加":{
 		"_prop":{
 			"type":"LT",
@@ -183,24 +171,6 @@
 		"_prop":{
 			"type":"LT",
 			"stype":"LOWER"
-		}
-	},
-	"放大":{
-		"_prop":{
-			"type":"LT",
-			"stype":"ENLARGE"
-		}
-	},
-	"减少":{
-		"_prop":{
-			"type":"LT",
-			"stype":"REDUCE"
-		}
-	},
-	"加大":{
-		"_prop":{
-			"type":"LT",
-			"stype":"INCREASE"
 		}
 	}
 }
