@@ -20,17 +20,19 @@ class EnvirVolume(SceneBase):
 				if func == 'None':
 					ComFuncs._set_msg(struct,self.data['msg']['unknow']);
 				elif func == '--5':
-					self._reduce_volume_value(struct,super_b,'-',0.05);
+					self._reduce_volume_value(struct,super_b,'-','5%');
 				elif func == '--10':
-					self._reduce_volume_value(struct,super_b,'-',0.10);
+					self._reduce_volume_value(struct,super_b,'-','10%');
 				elif func == '++5':
-					self._reduce_volume_value(struct,super_b,'+',0.05);
+					self._reduce_volume_value(struct,super_b,'+','5%');
 				elif func == '++10':
-					self._reduce_volume_value(struct,super_b,'+',0.10);
+					self._reduce_volume_value(struct,super_b,'+','10%');
 				elif func == 'max':
-					self._reduce_volume_value(struct,super_b,'v',100);
+					self._reduce_volume_value(struct,super_b,'v','100%');
 				elif func == 'min':
-					self._reduce_volume_value(struct,super_b,'v',0.01);
+					self._reduce_volume_value(struct,super_b,'v','1%');
+				elif func == 'close':
+					self._reduce_volume_value(struct,super_b,'s','close');
 				else:
 					ComFuncs._set_msg(struct,self.data['msg']['unknow']);
 

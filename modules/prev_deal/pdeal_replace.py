@@ -32,12 +32,23 @@ class PDealReplace(PDealBase):
 				if item == '': continue;
 				if reg['func'] == 'replace':
 					struct['text'] = struct['text'].replace(item,reg['value'],1);
-					print struct['text'];
+					tdic = dict();
+					tdic['ostr'] = item;
+					tdic['rstr'] = reg['value'];
+					struct['rep_stc'].append(tdic);
 				elif reg['func'] == 'add':
 					mstr = item + reg['value'];
 					if struct['text'].find(mstr) == -1:
 						struct['text'] = struct['text'].replace(item,mstr,1);
+						tdic = dict();
+						tdic['ostr'] = item;
+						tdic['rstr'] = mstr;
+						struct['rep_stc'].append(tdic);
 				elif reg['func'] == 'hour_half':
 					mstr = item.replace(reg['value'],'');
 					mstr = mstr + u'30分';
 					struct['text'] = struct['text'].replace(item,mstr,1);
+					tdic = dict();
+					tdic['ostr'] = item;
+					tdic['rstr'] = mstr;
+					struct['rep_stc'].append(tdic);

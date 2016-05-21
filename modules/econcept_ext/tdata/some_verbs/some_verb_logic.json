@@ -197,6 +197,12 @@
 			"stype":"REDUCE"
 		}
 	},
+	"减小":{
+		"_prop":{
+			"type":"LT",
+			"stype":"DECREASE"
+		}
+	},
 	"加大":{
 		"_prop":{
 			"type":"LT",

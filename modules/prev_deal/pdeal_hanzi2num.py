@@ -11,8 +11,8 @@ class PDealHan2num(PDealBase):
 	def encode(self,struct):
 		try:
 			self.match_item(struct);
-		except Exception as e:
-			raise e;
+		except Exception :
+			raise MyException(sys.exc_info());
 
 	def match_item(self,struct):
 		try:
@@ -23,5 +23,9 @@ class PDealHan2num(PDealBase):
 				for im in match:
 					numstr = Han2Num.cn2dig(im);
 					struct['text'] = struct['text'].replace(im,str(numstr),1);
+					tdic = dict();
+					tdic['ostr'] = im;
+					tdic['rstr'] = numstr;
+					struct['rep_stc'].append(tdic);
 		except Exception :
 			raise MyException(sys.exc_info());

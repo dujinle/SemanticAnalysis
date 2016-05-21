@@ -33,6 +33,7 @@
 				|GOOD((HIGH)|(BIG))
 				|NOENOUGH((SMALL)|(LOW))
 				|REDUCE
+				|DECREASE
 				|LOWER
 				|EVEN((SMALL)|(LOW))
 				|FETCHLOW",

@@ -28,6 +28,7 @@ class PDealMager:
 	def encode(self,struct):
 		try:
 			print 'go into pdeal......';
+			if not struct.has_key('rep_stc'): struct['rep_stc'] = list();
 			for obj in self.tag_objs:
 				obj.encode(struct);
 		except Exception as e:
