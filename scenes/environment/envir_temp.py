@@ -51,6 +51,28 @@ class EnvirTemp(SceneBase):
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
+	def _fetch_func(self,struct):
+		if not struct.has_key('stc'): return 'None';
+		if not struct.has_key('stseg'): return 'None';
+
+		segs = struct.get('stseg');
+		stcs = struct.get('stc');
+		reg = '';
+		for istr in segs:
+			if not stcs.has_key(istr): continue;
+			item = stcs.get(istr);
+			sreg = '';
+			if item.has_key('stype'): sreg = '(' + item['stype'] + ')';
+			for same in struct['stc_same']:
+				if item['str'] == same['str']:
+					sreg = sreg + '|' + '(' + same['stype'] + ')';
+			reg = reg + sreg;
+		for model in self.data['models']:
+			comp = re.compile(model['reg']);
+			match = comp.search(reg);
+			if not match is None: return model['func'];
+		return 'None';
+
 	def _reduce_temp_value(self,struct,super_b,tdir,value):
 		struct['result']['temp'] = dict();
 		struct['result']['temp']['dir'] = tdir;

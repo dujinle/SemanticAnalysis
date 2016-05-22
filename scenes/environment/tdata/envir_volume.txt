@@ -43,10 +43,10 @@
 			"reg":"BIG.*DIAN
 				|HIGH.*DIAN
 				|((BIG)|(HIGH))ALITTLE
-				|COMEDIAN
-				|FETCHDIAN
-				|INCREASEDIAN
-				|ADDALITTLE
+				|COME((DIAN)|(ALITTLE))
+				|FETCH((DIAN)|(ALITTLE))
+				|INCREASE((DIAN)|(ALITTLE))
+				|ADD((ALITTLE)|(DIAN))
 				|CANBIGDIAN
 				|CANNOCANBIGDIAN
 				|ALITTLE.*ALLNONE",
@@ -58,11 +58,13 @@
 				|ADD
 				|RISE
 				|ENLARGE
+				|FETCH((BIG)|(HIGH))
 				|TOO((SMALL)|(LOW))
 				|REAL((SMALL)|(LOW))
 				|SO((SMALL)|(LOW))
 				|GOOD((SMALL)|(LOW))
 				|VERY((SMALL)|(LOW))
+				|EVEN((HIGH)|(BIG))
 				|NOENOUGH((HIGH)|(BIG))
 				|LISTENNO
 				|NONE.*VOICE",
