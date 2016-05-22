@@ -38,7 +38,7 @@ if __name__ == '__main__':
 			line = fp.readline();
 			if not line: break;
 			if line[0] == '#': continue;
-			line = line.strip('\n');
+			line = line.strip('\n').strip('\r');
 			larr = line.split('\t');
 			struct = mg.encode(larr[0],'Envir');
 			if analy(struct,larr[1],larr[2]) == True:

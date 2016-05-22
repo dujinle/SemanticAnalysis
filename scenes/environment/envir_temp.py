@@ -62,11 +62,12 @@ class EnvirTemp(SceneBase):
 			if not stcs.has_key(istr): continue;
 			item = stcs.get(istr);
 			sreg = '';
-			if item.has_key('stype'): sreg = '(' + item['stype'] + ')';
+			if item.has_key('stype'): sreg = item['stype'];
 			for same in struct['stc_same']:
 				if item['str'] == same['str']:
-					sreg = sreg + '|' + '(' + same['stype'] + ')';
+					sreg = same['stype'];
 			reg = reg + sreg;
+		print  'fetch_func:' + reg + '......';
 		for model in self.data['models']:
 			comp = re.compile(model['reg']);
 			match = comp.search(reg);

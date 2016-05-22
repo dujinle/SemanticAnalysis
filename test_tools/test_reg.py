@@ -3,7 +3,6 @@
 import sys,re
 
 
-comp = re.compile('TIME.*(?:GO)(.*)');
-match = comp.findall('TIMEGOHITGOLF');
-for it in match:
-	print it;
+comp = re.compile('((VOLUME))((BIG))((TIME)|(NUNIT)|(ALITTLE))');
+match = comp.search('VOLUMEBIGALITTLE');
+print match.group();

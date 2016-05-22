@@ -9,6 +9,9 @@
 		{
 			"reg":"TEMPERATURE
 				|HOT
+				|WIND
+				|HOTGAS
+				|COOLAIR
 				|COOL",
 			"func":"temp"
 		}

@@ -367,6 +367,12 @@
 						"type":"M",
 						"stype":"COLD"
 					}
+				},
+				"热":{
+					"_prop":{
+						"type":"M",
+						"stype":"HOT"
+					}
 				}
 			}
 		},

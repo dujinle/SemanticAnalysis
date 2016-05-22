@@ -61,6 +61,7 @@ class Mager:
 
 	def _clear_struct(self,struct):
 		if struct.has_key('stseg'): del struct['stseg'];
+		if struct.has_key('stc_same'): del struct['stc_same'];
 		if struct.has_key('stc'): del struct['stc'];
 		if struct.has_key('result'): del struct['result'];
 
