@@ -1,0 +1,18 @@
+{
+	"每天":{
+		"type":"hz",
+		"level":"high"
+	},
+	"经常":{
+		"type":"hz",
+		"level":"middle"
+	},
+	"偶尔":{
+		"type":"hz",
+		"level":"low"
+	},
+	"整天":{
+		"type":"hz",
+		"level":"saturation"
+	}
+}

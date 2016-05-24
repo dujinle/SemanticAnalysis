@@ -1,0 +1,14 @@
+{
+	"现在":{
+		"type":"status",
+		"status":"now"
+	},
+	"曾经":{
+		"type":"status",
+		"status":"history"
+	}
+	"已经":{
+		"type":"status",
+		"status":"history"
+	}
+}

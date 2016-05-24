@@ -1,0 +1,15 @@
+{
+	"完":{
+		"type":"action",
+		"status":"end"
+	},
+	"正在":{
+		"type":"action",
+		"status":"being"
+	},
+	"开始":{
+		"type":"action",
+		"status":"start"
+	}
+
+}
