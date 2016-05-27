@@ -9,13 +9,20 @@ import collections
 ''' import tagpy wordsegs '''
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
+sys.path.append(os.path.join(base_path,'../'));
 #==============================================================
 
 import common,config
-from notion_time import TimeNotion
+from time_interval import NT
+from time_interval import UT
+from time_interval import CT
+from time_interval import TF
+
+from time_mood import TM
+from time_mood import TS
+from time_mood import AS
+
 from calc_time import CalcTimeInterval
-from units_time import LabelUnits
-from composite_time import CompositeTime
 from myexception import MyException
 
 class TimeMager:
@@ -24,10 +31,14 @@ class TimeMager:
 		self.tag_objs = list();
 
 		# mark tag objs #
-		self.tag_objs.append(LabelUnits());
-		self.tag_objs.append(TimeNotion());
-		self.tag_objs.append(CompositeTime());
+		self.tag_objs.append(UT());
+		self.tag_objs.append(NT());
+		self.tag_objs.append(CT());
+
+		self.tag_objs.append(TF());
 		self.tag_objs.append(CalcTimeInterval());
+		#self.tag_objs.append(TimeMood());
+		#self.tag_objs.append(TimeStatus());
 
 	def init(self,dtype):
 		try:
@@ -83,8 +94,9 @@ try:
 	mg.init('Timer');
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	wordseg.deal_word('del',{'value':u'月前'});
-	common.print_dic(mg.encode(u'3月前'));
+	wordseg.deal_word('del',{'value':u'天上'});
+	wordseg.deal_word('del',{'value':u'午前'});
+	common.print_dic(mg.encode(u'3月4号上午前'));
 except MyException as e:
 	print e.value;
 #'''
