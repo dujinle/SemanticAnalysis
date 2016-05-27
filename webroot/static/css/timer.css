@@ -1,0 +1,136 @@
+/*清除开始设计*/
+/**{*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+/*}*/
+body,ul,li,h1{
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体" ;
+    font-size: 12px;
+}
+/*设置标签样式*/
+.text-big{
+    padding: 0 10px 0 5px;
+    font-size: 16px ;
+    vertical-align:top;
+}
+.text-mid{
+    padding: 0 10px 0 5px;
+    font-size: 14px ;
+    vertical-align:top;
+}
+.text-three{
+    padding: 0 10px 0 30px;
+    font-size: 14px ;
+    vertical-align:top;
+}
+/*设置button样式*/
+.big_button{
+    width: 75px;
+    height: 25px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.mid-button{
+    width: 35px;
+    height: 20px;
+    font-size: 12px;
+    text-align: center;
+    margin-left: 10px;;
+}
+.three_button{
+    width: 75px;
+    height: 30px;
+    font-size: 20px;
+}
+
+/*开始设计*/
+#box{
+    width: 1200px;
+    height: 750px;
+    margin: 10px auto;
+    border: 1px solid gray;
+}
+.header{
+    background:#42abf8;
+    vertical-align: middle;
+    text-align: center;
+    height: 50px;
+    margin-top: 0;
+    padding-top:0 ;
+
+}
+h1{
+    font: 35px  bold ;
+    vertical-align: middle;
+    text-align: center;
+}
+/*左侧设计*/
+.content-left{
+    float: left;
+    width: 320px;
+    margin: 10px 10px 10px 10px;
+    border-right: 1px solid gray;
+    vertical-align:top;
+}
+.left-text1 {
+    padding: 10px 0 10px 0;
+    vertical-align:top;
+    border-bottom: 1px solid gray;
+}
+.left-text2 {
+    padding: 10px 0 10px 0;
+    vertical-align:top;
+    border-bottom: 1px solid gray;
+}
+.left-text3{
+    padding: 10px 0 10px 0;
+    vertical-align:top;
+}
+
+.left-button , .save{
+    text-align: center;
+}
+.content-right{
+    float: left;
+
+}
+/*右侧设计*/
+.content-right-top{
+    border-bottom: 1px solid gray;
+    height: 100px;
+    width: 850px;
+}
+.add_text ,.delete_text{
+    float: left;
+    padding: 20px 10px 20px 10px;
+    text-align: center;
+}
+.save{
+    float: left;
+    padding:20px 10px 20px 10px;
+}
+.save form{
+    font-size: 14px ;
+}
+
+.tu ,.td, .cd ,.tr ,.bs,.ts{
+    padding: 20px 10px 20px 10px;
+    width: 570px;
+    border-bottom: 1px solid gray;
+}
+.button-frame{
+    float: right;
+}
+form.one{
+    padding: 5px 10px 0 10px;
+    vertical-align: middle;
+}
+/*右侧文本框设计*/
+.showText{
+    float: right;
+    margin: 10px 10px;
+    padding-left: 10px;
+    border-left:1px solid gray ;
+}

@@ -19,6 +19,9 @@ class Application(tornado.web.Application):
 	def __init__(self):
 		handlers = [
 			(r"/doctor",DocterHandler),
+			(r"/voice",VoiceHandler),
+			(r"/temperature",TempHandler),
+			(r"/timer",TimerHandler),
 			(r"/get_result",ResultHandler),
 			(r"/save_data",SaveHandler),
 			(r"/reset",ResetHandler),
@@ -35,11 +38,19 @@ class Application(tornado.web.Application):
 		tornado.web.Application.__init__(self, handlers, **settings);
 
 class DocterHandler(tornado.web.RequestHandler):
-	def post(self):
-		self.render('index.html');
-
 	def get(self):
 		self.render('index.html');
+
+class VoiceHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('voice.html');
+
+class TempHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('temperature.html');
+class TimerHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('timer.html');
 
 if __name__=="__main__":
 

@@ -11,6 +11,7 @@ base_path = os.path.dirname(__file__);
 
 sys.path.append(os.path.join(base_path,'./voice'));
 sys.path.append(os.path.join(base_path,'./temperature'));
+sys.path.append(os.path.join(base_path,'./timer'));
 sys.path.append(os.path.join(base_path,'./wordsegs'));
 sys.path.append(os.path.join(base_path,'../commons'));
 #==============================================================
@@ -20,6 +21,7 @@ import common,config
 from myexception import MyException
 from voice_mager import VoiceMager
 from temp_mager import TempMager
+from time_mager import TimeMager
 
 class Mager:
 	def __init__(self):
@@ -27,6 +29,7 @@ class Mager:
 		self.modules = dict();
 		self.modules['Voice'] = VoiceMager(self.wordseg);
 		self.modules['Temp'] = TempMager(self.wordseg);
+		self.modules['Timer'] = TimeMager(self.wordseg);
 
 	def init(self):
 		try:
