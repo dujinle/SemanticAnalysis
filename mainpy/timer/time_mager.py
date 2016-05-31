@@ -17,6 +17,8 @@ from time_interval import NT
 from time_interval import UT
 from time_interval import CT
 from time_interval import TF
+from time_week import TW
+from time_week import TWE
 
 from time_mood import TM
 from time_mood import TS
@@ -34,6 +36,8 @@ class TimeMager:
 		self.tag_objs.append(UT());
 		self.tag_objs.append(NT());
 		self.tag_objs.append(CT());
+		self.tag_objs.append(TW());
+		self.tag_objs.append(TWE());
 
 		self.tag_objs.append(TF());
 		self.tag_objs.append(CalcTimeInterval());
@@ -85,7 +89,7 @@ class TimeMager:
 				step = step + 1;
 		except MyException as e:
 			raise e;
-#'''
+'''
 try:
 	sys.path.append('../wordsegs');
 	from wordseg import WordSeg
@@ -96,7 +100,9 @@ try:
 	#common.print_dic(mg.encode(u'把声音调大点'));
 	wordseg.deal_word('del',{'value':u'天上'});
 	wordseg.deal_word('del',{'value':u'午前'});
-	common.print_dic(mg.encode(u'3月4号上午前'));
+	#common.print_dic(mg.encode(u'3月4号上午前'));
+	#common.print_dic(mg.encode(u'明天'));
+	common.print_dic(mg.encode(u'周3'));
 except MyException as e:
 	print e.value;
-#'''
+'''

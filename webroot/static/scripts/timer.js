@@ -17,14 +17,13 @@ function add_ut() {
 		if(ut_attr_obj[i].checked){
 			ut_attr.push(ut_attr_obj[i].value);
 		}
-	}
+	};
 	idata = new Object();
 	idata.type = 'UT';
 	idata.mdl = $mdl;
 	idata.value = ut_value;
 	idata.scope = ut_scope;
 	idata.attr = ut_attr;
-
 	$.ajax({
 		async:false,
 		url: $basepath + 'add',
@@ -84,6 +83,7 @@ function get(type) {
 }
 
 function add_nt() {
+	nt_func_type = document.getElementsByName('func_type');
 	nt_obj = document.getElementById('nt_text');
 	nt_scope_obj = document.getElementById('nt_scope');
 	nt_interval_obj = document.getElementById('nt_interval');
@@ -99,7 +99,14 @@ function add_nt() {
 			nt_type = nt_type_obj[i].value;
 			break;
 		}
-	}
+	};
+	var nt_func = null;
+	for (var i = 0;i < nt_func_type.length;i++){
+		if(nt_func_type[i].checked){
+			nt_func = nt_func_type[i].value;
+			break;
+		}
+	};
 	idata = new Object();
 	idata.type = 'NT';
 	idata.mdl = $mdl;
@@ -107,6 +114,7 @@ function add_nt() {
 	idata.scope = nt_scope;
 	idata.interval = nt_interval;
 	idata.nt_type = nt_type;
+	idata.func = nt_func;
 
 	$.ajax({
 		async:false,
@@ -134,22 +142,22 @@ function save_word(){
 //这个是功能描述的函数
 function describe( dum) {
     if (dum == "tu-describe") {
-        document.getElementById("showText").innerHTML = "时间单位:对数字时间的一个单位，如：年、月、日、时、分、秒。\n 举例如：2016年5月25日16时57分30秒，中的年、月、日、时、分、秒都是单位，这些都是时间类型，3周的周就是数量单位"
+        document.getElementById("status_id").innerHTML = "时间单位:对数字时间的一个单位，如：年、月、日、时、分、秒。\n 举例如：2016年5月25日16时57分30秒，中的年、月、日、时、分、秒都是单位，这些都是时间类型，3周的周就是数量单位"
     }
     else if (dum == "td-describe") {
-        document.getElementById("showText").innerHTML = "时间修饰：对时间的一个修饰，如上月，昨天，明天中的上、昨、明，都是对时间的修饰。\n 区间：为修饰一个区间判断，是多长时间，如昨天就是[-1,0],明天是[1,2]"
+        document.getElementById("status_id").innerHTML = "时间修饰：对时间的一个修饰，如上月，昨天，明天中的上、昨、明，都是对时间的修饰。\n 区间：为修饰一个区间判断，是多长时间，如昨天就是[-1,0],明天是[1,2]"
     }
     else if (dum == "cd-describe") {
-        document.getElementById("showText").innerHTML = "综合修饰："
+        document.getElementById("status_id").innerHTML = "综合修饰："
     }
     else if (dum == "tr-describe") {
-        document.getElementById("showText").innerHTML = "时间频率：就是对时间发生的频率的描述，如 每天、经常、偶尔、总，都是频率，且频率为高、中、低、频率"
+        document.getElementById("status_id").innerHTML = "时间频率：就是对时间发生的频率的描述，如 每天、经常、偶尔、总，都是频率，且频率为高、中、低、频率"
     }
     else if (dum == "bs-describe") {
-        document.getElementById("showText").innerHTML = "事情状态："
+        document.getElementById("status_id").innerHTML = "事情状态："
     }
     else if (dum == "ts-describe") {
-        document.getElementById("showText").innerHTML = "时间状态："
+        document.getElementById("status_id").innerHTML = "时间状态："
     }
 
 }
@@ -241,9 +249,9 @@ function DealWords(type,action,vid,did){
 	y = document.getElementById('status_id');
 	if(obj != null && obj.code == 0){
 		if(action == 'get'){
-			y.innerText = JSON.stringify(obj.result,null,' ');
+			y.value = JSON.stringify(obj.result,null,' ');
 		}else{
-			y.innerText = obj.message.replace(/#/g,'\n');
+			y.value = obj.message.replace(/#/g,'\n');
 		}
 	}else{
 		y.innerText = obj.message.replace(/#/g,'\n');
