@@ -198,21 +198,18 @@ class WTE(Base):
 									elif tt['dir'] == '+':
 										mytime['interval'] = [num * 7,'>'];
 								if len(mytime['attr']) == 1 and mytime['attr'][0] == 'date':
-									num = mytime['num'];
+									num = int(mytime['num']);
 									if mytime.has_key('interval'):
 										if tt['dir'] == '-':
-											mytime['interval'][1] = mytime['interval'][0];
-											mytime['interval'][0] = '<';
+											mytime['interval'] = ['<',mytime['interval'][0]];
 										elif tt['dir'] == '+':
-											mytime['interval'][0] = mytime['interval'][1];
-											mytime['interval'][1] = '>';
+											mytime['interval'] = [mytime['interval'][1],'>'];
 									else:
+										diff = num - curtime[6] - 1;
 										if tt['dir'] == '-':
-											mytime['interval'][0] = '<';
-											mytime['interval'][1] = num;
+											mytime['interval'] = ['<',diff];
 										elif tt['dir'] == '+':
-											mytime['interval'][0] = num + 1;
-											mytime['interval'][1] = '>';
+											mytime['interval'] = [diff + 1,'>'];
 								mytime['scope'] = 'day';
 							wte_num = wte_num - 1;
 			elif tag['type'] == 'time_wt':
