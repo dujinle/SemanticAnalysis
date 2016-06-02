@@ -146,6 +146,12 @@ form.left-one{
 .button-frame{
     float: right;
 }
+.nt_interval{
+	margin-left:35px;
+}
+.ut_match{
+	margin-left:5px;
+}
 form.one{
     padding: 5px 10px 0 10px;
     vertical-align: middle;

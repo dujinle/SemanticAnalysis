@@ -44,7 +44,7 @@
 					<input type="button" id="addButton" value="确定" class="big_button" onclick="DealWords('SP','add','add_word',null)">
 				</div>
 				<div class="save">
-					<form >
+				<form >
 						<span class="text-big">保存修改:</span>
 						<input type="button" id="saveButton" value="保存" class="three_button" onclick="save_data('Timer')"/>
 					</form>
@@ -56,24 +56,19 @@
 			</div>
 			<!-- 右侧左部设置-->
 			<div class="tu">
-
 			<div class="button-frame">
-			
-			<input type="button" class="mid-button" id="tu-add" value="注入" onclick="add_ut()"/>
-					<input type="button" class="mid-button" id="tu-del" value="删除" onclick="del('UT','ut_text')"/>
-					<input type="button" class="mid-button" id="tu-show" value="获取" onclick="get('UT')"/>
-					<input type="button" class="mid-button" id="tu-describe" value="描述" onclick="describe('tu-describe')"/>
+				<input type="button" class="mid-button" id="tu-add" value="注入" onclick="add_ut()"/>
+				<input type="button" class="mid-button" id="tu-del" value="删除" onclick="del('UT','ut_text')"/>
+				<input type="button" class="mid-button" id="tu-show" value="获取" onclick="get('UT')"/>
+				<input type="button" class="mid-button" id="tu-describe" value="描述" onclick="describe('tu-describe')"/>
 				</div>
 				<div class="small-content">
-				
-				<span class="text-big">时间单位(UT)：</span>
-
-				<input type="text" id="ut_text" size="10"/>
+					<span class="text-big">时间单位(UT)：</span>
+					<input type="text" id="ut_text" size="10"/>
 					<span class="text-mid">单位：</span>
 					<select id="ut_scope" name="ut_scope">
-					<option value="null" >如：年月</option>
-				
-					<option value="year">年</option>
+						<option value="null" >如：年月</option>
+						<option value="year">年</option>
 						<option value="month">月</option>
 						<option value="day">日</option>
 						<option value="hour">时</option>
@@ -82,38 +77,25 @@
 					</select>
 					<br />
 					<form class="one">
-					<span class="text-mid">匹配模板(RG)：</span>
-						<input class="text" id="ut_match" size="10" />
-					<span class="text-mid">类型：</span>
+						<span class="text-mid">匹配模板(RG)：</span>
+						<input type="text" class="ut_match" id="ut_match"  size="10" />
+						<span class="text-mid">类型：</span>
 						<input class="select" type="checkbox" name="ut_attr" value="num" />数量
 						<input class="select" type="checkbox" name="ut_attr" value="date" />时间
 					</form>
-			
-			
-			
 					</div>
 			</div>
 			<div class="td">
-
-			<div class="button-frame">
-			
-			<input type="button" class="mid-button" id="td-add" value="注入" onclick="add_nt()"/>
-					<input type="button" class="mid-button" id="td-del" value="删除" onclick="del('NT','nt_text')"/>
-					<input type="button" class="mid-button" id="td-show" value="获取" onclick="get('NT')"/>
-					<input type="button" class="mid-button" id="td-describe" value="描述" onclick="describe('td-describe')"/>
-				</div>
+				<div class="button-frame">
+						<input type="button" class="mid-button" id="td-add" value="注入" onclick="add_nt()"/>
+						<input type="button" class="mid-button" id="td-del" value="删除" onclick="del('NT','nt_text')"/>
+						<input type="button" class="mid-button" id="td-show" value="获取" onclick="get('NT')"/>
+						<input type="button" class="mid-button" id="td-describe" value="描述" onclick="describe('td-describe')"/>
+					</div>
 				<div class="small-content">
-					<span class="text-big">时间修饰(NT)：</span>
-					<input type="text" id="nt_text" size="10"/>
-					<span class="text-mid">区间：</span>
-					<input type="text" id="nt_interval" size="7" placeholder="[1,2]"/>
-					<br />
-					<form class="one">
-						<span class="text-mid">类型：</span>
-						<input  class="select" type="radio" name="nt_type" value="notion" id="nt_n">修饰
-						<input  class="select" type="radio" name="nt_type" value="decorate" id="nt_d"/>扩展
-
-						<span class="text-three">单位：</span>
+						<span class="text-big">时间修饰(NT)：</span>
+						<input type="text" id="nt_text" size="10"/>
+						<span class="text-mid">单位：</span>
 						<select id="nt_scope" name="nt_scope">
 							<option value="" >如：年月</option>
 							<option value="year">年</option>
@@ -122,16 +104,16 @@
 							<option value="hour">时</option>
 							<option value="min">分</option>
 							<option value="sec">秒</option>
-					
-							</select>
-							<span class="text-three">方法:</span>
-							<input class="select" type="radio" name="func_type" value="add" id="func_add">加
-					
-							<input class="select" type="radio" name="func_type" value="equal" id="func_equal">赋值
+						</select>
+						<br />
+					<form class="one">
+						<span class="text-mid">时间区间：</span>
+						<input type="text" id="nt_interval" class="nt_interval" size="10" placeholder="[1,2]"/>
+						<span class="text-mid">方法:</span>
+						<input class="select" type="radio" name="func_type" value="add" id="func_add">加
+						<input class="select" type="radio" name="func_type" value="equal" id="func_equal">赋值
 					</form>
-
 					</div>
-
 			</div>
 			<div class="cd">
 				<div class="button-frame">
