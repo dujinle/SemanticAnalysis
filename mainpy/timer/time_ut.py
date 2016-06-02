@@ -276,7 +276,7 @@ class CUTE(Base):
 		tag['interval'] = [start_time,end_time];
 
 	def _calc_ute_date_time(self,curtime,tag):
-		times = tag['times'];z
+		times = tag['times'];
 		first_tag = times[0];
 		if first_tag['type'] == 'time_ute': first_tag = times[1];
 		start_time = list(curtime);

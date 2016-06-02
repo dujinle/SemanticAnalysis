@@ -1,0 +1,26 @@
+{
+	"keys":["前","后","大"],
+	"regs":[
+		{
+			"same":["前"],
+			"type": "time_ute",
+			"reg": "(NT){1,}K",
+			"dir": "-",
+			"position":"right"
+		},
+		{
+			"same":["大"],
+			"type": "time_ute",
+			"reg": "K{1,}NT",
+			"dir": "off",
+			"position":"left"
+		},
+		{
+			"same":["后"],
+			"type": "time_ute",
+			"reg": "(NT){1,}K",
+			"dir": "+",
+			"position":"right"
+		}
+	]
+}

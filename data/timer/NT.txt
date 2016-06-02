@@ -1,0 +1,23 @@
+{
+	"keys":["后天","后半天","上午"],
+	"regs":[
+		{
+			"same":["后天"],
+			"scope":"day",
+			"interval":[2,3],
+			"func":"add"
+		},
+		{
+			"same":["后半天"],
+			"scope":"hour",
+			"interval":[12,24],
+			"func":"equal"
+		},
+		{
+			"same":["上午"],
+			"scope":"hour",
+			"interval":[7,12],
+			"func": "equal"
+		}
+	]
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json
+import sys,os,json,copy
 import re,time
 reload(sys);
 sys.setdefaultencoding('utf-8');
@@ -46,8 +46,7 @@ class NT(Base):
 		reg = tregs[mykey];
 
 		tmat = match.group(0);
-		tdic = dict();
-		tdic.update(reg);
+		tdic = copy.deepcopy(reg);
 		tdic['value'] = tmat;
 		tdic['type'] = 'time_nt';
 		tdic['num'] = tmat.replace(key,'');
@@ -59,20 +58,23 @@ class NT(Base):
 		text = struct['text'];
 		comp = re.compile('(NT){1,}');
 		match = comp.finditer(text);
-		idx = 0;
+		ntidx = 0;
+		for tag in taglist:
+			if tag['type'] == 'time_nt': break;
+			ntidx = ntidx + 1;
 		for m in match:
-			ut = m.group();
-			num = len(ut) / 2;
+			nt = m.group();
+			num = len(nt) / 2;
 			tdic = dict();
 			tdic['times'] = list();
 			tdic['type'] = 'time_nt';
 			tdic['ntimes'] = num;
-			first_idx = idx;
+			first_idx = ntidx;
 			while num > 0:
-				tdic['times'].append(taglist[idx]);
-				taglist[idx]['filter'] = 'true';
+				tdic['times'].append(taglist[ntidx]);
+				taglist[ntidx]['filter'] = 'true';
 				num = num - 1;
-				idx = idx + 1;
+				ntidx = ntidx + 1;
 			taglist[first_idx] = tdic;
 		idx = 0;
 		while True:
@@ -84,7 +86,6 @@ class NT(Base):
 			if tag.has_key('times'):
 				tag['attr'] = ['date'];
 			idx = idx + 1;
-
 	def _add(self,data):
 		try:
 			scope = data['scope'];
@@ -104,8 +105,8 @@ class NT(Base):
 				tdic = dict();
 				tdic['same'] = [value];
 				tdic['scope'] = scope;
-				tdic['attr'] = attr;
-				tdic['reg'] = reg;
+				tdic['func'] = func;
+				tdic['interval'] = interval;
 				mdata['regs'].append(tdic);
 		except Exception as e:
 			raise MyException(format(e));
@@ -161,29 +162,29 @@ class NTE(Base):
 		tmat = match.group(0);
 		tdic = dict();
 		tdic.update(reg);
-		tdic['value'] = key;
-		tdic['type'] = 'time_ute';
+		tdic['value'] = tmat.replace('NT','');
+		tdic['type'] = 'time_nte';
 		self._insert_taglist(struct,tdic,tmat,key);
-		ut_num = len(re.findall('UT',tmat));
-		struct['text'] = text.replace(tmat,'UTE' * ut_num,1);
+		nt_num = len(re.findall('NT',tmat));
+		struct['text'] = text.replace(tmat,'NTE' * nt_num,1);
 
 	def _insert_taglist(self,struct,tdic,tmat,key):
 		taglist = struct['taglist'];
 		text = struct['text'];
 		idx = text.find(tmat);
 		strs = text[:idx + len(tmat)];
-		ut_num = len(re.findall('UT',strs));
+		nt_num = len(re.findall('NT',strs));
 		for tag in taglist:
-			if tag['type'].find('time_ut') <> -1:
+			if tag['type'].find('time_nt') <> -1:
 				time_num = tag['ntimes'];
-				if ut_num > time_num:
-					ut_num = ut_num - time_num;
+				if nt_num > time_num:
+					nt_num = nt_num - time_num;
 				else:
 					if tdic['position'] == 'left':
-						tag['times'].insert(ut_num - 1,tdic);
+						tag['times'].insert(nt_num - 1,tdic);
 					elif tdic['position'] == 'right':
-						tag['times'].insert(ut_num,tdic);
-					tag['type'] = 'time_ute';
+						tag['times'].insert(nt_num,tdic);
+					tag['type'] = 'time_nte';
 					break;
 
 	# 找到一个扩展的修饰时间词组 则可以进行区间的计算 为后续使用 #
@@ -191,87 +192,70 @@ class NTE(Base):
 		if not struct.has_key('taglist'): return None;
 		taglist = struct['taglist'];
 		for tag in taglist:
-			if tag['type'] == 'time_ute':
+			if tag['type'] == 'time_nte':
 				times = tag['times'];
-				first_tag = times[0];
-				if first_tag['type'] == 'time_ute':
-					#如果 是 前UTUT 模式则不处理#
-					if tag['ntimes'] > 1: del times[0];
-					mytime = times[1];
-					if first_tag['dir'] == '-':
-						mytime['interval'] = [-1 * int(mytime['num']),0];
-					elif first_tag['dir'] == '+':
-						mytime['interval'] = [1,int(mytime['num'])];
-				else:
-					ut_num = tag['ntimes'];
-					ute_tag = times[ut_num];
-					mytime = times[ut_num - 1];
-					if len(tag['attr']) == 1 and tag['attr'][0] == 'num':
-						if ute_tag['dir'] == '-':
-							mytime['interval'] = ['<',-1 * int(mytime['num'])];
-						elif ute_tag['dir'] == '+':
-							mytime['interval'] = [int(mytime['num']),'>'];
-					elif len(tag['attr']) == 1 and tag['attr'][0] == 'date':
-						if ute_tag['dir'] == '-':
-							mytime['interval'] = ['<',int(mytime['num'])];
-						elif ute_tag['dir'] == '+':
-							mytime['interval'] = [int(mytime['num']),'>'];
+				t_num = len(times);
+				nt_num = tag['ntimes'];
+				nte_num = t_num - nt_num;
+				while nte_num > 0:
+					for tt in times:
+						if tt['type'] == 'time_nte':
+							#处理 『大大』NT的模型#
+							if tt['position'] == 'left':
+								if tt['dir'] == 'off':
+									v_num = len(tt['value']);
+									mytime = times[times.index(tt) + 1];
+									interval = mytime['interval'];
+									if int(interval[0]) > 0:
+										mytime['interval'][0] = interval[0] + v_num;
+										mytime['interval'][1] = interval[1] + v_num;
+									elif int(interval[0]) < 0:
+										mytime['interval'][0] = interval[0] - v_num;
+										mytime['interval'][1] = interval[1] - v_num;
+							elif tt['position'] == 'right':
+								mytime = times[times.index(tt) - 1];
+								if tt['dir'] == '-':
+									mytime['interval'] = ['<',mytime['interval'][0]];
+								elif tt['dir'] == '+':
+									mytime['interval'] = [mytime['interval'][1],'>'];
+							nte_num = nte_num - 1;
 
-#计算UT模式下的时间区间包括UTE模式
+#计算nt模式下的时间区间包括ntE模式
 class CNTE(Base):
 	def encode(self,struct):
 		try:
 			curtime = time.localtime();
 			taglist = struct['taglist'];
 			for tag in taglist:
-				if tag['type'] == 'time_ute':
+				if tag['type'] == 'time_nte':
 					if tag['ntimes'] == 1:
-						if tag['attr'][0] == 'num':
-							self._calc_ute_num_time(curtime,tag);
-						elif tag['attr'][0] == 'date':
-							self._calc_ute_date_time(curtime,tag);
+						self._calc_nte_date_time(curtime,tag);
 					elif tag['ntimes'] > 1:
-						self._calc_ute_date_times(curtime,tag);
-				elif tag['type'] == 'time_ut':
-					if tag['attr'][0] == 'date':
-						self._calc_ut_date_times(curtime,tag);
+						self._calc_nte_date_times(curtime,tag);
+				elif tag['type'] == 'time_nt':
+					self._calc_nt_date_times(curtime,tag);
 		except MyException as e: raise e;
 
-	def _calc_ute_num_time(self,curtime,tag):
+	def _calc_nte_date_time(self,curtime,tag):
 		times = tag['times'];
 		first_tag = times[0];
-		if first_tag['type'] == 'time_ute': first_tag = times[1];
-		start_time = list(curtime);
-		end_time = list(curtime);
-		idx = time_common.tmenu[first_tag['scope']];
-		interval = first_tag['interval'];
-		if interval[0] == '<':
-			start_time[0] = 'null';
-		elif interval[0] <> '<':
-			start_time[idx] = start_time[idx] + interval[0];
-		if interval[1] == '>':
-			end_time[0] = 'null';
-		elif interval[1] <> '>':
-			end_time[idx] = end_time[idx] + interval[1];
-
-		start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
-		end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
-		time_common._make_sure_time(start_time);
-		time_common._make_sure_time(end_time);
-		tag['interval'] = [start_time,end_time];
-
-	def _calc_ute_date_time(self,curtime,tag):
-		times = tag['times'];z
-		first_tag = times[0];
-		if first_tag['type'] == 'time_ute': first_tag = times[1];
+		if first_tag['type'] == 'time_nte': first_tag = times[1];
 		start_time = list(curtime);
 		end_time = list(curtime);
 		idx = time_common.tmenu[first_tag['scope']];
 		interval = first_tag['interval'];
 		if interval[0] == '<': start_time[0] = 'null';
-		elif interval[0] <> '<': start_time[idx] = interval[0];
+		elif interval[0] <> '<':
+			if first_tag['func'] == 'add':
+				start_time[idx] = interval[0] + start_time[idx];
+			elif first_tag['func'] == 'equal':
+				start_time[idx] = interval[0];
 		if interval[1] == '>': end_time[0] = 'null';
-		elif interval[1] <> '>': end_time[idx] = interval[1];
+		elif interval[1] <> '>':
+			if first_tag['func'] == 'add':
+				end_time[idx] = interval[1] + end_time[idx];
+			elif first_tag['func'] == 'equal':
+				end_time[idx] = interval[1];
 
 		start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 		end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
@@ -279,47 +263,113 @@ class CNTE(Base):
 		time_common._make_sure_time(end_time);
 		tag['interval'] = [start_time,end_time];
 
-	def _calc_ute_date_times(self,curtime,tag):
+	def _calc_nte_date_times(self,curtime,tag):
 		times = tag['times'];
-		first_tag = times[0];
-		if first_tag['type'] == 'time_ute': return None;
 		start_time = list(curtime);
 		end_time = list(curtime);
 		tidx = 0;
 		while True:
 			if tidx >= len(times): break;
 			tm = times[tidx];
-			if tm['type'] == 'time_ute':
-				if tm['dir'] == '-': start_time[0] = 'null';
-				elif tm['dir'] == '+': end_time[0] = 'null';
+			if tm['type'] == 'time_nte':
+				#计算 大大UT 模型 #
+				if tm['position'] == 'left':
+					ntm = times[tidx + 1];
+					idx = time_common.tmenu[ntm['scope']];
+					if ntm['interval'][0] > 0:
+						start_time[idx] = start_time[idx] + ntm['interval'][0];
+						end_time[idx] = end_time[idx] + ntm['interval'][0];
+					elif ntm['interval'][0] < 0:
+						start_time[idx] = start_time[idx] + ntm['interval'][1];
+						end_time[idx] = end_time[idx] + ntm['interval'][1];
+					start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
+					end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
+					tidx = tidx + 1;
+				elif tm['position'] == 'right':
+					if tm['dir'] == '-': start_time[0] = 'null';
+					elif tm['dir'] == '+': end_time[0] = 'null';
 			else:
 				idx = time_common.tmenu[tm['scope']];
-				start_time[idx] = int(tm['num']);
-				end_time[idx] = int(tm['num']);
-
+				if tidx == len(times) - 1:
+					self._filt_interval(start_time,end_time,tm,idx);
+				elif tidx < len(times) - 1:
+					self._fill_interval(start_time,end_time,tm,idx);
 				start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 				end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
 			tidx = tidx + 1;
 		tag['interval'] = [start_time,end_time];
 
-	def _calc_ut_date_times(self,curtime,tag):
+	def _filt_interval(self,start_time,end_time,tm,idx):
+		if tm['func'] == 'add':
+			if tm['interval'][0] == '<':
+				start_time[idx] = start_time[idx] + tm['interval'][1];
+				end_time[idx] = end_time[idx] + tm['interval'][1];
+			elif tm['interval'][1] == '>':
+				start_time[idx] = start_time[idx] + tm['interval'][0];
+				end_time[idx] = end_time[idx] + tm['interval'][0];
+			elif tm['interval'][0] > 0:
+				start_time[idx] = start_time[idx] + tm['interval'][0];
+				end_time[idx] = end_time[idx] + tm['interval'][1];
+			elif tm['interval'][0] < 0:
+				start_time[idx] = start_time[idx] + tm['interval'][0];
+				end_time[idx] = end_time[idx] + tm['interval'][1];
+		elif tm['func'] == 'equal':
+			if tm['interval'][0] == '<':
+				start_time[idx] = tm['interval'][1];
+				end_time[idx] = tm['interval'][1];
+			elif tm['interval'][1] == '>':
+				start_time[idx] = tm['interval'][0];
+				end_time[idx] = tm['interval'][0];
+			elif tm['interval'][0] > 0:
+				start_time[idx] = tm['interval'][0];
+				end_time[idx] = tm['interval'][1];
+			elif tm['interval'][0] < 0:
+				start_time[idx] = tm['interval'][0];
+				end_time[idx] = tm['interval'][1];
+
+	def _fill_interval(self,start_time,end_time,tm,idx):
+		if tm['func'] == 'add':
+			if tm['interval'][0] == '<':
+				start_time[idx] = start_time[idx] + tm['interval'][1];
+				end_time[idx] = end_time[idx] + tm['interval'][1];
+			elif tm['interval'][1] == '>':
+				start_time[idx] = start_time[idx] + tm['interval'][0];
+				end_time[idx] = end_time[idx] + tm['interval'][0];
+			elif tm['interval'][0] > 0:
+				start_time[idx] = start_time[idx] + tm['interval'][0];
+				end_time[idx] = end_time[idx] + tm['interval'][0];
+			elif tm['interval'][0] < 0:
+				start_time[idx] = start_time[idx] + tm['interval'][1];
+				end_time[idx] = end_time[idx] + tm['interval'][1];
+		elif tm['func'] == 'equal':
+			if tm['interval'][0] == '<':
+				start_time[idx] = tm['interval'][1];
+				end_time[idx] = tm['interval'][1];
+			elif tm['interval'][1] == '>':
+				start_time[idx] = tm['interval'][0];
+				end_time[idx] = tm['interval'][0];
+			elif tm['interval'][0] > 0:
+				start_time[idx] = tm['interval'][0];
+				end_time[idx] = tm['interval'][0];
+			elif tm['interval'][0] < 0:
+				start_time[idx] = tm['interval'][1];
+				end_time[idx] = tm['interval'][1];
+
+	def _calc_nt_date_times(self,curtime,tag):
 		times = tag['times'];
 		start_time = list(curtime);
 		end_time = list(curtime);
-		tidx = 0;
+		tidx = dreal = 0;
 		while True:
 			if tidx >= len(times): break;
 			tm = times[tidx];
+			print tm
 			idx = time_common.tmenu[tm['scope']];
-			start_time[idx] = int(tm['num']);
-			end_time[idx] = int(tm['num']);
-
+			if tidx == len(times) - 1:
+				self._filt_interval(start_time,end_time,tm,idx);
+			elif tidx < len(times) - 1:
+				self._fill_interval(start_time,end_time,tm,idx);
 			start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 			end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
 			tidx = tidx + 1;
-		tm = times[tidx - 1];
-		idx = time_common.tmenu[tm['scope']];
-		end_time[idx] = end_time[idx] + 1;
-		time_common._make_sure_time(start_time);
-		time_common._make_sure_time(end_time);
 		tag['interval'] = [start_time,end_time];

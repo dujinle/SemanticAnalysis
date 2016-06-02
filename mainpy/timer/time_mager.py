@@ -13,18 +13,24 @@ sys.path.append(os.path.join(base_path,'../'));
 #==============================================================
 
 import common,config
-from time_interval import NT
-from time_interval import UT
-from time_interval import CT
-from time_interval import TF
-from time_week import TW
-from time_week import TWE
+from time_ut import UT
+from time_ut import UTE
+from time_ut import CUTE
+from time_nt import NT
+from time_nt import NTE
+from time_nt import CNTE
 
-from time_mood import TM
-from time_mood import TS
-from time_mood import AS
+#from time_interval import UT
+#from time_interval import CT
+#from time_interval import TF
+#from time_week import TW
+#from time_week import TWE
 
-from calc_time import CalcTimeInterval
+#from time_mood import TM
+#from time_mood import TS
+#from time_mood import AS
+
+#from calc_time import CalcTimeInterval
 from myexception import MyException
 
 class TimeMager:
@@ -35,12 +41,13 @@ class TimeMager:
 		# mark tag objs #
 		self.tag_objs.append(UT());
 		self.tag_objs.append(NT());
-		self.tag_objs.append(CT());
-		self.tag_objs.append(TW());
-		self.tag_objs.append(TWE());
 
-		self.tag_objs.append(TF());
-		self.tag_objs.append(CalcTimeInterval());
+		self.tag_objs.append(UTE());
+		self.tag_objs.append(NTE());
+
+		self.tag_objs.append(CUTE());
+		self.tag_objs.append(CNTE());
+
 		#self.tag_objs.append(TimeMood());
 		#self.tag_objs.append(TimeStatus());
 
@@ -58,8 +65,8 @@ class TimeMager:
 		struct['text'] = inlist;
 		try:
 			struct['inlist'] = self.wordseg.tokens(inlist);
-			struct['taglist'] = list();
-			struct['taglist'].extend(struct['inlist']);
+			#struct['taglist'] = list();
+			#struct['taglist'].extend(struct['inlist']);
 			for obj in self.tag_objs:
 				obj.init();
 				obj.encode(struct);
@@ -100,9 +107,9 @@ try:
 	#common.print_dic(mg.encode(u'把声音调大点'));
 	wordseg.deal_word('del',{'value':u'天上'});
 	wordseg.deal_word('del',{'value':u'午前'});
-	#common.print_dic(mg.encode(u'3月4号上午前'));
-	#common.print_dic(mg.encode(u'明天'));
-	common.print_dic(mg.encode(u'周3'));
+	#common.print_dic(mg.encode(u'3月4号前'));
+	common.print_dic(mg.encode(u'后天上午'));
+	#common.print_dic(mg.encode(u'周3'));
 except MyException as e:
 	print e.value;
 '''

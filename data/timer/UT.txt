@@ -1,0 +1,41 @@
+{
+	"keys":["月","日","天","号","时","分钟","分"],
+	"regs":[
+		{
+			"same":["天","日"],
+			"scope": "day",
+			"reg": "[0-3]*[0-9]K",
+			"attr": ["num"]
+		},
+		{
+			"same":["月"],
+			"scope": "month",
+			"reg": "[0-2]*[0-9]K",
+			"attr": ["num"]
+		},
+		{
+			"same":["号"],
+			"scope": "day",
+			"reg": "[0-3]*[0-9]K",
+			"attr": ["date"]
+		},
+		{
+			"same":["时"],
+			"scope":"hour",
+			"reg":"[0-6]*[0-9]K",
+			"attr":["date"]
+		},
+		{
+			"same":["分钟"],
+			"scope":"min",
+			"reg":"[0-6]*[0-9]K",
+			"attr":["num"]
+		},
+		{
+			"same":["分"],
+			"scope":"min",
+			"reg":"[0-6]*[0-9]K",
+			"attr":["date"]
+		}
+	]
+}
