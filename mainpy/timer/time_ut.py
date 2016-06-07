@@ -20,7 +20,6 @@ class UT(Base):
 		try:
 			intext = struct['text'];
 			rlist = time_common._if_has_key(intext,self.data['keys']);
-			regs = self.data['regs'];
 			for key in rlist:
 				self._match_reg(struct,key);
 			self._link_tag(struct);
@@ -56,11 +55,11 @@ class UT(Base):
 		struct['text'] = text.replace(tdic['value'],'UT',1);
 
 	def _link_tag(self,struct):
+		if not struct.has_key('taglist'): return None;
 		taglist = struct['taglist'];
 		text = struct['text'];
 		comp = re.compile('(UT){1,}');
 		match = comp.finditer(text);
-		idx = 0;
 		for m in match:
 			ut = m.group();
 			num = len(ut) / 2;
@@ -68,25 +67,25 @@ class UT(Base):
 			tdic['times'] = list();
 			tdic['type'] = 'time_ut';
 			tdic['ntimes'] = num;
-			first_idx = idx;
+			first_idx = idx = time_common._find_idx(text,ut,'UA');
 			while num > 0:
 				tdic['times'].append(taglist[idx]);
-				taglist[idx]['filter'] = 'true';
+				del taglist[idx];
 				num = num - 1;
-				idx = idx + 1;
-			taglist[first_idx] = tdic;
+			text = text.replace(ut,'UA',1);
+			struct['text'] = struct['text'].replace(ut,'UT',1);
+			taglist.insert(first_idx,tdic);
+
 		idx = 0;
 		while True:
 			if idx >= len(taglist): break;
 			tag = taglist[idx];
-			if tag.has_key('filter') and tag['filter'] == 'true':
-				del taglist[idx];
-				idx = idx - 1;
-			if tag.has_key('times'):
-				if len(tag['times']) > 1:
-					tag['attr'] = ['date'];
-				if len(tag['times']) == 1:
-					tag['attr'] = tag['times'][0]['attr'];
+			if tag['type'] == 'time_ut':
+				if tag.has_key('times'):
+					if len(tag['times']) > 1:
+						tag['attr'] = ['date'];
+					if len(tag['times']) == 1:
+						tag['attr'] = tag['times'][0]['attr'];
 			idx = idx + 1;
 
 	def _add(self,data):
@@ -96,7 +95,6 @@ class UT(Base):
 			value = data['value'];
 			reg = data['reg'];
 			mdata = self.data;
-			print data
 			if value in mdata['keys']:
 				for tt in mdata['regs']:
 					if value in tt['same']:
@@ -180,7 +178,7 @@ class UTE(Base):
 		tdic['type'] = 'time_ute';
 		self._insert_taglist(struct,tdic,tmat,key);
 		ut_num = len(re.findall('UT',tmat));
-		struct['text'] = text.replace(tmat,'UTE' * ut_num,1);
+		struct['text'] = text.replace(tmat,('UTE') * ut_num,1);
 
 	def _insert_taglist(self,struct,tdic,tmat,key):
 		taglist = struct['taglist'];
@@ -271,8 +269,8 @@ class CUTE(Base):
 
 		start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 		end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
-		time_common._make_sure_time(start_time);
-		time_common._make_sure_time(end_time);
+		time_common._make_sure_time(start_time,idx);
+		time_common._make_sure_time(end_time,idx);
 		tag['interval'] = [start_time,end_time];
 
 	def _calc_ute_date_time(self,curtime,tag):
@@ -290,8 +288,8 @@ class CUTE(Base):
 
 		start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 		end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
-		time_common._make_sure_time(start_time);
-		time_common._make_sure_time(end_time);
+		time_common._make_sure_time(start_time,idx);
+		time_common._make_sure_time(end_time,idx);
 		tag['interval'] = [start_time,end_time];
 
 	def _calc_ute_date_times(self,curtime,tag):
@@ -335,6 +333,6 @@ class CUTE(Base):
 		tm = times[tidx - 1];
 		idx = time_common.tmenu[tm['scope']];
 		end_time[idx] = end_time[idx] + 1;
-		time_common._make_sure_time(start_time);
-		time_common._make_sure_time(end_time);
+		time_common._make_sure_time(start_time,idx);
+		time_common._make_sure_time(end_time,idx);
 		tag['interval'] = [start_time,end_time];

@@ -46,22 +46,20 @@ class NT(Base):
 		reg = tregs[mykey];
 
 		tmat = match.group(0);
+		idx = time_common._find_idx(text,tmat,'null');
 		tdic = copy.deepcopy(reg);
 		tdic['value'] = tmat;
 		tdic['type'] = 'time_nt';
 		tdic['num'] = tmat.replace(key,'');
-		struct['taglist'].append(tdic);
+		struct['taglist'].insert(idx,tdic);
 		struct['text'] = text.replace(tdic['value'],'NT',1);
 
 	def _link_tag(self,struct):
+		if not struct.has_key('taglist'): return None;
 		taglist = struct['taglist'];
 		text = struct['text'];
 		comp = re.compile('(NT){1,}');
 		match = comp.finditer(text);
-		ntidx = 0;
-		for tag in taglist:
-			if tag['type'] == 'time_nt': break;
-			ntidx = ntidx + 1;
 		for m in match:
 			nt = m.group();
 			num = len(nt) / 2;
@@ -69,22 +67,21 @@ class NT(Base):
 			tdic['times'] = list();
 			tdic['type'] = 'time_nt';
 			tdic['ntimes'] = num;
-			first_idx = ntidx;
+			first_idx = ntidx = time_common._find_idx(text,nt,'NA');
 			while num > 0:
 				tdic['times'].append(taglist[ntidx]);
-				taglist[ntidx]['filter'] = 'true';
+				del taglist[ntidx];
 				num = num - 1;
-				ntidx = ntidx + 1;
-			taglist[first_idx] = tdic;
+			taglist.insert(first_idx,tdic);
+			struct['text'] = struct['text'].replace(nt,'NT',1);
+			text = text.replace(nt,'NA',1);
 		idx = 0;
 		while True:
 			if idx >= len(taglist): break;
 			tag = taglist[idx];
-			if tag.has_key('filter') and tag['filter'] == 'true':
-				del taglist[idx];
-				idx = idx - 1;
-			if tag.has_key('times'):
-				tag['attr'] = ['date'];
+			if tag['type'] == 'time_nt':
+				if tag.has_key('times'):
+					tag['attr'] = ['date'];
 			idx = idx + 1;
 	def _add(self,data):
 		try:
@@ -166,7 +163,7 @@ class NTE(Base):
 		tdic['type'] = 'time_nte';
 		self._insert_taglist(struct,tdic,tmat,key);
 		nt_num = len(re.findall('NT',tmat));
-		struct['text'] = text.replace(tmat,'NTE' * nt_num,1);
+		struct['text'] = text.replace(tmat,('NTE') * nt_num,1);
 
 	def _insert_taglist(self,struct,tdic,tmat,key):
 		taglist = struct['taglist'];
@@ -259,8 +256,8 @@ class CNTE(Base):
 
 		start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 		end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
-		time_common._make_sure_time(start_time);
-		time_common._make_sure_time(end_time);
+		time_common._make_sure_time(start_time,idx);
+		time_common._make_sure_time(end_time,idx);
 		tag['interval'] = [start_time,end_time];
 
 	def _calc_nte_date_times(self,curtime,tag):
@@ -320,10 +317,7 @@ class CNTE(Base):
 			elif tm['interval'][1] == '>':
 				start_time[idx] = tm['interval'][0];
 				end_time[idx] = tm['interval'][0];
-			elif tm['interval'][0] > 0:
-				start_time[idx] = tm['interval'][0];
-				end_time[idx] = tm['interval'][1];
-			elif tm['interval'][0] < 0:
+			else:
 				start_time[idx] = tm['interval'][0];
 				end_time[idx] = tm['interval'][1];
 
@@ -363,7 +357,6 @@ class CNTE(Base):
 		while True:
 			if tidx >= len(times): break;
 			tm = times[tidx];
-			print tm
 			idx = time_common.tmenu[tm['scope']];
 			if tidx == len(times) - 1:
 				self._filt_interval(start_time,end_time,tm,idx);

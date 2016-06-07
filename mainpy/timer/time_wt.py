@@ -53,18 +53,16 @@ class WT(Base):
 		tdic['type'] = 'time_wt';
 		if tdic['vtype'] == 'num': tdic['num'] = tmat.replace(key,'');
 		elif tdic['vtype'] == 'word': tdic['num'] = '7';
-		struct['taglist'].append(tdic);
+		idx = time_common._find_idx(text,tmat,'null');
+		struct['taglist'].insert(idx,tdic);
 		struct['text'] = text.replace(tdic['value'],'WT',1);
 
 	def _link_tag(self,struct):
+		if not struct.has_key('taglist'): return None;
 		taglist = struct['taglist'];
 		text = struct['text'];
 		comp = re.compile('(WT){1,}');
 		match = comp.finditer(text);
-		wtidx = 0;
-		for tag in taglist:
-			if tag['type'] == 'time_wt': break;
-			wtidx = wtidx + 1;
 		for m in match:
 			wt = m.group();
 			num = len(wt) / 2;
@@ -72,25 +70,24 @@ class WT(Base):
 			tdic['times'] = list();
 			tdic['type'] = 'time_wt';
 			tdic['ntimes'] = num;
-			first_idx = wtidx;
+			first_idx = wtidx = time_common._find_idx(text,wt,'WA');
 			while num > 0:
 				tdic['times'].append(taglist[wtidx]);
-				taglist[wtidx]['filter'] = 'true';
+				del taglist[wtidx];
 				num = num - 1;
-				wtidx = wtidx + 1;
-			taglist[first_idx] = tdic;
+			taglist.insert(first_idx,tdic);
+			text = text.replace(wt,'WA',1);
+			struct['text'] = struct['text'].replace(wt,'WT',1);
 		idx = 0;
 		while True:
 			if idx >= len(taglist): break;
 			tag = taglist[idx];
-			if tag.has_key('filter') and tag['filter'] == 'true':
-				del taglist[idx];
-				idx = idx - 1;
-			if tag.has_key('times'):
-				if len(tag['times']) > 1:
-					tag['attr'] = ['date'];
-				if len(tag['times']) == 1:
-					tag['attr'] = tag['times'][0]['attr'];
+			if tag['type'].find('time_wt') <> -1:
+				if tag.has_key('times'):
+					if len(tag['times']) > 1:
+						tag['attr'] = ['date'];
+					if len(tag['times']) == 1:
+						tag['attr'] = tag['times'][0]['attr'];
 			idx = idx + 1;
 
 class WTE(Base):
@@ -132,26 +129,20 @@ class WTE(Base):
 		tdic['type'] = 'time_wte';
 		self._insert_taglist(struct,tdic,tmat,key);
 		wt_num = len(re.findall('WT',tmat));
-		struct['text'] = text.replace(tmat,'WTE' * wt_num,1);
+		struct['text'] = text.replace(tmat,'(WTE)' * wt_num,1);
 
 	def _insert_taglist(self,struct,tdic,tmat,key):
 		taglist = struct['taglist'];
 		text = struct['text'];
-		idx = text.find(tmat);
-		strs = text[:idx + len(tmat)];
-		wt_num = len(re.findall('WT',strs));
-		for tag in taglist:
-			if tag['type'].find('time_wt') <> -1:
-				time_num = tag['ntimes'];
-				if wt_num > time_num:
-					wt_num = wt_num - time_num;
-				else:
-					if tdic['position'] == 'left':
-						tag['times'].insert(wt_num - 1,tdic);
-					elif tdic['position'] == 'right':
-						tag['times'].insert(wt_num,tdic);
-					tag['type'] = 'time_wte';
-					break;
+		idx = time_common._find_idx(text,tmat,'null');
+		if tmat.find('WT') <> -1:
+			mytag = taglist[idx];
+			if tdic['position'] == 'left':
+				mytag['times'].insert(0,tdic);
+				mytag['type'] = 'time_wte';
+			elif tdic['position'] == 'right':
+				mytag['times'].insert(1,tdic);
+				mytag['type'] = 'time_wte';
 
 	# 找到一个扩展的修饰时间词组 则可以进行区间的计算 为后续使用 #
 	def _make_interval(self,struct):
@@ -181,12 +172,12 @@ class WTE(Base):
 									if tt['dir'] == '-':
 										diff = 8 - num + curtime[6];
 										if e_num > 1:
-											diff = diff + e_num * 7;
+											diff = diff + (e_num - 1) * 7;
 										mytime['interval'] = [-1 * diff,-1 * diff + 1];
 									elif tt['dir'] == '+':
-										diff = 8 - curtime[6] + num;
+										diff = 7 - (curtime[6] + 1) + num;
 										if e_num > 1:
-											diff = diff + e_num * 7;
+											diff = diff + (e_num - 1) * 7;
 										mytime['interval'] = [diff,diff + 1];
 								mytime['scope'] = 'day';
 							elif tt['position'] == 'right':
@@ -254,8 +245,8 @@ class CWTE(Base):
 					end_time[idx] = end_time[idx] + interval[1];
 				start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 				end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
-				time_common._make_sure_time(start_time);
-				time_common._make_sure_time(end_time);
+				time_common._make_sure_time(start_time,idx);
+				time_common._make_sure_time(end_time,idx);
 		tag['interval'] = [start_time,end_time];
 
 	def _calc_wt_time(self,curtime,tag):
@@ -271,8 +262,8 @@ class CWTE(Base):
 				end_time[idx] = interval[1] + end_time[idx];
 				start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 				end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
-				time_common._make_sure_time(start_time);
-				time_common._make_sure_time(end_time);
+				time_common._make_sure_time(start_time,idx);
+				time_common._make_sure_time(end_time,idx);
 
 		tag['interval'] = [start_time,end_time];
 
