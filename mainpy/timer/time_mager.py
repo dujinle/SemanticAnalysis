@@ -24,6 +24,11 @@ from time_wt import WTE
 from time_wt import CWTE
 from time_qt import QT
 from time_qt import CQT
+from time_allt import ALLT
+from time_allt import CALLT
+from time_mood import TM
+from time_mood import TS
+from time_mood import AS
 
 
 #from calc_time import CalcTimeInterval
@@ -43,14 +48,16 @@ class TimeMager:
 		self.tag_objs.append(UTE());
 		self.tag_objs.append(NTE());
 		self.tag_objs.append(WTE());
+		self.tag_objs.append(ALLT());
 
 		self.tag_objs.append(CUTE());
 		self.tag_objs.append(CNTE());
 		self.tag_objs.append(CWTE());
 		self.tag_objs.append(CQT());
-
-		#self.tag_objs.append(TimeMood());
-		#self.tag_objs.append(TimeStatus());
+		self.tag_objs.append(CALLT());
+		self.tag_objs.append(TM());
+		self.tag_objs.append(TS());
+		self.tag_objs.append(AS());
 
 	def init(self,dtype):
 		try:
@@ -111,7 +118,8 @@ try:
 	#common.print_dic(mg.encode(u'14点15分30秒'));
 	#common.print_dic(mg.encode(u'凌晨'));
 	#common.print_dic(mg.encode(u'下下周3'));
-	common.print_dic(mg.encode(u'上旬'));
+	#common.print_dic(mg.encode(u'上旬'));
+	common.print_dic(mg.encode(u'开始玩游戏'));
 except MyException as e:
 	print e.value;
 '''
