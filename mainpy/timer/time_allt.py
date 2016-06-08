@@ -24,6 +24,7 @@ class ALLT(Base):
 		except MyException as e: raise e;
 
 	def _find_utnt(self,struct):
+		if not struct.has_key('taglist'): return None;
 		text = struct['text'];
 		taglist = struct['taglist'];
 		comp = re.compile('(UT){1,}NT');
@@ -46,6 +47,7 @@ class ALLT(Base):
 			match = comp.search(text);
 
 	def _find_utqt(self,struct):
+		if not struct.has_key('taglist'): return None;
 		text = struct['text'];
 		taglist = struct['taglist'];
 		comp = re.compile('(UT){1,}QT');
@@ -68,6 +70,7 @@ class ALLT(Base):
 			match = comp.search(text);
 
 	def _find_ntut(self,struct):
+		if not struct.has_key('taglist'): return None;
 		text = struct['text'];
 		taglist = struct['taglist'];
 		comp = re.compile('NTUT{1,}');
@@ -93,6 +96,7 @@ class ALLT(Base):
 class CALLT(Base):
 	def encode(self,struct):
 		try:
+			if not struct.has_key('taglist'): return None;
 			curtime = time.localtime();
 			taglist = struct['taglist'];
 			for tag in taglist:
@@ -164,34 +168,45 @@ class CALLT(Base):
 				time_common._make_sure_time(end_time,idx);
 				tag['interval'] = [start_time,end_time];
 
-
-
-
 	#计算后天17点#
 	def _calc_ntut_date_times(self,curtime,tag):
 		times = tag['times'];
 		start_time = list(curtime);
 		end_time = list(curtime);
-		tidx = 0;
+		tidx = hour = 0;
 		while True:
 			if tidx >= len(times) - 1: break;
 			tm = times[tidx];
-			if not tm.has_key('interval'): break;
 			idx = time_common.tmenu[tm['scope']];
+			if tm['scope'] == 'hour':
+				if tm['value'] == u'上午': hour = 1;
+				elif tm['value'] == u'下午': hour = 2;
+			else: hour = 0;
+
 			if tm['type'] == 'time_nt':
+				if not tm.has_key('interval'): break;
 				start_time[idx] = start_time[idx] + tm['interval'][0];
 				end_time[idx] = end_time[idx] + tm['interval'][0];
 			elif tm['type'] == 'time_ut':
-				start_time[idx] = int(tm['num']);
-				end_time[idx] = int(tm['num']);
+				if hour == 2 and tm['scope'] == 'hour':
+					start_time[idx] = int(tm['num']) + 12;
+					end_time[idx] = int(tm['num']) + 12;
+					hour = 0;
+				else:
+					start_time[idx] = int(tm['num']);
+					end_time[idx] = int(tm['num']);
 
 			start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 			end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
 			tidx = tidx + 1;
 		tm = times[tidx];
 		idx = time_common.tmenu[tm['scope']];
-		start_time[idx] = int(tm['num']);
-		end_time[idx]  = int(tm['num']) + 1;
+		if hour == 2 and tm['scope'] == 'hour':
+			start_time[idx] = int(tm['num']) + 12;
+			end_time[idx] = int(tm['num']) + 13;
+		else:
+			start_time[idx] = int(tm['num']);
+			end_time[idx]  = int(tm['num']) + 1;
 		time_common._make_sure_time(start_time,idx);
 		time_common._make_sure_time(end_time,idx);
 		tag['interval'] = [start_time,end_time];

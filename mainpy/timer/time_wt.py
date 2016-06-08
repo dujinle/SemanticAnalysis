@@ -53,6 +53,8 @@ class WT(Base):
 		tdic['type'] = 'time_wt';
 		if tdic['vtype'] == 'num': tdic['num'] = tmat.replace(key,'');
 		elif tdic['vtype'] == 'word': tdic['num'] = '7';
+		elif tdic['vtype'] == 'words': tdic['num'] = '6';
+
 		idx = time_common._find_idx(text,tmat,'null');
 		struct['taglist'].insert(idx,tdic);
 		struct['text'] = text.replace(tdic['value'],'WT',1);
@@ -173,12 +175,18 @@ class WTE(Base):
 										diff = 8 - num + curtime[6];
 										if e_num > 1:
 											diff = diff + (e_num - 1) * 7;
-										mytime['interval'] = [-1 * diff,-1 * diff + 1];
+										if mytime['vtype'] == 'words':
+											mytime['interval'] = [-1 * diff,-1 * diff + 2];
+										else:
+											mytime['interval'] = [-1 * diff,-1 * diff + 1];
 									elif tt['dir'] == '+':
 										diff = 7 - (curtime[6] + 1) + num;
 										if e_num > 1:
 											diff = diff + (e_num - 1) * 7;
-										mytime['interval'] = [diff,diff + 1];
+										if mytime['vtype'] == 'words':
+											mytime['interval'] = [diff,diff + 2];
+										else:
+											mytime['interval'] = [diff,diff + 1];
 								mytime['scope'] = 'day';
 							elif tt['position'] == 'right':
 								mytime = times[times.index(tt) - 1];
@@ -200,7 +208,10 @@ class WTE(Base):
 										if tt['dir'] == '-':
 											mytime['interval'] = ['<',diff];
 										elif tt['dir'] == '+':
-											mytime['interval'] = [diff + 1,'>'];
+											if mytime['vtype'] == 'words':
+												mytime['interval'] = [diff + 2,'>'];
+											else:
+												mytime['interval'] = [diff + 1,'>'];
 								mytime['scope'] = 'day';
 							wte_num = wte_num - 1;
 			elif tag['type'] == 'time_wt':
@@ -211,12 +222,16 @@ class WTE(Base):
 					num = int(mytime['num']);
 					diff = num - curtime[6] - 1;
 					mytime['scope'] = 'day';
-					mytime['interval'] = [diff,diff + 1];
+					if mytime['vtype'] == 'words':
+						mytime['interval'] = [diff,diff + 2];
+					else:
+						mytime['interval'] = [diff,diff + 1];
 
 #计算WT模式下的时间区间包括WTE模式
 class CWTE(Base):
 	def encode(self,struct):
 		try:
+			if not struct.has_key('taglist'): return None;
 			curtime = time.localtime();
 			taglist = struct['taglist'];
 			for tag in taglist:

@@ -119,7 +119,8 @@ try:
 	#common.print_dic(mg.encode(u'凌晨'));
 	#common.print_dic(mg.encode(u'下下周3'));
 	#common.print_dic(mg.encode(u'上旬'));
-	common.print_dic(mg.encode(u'开始玩游戏'));
+	#common.print_dic(mg.encode(u'下午2点30分'));
+	common.print_dic(mg.encode(u'上周末'));
 except MyException as e:
 	print e.value;
 '''
