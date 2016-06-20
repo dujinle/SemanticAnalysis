@@ -1,0 +1,34 @@
+{
+	"music_type":{
+		"串烧":{
+			"same":["串烧"],
+			"scope":"cs"
+		}
+	},
+	"music_pro":{
+		"纯音乐":{
+			"same":["纯音乐"],
+			"scope":"cyy"
+		}
+	},
+	"music_lan":{
+		"英语":{
+			"same":["英语"],
+			"scope":"en"
+		},
+		"华语":{
+			"same":["华语"],
+			"scope":"ch"
+		}
+	},
+	"music_oth":{
+		"排行":{
+			"same":["最新"],
+			"scope":"ph"
+		},
+		"人气":{
+			"same":["人气"],
+			"scope":"rq"
+		}
+	}
+}
