@@ -237,12 +237,14 @@ li {
   height: 20px;
   line-height: 20px;
 }
-.box .main .right .R_right {
-  width: 150px;
-  padding-left: 500px;
+.box .main .right.R_right  {
+  width:100% ;
+padding-left:10px;
   height: 528px;
   box-sizing: content-box;
 }
 .box .main .right .R_right .r_text {
-  padding: 10px;
+	padding: 10px;
+	width:95%;
+	margin:10px;
 }
