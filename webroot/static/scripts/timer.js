@@ -140,10 +140,6 @@ function add_nt() {
 		alert("未选择年月日，请选择单位！")
 		return
 	};
-	if(counter_type==0){
-		alert("未选择类型，请选择类型！")
-		return
-	};
 	if(counter_func==0){
 		alert("未选择方法，请选择方法！")
 		return
@@ -179,6 +175,137 @@ function del_word(){
 }
 function save_word(){
     alert("save_word");
+}
+//这个是TR函数
+function add_rt() {
+	rt_sel = document.getElementsByName('tr-sel');
+	rt_obj = document.getElementById('tr');
+
+	rt_value = rt_obj.value;
+	rt_level = null;
+	var counter_type=0;
+	for(var i = 0;i < rt_sel.length;i++){
+		if(rt_sel[i].checked){
+			rt_level = rt_sel[i].value;
+			counter_type++;
+			break;
+		}
+	};
+	if(rt_value==""){
+		alert("未输入内容，请输入！")
+		return
+	};
+
+	if(counter_type==0){
+		alert("未选择等级，请选择等级！")
+		return
+	};
+	idata = new Object();
+	idata.type = 'TM';
+	idata.mdl = $mdl;
+	idata.value = rt_value;
+	idata.level = rt_level;
+
+	$.ajax({
+		async:false,
+		url: $basepath + 'add',
+		type:"post",
+		data:JSON.stringify(idata),
+		dataType:"text",
+		success:function(data){
+			obj = JSON.parse(data);
+		}
+	});
+	y = document.getElementById('status_id');
+	y.value = obj.message.replace(/#/g,'\n');
+}
+
+//这个是BS函数
+function add_bs() {
+	bs_sel = document.getElementsByName('bs-sel');
+	bs_obj = document.getElementById('bs');
+
+	bs_value = bs_obj.value;
+	bs_status = null;
+	var counter_type=0;
+	for(var i = 0;i < bs_sel.length;i++){
+		if(bs_sel[i].checked){
+			bs_status = bs_sel[i].value;
+			counter_type++;
+			break;
+		}
+	};
+	if(bs_value==""){
+		alert("未输入内容，请输入！")
+		return
+	};
+
+	if(counter_type==0){
+		alert("未选择状态，请选择状态！")
+		return
+	};
+	idata = new Object();
+	idata.type = 'AS';
+	idata.mdl = $mdl;
+	idata.value = bs_value;
+	idata.status = bs_status;
+
+	$.ajax({
+		async:false,
+		url: $basepath + 'add',
+		type:"post",
+		data:JSON.stringify(idata),
+		dataType:"text",
+		success:function(data){
+			obj = JSON.parse(data);
+		}
+	});
+	y = document.getElementById('status_id');
+	y.value = obj.message.replace(/#/g,'\n');
+}
+
+//这个是TS函数
+function add_ts() {
+	ts_sel = document.getElementsByName('ts-sel');
+	ts_obj = document.getElementById('ts');
+
+	ts_value = ts_obj.value;
+	ts_status = null;
+	var counter_type=0;
+	for(var i = 0;i < ts_sel.length;i++){
+		if(ts_sel[i].checked){
+			ts_status = ts_sel[i].value;
+			counter_type++;
+			break;
+		}
+	};
+	if(ts_value==""){
+		alert("未输入内容，请输入！")
+		return
+	};
+
+	if(counter_type==0){
+		alert("未选择状态，请选择状态！")
+		return
+	};
+	idata = new Object();
+	idata.type = 'TS';
+	idata.mdl = $mdl;
+	idata.value = ts_value;
+	idata.status = ts_status;
+
+	$.ajax({
+		async:false,
+		url: $basepath + 'add',
+		type:"post",
+		data:JSON.stringify(idata),
+		dataType:"text",
+		success:function(data){
+			obj = JSON.parse(data);
+		}
+	});
+	y = document.getElementById('status_id');
+	y.value = obj.message.replace(/#/g,'\n');
 }
 //这个是功能描述的函数
 function describe( dum) {
