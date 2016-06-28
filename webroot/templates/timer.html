@@ -13,6 +13,9 @@
  <div id="box">
      <div class="header">
          <h1 >语义网络</h1>
+		 <ul class="show_content">
+			<li>时间</li>
+		 </ul>
      </div>
      <!-- 左侧设置-->
 	<div class="content">
@@ -137,9 +140,9 @@
 			</div>
 			<div class="tr">
 				<div class="button-frame">
-					<input type="button" class="mid-button" id="tr-add" value="注入" onclick="add()"/>
-					<input type="button" class="mid-button" id="tr-del" value="删除" onclick="del()"/>
-					<input type="button" class="mid-button" id="tr-show" value="获取" onclick="get()"/>
+					<input type="button" class="mid-button" id="tr-add" value="注入" onclick="add_rt()"/>
+					<input type="button" class="mid-button" id="tr-del" value="删除" onclick="del('TM','tr')"/>
+					<input type="button" class="mid-button" id="tr-show" value="获取" onclick="get('TM')"/>
 					<input type="button" class="mid-button" id="tr-describe" value="描述" onclick="describe('tr-describe')"/>
 				</div>
 				<div class="small-content">
@@ -149,17 +152,17 @@
 					<form class="one">
 					<span class="text-mid">等级：</span>
                  <input  class="select" type="radio" name="tr-sel" value="high" id="tr-1">高
-                 <input  class="select" type="radio" name="tr-sel" value="mid" id="tr-2"/>中
+                 <input  class="select" type="radio" name="tr-sel" value="middle" id="tr-2"/>中
                  <input  class="select" type="radio" name="tr-sel" value="low" id="tr-3">低
-                 <input  class="select" type="radio" name="tr-sel" value="all" id="tr-4"/>饱和
+                 <input  class="select" type="radio" name="tr-sel" value="saturation" id="tr-4"/>饱和
                  </form>
                  </div>
              </div>
              <div class="bs">
                  <div class="button-frame">
-                 <input type="button" class="mid-button" id="bs-add" value="注入" onclick="add()"/>
-                 <input type="button" class="mid-button" id="bs-del" value="删除" onclick="del()"/>
-                 <input type="button" class="mid-button" id="bs-show" value="获取" onclick="get()"/>
+                 <input type="button" class="mid-button" id="bs-add" value="注入" onclick="add_bs()"/>
+                 <input type="button" class="mid-button" id="bs-del" value="删除" onclick="del('AS','bs')"/>
+                 <input type="button" class="mid-button" id="bs-show" value="获取" onclick="get('AS')"/>
                      <input type="button" class="mid-button" id="bs-describe" value="描述" onclick="describe('bs-describe')"/>
                  </div>
                  <div class="small-content">
@@ -169,17 +172,17 @@
                  <br/>
                  <form class="one">
                  <span class="text-mid">状态：</span>
-                 <input  class="select" type="radio" name="bs-sel" value="before" id="bs-1"/>事前
-                 <input  class="select" type="radio" name="bs-sel" value="now" id="bs-2"/>事中
-                 <input  class="select" type="radio" name="bs-sel" value="after" id="bs-3"/>事后
+                 <input  class="select" type="radio" name="bs-sel" value="start" id="bs-1"/>事前
+                 <input  class="select" type="radio" name="bs-sel" value="being" id="bs-2"/>事中
+                 <input  class="select" type="radio" name="bs-sel" value="end" id="bs-3"/>事后
                  </form>
                  </div>
              </div>
              <div class="ts">
                  <div class="button-frame">
-                 <input type="button" class="mid-button" id="ts-add" value="注入" onclick="add()"/>
-                 <input type="button" class="mid-button" id="ts-del" value="删除" onclick="del()"/>
-                 <input type="button" class="mid-button" id="ts-show" value="获取" onclick="get()"/>
+                 <input type="button" class="mid-button" id="ts-add" value="注入" onclick="add_ts()"/>
+                 <input type="button" class="mid-button" id="ts-del" value="删除" onclick="del('TS','ts')"/>
+                 <input type="button" class="mid-button" id="ts-show" value="获取" onclick="get('TS')"/>
                      <input type="button" class="mid-button" id="ts-describe" value="描述" onclick="describe('ts-describe')"/>
                  </div>
                  <div class="small-content">
@@ -189,9 +192,9 @@
                  <br/>
                  <form class="one">
                  <span class="text-mid">状态：</span>
-                 <input  class="select" type="radio" name="ts-sel" value="before" id="ts-1"/>过去
+                 <input  class="select" type="radio" name="ts-sel" value="history" id="ts-1"/>过去
                  <input  class="select" type="radio" name="ts-sel" value="now" id="ts-2"/>现在
-                 <input  class="select" type="radio" name="ts-sel" value="after" id="ts-3"/>未来
+                 <input  class="select" type="radio" name="ts-sel" value="future" id="ts-3"/>未来
                  </form>
                  </div>
              </div>
