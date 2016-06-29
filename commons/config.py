@@ -40,11 +40,33 @@ dfiles = {
 	'Timer':{
 		"1":os.path.join(abspath,'data','timer','UT.txt'),
 		"2":os.path.join(abspath,'data','timer','NT.txt'),
-		"3":os.path.join(abspath,'data','timer','CT.txt'),
-		"4":os.path.join(abspath,'data','timer','TF.txt'),
-		"5":None,
-		"6":os.path.join(abspath,'data','timer','time_mood.txt'),
-		"7":os.path.join(abspath,'data','timer','time_status.txt'),
-		"8":os.path.join(abspath,'data','timer','action_status.txt')
+		"3":os.path.join(abspath,'data','timer','WT.txt'),
+		"4":os.path.join(abspath,'data','timer','QT.txt'),
+		"5":os.path.join(abspath,'data','timer','UTE.txt'),
+		"6":os.path.join(abspath,'data','timer','NTE.txt'),
+		"7":os.path.join(abspath,'data','timer','WTE.txt'),
+		"8":None,
+		"9":None,
+		"10":None,
+		"11":None,
+		"12":None,
+		"13":None,
+		"14":os.path.join(abspath,'data','timer','TM.txt'),
+		"15":os.path.join(abspath,'data','timer','TS.txt'),
+		"16":os.path.join(abspath,'data','timer','AS.txt')
+	},
+	'Local':{
+		"1":os.path.join(abspath,'data','location','HD')
+	},
+	'Catering':{
+		"1":os.path.join(abspath,'data','catering','CTR.txt'),
+		"2":os.path.join(abspath,'data','catering','CAT.txt')
+	},
+	'Flight':{
+		"1":os.path.join(abspath,'data','flight','FT.txt')
+	},
+	'Music':{
+		"1":os.path.join(abspath,'data','music','MT.txt'),
+		"2":os.path.join(abspath,'data','music','MSR.txt')
 	}
 };

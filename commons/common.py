@@ -31,6 +31,20 @@ def read_json(dfile):
 	except Exception as e:
 		raise MyException('load json file failed[' + dfile + ']');
 
+def readfile(dfile):
+	fp = open(dfile,'r');
+	if fp is None:
+		raise MyException('open file ' + dfile + ' failed!');
+	res = dict();
+	while True:
+		rline = fp.readline();
+		if not rline: break;
+		if len(rline) == 0 or rline[0] == '#': continue;
+		rline = rline.strip('\n').strip('\r');
+		res[rline.decode('utf-8')] = 1;
+	fp.close();
+	return res;
+
 def print_dic(struct):
 	value = json.dumps(struct,indent = 4,ensure_ascii=False);
 	print value;
@@ -57,3 +71,12 @@ def json_loads_body(func):
 			raise MyException(format(e));
 		return func(self, *args, **kwargs);
 	return wrapper;
+
+def list_join(dicm,mlist):
+	strs = '';
+	for s in mlist:
+		m = s;
+		if type(s) == int:
+			m = str(s);
+		strs = strs + m + dicm;
+	return strs[:-1];
