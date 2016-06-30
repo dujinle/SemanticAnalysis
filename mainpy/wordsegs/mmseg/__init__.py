@@ -9,6 +9,7 @@ class Dictionary(_Dictionary):
 		('words', os.path.join(os.path.dirname(__file__), 'data', 'local.dic')),
 		('words', os.path.join(os.path.dirname(__file__), 'data', 'singer.dic')),
 		('words', os.path.join(os.path.dirname(__file__), 'data', 'catering.dic')),
+		('words', os.path.join(os.path.dirname(__file__), 'data', 'quanguo_sqx.dic')),
 	)
 
 	@staticmethod
