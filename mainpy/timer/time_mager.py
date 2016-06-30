@@ -72,9 +72,8 @@ class TimeMager:
 		struct = collections.OrderedDict();
 		struct['text'] = inlist;
 		try:
-			struct['inlist'] = self.wordseg.tokens(inlist);
-			#struct['taglist'] = list();
-			#struct['taglist'].extend(struct['inlist']);
+			if not struct.has_key('inlist'):
+				struct['inlist'] = self.wordseg.tokens(inlist);
 			for obj in self.tag_objs:
 				obj.init();
 				obj.encode(struct);
@@ -117,7 +116,7 @@ try:
 	wordseg.deal_word('del',{'value':u'午前'});
 	#common.print_dic(mg.encode(u'14点15分30秒'));
 	#common.print_dic(mg.encode(u'凌晨'));
-	#common.print_dic(mg.encode(u'下下周3'));
+	common.print_dic(mg.encode(u'明天'));
 	#common.print_dic(mg.encode(u'上旬'));
 	#common.print_dic(mg.encode(u'下午2点30分'));
 	common.print_dic(mg.encode(u'上周末'));

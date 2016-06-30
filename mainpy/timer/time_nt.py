@@ -221,6 +221,7 @@ class NTE(Base):
 class CNTE(Base):
 	def encode(self,struct):
 		try:
+			if not struct.has_key('taglist'): return None;
 			curtime = time.localtime();
 			taglist = struct['taglist'];
 			for tag in taglist:
@@ -365,4 +366,6 @@ class CNTE(Base):
 			start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 			end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
 			tidx = tidx + 1;
+			time_common._make_sure_time(start_time,idx);
+			time_common._make_sure_time(end_time,idx);
 		tag['interval'] = [start_time,end_time];

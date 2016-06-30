@@ -13,21 +13,20 @@ import common
 import time_common
 from myexception import MyException
 from base import Base
-#可能会有各种组合这里处理 UT + NT 或者 UT + QT NT + UT
+#可能会有各种组合这里处理 UT + NT 或者 UT + QT NT + UT  WT + NT/UT
 class ALLT(Base):
 
 	def encode(self,struct):
 		try:
-			self._find_utnt(struct);
-			self._find_utqt(struct);
-			self._find_ntut(struct);
+			self._find_all(struct);
+			self._find_t2t(struct);
 		except MyException as e: raise e;
 
-	def _find_utnt(self,struct):
+	def _find_match(self,reg,rename,cname,struct):
 		if not struct.has_key('taglist'): return None;
 		text = struct['text'];
 		taglist = struct['taglist'];
-		comp = re.compile('(UT){1,}NT');
+		comp = re.compile(reg);
 		match = comp.search(text);
 		#check all the match status#
 		while True:
@@ -36,63 +35,57 @@ class ALLT(Base):
 			idx = time_common._find_idx(text,mat,'null');
 			mytag = taglist[idx];
 			ntag = taglist[idx + 1];
-			mytag['type'] = 'time_utnt';
+			mytag['type'] = cname;
 			mytag['ntimes'] = mytag['ntimes'] + ntag['ntimes'];
 			mytag['times'].extend(ntag['times']);
 			mytag['attr'] = ['date'];
 			del taglist[idx + 1];
-			text = text.replace(mat,'UNT',1);
-			struct['text'] = struct['text'].replace(mat,'UNT',1);
-			comp = re.compile('(UT){1,}NT');
+			text = text.replace(mat,rename,1);
+			struct['text'] = struct['text'].replace(mat,rename,1);
+			comp = re.compile(reg);
 			match = comp.search(text);
 
-	def _find_utqt(self,struct):
+	def _find_all(self,struct):
+		#find ut_nt format#
+		self._find_match('(UT){1,}NT','UNT','time_utnt',struct);
+		#find ut_qt format#
+		self._find_match('(UT){1,}QT','UQT','time_utqt',struct);
+		#find nt_ut format#
+		self._find_match('NT(UT){1,}','NUT','time_ntut',struct);
+		#find wt_nt format#
+		self._find_match('WTE*(NT){1,}','WNT','time_wtnt',struct);
+		#find wt_nut format#
+		self._find_match('WTE*(NUT){1,}','WNUT','time_wtnut',struct);
+
+	#是否是 time xxxx time and t1.scope > t2.scope
+	def _find_t2t(self,struct):
 		if not struct.has_key('taglist'): return None;
 		text = struct['text'];
 		taglist = struct['taglist'];
-		comp = re.compile('(UT){1,}QT');
-		match = comp.search(text);
 		#check all the match status#
+		tidx = 1;
 		while True:
-			if match is None: break;
-			mat = match.group(0);
-			idx = time_common._find_idx(text,mat,'null');
-			mytag = taglist[idx];
-			ntag = taglist[idx + 1];
-			mytag['type'] = 'time_utqt';
-			mytag['ntimes'] = mytag['ntimes'] + ntag['ntimes'];
-			mytag['times'].extend(ntag['times']);
-			mytag['attr'] = ['date'];
-			del taglist[idx + 1];
-			text = text.replace(mat,'UQT',1);
-			struct['text'] = struct['text'].replace(mat,'UQT',1);
-			comp = re.compile('(UT){1,}QT');
-			match = comp.search(text);
+			if tidx >= len(taglist): break;
+			prev_tag = taglist[tidx - 1];
+			tag = taglist[tidx];
+			prev_scope = curr_scope = -1;
+			for t in prev_tag['times']:
+				if t.has_key('scope'): prev_scope = t['scope'];
+			for t in tag['times']:
+				if t.has_key('scope'): curr_scope = t['scope'];
+			pscope_id = time_common.tmenu[prev_scope];
+			cscope_id = time_common.tmenu[curr_scope];
+			print pscope_id,cscope_id
+			if pscope_id < cscope_id:
+				prev_tag['type'] = 'time_t2t';
+				prev_tag['ntimes'] = prev_tag['ntimes'] + tag['ntimes'];
+				prev_tag['times'].extend(tag['times']);
+				prev_tag['attr'] = ['date'];
+				del taglist[tidx];
+			else:
+				tidx = tidx + 1;
 
-	def _find_ntut(self,struct):
-		if not struct.has_key('taglist'): return None;
-		text = struct['text'];
-		taglist = struct['taglist'];
-		comp = re.compile('NTUT{1,}');
-		match = comp.search(text);
-		#check all the match status#
-		while True:
-			if match is None: break;
-			mat = match.group(0);
-			idx = time_common._find_idx(text,mat,'null');
-			mytag = taglist[idx];
-			ntag = taglist[idx + 1];
-			mytag['type'] = 'time_ntut';
-			mytag['ntimes'] = mytag['ntimes'] + ntag['ntimes'];
-			mytag['times'].extend(ntag['times']);
-			mytag['attr'] = ['date'];
-			del taglist[idx + 1];
-			text = text.replace(mat,'NUT',1);
-			struct['text'] = struct['text'].replace(mat,'NUT',1);
-			comp = re.compile('NTUT{1,}');
-			match = comp.search(text);
-
-#计算UT模式下的时间区间包括UTE模式
+#计算各种组合时间
 class CALLT(Base):
 	def encode(self,struct):
 		try:
@@ -106,6 +99,12 @@ class CALLT(Base):
 					self._calc_utqt_date_times(curtime,tag);
 				elif tag['type'] == 'time_ntut':
 					self._calc_ntut_date_times(curtime,tag);
+				elif tag['type'] == 'time_wtnt':
+					self._calc_wtnt_date_times(curtime,tag);
+				elif tag['type'] == 'time_wtnut':
+					self._calc_wtnut_date_times(curtime,tag);
+				elif tag['type'] == 'time_t2t':
+					self._calc_t2t_date_times(curtime,tag);
 		except MyException as e: raise e;
 
 	#计算2014年4月7号下午#
@@ -180,10 +179,129 @@ class CALLT(Base):
 			idx = time_common.tmenu[tm['scope']];
 			if tm['scope'] == 'hour':
 				if tm['value'] == u'上午': hour = 1;
-				elif tm['value'] == u'下午': hour = 2;
+				elif tm['value'] == u'下午' or tm['value'] == u'晚上' or tm['value'] == u'深夜': hour = 2;
 			else: hour = 0;
 
 			if tm['type'] == 'time_nt':
+				if not tm.has_key('interval'): break;
+				start_time[idx] = start_time[idx] + tm['interval'][0];
+				end_time[idx] = end_time[idx] + tm['interval'][0];
+			elif tm['type'] == 'time_ut':
+				if hour == 2 and tm['scope'] == 'hour':
+					start_time[idx] = int(tm['num']) + 12;
+					end_time[idx] = int(tm['num']) + 12;
+					hour = 0;
+				else:
+					start_time[idx] = int(tm['num']);
+					end_time[idx] = int(tm['num']);
+
+			start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
+			end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
+			tidx = tidx + 1;
+		tm = times[tidx];
+		idx = time_common.tmenu[tm['scope']];
+		if hour == 2 and tm['scope'] == 'hour':
+			start_time[idx] = int(tm['num']) + 12;
+			end_time[idx] = int(tm['num']) + 13;
+		else:
+			start_time[idx] = int(tm['num']);
+			end_time[idx]  = int(tm['num']) + 1;
+		time_common._make_sure_time(start_time,idx);
+		time_common._make_sure_time(end_time,idx);
+		tag['interval'] = [start_time,end_time];
+
+	#计算 周3上午#
+	def _calc_wtnt_date_times(self,curtime,tag):
+		times = tag['times'];
+		start_time = list(curtime);
+		end_time = list(curtime);
+		tidx = 0;
+		while True:
+			if tidx >= len(times) - 1: break;
+			tm = times[tidx];
+			if tm['type'] == 'time_wte':
+				tidx = tidx + 1;
+				continue;
+			idx = time_common.tmenu[tm['scope']];
+			start_time[idx] = tm['interval'][0] + start_time[idx];
+			end_time[idx] = tm['interval'][0] + end_time[idx];
+
+			start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
+			end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
+			tidx = tidx + 1;
+		tm = times[tidx];
+		idx = time_common.tmenu[tm['scope']];
+		start_time[idx] = tm['interval'][0];
+		end_time[idx]  = tm['interval'][1];
+		time_common._make_sure_time(start_time,idx);
+		time_common._make_sure_time(end_time,idx);
+		tag['interval'] = [start_time,end_time];
+
+	#计算周3上午7点#
+	def _calc_wtnut_date_times(self,curtime,tag):
+		times = tag['times'];
+		start_time = list(curtime);
+		end_time = list(curtime);
+		tidx = hour = 0;
+		while True:
+			if tidx >= len(times) - 1: break;
+			tm = times[tidx];
+			if tm['type'] == 'time_wte':
+				tidx = tidx + 1;
+				continue;
+			idx = time_common.tmenu[tm['scope']];
+			if tm['scope'] == 'hour':
+				if tm['value'] == u'上午': hour = 1;
+				elif tm['value'] == u'下午' or tm['value'] == u'晚上' or tm['value'] == u'深夜': hour = 2;
+			else: hour = 0;
+
+			if tm['type'] == 'time_nt' or tm['type'] == 'time_wt':
+				if not tm.has_key('interval'): break;
+				start_time[idx] = start_time[idx] + tm['interval'][0];
+				end_time[idx] = end_time[idx] + tm['interval'][0];
+			elif tm['type'] == 'time_ut':
+				if hour == 2 and tm['scope'] == 'hour':
+					start_time[idx] = int(tm['num']) + 12;
+					end_time[idx] = int(tm['num']) + 12;
+					hour = 0;
+				else:
+					start_time[idx] = int(tm['num']);
+					end_time[idx] = int(tm['num']);
+
+			start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
+			end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
+			tidx = tidx + 1;
+		tm = times[tidx];
+		idx = time_common.tmenu[tm['scope']];
+		if hour == 2 and tm['scope'] == 'hour':
+			start_time[idx] = int(tm['num']) + 12;
+			end_time[idx] = int(tm['num']) + 13;
+		else:
+			start_time[idx] = int(tm['num']);
+			end_time[idx]  = int(tm['num']) + 1;
+		time_common._make_sure_time(start_time,idx);
+		time_common._make_sure_time(end_time,idx);
+		tag['interval'] = [start_time,end_time];
+
+	#计算多个时间区间下降组合#
+	def _calc_t2t_date_times(self,curtime,tag):
+		times = tag['times'];
+		start_time = list(curtime);
+		end_time = list(curtime);
+		tidx = hour = 0;
+		while True:
+			if tidx >= len(times) - 1: break;
+			tm = times[tidx];
+			if tm['type'] == 'time_wte':
+				tidx = tidx + 1;
+				continue;
+			idx = time_common.tmenu[tm['scope']];
+			if tm['scope'] == 'hour':
+				if tm['value'] == u'上午': hour = 1;
+				elif tm['value'] == u'下午' or tm['value'] == u'晚上' or tm['value'] == u'深夜': hour = 2;
+			else: hour = 0;
+
+			if tm['type'] == 'time_nt' or tm['type'] == 'time_wt':
 				if not tm.has_key('interval'): break;
 				start_time[idx] = start_time[idx] + tm['interval'][0];
 				end_time[idx] = end_time[idx] + tm['interval'][0];

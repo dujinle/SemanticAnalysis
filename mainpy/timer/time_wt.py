@@ -131,7 +131,7 @@ class WTE(Base):
 		tdic['type'] = 'time_wte';
 		self._insert_taglist(struct,tdic,tmat,key);
 		wt_num = len(re.findall('WT',tmat));
-		struct['text'] = text.replace(tmat,'(WTE)' * wt_num,1);
+		struct['text'] = text.replace(tmat,'WTE' * wt_num,1);
 
 	def _insert_taglist(self,struct,tdic,tmat,key):
 		taglist = struct['taglist'];
