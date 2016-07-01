@@ -9,6 +9,7 @@ import collections
 ''' import tagpy wordsegs '''
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
+sys.path.append(os.path.join(base_path,'../'));
 #==============================================================
 
 import common,config
@@ -18,8 +19,7 @@ from extendtag import X1,M1,F1,Z
 from checktag import PM
 from calctag import Calc
 
-#@common.singleton
-class Mager:
+class VoiceMager:
 	def __init__(self,wordseg):
 		self.wordseg = wordseg;
 		self.tag_objs = list();
@@ -83,18 +83,16 @@ class Mager:
 				step = step + 1;
 		except MyException as e:
 			raise e;
-'''
+#'''
 try:
 	sys.path.append('../wordsegs');
 	from wordseg import WordSeg
 	wordseg = WordSeg();
-	mg = Mager(wordseg);
+	mg = VoiceMager(wordseg);
 	mg.init('Voice');
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	#mg.sp_deal('del',{'value':u'大点'});
-	common.print_dic(mg.encode(u'把声音调到最大'));
-	#mg.sp_deal('del',{'value':u'静音'});
+	common.print_dic(mg.encode(u'连一点声音都没有'));
 	#mg.deal_data('M','add',{'value':u'音'});
 	#common.print_dic(mg.encode(u'静音'));
 	#mg.sp_deal('del',{'value':u'最大声'});
@@ -102,4 +100,4 @@ try:
 	#common.print_dic(mg.encode(u'再整点'));
 except MyException as e:
 	print e.value;
-'''
+#'''

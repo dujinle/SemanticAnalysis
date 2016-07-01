@@ -1,14 +1,15 @@
 {
   "keys": [
+    "上", 
+    "下", 
     "前", 
-    "后", 
-    "大"
+    "后"
   ], 
   "regs": [
     {
       "position": "right", 
       "type": "time_ute", 
-      "reg": "(NT){1,}K", 
+      "reg": "(UT){1,}K", 
       "dir": "-", 
       "same": [
         "前"
@@ -17,16 +18,27 @@
     {
       "position": "left", 
       "type": "time_ute", 
-      "reg": "K{1,}NT", 
-      "dir": "off", 
+      "reg": "KUT", 
+      "dir": "-", 
       "same": [
-        "大"
+        "前", 
+        "上"
+      ]
+    }, 
+    {
+      "position": "left", 
+      "type": "time_ute", 
+      "reg": "KUT", 
+      "dir": "+", 
+      "same": [
+        "后", 
+        "下"
       ]
     }, 
     {
       "position": "right", 
       "type": "time_ute", 
-      "reg": "(NT){1,}K", 
+      "reg": "(UT){1,}K", 
       "dir": "+", 
       "same": [
         "后"

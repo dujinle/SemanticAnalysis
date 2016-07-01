@@ -33,7 +33,7 @@ class UT(Base):
 		tregs = dict();
 		for reg in regs:
 			regtr = '|'.join(reg['same']);
-			if regtr.find(key) == -1: continue;
+			if not key in reg['same']: continue;
 			myreg = reg['reg'].replace('K','(' + regtr + ')');
 			comp = re.compile(myreg);
 			match = comp.search(text);
@@ -234,6 +234,7 @@ class UTE(Base):
 class CUTE(Base):
 	def encode(self,struct):
 		try:
+			if not struct.has_key('taglist'): return None;
 			curtime = time.localtime();
 			taglist = struct['taglist'];
 			for tag in taglist:

@@ -1,47 +1,64 @@
 {
-	"keys":["上","下","前","后"],
-	"regs":[
-		{
-			"same":["下"],
-			"scope":"week",
-			"reg":"K{1,}(周|WT)",
-			"position":"left",
-			"dir":"+"
-		},
-		{
-			"same":["上"],
-			"scope":"week",
-			"reg":"K{1,}(周|WT)",
-			"position":"left",
-			"dir":"-"
-		},
-		{
-			"same":["前"],
-			"scope":"week",
-			"reg":"KWT",
-			"position":"left",
-			"dir":"-"
-		},
-		{
-			"same":["前"],
-			"scope":"week",
-			"reg":"WTK",
-			"position":"right",
-			"dir":"-"
-		},
-		{
-			"same":["后"],
-			"scope":"week",
-			"reg":"KWT",
-			"position":"left",
-			"dir":"+"
-		},
-		{
-			"same":["后"],
-			"scope":"week",
-			"reg":"WTK",
-			"position":"right",
-			"dir":"+"
-		}
-	]
+  "keys": [
+    "上", 
+    "下", 
+    "前", 
+    "后"
+  ], 
+  "regs": [
+    {
+      "same": [
+        "下"
+      ], 
+      "scope": "week", 
+      "reg": "K{1,}(周|WT)", 
+      "dir": "+", 
+      "position": "left"
+    }, 
+    {
+      "same": [
+        "上"
+      ], 
+      "scope": "week", 
+      "reg": "K{1,}(周|WT)", 
+      "dir": "-", 
+      "position": "left"
+    }, 
+    {
+      "same": [
+        "前"
+      ], 
+      "scope": "week", 
+      "reg": "KWT", 
+      "dir": "-", 
+      "position": "left"
+    }, 
+    {
+      "same": [
+        "前"
+      ], 
+      "scope": "week", 
+      "reg": "WTK", 
+      "dir": "-", 
+      "position": "right"
+    }, 
+    {
+      "same": [
+        "后"
+      ], 
+      "scope": "week", 
+      "reg": "KWT", 
+      "dir": "+", 
+      "position": "left"
+    }, 
+    {
+      "same": [
+        "后"
+      ], 
+      "scope": "week", 
+      "reg": "WTK", 
+      "dir": "+", 
+      "position": "right"
+    }
+  ]
 }

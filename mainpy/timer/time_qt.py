@@ -59,6 +59,7 @@ class QT(Base):
 		struct['text'] = text.replace(tdic['value'],'QT',1);
 
 	def _link_tag(self,struct):
+		if not struct.has_key('taglist'): return None;
 		taglist = struct['taglist'];
 		text = struct['text'];
 		comp = re.compile('(QT){1,}');
@@ -91,6 +92,7 @@ class QT(Base):
 			idx = idx + 1;
 
 	def _make_interval(self,struct):
+		if not struct.has_key('taglist'): return None;
 		taglist = struct['taglist'];
 		for tag in taglist:
 			if tag['type'] == 'time_qt':
@@ -110,6 +112,9 @@ class QT(Base):
 					elif mytime['scope'] == 'xun':
 						mytime['scope'] = 'day';
 						mytime['func'] = 'equal';
+					elif mytime['scope'] == 'bmon':
+						mytime['scope'] = 'day';
+						mytime['func'] = 'equal';
 				elif len(attr) == 1 and attr[0] == 'num':
 					continue;
 
@@ -117,6 +122,7 @@ class QT(Base):
 class CQT(Base):
 	def encode(self,struct):
 		try:
+			if not struct.has_key('taglist'): return None;
 			curtime = time.localtime();
 			taglist = struct['taglist'];
 			for tag in taglist:
@@ -146,7 +152,6 @@ class CQT(Base):
 
 					start_time[idx + 1:] = [0] * (len(start_time) - idx - 1);
 					end_time[idx + 1:] = [0] * (len(end_time) - idx - 1);
-					print start_time,end_time,idx
 					time_common._make_sure_time(start_time,idx);
 					time_common._make_sure_time(end_time,idx);
 			tag['interval'] = [start_time,end_time];

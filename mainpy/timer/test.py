@@ -56,27 +56,28 @@ ts.load_data('./tdata/TS.txt');
 tm.load_data('./tdata/TM.txt');
 ass.load_data('./tdata/AS.txt');
 struct = dict();
-struct['text'] = u'下周2的的的的10点左右'#3日前的4月3号上午的5时6分钟的后天上午上周3的周4前的5时3刻的第4季度的2月上旬后天17时';
+struct['text'] = u'上礼拜'#3日前的4月3号上午的5时6分钟的后天上午上周3的周4前的5时3刻的第4季度的2月上旬后天17时';
 struct['inlist'] = [u'开始',u'玩',u'游戏']
 #struct['inlist'] = [u'上',u'周','3',u'周','1'];
 #struct['taglist'] = [u'上',u'周','3',u'周','1'];
 #tw.encode(struct);
 ut.encode(struct);
+common.print_dic(struct);
 ute.encode(struct);
 nt.encode(struct);
 nte.encode(struct);
 
 wt.encode(struct);
+common.print_dic(struct);
 wte.encode(struct);
 qt.encode(struct);
 allt.encode(struct);
+#common.print_dic(struct);
 callt.encode(struct);
 cqt.encode(struct);
 #ts.encode(struct);
 #tm.encode(struct);
 #ass.encode(struct);
-
-#common.print_dic(struct);
 
 cute.encode(struct);
 cnte.encode(struct);

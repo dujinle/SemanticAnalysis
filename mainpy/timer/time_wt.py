@@ -51,7 +51,10 @@ class WT(Base):
 		tdic.update(reg);
 		tdic['value'] = tmat;
 		tdic['type'] = 'time_wt';
-		if tdic['vtype'] == 'num': tdic['num'] = tmat.replace(key,'');
+		snum = tmat.replace(key,'');
+		snum = snum.replace(u'个','');
+		if len(snum) <= 0: snum = '1';
+		if tdic['vtype'] == 'num': tdic['num'] = snum;
 		elif tdic['vtype'] == 'word': tdic['num'] = '7';
 		elif tdic['vtype'] == 'words': tdic['num'] = '6';
 
@@ -137,14 +140,14 @@ class WTE(Base):
 		taglist = struct['taglist'];
 		text = struct['text'];
 		idx = time_common._find_idx(text,tmat,'null');
-		if tmat.find('WT') <> -1:
-			mytag = taglist[idx];
-			if tdic['position'] == 'left':
-				mytag['times'].insert(0,tdic);
-				mytag['type'] = 'time_wte';
-			elif tdic['position'] == 'right':
-				mytag['times'].insert(1,tdic);
-				mytag['type'] = 'time_wte';
+		mytag = taglist[idx];
+
+		if tdic['position'] == 'left':
+			mytag['times'].insert(0,tdic);
+			mytag['type'] = 'time_wte';
+		elif tdic['position'] == 'right':
+			mytag['times'].insert(1,tdic);
+			mytag['type'] = 'time_wte';
 
 	# 找到一个扩展的修饰时间词组 则可以进行区间的计算 为后续使用 #
 	def _make_interval(self,struct):
@@ -163,11 +166,14 @@ class WTE(Base):
 							if tt['position'] == 'left':
 								mytime = times[times.index(tt) + 1]
 								if len(mytime['attr']) == 1 and mytime['attr'][0] == 'num':
+									diff = curtime[6];
 									num = int( mytime['num']);
 									if tt['dir'] == '-':
-										mytime['interval'] = [num * -7,0];
+										diff = curtime[6];
+										mytime['interval'] = [num * -7 - diff,-1 * diff];
 									elif tt['dir'] == '+':
-										mytime['interval'] = [0,num * 7];
+										diff = 8 - num + curtime[6];
+										mytime['interval'] = [diff,diff + num * 7];
 								if len(mytime['attr']) == 1 and mytime['attr'][0] == 'date':
 									num = int(mytime['num']);
 									e_num = len(tt['value']);

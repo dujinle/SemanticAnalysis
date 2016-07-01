@@ -75,7 +75,6 @@ class ALLT(Base):
 				if t.has_key('scope'): curr_scope = t['scope'];
 			pscope_id = time_common.tmenu[prev_scope];
 			cscope_id = time_common.tmenu[curr_scope];
-			print pscope_id,cscope_id
 			if pscope_id < cscope_id:
 				prev_tag['type'] = 'time_t2t';
 				prev_tag['ntimes'] = prev_tag['ntimes'] + tag['ntimes'];
@@ -184,12 +183,20 @@ class CALLT(Base):
 
 			if tm['type'] == 'time_nt':
 				if not tm.has_key('interval'): break;
-				start_time[idx] = start_time[idx] + tm['interval'][0];
-				end_time[idx] = end_time[idx] + tm['interval'][0];
+				if tm['func'] == 'add':
+					start_time[idx] = start_time[idx] + tm['interval'][0];
+					end_time[idx] = end_time[idx] + tm['interval'][0];
+				elif tm['func'] == 'equal':
+					start_time[idx] = tm['interval'][0];
+					end_time[idx] = tm['interval'][0];
 			elif tm['type'] == 'time_ut':
 				if hour == 2 and tm['scope'] == 'hour':
-					start_time[idx] = int(tm['num']) + 12;
-					end_time[idx] = int(tm['num']) + 12;
+					if tm['num'] < 12:
+						start_time[idx] = int(tm['num']) + 12;
+						end_time[idx] = int(tm['num']) + 12;
+					else:
+						start_time[idx] = int(tm['num']);
+						end_time[idx] = int(tm['num']);
 					hour = 0;
 				else:
 					start_time[idx] = int(tm['num']);
@@ -201,8 +208,12 @@ class CALLT(Base):
 		tm = times[tidx];
 		idx = time_common.tmenu[tm['scope']];
 		if hour == 2 and tm['scope'] == 'hour':
-			start_time[idx] = int(tm['num']) + 12;
-			end_time[idx] = int(tm['num']) + 13;
+			if tm['num'] < 12:
+				start_time[idx] = int(tm['num']) + 12;
+				end_time[idx] = int(tm['num']) + 13;
+			else:
+				start_time[idx] = int(tm['num']);
+				end_time[idx] = int(tm['num']) + 1;
 		else:
 			start_time[idx] = int(tm['num']);
 			end_time[idx]  = int(tm['num']) + 1;
@@ -319,12 +330,16 @@ class CALLT(Base):
 			tidx = tidx + 1;
 		tm = times[tidx];
 		idx = time_common.tmenu[tm['scope']];
-		if hour == 2 and tm['scope'] == 'hour':
-			start_time[idx] = int(tm['num']) + 12;
-			end_time[idx] = int(tm['num']) + 13;
-		else:
-			start_time[idx] = int(tm['num']);
-			end_time[idx]  = int(tm['num']) + 1;
+		if tm['type'] == 'time_ut':
+			if hour == 2 and tm['scope'] == 'hour':
+				start_time[idx] = int(tm['num']) + 12;
+				end_time[idx] = int(tm['num']) + 13;
+			else:
+				start_time[idx] = int(tm['num']);
+				end_time[idx]  = int(tm['num']) + 1;
+		elif tm['type'] == 'time_qt':
+			start_time[idx] = tm['interval'][0];
+			end_time[idx] = tm['interval'][1];
 		time_common._make_sure_time(start_time,idx);
 		time_common._make_sure_time(end_time,idx);
 		tag['interval'] = [start_time,end_time];

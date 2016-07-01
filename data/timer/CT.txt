@@ -1,0 +1,17 @@
+{
+	"keys":["大","前","后"],
+	"regs":[
+		{
+			"same":["前"],
+			"kpoint":"last",
+			"type": "time_composite",
+			"reg": "TK",
+			"dir": "-"
+		},
+  "后": {
+    "kpoint": "last", 
+    "type": "time_composite", 
+    "reg": "t后", 
+    "dir": "+"
+  }
+}

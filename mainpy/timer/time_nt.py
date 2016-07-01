@@ -83,6 +83,7 @@ class NT(Base):
 				if tag.has_key('times'):
 					tag['attr'] = ['date'];
 			idx = idx + 1;
+
 	def _add(self,data):
 		try:
 			scope = data['scope'];
@@ -305,10 +306,7 @@ class CNTE(Base):
 			elif tm['interval'][1] == '>':
 				start_time[idx] = start_time[idx] + tm['interval'][0];
 				end_time[idx] = end_time[idx] + tm['interval'][0];
-			elif tm['interval'][0] > 0:
-				start_time[idx] = start_time[idx] + tm['interval'][0];
-				end_time[idx] = end_time[idx] + tm['interval'][1];
-			elif tm['interval'][0] < 0:
+			else:
 				start_time[idx] = start_time[idx] + tm['interval'][0];
 				end_time[idx] = end_time[idx] + tm['interval'][1];
 		elif tm['func'] == 'equal':

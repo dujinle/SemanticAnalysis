@@ -1,0 +1,30 @@
+{
+  "每个": {
+    "type": "mood_tm", 
+    "level": "high"
+  }, 
+  "每天": {
+    "type": "mood_tm", 
+    "level": "high"
+  }, 
+  "经常": {
+    "type": "mood_tm", 
+    "level": "middle"
+  }, 
+  "每": {
+    "type": "mood_tm", 
+    "level": "high"
+  }, 
+  "天天": {
+    "type": "mood_tm", 
+    "level": "middle"
+  }, 
+  "偶尔": {
+    "type": "mood_tm", 
+    "level": "low"
+  }, 
+  "整天": {
+    "type": "mood_tm", 
+    "level": "saturation"
+  }
+}

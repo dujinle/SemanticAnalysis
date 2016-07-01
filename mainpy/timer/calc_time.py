@@ -35,7 +35,7 @@ class CalcTimeInterval(Base):
 			self._deal_num_time(struct);
 			self._deal_ex_time(struct);
 			self._deal_composite(struct);
-			common.print_dic(struct);
+			self._deal_week_time(struct);
 			self._merge_num_ex_com_times(struct);
 			self._deal_interval(struct);
 		except MyException as e: raise e;
@@ -93,6 +93,41 @@ class CalcTimeInterval(Base):
 				tagdic['times'].append(tdic);
 				first_tag = tag;
 			elif type(tag) == dict and tag['type'] == 'ex_time':
+				tdic = dict(tag);
+				tagdic['times'].append(tdic);
+				taglist.remove(tag);
+				idx_step = idx_step - 1;
+			elif not first_tag is None:
+				if len(tagdic['times']) > 1:
+					tagdic['attr'] = ['date'];
+				if first_tag is not None:
+					idx = taglist.index(first_tag);
+					taglist[idx] = dict(tagdic);
+				tagdic['times'] = list();
+				tagdic['attr'] = ['date'];
+				first_tag = None;
+			idx_step = idx_step + 1;
+		if not first_tag is None:
+			idx = taglist.index(first_tag);
+			taglist[idx] = dict(tagdic);
+			first_tag = None;
+
+	def _deal_week_time(self,struct):
+		taglist = struct['taglist'];
+		tagdic = dict();
+		tagdic['type'] = 'time_weeks';
+		tagdic['attr'] = ['date'];
+		tagdic['times'] = list();
+		first_tag = None;
+		idx_step = 0;
+		while True:
+			if idx_step >= len(taglist): break;
+			tag = taglist[idx_step];
+			if type(tag) == dict and tag['type'].find('time_week') <> -1 and first_tag is None:
+				tdic = dict(tag);
+				tagdic['times'].append(tdic);
+				first_tag = tag;
+			elif type(tag) == dict and tag['type'].find('timw_week') <> -1:
 				tdic = dict(tag);
 				tagdic['times'].append(tdic);
 				taglist.remove(tag);
@@ -231,14 +266,16 @@ class CalcTimeInterval(Base):
 				if tidx < lens:
 					if tt['type'] == 'num_time':
 						self._fill_num_time(tt,tag['interval'][attr],attr);
-					elif tt['type'] == 'ex_time':
+					elif tt['type'] == 'ex_time' or tt['type'].find('time_week') <> -1:
 						self._fill_ex_time(tt,tag['interval'][attr],attr);
 				elif tidx >= lens:
 					if tt['type'] == 'num_time':
 						self._calc_num_time(tt,tag['interval'][attr],attr);
-					elif tt['type'] == 'ex_time':
+					elif tt['type'] == 'ex_time' or tt['type'].find('time_week') <> -1:
 						self._calc_ex_time(tt,tag['interval'][attr],attr);
 				tidx = tidx + 1;
+				self._make_sure_time(tag['interval'][attr][0]);
+				self._make_sure_time(tag['interval'][attr][1]);
 
 	def _calc_num_time(self,mtime,interval,attr):
 		idx = self.ttype[mtime['scope']];
@@ -251,7 +288,7 @@ class CalcTimeInterval(Base):
 		if attr == 'num':
 			if mtime.has_key('interval'):
 				minterval = mtime['interval'];
-				if minterval.has_key(attr): minterval = minterval[attr];
+				if type(minterval) == dict and minterval.has_key(attr): minterval = minterval[attr];
 				if minterval[0] == '<':
 					start_time[-1] = 'null';
 					end_time[idx] = end_time[idx] + minterval[1];
@@ -279,6 +316,7 @@ class CalcTimeInterval(Base):
 					start_time[idx] = int(mtime['num']) + 1;
 
 	def _calc_ex_time(self,mtime,interval,attr):
+		print mtime;
 		idx = self.ttype[mtime['scope']];
 		start_time = interval[0];
 		end_time = interval[1];
@@ -290,7 +328,7 @@ class CalcTimeInterval(Base):
 		elif attr == 'date':
 			if mtime.has_key('interval'):
 				minterval = mtime['interval'];
-				if minterval.has_key(attr): minterval = minterval[attr];
+				if type(minterval) == dict and minterval.has_key(attr): minterval = minterval[attr];
 				if minterval[0] == '<':
 					start_time[-1] = 'null';
 					if mtime['func'] == 'add':
@@ -318,7 +356,7 @@ class CalcTimeInterval(Base):
 		if attr == 'num':
 			if mtime.has_key('interval'):
 				minterval = mtime['interval'];
-				if minterval.has_key(attr): minterval = minterval[attr];
+				if type(minterval) == dict and minterval.has_key(attr): minterval = minterval[attr];
 				if minterval[0] == '<':
 					start_time[-1] = 'null';
 					end_time[idx] = end_time[idx] + minterval[1];
@@ -345,7 +383,7 @@ class CalcTimeInterval(Base):
 		elif attr == 'date':
 			if attr.has_key('interval'):
 				minterval = mtime['interval'];
-				if minterval.has_key(attr): minterval = minterval[attr];
+				if type(minterval) == dict and minterval.has_key(attr): minterval = minterval[attr];
 				if minterval[0] == '<':
 					start_time[-1] = 'null';
 					end_time[idx] = end_time[idx] + minterval[0];

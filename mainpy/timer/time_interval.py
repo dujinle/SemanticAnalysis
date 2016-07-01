@@ -23,17 +23,21 @@ class UT(Base):
 				if not item.has_key('same'): item['same'] = list();
 				item['same'].append(key);
 				self.__paser_unit(struct,item);
-
 		except MyException as e: raise e;
 
 	def __paser_unit(self,struct,reg_item):
+		common.print_dic(reg_item);
 		taglist = struct['taglist'];
 		same = reg_item.get('same');
 		myidx = -1;
 		for value in same:
-			myidx = taglist.index(value);
+			try:
+				myidx = taglist.index(value);
+			except Exception as e:
+				continue;
 			if myidx == 0: return ;
 			if myidx <> -1: break;
+		if myidx == -1: return;
 
 		mstr = taglist[myidx - 1];
 		tcompile = re.compile(reg_item['reg']);
@@ -106,16 +110,16 @@ class NT(Base):
 			scope = data['scope'];
 			interval = data['interval'];
 			ntype = data['nt_type'];
+			func = data['func'];
 
 			if type(interval) <> list: interval = json.loads(interval);
 
-			if not self.data.has_key(scope): self.data[scope] = dict();
-			tdata = self.data[scope];
+			tdata = self.data['day'];
 			if not tdata.has_key(ntype): tdata[ntype] = dict();
 			odata = tdata[ntype];
 
 			tdic = dict();
-			tdic['func'] = 'add';
+			tdic['func'] = func;
 			tdic['scope'] = scope;
 			tdic['interval'] = interval;
 
@@ -162,35 +166,6 @@ class CT(Base):
 		taglist[idx + 1] = dict();
 		taglist[idx + 1].update(kdata);
 		taglist[idx + 1]['value'] = key;
-		'''
-		if kdata.has_key('dir'):
-			taglist[idx + 1] = dict();
-			taglist[idx + 1]['type'] = 'filter';
-			taglist[idx + 1]['value'] = key;
-			times = taglist[idx];
-			times['value'] = times['value'] + key;
-			tdir = kdata['dir'];
-			if times['type'] == 'num_time':
-				if times['meaning'] == 'number':
-					if tdir == '-':
-						times['interval'] = ['<<',int(times['num']) * -1];
-					elif tdir == '+':
-						times['interval'] = [int(times['num']),'>>'];
-				elif times['meaning'] == 'date':
-					if tdir == '-':
-						times['interval'] = ['<<',0];
-					elif tdir == '+':
-						times['interval'] = [1,'>>'];
-			elif times.has_key('interval'):
-				if tdir == '-':
-					times['interval'] = ['<<',times['interval'][0]];
-				elif tdir == '+':
-					times['interval'] = [times['interval'][1],'>>'];
-
-		for tag in taglist:
-			if type(tag) == dict and tag['type'] == 'filter':
-				taglist.remove(tag);
-		'''
 
 class TF(Base):
 

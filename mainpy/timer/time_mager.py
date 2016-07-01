@@ -103,7 +103,7 @@ class TimeMager:
 				step = step + 1;
 		except MyException as e:
 			raise e;
-'''
+#'''
 try:
 	sys.path.append('../wordsegs');
 	from wordseg import WordSeg
@@ -112,14 +112,15 @@ try:
 	mg.init('Timer');
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	wordseg.deal_word('del',{'value':u'天上'});
-	wordseg.deal_word('del',{'value':u'午前'});
+	#wordseg.deal_word('del',{'value':u'天上'});
+	#wordseg.deal_word('del',{'value':u'午前'});
 	#common.print_dic(mg.encode(u'14点15分30秒'));
 	#common.print_dic(mg.encode(u'凌晨'));
-	common.print_dic(mg.encode(u'明天'));
-	#common.print_dic(mg.encode(u'上旬'));
+	#common.print_dic(mg.encode(u'下周3上午'));
+	#common.print_dic(mg.encode(u'下周3上午'));
+	common.print_dic(mg.encode(u'3小时前'));
 	#common.print_dic(mg.encode(u'下午2点30分'));
-	common.print_dic(mg.encode(u'上周末'));
+	#common.print_dic(mg.encode(u'上周末'));
 except MyException as e:
 	print e.value;
-'''
+#'''
