@@ -16,6 +16,7 @@ sys.path.append(os.path.join(base_path,'../timer'));
 
 import common,config
 from flight import Flight
+from airline import AIR
 from time_mager import TimeMager
 from local_mager import LocalMager
 
@@ -27,12 +28,14 @@ class FlightMager:
 		self.timer = TimeMager(wordseg);
 		self.local = LocalMager(wordseg);
 		self.flight = Flight();
+		self.airline = AIR();
 
 	def init(self,dtype):
 		self.timer.init('Timer');
 		self.local.init('Local');
 		dfiles = config.dfiles[dtype];
 		self.flight.init(dfiles['1']);
+		self.airline.init(dfiles['2']);
 
 	def encode(self,inlist):
 		try:
@@ -41,6 +44,7 @@ class FlightMager:
 				ret = self.local.encode(struct['text']);
 				if not ret is None: struct.update(ret);
 				self.flight.encode(struct);
+				self.airline.encode(struct);
 
 			return struct;
 		except MyException as e:
@@ -58,7 +62,7 @@ try:
 	mg.init('Flight');
 	#mg.write_file();
 	#wordseg.deal_word('add',{'value':u'翠微路'});
-	common.print_dic(mg.encode(u'明天上午到上地七街的机票'));
+	common.print_dic(mg.encode(u'明天去上海的国际航空航班GS2034最早的'));
 except MyException as e:
 	print e.value;
 '''

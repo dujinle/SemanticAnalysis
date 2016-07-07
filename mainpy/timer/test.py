@@ -27,6 +27,9 @@ from time_allt import CALLT
 from time_mood import TS
 from time_mood import TM
 from time_mood import AS
+from time_decade import DT
+from time_decade import DTE
+from time_decade import CDTE
 
 qt = QT();
 cqt = CQT();
@@ -44,6 +47,9 @@ cwte = CWTE();
 ts = TS();
 tm = TM();
 ass = AS();
+dt = DT();
+dte = DTE();
+cdte = CDTE();
 #tw.load_data('./TQ.txt');
 ut.load_data('./tdata/UT.txt');
 ute.load_data('./tdata/UTE.txt');
@@ -55,30 +61,35 @@ qt.load_data('./tdata/QT.txt');
 ts.load_data('./tdata/TS.txt');
 tm.load_data('./tdata/TM.txt');
 ass.load_data('./tdata/AS.txt');
+dt.load_data('./tdata/DT.txt');
+dte.load_data('./tdata/DTE.txt');
 struct = dict();
-struct['text'] = u'上礼拜'#3日前的4月3号上午的5时6分钟的后天上午上周3的周4前的5时3刻的第4季度的2月上旬后天17时';
-struct['inlist'] = [u'开始',u'玩',u'游戏']
+struct['text'] = u'古代'#19世纪30年代的21世纪前期的21世纪初期的21世纪30年代前的30年代前'#3日前的4月3号上午的5时6分钟的后天上午上周3的周4前的5时3刻的第4季度的2月上旬后天17时';
+struct['inlist'] = [u'有时']
 #struct['inlist'] = [u'上',u'周','3',u'周','1'];
 #struct['taglist'] = [u'上',u'周','3',u'周','1'];
 #tw.encode(struct);
 ut.encode(struct);
-common.print_dic(struct);
 ute.encode(struct);
+dte.encode(struct);
 nt.encode(struct);
+#common.print_dic(struct);
 nte.encode(struct);
+dt.encode(struct);
 
 wt.encode(struct);
-common.print_dic(struct);
+#common.print_dic(struct);
 wte.encode(struct);
 qt.encode(struct);
 allt.encode(struct);
 #common.print_dic(struct);
 callt.encode(struct);
 cqt.encode(struct);
-#ts.encode(struct);
-#tm.encode(struct);
-#ass.encode(struct);
+ts.encode(struct);
+tm.encode(struct);
+ass.encode(struct);
 
+cdte.encode(struct);
 cute.encode(struct);
 cnte.encode(struct);
 cwte.encode(struct);

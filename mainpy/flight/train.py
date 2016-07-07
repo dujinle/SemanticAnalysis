@@ -1,12 +1,12 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,re
+import sys,os
 reload(sys);
 sys.setdefaultencoding('utf-8');
 import common,config
 from myexception import MyException
 
-class Flight:
+class Train:
 	def __init__(self): self.flight = None;
 
 	def init(self,dfile):
@@ -19,8 +19,6 @@ class Flight:
 		self._make_addr(struct);
 		self._make_time(struct);
 		self._make_flight(struct);
-		self._make_way(struct);
-		self._make_banci(struct);
 
 	def _make_addr(self,struct):
 		if not struct.has_key('locals'): return None;
@@ -69,23 +67,3 @@ class Flight:
 					break;
 			if struct['flight'].has_key('travel'): break;
 
-	def _make_way(self,struct):
-		if not struct.has_key('flight'): return None;
-		way = self.flight['way'];
-		for key in way.keys():
-			kdata = way[key];
-			for d in kdata:
-				if d in struct['inlist']:
-					struct['flight']['way'] = {'key':key,'value':d};
-					break;
-			if struct['flight'].has_key('way'): break;
-
-	def _make_banci(self,struct):
-		if not struct.has_key('flight'): return None;
-		reg = '[a-zA-Z]{1,2}[0-9]{3,}';
-		com = re.compile(reg);
-		for strs in struct['inlist']:
-			match = com.match(strs);
-			if not match is None:
-				struct['flight']['banci'] = match.group();
-				break;

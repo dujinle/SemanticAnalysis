@@ -1,0 +1,18 @@
+{
+  "开始": {
+    "status": "start", 
+    "type": "mood_as"
+  }, 
+  "正": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "正在": {
+    "status": "being", 
+    "type": "mood_as"
+  }, 
+  "完": {
+    "status": "end", 
+    "type": "mood_as"
+  }
+}

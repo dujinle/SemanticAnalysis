@@ -10,52 +10,47 @@ import collections
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 sys.path.append(os.path.join(base_path,'../'));
+sys.path.append(os.path.join(base_path,'../timer'));
 #==============================================================
 
 import common,config
-from myexception import MyException
-from marktag import M,C,F,X
-from numtag import Nt
-from extendtag import X1,M1,F1,Z
-from checktag import PM
-from calctag import Calc
+from alarm_action import AA
+from alarm_engin import AE
+from time_mager import TimeMager
 
-class TempMager:
+
+#from calc_time import CalcTimeInterval
+from myexception import MyException
+
+class AlarmMager:
 	def __init__(self,wordseg):
 		self.wordseg = wordseg;
+		self.clocks = dict();
+		self.timer = TimeMager(wordseg);
+
 		self.tag_objs = list();
 
 		# mark tag objs #
-		self.tag_objs.append(M());
-		self.tag_objs.append(C());
-		self.tag_objs.append(F());
-		self.tag_objs.append(X());
-		self.tag_objs.append(Nt());
-		# extend tag objs #
-		self.tag_objs.append(X1());
-		self.tag_objs.append(M1());
-		self.tag_objs.append(F1());
-		self.tag_objs.append(Z());
-		# calc tag obj #
-		self.tag_objs.append(PM());
-		self.tag_objs.append(Calc());
+		self.tag_objs.append(AA());
+		self.tag_objs.append(AE());
 
 	def init(self,dtype):
 		try:
 			step = 1;
+			self.timer.init('Timer');
 			dfiles = config.dfiles[dtype];
 			for obj in self.tag_objs:
 				obj.load_data(dfiles[str(step)]);
 				step = step + 1;
-		except MyException as e:
-			raise e;
+		except MyException as e: raise e;
 
 	def encode(self,inlist):
 		struct = collections.OrderedDict();
 		struct['text'] = inlist;
-		struct['taglist'] = list();
 		try:
-			struct['inlist'] = self.wordseg.tokens(inlist);
+			struct.update(self.timer.encode(inlist));
+			if not struct.has_key('inlist'):
+				struct['inlist'] = self.wordseg.tokens(inlist);
 			for obj in self.tag_objs:
 				obj.init();
 				obj.encode(struct);
@@ -67,7 +62,6 @@ class TempMager:
 
 	def deal_data(self,fname,action,data):
 		try:
-			print fname,action,data;
 			for obj in self.tag_objs:
 				ret = obj.deal_data(fname,action,data);
 				if ret == common.PASS:
@@ -77,33 +71,23 @@ class TempMager:
 		except MyException as e:
 			raise e;
 
-	def write_file(self,mdl):
+	def write_file(self,dtype):
 		try:
 			step = 1;
-			dfiles = config.dfiles[mdl];
+			dfiles = config.dfiles[dtype];
 			for obj in self.tag_objs:
 				obj.write_file(dfiles[str(step)]);
 				step = step + 1;
 		except MyException as e:
 			raise e;
-'''
+#'''
 try:
 	sys.path.append('../wordsegs');
 	from wordseg import WordSeg
 	wordseg = WordSeg();
-
-	mg = TempMager(wordseg);
-	mg.init('Temp');
-	#mg.write_file();
-	#mg.deal_data('M','add',{"type":"M","value":u"音频"});
-	#print mg.deal_data('Mp','get',None);
-	#mg.sp_deal('del',{'value':u'上调'});
-	#common.print_dic(mg.encode(u'空调调到25度'));
-	#common.print_dic(mg.encode(u'把温度调到最小'));
-	#common.print_dic(mg.encode(u'把温度调到30度'));
-	common.print_dic(mg.encode(u'连一点温度都没有'));
-	#mg.sp_deal('del',{'value':u'大点'});
-	#common.print_dic(mg.encode(u'把声音调大点'));
+	mg = AlarmMager(wordseg);
+	mg.init('Alarm');
+	common.print_dic(mg.encode(u'增加一个5点40分的闹钟,调晚一点'));
 except MyException as e:
 	print e.value;
-'''
+#'''

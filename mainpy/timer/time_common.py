@@ -120,5 +120,6 @@ def _find_idx(text,match,extend):
 	num += len(re.findall('NT',prev_str));
 	num += len(re.findall('WT',prev_str));
 	num += len(re.findall('QT',prev_str));
+	num += len(re.findall('DT',prev_str));
 	num += len(re.findall(extend,prev_str));
 	return num;

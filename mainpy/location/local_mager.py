@@ -44,7 +44,8 @@ class LocalMager:
 		struct = collections.OrderedDict();
 		struct['text'] = inlist;
 		try:
-			struct['inlist'] = self.wordseg.tokens(inlist);
+			if not struct.has_key('inlist'):
+				struct['inlist'] = self.wordseg.tokens(inlist);
 			struct['locals'] = struct['inlist'][:];
 			for obj in self.tag_objs:
 				obj.encode(struct);
@@ -86,7 +87,8 @@ try:
 	wordseg.deal_word('add',{'value':u'交叉路口'});
 	wordseg.deal_word('add',{'value':u'家属楼'});
 	wordseg.deal_word('del',{'value':u'路与'});
-	common.print_dic(mg.encode(u'海淀西二旗七贤村家属楼'));
+	#common.print_dic(mg.encode(u'海淀西二旗七贤村家属楼'));
+	common.print_dic(mg.encode(u'上地西里前面100米'));
 except MyException as e:
 	print e.value;
 '''

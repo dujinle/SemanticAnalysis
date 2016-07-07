@@ -37,6 +37,8 @@ class Calc(Base):
 			struct['value'] = level[self.level];
 			if struct.has_key('Nt'):
 				struct['value'] = struct['Nt']['value'];
+			if struct.has_key('M1') and struct['M1']['reg'].find(u'连') <> -1:
+				struct['value'] = '10%';
 		except Exception as e:
 			raise MyException(format(e));
 

@@ -68,6 +68,9 @@ class ALLT(Base):
 			if tidx >= len(taglist): break;
 			prev_tag = taglist[tidx - 1];
 			tag = taglist[tidx];
+			if tag['type'].find('time_dt') <> -1:
+				tidx = tidx + 1;
+				continue;
 			prev_scope = curr_scope = -1;
 			for t in prev_tag['times']:
 				if t.has_key('scope'): prev_scope = t['scope'];
@@ -303,7 +306,7 @@ class CALLT(Base):
 		while True:
 			if tidx >= len(times) - 1: break;
 			tm = times[tidx];
-			if tm['type'] == 'time_wte':
+			if tm['type'] == 'time_wte' or tm['type'] == 'time_dt' or tm['type'] == 'time_dte':
 				tidx = tidx + 1;
 				continue;
 			idx = time_common.tmenu[tm['scope']];

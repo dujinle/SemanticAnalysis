@@ -169,21 +169,13 @@ class NTE(Base):
 	def _insert_taglist(self,struct,tdic,tmat,key):
 		taglist = struct['taglist'];
 		text = struct['text'];
-		idx = text.find(tmat);
-		strs = text[:idx + len(tmat)];
-		nt_num = len(re.findall('NT',strs));
-		for tag in taglist:
-			if tag['type'].find('time_nt') <> -1:
-				time_num = tag['ntimes'];
-				if nt_num > time_num:
-					nt_num = nt_num - time_num;
-				else:
-					if tdic['position'] == 'left':
-						tag['times'].insert(nt_num - 1,tdic);
-					elif tdic['position'] == 'right':
-						tag['times'].insert(nt_num,tdic);
-					tag['type'] = 'time_nte';
-					break;
+		first_idx = time_common._find_idx(text,tmat,'null');
+		tag = taglist[first_idx];
+		if tdic['position'] == 'left':
+			tag['times'].insert(0,tdic);
+		elif tdic['position'] == 'right':
+			tag['times'].append(tdic);
+		tag['type'] = 'time_nte';
 
 	# 找到一个扩展的修饰时间词组 则可以进行区间的计算 为后续使用 #
 	def _make_interval(self,struct):
@@ -312,10 +304,12 @@ class CNTE(Base):
 		elif tm['func'] == 'equal':
 			if tm['interval'][0] == '<':
 				start_time[idx] = tm['interval'][1];
+				start_time[0] = 'null';
 				end_time[idx] = tm['interval'][1];
 			elif tm['interval'][1] == '>':
 				start_time[idx] = tm['interval'][0];
 				end_time[idx] = tm['interval'][0];
+				end_time[0] = 'null';
 			else:
 				start_time[idx] = tm['interval'][0];
 				end_time[idx] = tm['interval'][1];
