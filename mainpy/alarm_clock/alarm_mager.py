@@ -14,8 +14,9 @@ sys.path.append(os.path.join(base_path,'../timer'));
 #==============================================================
 
 import common,config
-from alarm_action import AA
-from alarm_engin import AE
+from alarm_engin import AEngin
+from alarm_adjust import AAD
+from alarm_fname import ACname
 from time_mager import TimeMager
 
 
@@ -31,8 +32,9 @@ class AlarmMager:
 		self.tag_objs = list();
 
 		# mark tag objs #
-		self.tag_objs.append(AA());
-		self.tag_objs.append(AE());
+		self.tag_objs.append(AAD());
+		self.tag_objs.append(ACname());
+		self.tag_objs.append(AEngin());
 
 	def init(self,dtype):
 		try:
@@ -52,7 +54,6 @@ class AlarmMager:
 			if not struct.has_key('inlist'):
 				struct['inlist'] = self.wordseg.tokens(inlist);
 			for obj in self.tag_objs:
-				obj.init();
 				obj.encode(struct);
 			return struct;
 		except MyException as e:
@@ -60,26 +61,6 @@ class AlarmMager:
 			res = e.value + '\n' +res;
 			raise MyException(res);
 
-	def deal_data(self,fname,action,data):
-		try:
-			for obj in self.tag_objs:
-				ret = obj.deal_data(fname,action,data);
-				if ret == common.PASS:
-					continue;
-				elif not ret is None:
-					return ret;
-		except MyException as e:
-			raise e;
-
-	def write_file(self,dtype):
-		try:
-			step = 1;
-			dfiles = config.dfiles[dtype];
-			for obj in self.tag_objs:
-				obj.write_file(dfiles[str(step)]);
-				step = step + 1;
-		except MyException as e:
-			raise e;
 #'''
 try:
 	sys.path.append('../wordsegs');
@@ -87,7 +68,7 @@ try:
 	wordseg = WordSeg();
 	mg = AlarmMager(wordseg);
 	mg.init('Alarm');
-	common.print_dic(mg.encode(u'增加一个5点40分的闹钟,调晚一点'));
+	common.print_dic(mg.encode(u'增加一个闹钟'));
 except MyException as e:
 	print e.value;
 #'''

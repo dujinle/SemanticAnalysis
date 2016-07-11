@@ -63,8 +63,7 @@ class ACname(Base):
 		if idx >= 2 and text[idx - 1] == u'的':
 			if text[:idx - 1].find('T') <> -1:
 				if struct.has_key('ck_time'):
-					struct['ck_name'] = struct['ck_time']['tname'];
+					struct['ck_name'] = struct['ck_time']['time'];
 		if not struct.has_key('ck_name'):
 			struct['ck_name'] = 'null';
-
 

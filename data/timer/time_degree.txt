@@ -1,6 +1,0 @@
-{
-	"赶紧":{
-		"type":"degree",
-		"level":"quick"
-	}
-}

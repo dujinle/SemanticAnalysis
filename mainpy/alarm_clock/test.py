@@ -13,20 +13,17 @@ sys.path.append(os.path.join(base_path,'../timer'));
 sys.path.append(os.path.join(base_path,'../wordsegs'));
 #============================================
 import common,config
-from alarm_action import AA
 from alarm_engin import AEngin
 from alarm_adjust import AAD
 from alarm_fname import ACname
 from time_mager import TimeMager
 from wordseg import WordSeg
-aa = AA();
 ae = AEngin();
 aad = AAD();
 aname = ACname();
 wd = WordSeg();
 timer = TimeMager(wd);
 timer.init('Timer');
-aa.load_data('./tdata/action.txt');
 ae.load_data('./tdata/message.txt');
 aad.load_data('./tdata/adjust.txt');
 aname.load_data('./tdata/ck_name.txt');

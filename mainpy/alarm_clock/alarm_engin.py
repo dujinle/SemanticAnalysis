@@ -39,9 +39,10 @@ class AEngin(Base):
 	def _find_myclock(self,struct):
 		if not self.myclock is None: return None;
 		if not struct.has_key('ck_name'): return None;
-		for ck in self.clocks:
-			if struct.has_key('ck_name') and (struct['ck_name'] in ck['desc']):
-				self.myclock = ck;
+		for ck in self.clocks.keys():
+			clock = self.clocks[ck];
+			if  struct['ck_name'] == clock['time'] or (struct['ck_name'] in clock['desc']):
+				self.myclock = clock;
 				break;
 
 	#find this action [add del modify search other]
@@ -62,20 +63,19 @@ class AEngin(Base):
 		if self.myclock is None: self.myclock = dict();
 		if struct.has_key('ck_time'):
 			ctime = struct['ck_time'];
-			if not self.clocks.has_key(ctime['tname']):
-				self.clocks[ctime['tname']] = self.myclock;
-			self.myclock['desc'] = [ctime['tname']];
+			if not self.clocks.has_key(ctime['time']):
+				self.clocks[ctime['time']] = self.myclock;
 			self.myclock['time'] = ctime['time'];
-			if ctime['scope'] == 'day':
-				self.myclock['able'] = self.myclock['time'][3];
-			struct['result'] = 'set time success';
 			del struct['ck_time'];
 		elif struct.has_key('ck_name') and struct['ck_name'] <> 'null':
-			self.myclock['desc'].append(struct['ck_name']);
+			if self.myclock['time'] <> struct['ck_name']:
+				self.myclock['desc'].append(struct['ck_name']);
 		elif struct.has_key('ck_delay'):
 			self.myclock['delay'] = struct['ck_delay'];
-			struct['result'] = 'set delay success';
 			del struct['ck_delay'];
+		elif struct.has_key('ck_able'):
+			self.myclock['able'] = struct['ck_able'];
+			del struct['ck_able'];
 
 	def _analysis(self,struct):
 		ck = self.myclock;
@@ -88,5 +88,6 @@ class AEngin(Base):
 		elif not ck.has_key('able'):
 			struct['result'] = self.data['freq'][0];
 			return None;
+		struct['result'] = 'add clock success';
 		self.action = None;
 

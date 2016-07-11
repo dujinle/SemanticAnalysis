@@ -60,9 +60,9 @@ class AAD(Base):
 				for tm in ck['times']:
 					tstr = tstr + tm['value'];
 					if tm['scope'] == 'day': scope = 'day';
-				tdic['tname'] = tstr;
+				times = ck['interval'][0];
 				tdic['scope'] = scope;
-				tdic['time'] = ck['interval'][0];
+				tdic['time'] = str(times[3]) + ':' + str(times[4]);
 				struct['ck_time'] = tdic;
 				clocks.remove(ck);
 				break;
@@ -95,7 +95,7 @@ class AAD(Base):
 			elif ck['type'] == 'ring':
 				delay = delay | (1 << 0);
 				break;
-		if delay == 3: struct['ck_delay'] = tdic;
+		if delay == 3: struct['ck_delay'] = tdic['type'];
 
 	def _analysis_able(self,struct):
 		able = ept = 0;
