@@ -13,7 +13,7 @@ import common,alarm_common
 from myexception import MyException
 from base import Base
 
-class AAD(Base):
+class AlarmEncode(Base):
 
 	def encode(self,struct):
 		try:
@@ -38,6 +38,7 @@ class AAD(Base):
 			self._find_time(struct);
 			self._analysis_able(struct);
 			self._analysis_bell(struct);
+			self._find_action(struct);
 		except MyException as e: raise e;
 
 	def _match_item(self,strs,clocks,mtype):
@@ -57,6 +58,26 @@ class AAD(Base):
 				tdic['mystr'] = strs;
 				tdic['type'] = mtype;
 				clocks.append(tdic);
+
+	#find this action [add del modify search other]
+	def _find_action(self,struct):
+		for ck in struct['clocks']:
+			if ck['type'] == 'add':
+				struct['ck_action'] = 'add';
+				break;
+			elif ck['type'] == 'set':
+				for key in struct.keys():
+					if key.find('ck_') <> -1:
+						struct['ck_action'] = 'modify';
+						break;
+				if not struct.has_key('ck_action'): struct['ck_action'] = 'add';
+				break;
+			elif ck['type'] == 'del':
+				struct['ck_action'] = 'del';
+				break;
+			elif ck['type'] == 'search':
+				struct['ck_action'] = 'search';
+				break;
 
 	def _find_time(self,struct):
 		clocks = struct['clocks'];
@@ -79,7 +100,7 @@ class AAD(Base):
 		adjust = 000;
 		tdic = dict();
 		for ck in clocks:
-			if ck['type'] == 'set':
+			if ck['type'] == 'set' or ck['type'] == 'modify':
 				adjust = adjust | (1 << 2);
 				tdic['action'] = ck['mystr'];
 			if ck['type'] == 'dir':
