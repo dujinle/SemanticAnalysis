@@ -13,22 +13,13 @@ sys.path.append(os.path.join(base_path,'../'));
 #==============================================================
 
 import common,config
-from time_ut import UT
-from time_ut import UTE
-from time_ut import CUTE
-from time_nt import NT
-from time_nt import NTE
-from time_nt import CNTE
-from time_wt import WT
-from time_wt import WTE
-from time_wt import CWTE
-from time_qt import QT
-from time_qt import CQT
-from time_allt import ALLT
-from time_allt import CALLT
-from time_mood import TM
-from time_mood import TS
-from time_mood import AS
+from time_ut import UT,UTE,CUTE
+from time_nt import NT,NTE,CNTE
+from time_wt import WT,WTE,CWTE
+from time_qt import QT,CQT
+from time_allt import ALLT,CALLT
+from time_mood import TM,TS,AS
+from time_festival import FT,CFTE
 
 
 #from calc_time import CalcTimeInterval
@@ -44,6 +35,7 @@ class TimeMager:
 		self.tag_objs.append(NT());
 		self.tag_objs.append(WT());
 		self.tag_objs.append(QT());
+		self.tag_objs.append(FT());
 
 		self.tag_objs.append(UTE());
 		self.tag_objs.append(NTE());
@@ -54,6 +46,7 @@ class TimeMager:
 		self.tag_objs.append(CNTE());
 		self.tag_objs.append(CWTE());
 		self.tag_objs.append(CQT());
+		self.tag_objs.append(CFTE());
 		self.tag_objs.append(CALLT());
 		self.tag_objs.append(TM());
 		self.tag_objs.append(TS());
@@ -118,7 +111,7 @@ try:
 	#common.print_dic(mg.encode(u'凌晨'));
 	#common.print_dic(mg.encode(u'下周3上午'));
 	#common.print_dic(mg.encode(u'下周3上午'));
-	common.print_dic(mg.encode(u'3小时前'));
+	common.print_dic(mg.encode(u'春节'));
 	#common.print_dic(mg.encode(u'下午2点30分'));
 	#common.print_dic(mg.encode(u'上周末'));
 except MyException as e:
