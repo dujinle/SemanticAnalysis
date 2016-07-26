@@ -22,6 +22,7 @@ class Application(tornado.web.Application):
 			(r"/voice",VoiceHandler),
 			(r"/local",LocalHandler),
 			(r"/music",MusicHandler),
+			(r"/alarm",AlarmHandler),
 			(r"/catering",CateringHandler),
 			(r"/travel",TravelHandler),
 			(r"/temperature",TempHandler),
@@ -71,6 +72,10 @@ class CateringHandler(tornado.web.RequestHandler):
 class TravelHandler(tornado.web.RequestHandler):
 	def get(self):
 		self.render('travel.html');
+
+class AlarmHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('alarm.html');
 
 if __name__=="__main__":
 

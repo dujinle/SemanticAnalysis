@@ -176,51 +176,6 @@ function del_word(){
 function save_word(){
     alert("save_word");
 }
-
-//这个是TR函数
-function add_tc() {
-	tc_sel = document.getElementsByName('tc-sel');
-	tc_obj = document.getElementById('tc-text');
-
-	tc_value = tc_obj.value;
-	tc_level = null;
-	var counter_type=0;
-	for(var i = 0;i < tc_sel.length;i++){
-		if(tc_sel[i].checked){
-			tc_level = tc_sel[i].value;
-			counter_type++;
-			break;
-		}
-	};
-	if(tc_value==""){
-		alert("未输入内容，请输入！")
-		return
-	};
-
-	if(counter_type==0){
-		alert("未时间历法，请选择历法！")
-		return
-	};
-	idata = new Object();
-	idata.type = 'TC';
-	idata.mdl = $mdl;
-	idata.value = tc_value;
-	idata.level = tc_level;
-
-	$.ajax({
-		async:false,
-		url: $basepath + 'add',
-		type:"post",
-		data:JSON.stringify(idata),
-		dataType:"text",
-		success:function(data){
-			obj = JSON.parse(data);
-		}
-	});
-	y = document.getElementById('status_id');
-	y.value = obj.message.replace(/#/g,'\n');
-}
-
 //这个是TR函数
 function add_rt() {
 	rt_sel = document.getElementsByName('tr-sel');
@@ -360,9 +315,6 @@ function describe( dum) {
     else if (dum == "td-describe") {
         document.getElementById("status_id").value = "时间修饰：对时间的一个修饰，如上月，昨天，明天中的上、昨、明，都是对时间的修饰。\n 区间：为修饰一个区间判断，是多长时间，如昨天就是[-1,0],明天是[1,2]"
     }
-	else if (dum == "tc-describe") {
-		document.getElementById("status_id").value = "特殊时间：一些特殊的时间，比如春节、中秋、夏至、冬至等等，需要特殊处理的时间"
-	}
     else if (dum == "cd-describe") {
         document.getElementById("status_id").value = "综合修饰："
     }

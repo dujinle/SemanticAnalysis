@@ -15,24 +15,26 @@ sys.path.append(os.path.join(base_path,'../wordsegs'));
 #============================================
 import common,config
 from alarm_engin import AEngin
-from alarm_fname import ACname
 from time_mager import TimeMager
 from music_mager import MusicMager
 from wordseg import WordSeg
 ae = AEngin();
-aname = ACname();
 wd = WordSeg();
 timer = TimeMager(wd);
-timer.init('Timer');
 music = MusicMager(wd);
+timer.init('Timer');
 music.init('Music');
-aname.load_data('./tdata/ck_name.txt');
-ae.init();
+ae.init('./tdata');
+#struct = timer.encode(u'7点40分的闹钟不要叫了');
+#struct = timer.encode(u'设置一个早上7点40分的闹铃');
+#ae.encode(struct);
+#common.print_dic(struct);
+#'''
 while True:
 	mstr = raw_input('Enter your input: ');
 	if mstr == 'q': break;
 	struct = timer.encode(mstr.decode('utf-8'));
 	#struct.update(music.encode(mstr));
 	ae.encode(struct);
-	aname.encode(struct);
 	common.print_dic(struct);
+#'''

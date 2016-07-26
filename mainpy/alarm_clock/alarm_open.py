@@ -12,16 +12,31 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 import common,alarm_common
 from myexception import MyException
 
-class AlarmModify():
+class AlarmOpen():
 
 	def __init__(self): pass;
 
 	def encode(self,struct,super_b):
 		try:
-			if super_b.myclock is None:
+			if not struct.has_key('clocks'):
 				struct['code'] = 'error';
 				return None;
-			self._modify_clock(struct,super_b);
+			clocktag = 0;
+			clocks = struct['clocks'];
+			for ck in clocks:
+				if ck['type'] == 'all':
+					clocktag = clocktag | (1 << 1);
+				elif ck['type'] == 'clock':
+					clocktag = clocktag | (1);
+			if clocktag > 1:
+				for ck,cv in super_b.clocks.items():
+					cv['status'] = 'open';
+			elif clocktag == 1:
+				if super_b.myclock is None:
+					struct['code'] = 'error';
+				else:
+					super_b.myclock['status'] = 'open';
+					self._modify_clock(struct,super_b);
 		except Exception as e:
 			raise MyException(format(e));
 
@@ -47,16 +62,16 @@ class AlarmModify():
 					imin = imin + int(atime['level']);
 			myclock['time'] = str(ihour) + ':' + str(imin);
 			del struct['adjust_date'];
-		if struct.has_key('ck_delay'):
+		elif struct.has_key('ck_delay'):
 			myclock['delay'] = struct['ck_delay'];
 			del struct['ck_delay'];
-		if struct.has_key('ck_able'):
+		elif struct.has_key('ck_able'):
 			myclock['able'] = struct['ck_able'];
 			del struct['ck_able'];
-		if struct.has_key('ck_time'):
+		elif struct.has_key('ck_time'):
 			myclock['time'] = struct['ck_time']['time'];
 			del struct['ck_time'];
-		if struct.has_key('ck_bell'):
+		elif struct.has_key('ck_bell'):
 			myclock['bell'] = struct['ck_bell'];
 			del struct['ck_bell'];
 

@@ -49,7 +49,8 @@ class AlarmEncode(Base):
 					tdic = dict(idata);
 					tdic['mystr'] = strs;
 					tdic['type'] = mtype;
-					if mtype == 'action': tdic['type'] = idata['type'];
+					if idata.has_key('type'):
+						tdic['type'] = idata['type'];
 					clocks.append(tdic);
 					break;
 		else:
@@ -60,7 +61,9 @@ class AlarmEncode(Base):
 				clocks.append(tdic);
 
 	#find this action [add del modify search other]
+	#|--|open|close|clock|no|ring|--|#
 	def _find_action(self,struct):
+		tag = 0;
 		for ck in struct['clocks']:
 			if ck['type'] == 'add':
 				struct['ck_action'] = 'add';
@@ -78,17 +81,35 @@ class AlarmEncode(Base):
 			elif ck['type'] == 'search':
 				struct['ck_action'] = 'search';
 				break;
+			elif ck['type'] == 'off':
+				struct['ck_action'] = 'off';
+				break;
+			elif ck['type'] == 'open':
+				struct['ck_action'] = 'open';
+				break;
+			elif ck['type'] == 'no':
+				tag = tag | (1 << 2);
+			elif ck['type'] == 'ring':
+				tag = tag | (1 << 1);
+			elif ck['type'] == 'clock':
+				tag = tag | (1 << 3);
+			elif ck['type'] == 'off':
+				tag = tag | (1 << 4);
+		if tag & 6 > 0: struct['ck_action'] = 'off';
+		elif tag & 32 > 0: struct['ck_action'] = 'open';
+		elif tag & 10 > 0: struct['ck_action'] = 'open';
 
 	def _find_time(self,struct):
 		clocks = struct['clocks'];
 		tdic = dict();
 		for ck in clocks:
-			if ck['type'] == 'time_ut':
+			if ck['type'] == 'time_ut' or ck['type'] == 'time_ntut':
 				tstr = scope = '';
+				times = ck['interval'][0];
 				for tm in ck['times']:
 					tstr = tstr + tm['value'];
-					if tm['scope'] == 'day': scope = 'day';
-				times = ck['interval'][0];
+					if tm['scope'] == 'day':
+						scope = str(times[2]);
 				tdic['scope'] = scope;
 				tdic['time'] = str(times[3]) + ':' + str(times[4]);
 				struct['ck_time'] = tdic;
@@ -130,7 +151,7 @@ class AlarmEncode(Base):
 		clocks = struct['clocks'];
 		for ck in clocks:
 			if ck['type'] == 'able':
-				if ck['style'] == 'wordday':
+				if ck['style'] == 'workday':
 					able = math.pow(2,5) - 1;
 				elif ck['style'] == 'allin':
 					able = math.pow(2,8) - 1;
@@ -141,6 +162,17 @@ class AlarmEncode(Base):
 				if tm.has_key('num'):
 					able = math.pow(2,int(tm['num']) - 1);
 			if ck['type'] == 'except': ept = 1;
+		if struct.has_key('ck_time'):
+			scope = struct['ck_time']['scope'];
+			if scope <> '':
+				curtime = time.localtime();
+				curday = curtime[2];
+				left = int(scope) - curday;
+				if left < 0: return ;
+				curweek = curtime[6];
+				lfweek = curweek + left;
+				able = math.pow(2,lfweek);
+
 		if ept == 1: able = math.pow(2,7) - 1 - able;
 		if able > 0: struct['ck_able'] = able;
 

@@ -3,9 +3,9 @@
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html " charset="UTF-8">
     <title>语义网络</title>
-    <link rel="stylesheet" type="text/css" href="{{ static_url('css/timer.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ static_url("css/timer.css") }}">
 	<script type="text/javascript"> var $basepath = 'http://218.240.151.116:28082/'; var $mdl="Timer"; </script>
-   <script  type="text/javascript" language="JavaScript" src="{{ static_url('scripts/timer.js') }}"></script>
+   <script  type="text/javascript" language="JavaScript" src="{{ static_url('scripts/timer.js')}}"></script>
    <script type="text/javascript" src="{{ static_url('scripts/jquery.min.js') }}"></script>
 </head>
 <body>
@@ -117,24 +117,6 @@
 						<input class="select" type="radio" name="func_type" value="equal" id="func_equal">赋值
 					</form>
 					</div>
-			</div>
-			<div class="tc">
-				<div class="button-frame">
-					<input type="button" class="mid-button" id="tc-add" value="注入" onclick="add_tc"/>
-					<input type="button" class="mid-button" id="tc-del" value="删除" onclick="del('TC','tc_text')"/>
-					<input type="button" class="mid-button" id="tc-show" value="获取" onclick="get('TC')"/>
-					<input type="button" class="mid-button" id="tc-describe" value="描述" onclick="describe('tc-describe')"/>
-				</div>
-				<div class="small-content">
-					<span class="text-big">特殊时间(CT)：</span>
-					<input type="text" id="tc_text" size="31"/>
-					<br/>
-					<form class="one">
-						<span class="text-mid">历法：</span>
-						<input  class="select" type="radio" name="tc-sel" value="gregorian" id="tc-1"/>公历
-						<input  class="select" type="radio" name="tc-sel" value="lunar" id="tc-2"/>农历
-					</form>
-				</div>
 			</div>
 			<div class="cd">
 				<div class="button-frame">

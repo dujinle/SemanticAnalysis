@@ -16,6 +16,7 @@ class AlarmAdd(Base):
 
 	def encode(self,struct,super_b):
 		try:
+			print 'go into alarm add action';
 			if super_b.myclock is None: super_b.myclock = dict();
 			self._set_clock(struct,super_b);
 			self._analysis(struct,super_b);
@@ -28,13 +29,13 @@ class AlarmAdd(Base):
 			ctime = struct['ck_time'];
 			myclock['time'] = ctime['time'];
 			del struct['ck_time'];
-		elif struct.has_key('ck_name') and struct['ck_name'] <> 'null':
+		if struct.has_key('ck_name') and struct['ck_name'] <> 'null':
 			if myclock['time'] <> struct['ck_name']:
 				myclock['name'] = struct['ck_name'];
-		elif struct.has_key('ck_delay'):
+		if struct.has_key('ck_delay'):
 			myclock['delay'] = struct['ck_delay'];
 			del struct['ck_delay'];
-		elif struct.has_key('ck_able'):
+		if struct.has_key('ck_able'):
 			myclock['able'] = struct['ck_able'];
 			del struct['ck_able'];
 
