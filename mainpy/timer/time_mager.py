@@ -100,7 +100,7 @@ class TimeMager:
 			raise e;
 '''
 try:
-	sys.path.append('../wordsegs');
+sys.path.append('../wordsegs');
 	from wordseg import WordSeg
 	wordseg = WordSeg();
 	mg = TimeMager(wordseg);
@@ -108,8 +108,7 @@ try:
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'14点15分30秒'));
 	#common.print_dic(mg.encode(u'凌晨'));
-	common.print_dic(mg.encode(u'这是一个'));
-	#common.print_dic(mg.encode(u'下周3上午'));
+	common.print_dic(mg.encode(u'下周3上午'));
 	#common.print_dic(mg.encode(u'今年中秋节'));
 	#common.print_dic(mg.encode(u'下午2点30分'));
 	#common.print_dic(mg.encode(u'上周末'));
