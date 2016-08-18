@@ -70,7 +70,7 @@ class MusicMager:
 				step = step + 1;
 		except MyException as e:
 			raise e;
-#'''
+'''
 try:
 	sys.path.append('../wordsegs');
 	from wordseg import WordSeg
@@ -85,4 +85,4 @@ try:
 	common.print_dic(mg.encode(u'来一首王菲的歌'));
 except MyException as e:
 	print e.value;
-#'''
+'''
