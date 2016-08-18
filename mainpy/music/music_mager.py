@@ -15,6 +15,7 @@ sys.path.append(os.path.join(base_path,'../'));
 import common,config
 from MT import MT
 from MSR import MSR
+from MSN import MSN
 
 from myexception import MyException
 
@@ -26,6 +27,7 @@ class MusicMager:
 		# mark tag objs #
 		self.tag_objs.append(MT());
 		self.tag_objs.append(MSR());
+		self.tag_objs.append(MSN());
 
 	def init(self,dtype):
 		try:
@@ -52,12 +54,22 @@ class MusicMager:
 
 	def deal_data(self,fname,action,data):
 		try:
-			for obj in self.tag_objs:
-				ret = obj.deal_data(fname,action,data);
-				if ret == common.PASS:
-					continue;
-				elif not ret is None:
-					return ret;
+			ret = obj = None;
+			if fname[0] == 'M':
+				obj = self.tag_objs[0];
+			elif fname[0] == 'S':
+				obj = self.tag_objs[1];
+			elif fname[0] == 'N':
+				obj = self.tag_objs[2];
+
+			if obj is None: return None;
+			if action == 'add':
+				ret = obj._add(data);
+			elif action == 'del':
+				ret = obj._del(data);
+			elif action == 'get':
+				ret = obj._get({'type':fname});
+				return ret;
 		except MyException as e:
 			raise e;
 
@@ -78,11 +90,9 @@ try:
 	mg = MusicMager(wordseg);
 	mg.init('Music');
 	#mg.write_file();
-	wordseg.deal_word('add',{'value':u'翠微路'});
-	wordseg.deal_word('add',{'value':u'交叉路口'});
-	wordseg.deal_word('add',{'value':u'家属楼'});
-	wordseg.deal_word('del',{'value':u'路与'});
-	common.print_dic(mg.encode(u'来一首王菲的歌'));
+	wordseg.deal_word('add',{'value':u'小苹果'})
+	common.print_dic(mg.encode(u'来一首笨小孩'));
+	#common.print_dic(mg.encode(u'来一首纯音乐'));
 except MyException as e:
 	print e.value;
 '''
