@@ -46,7 +46,9 @@ class CELL:
 				if scope == 'cell':
 					mtag = taglist[idx];
 					match = self._match_cell(taglist,idx);
-					if match is None: continue;
+					if match is None:
+						idx = idx + 1;
+						continue;
 					mstr = match.group(0);
 					mtag['value'] = mtag['value'] + mstr;
 					midx = idx + 1;

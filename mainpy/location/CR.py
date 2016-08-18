@@ -19,7 +19,7 @@ class CR:
 		taglist = struct['locals'];
 		strs = '';
 		for tag in taglist:
-			if type(tag) == dict and tag['type'] == 'locals':
+			if type(tag) == dict and tag['type'].find('local') <> -1:
 				strs = strs + 'L';
 			else:
 				strs = strs + tag;
@@ -53,7 +53,7 @@ class CR:
 		while True:
 			if idx >= len(taglist): break;
 			tag = taglist[idx];
-			if type(tag) == dict and tag['type'] == 'locals':
+			if type(tag) == dict and tag['type'].find('local') <> -1:
 				if num <= 0: return idx;
 				else: num = num - 1;
 			idx = idx + 1;

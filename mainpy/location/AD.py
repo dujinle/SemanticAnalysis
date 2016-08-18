@@ -7,19 +7,24 @@ import common,config,localmm
 from myexception import MyException
 class AD:
 	def __init__(self):
+		self.S = dict();
 		self.q = dict();
+		self.p = dict();
 		self.x = dict();
 		self.c = dict();
 		self.l = dict();
+		self.s = dict();
 		self.poi = dict();
 
 	def init(self,fdir):
 		try:
-			self.q = localmm.readfile(fdir + '/BJHDQ.txt');
-			self.x = localmm.readfile(fdir + '/BJHDX.txt');
-			self.c = localmm.readfile(fdir + '/BJHDC.txt');
-			self.s = localmm.readfile(fdir + '/BJHDS.txt');
-			self.p = localmm.readfile(fdir + '/BJHDP.txt');
+			self.q.update(localmm.readfile(fdir + '/BJHDQ.txt'));
+			self.S.update(localmm.readfile(fdir + '/GSQ.txt'));
+			self.x.update(localmm.readfile(fdir + '/BJHDX.txt'));
+			self.x.update(localmm.readfile(fdir + '/GJH.txt'));
+			self.c.update(localmm.readfile(fdir + '/BJHDC.txt'));
+			self.s.update(localmm.readfile(fdir + '/BJHDS.txt'));
+			self.p.update(localmm.readfile(fdir + '/BJHDP.txt'));
 		except MyException as e:
 			raise e;
 
@@ -47,6 +52,9 @@ class AD:
 			elif self.c.has_key(instr):
 				tdic['scope'] = 'c';
 				taglist[idx] = tdic;
+			elif self.S.has_key(instr):
+				tdic['scope'] = 'S';
+				taglist[idx] = tdic;
 
 	def _paser_poi(self,struct):
 		inlist = struct['inlist'];
@@ -56,8 +64,9 @@ class AD:
 			tdic['type'] = 'local';
 			tdic['value'] = instr;
 			if self.p.has_key(instr):
+				idx = taglist.index(instr);
 				tdic['scope'] = 'p';
-				taglist.append(tdic);
+				taglist[idx] = tdic;
 
 	def _paser_adcode(self,struct):
 		inlist = struct['inlist'];
