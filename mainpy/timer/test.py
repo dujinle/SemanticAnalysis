@@ -44,7 +44,7 @@ tre.load_data('./tdata/TReplace.txt');
 tmood.load_data('./tdata/TMood.txt');
 
 struct = dict();
-struct['text'] = u'礼拜六'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
+struct['text'] = u'周三'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
 struct['intervals'] = list();
 struct['mood'] = list();
 struct['my_inter_id'] = 0;

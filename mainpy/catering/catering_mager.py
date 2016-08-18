@@ -14,6 +14,7 @@ sys.path.append(os.path.join(base_path,'../'));
 
 import common,config
 from CTR import CTR
+from CAT import CAT
 
 from myexception import MyException
 
@@ -24,6 +25,7 @@ class CateringMager:
 
 		# mark tag objs #
 		self.tag_objs.append(CTR());
+		self.tag_objs.append(CAT());
 
 	def init(self,dtype):
 		try:
@@ -51,17 +53,14 @@ class CateringMager:
 	def deal_data(self,fname,action,data):
 		try:
 			ret = obj = None;
-			if fname[0] == 'M':
-				obj = self.tag_objs[0];
-			elif fname[0] == 'S':
-				obj = self.tag_objs[1];
+			obj = self.tag_objs[0];
 
 			if action == 'add':
 				ret = obj._add(data);
 			elif action == 'del':
 				ret = obj._del(data);
 			elif action == 'get':
-				ret = obj._get({'type':fname});
+				ret = obj._get(None);
 				return ret;
 		except MyException as e:
 			raise e;
