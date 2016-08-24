@@ -61,9 +61,10 @@ class TimeMager:
 		struct['my_inter_id'] = 0;
 		struct['step_id'] = 0;
 		try:
+			cur_status = False;
 			while True:
 				if struct['step_id'] >= len(struct['text']):
-					self.tail.encode(struct);
+					if cur_status == True: self.tail.encode(struct);
 					break;
 				ret = 0;
 				for obj in self.tag_objs:
@@ -71,8 +72,12 @@ class TimeMager:
 					ret += obj.encode(struct);
 					if struct['step_id'] >= len(struct['text']): break;
 				if ret == -9:
-					self.tail.encode(struct);
+					if cur_status == True:
+						cur_status = False;
+						self.tail.encode(struct);
+						struct['my_inter_id'] = struct['my_inter_id'] + 1;
 					struct['step_id'] = struct['step_id'] + 1;
+				else: cur_status = True;
 			return struct;
 		except MyException as e:
 			res = common.get_dicstr(struct);

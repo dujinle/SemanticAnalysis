@@ -7,8 +7,8 @@ sys.setdefaultencoding('utf-8');
 #============================================
 ''' import MyException module '''
 base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../../../commons'));
-sys.path.append(os.path.join(base_path,'../../../'));
+sys.path.append(os.path.join(base_path,'../../../commons'));
+sys.path.append(os.path.join(base_path,'../../'));
 sys.path.append(os.path.join(base_path,'../'));
 #============================================
 import common,config
@@ -62,9 +62,10 @@ if __name__ == '__main__':
 		struct['my_inter_id'] = 0;
 		struct['step_id'] = 0;
 		idx = 0;
+		cur_status = False;
 		while True:
 			if struct['step_id'] >= len(struct['text']):
-				tt.encode(struct);
+				if cur_status == True: tt.encode(struct);
 				break;
 			tre.encode(struct);
 			ret = tof.encode(struct);
@@ -76,8 +77,12 @@ if __name__ == '__main__':
 			ret += ts.encode(struct);
 			ret += td.encode(struct);
 			if ret == -8:
-				tt.encode(struct);
+				if cur_status == True:
+					tt.encode(struct);
+					cur_status = False;
+					struct['my_inter_id'] = struct['my_inter_id'] + 1;
 				struct['step_id'] = struct['step_id'] + 1;
+			else: cur_status = True;
 		myinterval = struct['intervals'][0];
 		start = myinterval['start'];
 		end = myinterval['end'];

@@ -44,15 +44,16 @@ tre.load_data('./tdata/TReplace.txt');
 tmood.load_data('./tdata/TMood.txt');
 
 struct = dict();
-struct['text'] = u'周三'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
+struct['text'] = u'给9月2号设置一个早上8点响的闹铃'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
 struct['intervals'] = list();
 struct['mood'] = list();
 struct['my_inter_id'] = 0;
 struct['step_id'] = 0;
 idx = 0;
+cur_status = False;
 while True:
 	if struct['step_id'] >= len(struct['text']):
-		tt.encode(struct);
+		if cur_status == True: tt.encode(struct);
 		break;
 	tre.encode(struct);
 	ret = tof.encode(struct);
@@ -65,6 +66,10 @@ while True:
 	ret += td.encode(struct);
 	ret += tmood.encode(struct);
 	if ret == -9:
-		tt.encode(struct);
+		if cur_status == True:
+			tt.encode(struct);
+			cur_status = False;
+			struct['my_inter_id'] = struct['my_inter_id'] + 1;
 		struct['step_id'] = struct['step_id'] + 1;
+	else: cur_status = True;
 common.print_dic(struct);
