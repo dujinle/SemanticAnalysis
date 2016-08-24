@@ -47,7 +47,8 @@ class AlarmFname():
 				ckname_id = inlist.index(ck['mystr']);
 				break;
 		if ckname_id >= 2 and inlist[ckname_id - 1] == u'的':
-			struct['ck_name'] = inlist[ckname_id - 2];
+			if len(inlist[ckname_id - 2]) > 1:
+				struct['ck_name'] = inlist[ckname_id - 2];
 		else:
 			struct['ck_name'] = '';
 

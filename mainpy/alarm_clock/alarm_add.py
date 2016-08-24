@@ -38,6 +38,11 @@ class AlarmAdd(Base):
 			if not myclock.has_key('time') or myclock['time'] <> struct['ck_name']:
 				myclock['name'] = struct['ck_name'];
 
+		if struct.has_key('ck_name') and struct['ck_name'].find(':') <> -1:
+			struct['ck_time'] = dict();
+			struct['ck_time']['time'] = struct['ck_name'];
+			del struct['ck_name'];
+
 		if struct.has_key('ck_time'):
 			myclock['time'] = struct['ck_time']['time'];
 			self._make_getup_tag(struct,super_b);
@@ -87,9 +92,7 @@ class AlarmAdd(Base):
 					break;
 			if yes == True:
 				super_b.myclock['name'] = super_b.myclock['tname'];
-				mydic = dict();
-				mydic['value'] = super_b.myclock['time'];
-				mydic['type'] = 'time';
+				self._save_tag(super_b);
 			del super_b.myclock['tname'];
 			del super_b.myclock['question'];
 
@@ -134,11 +137,11 @@ class AlarmAdd(Base):
 			mydic['value'] = super_b.myclock['time'];
 			mydic['type'] = 'time';
 			mydic['name'] = super_b.myclock['name'];
-			sql = 'insert into mytags (jobdesc) values (' + json.dumps(mydic) + ')';
-			cur = pgsql.pg_cursor();
+			sql = 'insert into mytags (tag) values (\'' + json.dumps(mydic) + '\')';
+			cur = pgsql.pg_cursor(super_b.p_conn);
 			pgsql.pg_query(cur,sql,None);
 			pgsql.pg_commit(super_b.p_conn);
-			pgsql.pg_cursor_close(cur);
+			pgsql.pg_close_cursor(cur);
 		except Exception as e:
 			raise e;
 

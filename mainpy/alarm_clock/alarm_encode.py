@@ -61,19 +61,19 @@ class AlarmEncode(Base):
 
 	def _find_time(self,struct):
 		if struct.has_key('intervals') and len(struct['intervals']) > 0:
-			myinterval = struct['intervals'][0];
-			times = myinterval['start'];
-			if myinterval['scope'] == 'day' or myinterval['scope'] == 'month' \
-				or myinterval['scope'] == 'year':
-				tdic = dict();
-				tdic['date'] = str(times[0]) + '/' + str(times[1]) + '/' + str(times[2]);
-				tdic['type'] = myinterval['type'];
-				struct['ck_date'] = tdic;
-			if times[3] <> 0:
-				tdic = dict();
-				tdic['time'] = str(times[3]) + ':' + str(times[4]);
-				tdic['str'] = myinterval['str'];
-				struct['ck_time'] = tdic;
+			for myinterval in struct['intervals']:
+				times = myinterval['start'];
+				if myinterval['scope'] == 'day' or myinterval['scope'] == 'month' \
+					or myinterval['scope'] == 'year':
+					tdic = dict();
+					tdic['date'] = str(times[0]) + '/' + str(times[1]) + '/' + str(times[2]);
+					tdic['type'] = myinterval['type'];
+					struct['ck_date'] = tdic;
+				if times[3] <> 0:
+					tdic = dict();
+					tdic['time'] = str(times[3]) + ':' + str(times[4]);
+					tdic['str'] = myinterval['str'];
+					struct['ck_time'] = tdic;
 			del struct['intervals'];
 
 	def _analysis_date(self,struct):

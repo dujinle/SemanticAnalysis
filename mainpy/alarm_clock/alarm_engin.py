@@ -133,7 +133,7 @@ class AEngin():
 
 
 	#find this action [add del modify search other]
-	#|--|open|close|clock|no|ring|how|#
+	#|have|what|open|close|clock|no|ring|how|#
 	def _find_action(self,struct):
 		tag = 0;
 		fclock = self._find_myclock(struct,False);
@@ -165,9 +165,12 @@ class AEngin():
 			elif ck['type'] == 'clock': tag = tag | (1 << 3);
 			elif ck['type'] == 'off': tag = tag | (1 << 4);
 			elif ck['type'] == 'how': tag = tag | (1);
+			elif ck['type'] == 'have': tag = tag | (1 << 7);
+			elif ck['type'] == 'what': tag = tag | (1 << 6);
 		if tag & 6 == 6: struct['ck_action'] = 'off';
 		elif tag & 32 == 32: struct['ck_action'] = 'open';
 		elif tag & 10 == 10: struct['ck_action'] = 'open';
+		elif tag & 200 == 200: struct['ck_action'] = 'search';
 		if tag & 1 == 1 and struct.has_key('ck_action') and struct['ck_action'] == 'add':
 			struct['ck_action'] = 'help_add';
 		elif tag & 1 == 1 and struct.has_key('ck_action') and struct['ck_action'] == 'modify':
