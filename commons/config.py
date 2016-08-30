@@ -81,5 +81,8 @@ dfiles = {
 		"1":os.path.join(abspath,'data','music','MT.txt'),
 		"2":os.path.join(abspath,'data','music','MSR.txt'),
 		"3":os.path.join(abspath,'data','music','MSN.txt')
+	},
+	'Mytag':{
+		"1":os.path.join(abspath,'data','mytag','mytag.txt')
 	}
 };

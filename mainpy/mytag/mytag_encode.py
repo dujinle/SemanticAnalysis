@@ -15,8 +15,14 @@ from base import Base
 
 class MyTagEncode(Base):
 
+	def init(self,dfile):
+		try:
+			self.data = common.read_json(dfile);
+		except MyException as e:
+			raise e;
+
 	def encode(self,struct):
 		try:
-			struct['mytag'] = self.data;
+			struct['tag'] = self.data;
 		except MyException as e: raise e;
 
