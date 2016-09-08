@@ -23,7 +23,7 @@ class TSolarTerm(Base):
 			input_str = intext[step_id:];
 			mdic = self._get_match_reg(input_str);
 			if mdic is None: return -1;
-			if len(struct['intervals']) == 0:
+			if len(struct['intervals']) <= struct['my_inter_id']:
 				struct['intervals'].append(time_common._creat_empty_interval());
 
 			my_inter_id = struct['my_inter_id'];

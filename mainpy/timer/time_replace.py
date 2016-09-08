@@ -24,7 +24,7 @@ class TReplace(Base):
 
 				regstr = reg['reg'];
 				comp = re.compile(regstr);
-				match = comp.search(input_str);
+				match = comp.match(input_str);
 				if match is None: continue;
 				mdic = dict(reg);
 				mdic['mstr'] = match.group(0);
@@ -44,7 +44,7 @@ class TReplace(Base):
 					(org_str,num_str) = self._hanzi2num(mdic);
 					input_str = input_str.replace(org_str,num_str,1);
 				if mdic['func'] == 'hour_half':
-					input_str = input_str.replace(mdic['value'],u'三十分',1);
+					input_str = input_str.replace(mdic['value'],u'30分',1);
 				struct['text'] = prev_str + input_str;
 			return 0;
 		except MyException as e: raise e;

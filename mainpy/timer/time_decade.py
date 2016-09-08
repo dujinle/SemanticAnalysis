@@ -26,7 +26,7 @@ class TDecade(Base):
 			self._convert_front_date(struct);
 
 			if mdic is None: return -1;
-			if len(struct['intervals']) == 0:
+			if len(struct['intervals']) <= struct['my_inter_id']:
 				struct['intervals'].append(time_common._creat_empty_interval());
 			my_inter_id = struct['my_inter_id'];
 			my_interval = struct['intervals'][my_inter_id];
