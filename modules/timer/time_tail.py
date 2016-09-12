@@ -48,7 +48,9 @@ class TTail(Base):
 					elif mdic['dir'] == '+':
 						start[tid] = end[tid] + dnum + 1;
 						end[0] = 'null';
-					del struct['uttag']
+					my_interval['scope'] = struct['scope'];
+					my_interval['value'] = dnum;
+					del struct['uttag'];
 					del struct['scope'];
 				elif left_tag['scope'] == 'min':
 					if mdic is None: del struct['uttag'];
@@ -65,7 +67,9 @@ class TTail(Base):
 					elif mdic['dir'] == '+':
 						start[tid] = end[tid] + dnum + 1;
 						end[0] = 'null';
-					del struct['uttag']
+					my_interval['scope'] = struct['scope'];
+					my_interval['value'] = dnum;
+					del struct['uttag'];
 					del struct['scope'];
 			elif struct.has_key('intervals') and len(struct['intervals']) > 0:
 				if not struct.has_key('prev_func'): return 0;
