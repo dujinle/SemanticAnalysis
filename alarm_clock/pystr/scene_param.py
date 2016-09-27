@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import common,alarm_common,pgsql
+import common,pgsql
 import math,datetime
 from common import logging
 from myexception import MyException
@@ -251,3 +251,7 @@ def _get_random_id(total):
 	if ret == total:
 		ret = ret - 1;
 	return ret;
+
+def _set_msg(struct,datamsg):
+	msg_id = _get_random_id(len(datamsg));
+	struct['result']['msg'] = datamsg[msg_id];

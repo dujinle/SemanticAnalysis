@@ -24,11 +24,28 @@
 		"type":"ck_sbell"
 	},
 	"ck_stop":{
-		"reg":"_me_wake_le|_wake_le|_yes_le|_yes_le_yes_le|_no_call_le",
+		"reg":"_me_wake_le
+			|_wake_le
+			|_yes_le
+			|_yes_le_yes_le
+			|_no_call_le
+			|_no_noisy_le
+			|_noisy_die_le
+			|_has_what_call
+			|_too_noisy_le
+			|_too_noisy
+			|_too_call_le
+			|_stupid_clock
+			|_you_win_le
+			|_enough_le
+			|_call_what_call",
 		"type":"ck_stop"
 	},
 	"ck_delay":{
-		"reg":"_again_wake_moment|_moment_recall|_time_recall|_wait_me_time",
+		"reg":"_moment_recall
+			|_time_recall
+			|_again_sleep
+			|_waitme_time",
 		"type":"ck_delay"
 	},
 	"ck_open":{
@@ -44,7 +61,9 @@
 			|_new_agenda_clock
 			|_remand_me_time
 			|_time_remand_me
+			|_moment_remand_me
 			|_time(_remand_me)*_meeting
+			|_new_meeting_clock
 			|_call_me_time_go
 			|_new_time_go_clock
 			|_time_gout

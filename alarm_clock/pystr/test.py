@@ -16,17 +16,7 @@ import common,config
 from time_mager import TimeMager
 from tag_mager import MytagMager
 from wordseg import WordSeg
-
 from scene_engin import SEngin
-from concept import Concept
-from dist_scene import DistScene
-from scene_add import SceneAdd
-from prev_scene import PrevScene
-from scene_tadd import SceneTadd
-from scene_stop import SceneStop
-from scene_close import SceneClose
-from scene_getup import SceneGetup
-from scene_agenda import SceneAgenda
 
 wd = WordSeg();
 timer = TimeMager(wd);

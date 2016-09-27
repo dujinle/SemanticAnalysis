@@ -13,10 +13,13 @@ import pgsql
 import common
 from common import logging
 from myexception import MyException
+
 from scene_add import SceneAdd
 from scene_getup import SceneGetup
 from scene_agenda import SceneAgenda
 from scene_search import SceneSearch
+from scene_delay import SceneDelay
+from scene_stop import SceneStop
 
 from concept import Concept
 from dist_scene import DistScene
@@ -37,6 +40,8 @@ class SEngin():
 		self.scene_getup = SceneGetup();
 		self.scene_agenda = SceneAgenda();
 		self.scene_search = SceneSearch();
+		self.scene_delay = SceneDelay();
+		self.scene_stop = SceneStop();
 
 	def init(self,fdir):
 		self.scene_con.load_data(fdir + '/concept.txt');
@@ -46,6 +51,8 @@ class SEngin():
 		self.scene_getup.load_data(fdir + '/scene_getup.txt');
 		self.scene_agenda.load_data(fdir + '/scene_agenda.txt');
 		self.scene_search.load_data(fdir + '/scene_search.txt');
+		self.scene_delay.load_data(fdir + '/scene_delay.txt');
+		self.scene_stop.load_data(fdir + '/scene_stop.txt');
 
 
 	def _init(self,struct):
@@ -72,6 +79,10 @@ class SEngin():
 					self.scene_agenda.encode(struct,self);
 				if struct['ck_scene'] == 'ck_search':
 					self.scene_search.encode(struct,self);
+				if struct['ck_scene'] == 'ck_delay':
+					self.scene_delay.encode(struct,self);
+				if struct['ck_scene'] == 'ck_stop':
+					self.scene_stop.encode(struct,self);
 			else:
 				struct['result']['msg'] = u'没有明白你的要求';
 			if struct.has_key('step') and struct['step'] == 'end':
