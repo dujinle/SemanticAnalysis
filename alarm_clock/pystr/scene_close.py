@@ -9,10 +9,12 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import common,alarm_common,pgsql
+import common
 from common import logging
 from myexception import MyException
+import scene_param as SceneParam
 from base import Base
+
 class SceneClose(Base):
 
 	def encode(self,struct,super_b):
@@ -27,9 +29,8 @@ class SceneClose(Base):
 				#todo send msg......
 				if len(cks) > 0:
 					close_num = self._close_cks(cks,super_b);
-					struct['result']['msg'] = (self.data['msg']['close_succ'][0] %close_num);
-				else:
-					struct['result']['msg'] = self.data['msg']['ck_unknow'][0];
+					msg_id = SceneParam._get_random_id(len(self.data['msg']['close_succ']));
+					struct['result']['msg'] = (self.data['msg']['close_succ'][msg_id] %close_num);
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(format(e));
@@ -66,6 +67,8 @@ class SceneClose(Base):
 				else:
 					if hour == start[hid] and mins == start[mid]:
 						cks.append(ck);
+		elif struct['ttag'].find('_close_clock') <> -1:
+			cks = super_b.clocks.keys();
 		return cks;
 
 	def _close_cks(self,cks,super_b):

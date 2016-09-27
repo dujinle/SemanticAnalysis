@@ -1,9 +1,12 @@
 #通过tag组合分类不同的场景参数信息
 {
 	"ck_add":{
-		"reg":"_clock_set
+		"reg":"clock
+			|_clock_set
 			|_set_clock
 			|_new_clock
+			|_new_prep_clock
+			|_set_prep_clock
 			|_anew_open_clock
 			|_pverb_prep_clock
 			|_set_(prep)*_time_clock
@@ -22,6 +25,16 @@
 	"ck_sbell":{
 		"reg":"_bell_set_to",
 		"type":"ck_sbell"
+	},
+	"ck_prompt":{
+		"reg":"_only_call_once
+			|_call_wake_me_till
+			|_call_wake_till",
+		"type":"ck_prompt"
+	},
+	"ck_able":{
+		"reg":"_moveto_everyday_remand",
+		"type":"ck_able"
 	},
 	"ck_stop":{
 		"reg":"_me_wake_le
@@ -49,7 +62,8 @@
 		"type":"ck_delay"
 	},
 	"ck_open":{
-		"reg":"_open.*_clock",
+		"reg":"_open.*_clock
+			|_clock_set_open",
 		"type":"ck_open"
 	},
 	"ck_close":{
@@ -67,6 +81,7 @@
 			|_call_me_time_go
 			|_new_time_go_clock
 			|_time_gout
+			|_time_go
 			|_new_time_clock_info",
 		"type":"ck_agenda_add"
 	},

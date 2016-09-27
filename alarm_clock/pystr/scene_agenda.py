@@ -82,6 +82,8 @@ class SceneAgenda(Base):
 			myclock['info'] = struct['text'][tid:];
 		elif struct['ttag'].find('_meeting') <> -1:
 			myclock['info'] = self.data['meeting'];
+		elif struct['ttag'].find('_gout') <> -1:
+			myclock['info'] = self.data['gout'];
 		elif struct['ttag'].find('_go') <> -1:
 			tid = struct['inlist'].index(u'去');
 			myclock['info'] = struct['inlist'][tid + 1];

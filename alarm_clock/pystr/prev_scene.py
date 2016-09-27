@@ -12,13 +12,19 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 import common
 from myexception import MyException
 from base import Base
-
+punct = {
+	'。':'',
+	'，':''
+};
 #根据模板区分不同的场景
 class PrevScene(Base):
 
 	def encode(self,struct):
 		try:
 			self._replace_time_tag(struct);
+			for pu in punct.keys():
+				if struct['text'].find(pu) <> -1:
+					struct['text'] = struct['text'].replace(pu,punct[pu]);
 		except MyException as e: raise e;
 
 	def _replace_time_tag(self,struct):

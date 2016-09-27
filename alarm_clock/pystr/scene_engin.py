@@ -20,6 +20,10 @@ from scene_agenda import SceneAgenda
 from scene_search import SceneSearch
 from scene_delay import SceneDelay
 from scene_stop import SceneStop
+from scene_open import SceneOpen
+from scene_close import SceneClose
+from scene_prompt import ScenePrompt
+from scene_able import SceneAble
 
 from concept import Concept
 from dist_scene import DistScene
@@ -42,6 +46,10 @@ class SEngin():
 		self.scene_search = SceneSearch();
 		self.scene_delay = SceneDelay();
 		self.scene_stop = SceneStop();
+		self.scene_open = SceneOpen();
+		self.scene_close = SceneClose();
+		self.scene_prompt = ScenePrompt();
+		self.scene_able = SceneAble();
 
 	def init(self,fdir):
 		self.scene_con.load_data(fdir + '/concept.txt');
@@ -53,6 +61,10 @@ class SEngin():
 		self.scene_search.load_data(fdir + '/scene_search.txt');
 		self.scene_delay.load_data(fdir + '/scene_delay.txt');
 		self.scene_stop.load_data(fdir + '/scene_stop.txt');
+		self.scene_open.load_data(fdir + '/scene_open.txt');
+		self.scene_close.load_data(fdir + '/scene_close.txt');
+		self.scene_prompt.load_data(fdir + '/scene_prompt.txt');
+		self.scene_able.load_data(fdir + '/scene_able.txt');
 
 
 	def _init(self,struct):
@@ -83,6 +95,14 @@ class SEngin():
 					self.scene_delay.encode(struct,self);
 				if struct['ck_scene'] == 'ck_stop':
 					self.scene_stop.encode(struct,self);
+				if struct['ck_scene'] == 'ck_open':
+					self.scene_open.encode(struct,self);
+				if struct['ck_scene'] == 'ck_close':
+					self.scene_close.encode(struct,self);
+				if struct['ck_scene'] == 'ck_prompt':
+					self.scene_prompt.encode(struct,self);
+				if struct['ck_scene'] == 'ck_able':
+					self.scene_able.encode(struct,self);
 			else:
 				struct['result']['msg'] = u'没有明白你的要求';
 			if struct.has_key('step') and struct['step'] == 'end':

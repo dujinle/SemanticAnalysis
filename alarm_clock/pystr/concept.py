@@ -20,7 +20,6 @@ class Concept(Base):
 			if not struct.has_key('inlist'): return None;
 			if not struct.has_key('clocks'): struct['clocks'] = list();
 			clocks = struct['clocks'];
-
 			for st in struct['inlist']:
 				if st == 'time':
 					tdic = dict();

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import sys,os,json,copy
-import re,time
+import re,time,math
 reload(sys);
 sys.setdefaultencoding('utf-8');
 #============================================
@@ -9,10 +9,10 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import common,alarm_common
+import common
 from myexception import MyException
 from common import logging
-
+import scene_param as SceneParam
 from base import Base
 
 #直接设置闹铃生效日期
@@ -22,26 +22,33 @@ class SceneAble(Base):
 		try:
 			logging.info('go into set alarm date able......');
 			if super_b.myclock is None:
-				struct['result']['msg'] = self.data['msg']['ck_unknow'][0];
+				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
 				struct['code'] = 'exit';
 				return None;
-			if not sturct.has_key('step'): sturct['step'] = 'start';
+			if not struct.has_key('step'): struct['step'] = 'start';
 
 			if struct['step'] == 'start':
-				self._encode_date_able(struct,super_b);
-				self._set_able(struct,super_b);
+				self._encode_able(struct,super_b);
 				struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(format(e));
+
+	def _encode_able(self,struct,super_b):
+		myclock = super_b.myclock;
+		if struct['ttag'].find('everyday') <> -1:
+			tdic = dict();
+			tdic['type'] = 'everyday';
+			tdic['able'] = math.pow(2,7);
+			myclock['able'] = tdic;
+			SceneParam._set_msg(struct,self.data['msg']['set_able_succ']);
+
 
 	def _encode_date_able(self,struct,super_b):
 		myclock = super_b.myclock;
 		tdic = dict();
 		if myclock.has_key('able'): tdic = myclock['able'];
 
-		tag = '';
-		for ck in struct['clocks']:
-			tag = tag + ck['type'];
+		tag = struct['ttag'];
 		if tag.find('_workday') <> -1:
 			tdic['type'] = 'workday'
 			tdic['able'] = math.pow(2,5) - 1;
