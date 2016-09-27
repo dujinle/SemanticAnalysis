@@ -56,7 +56,7 @@
 	},
 	"ck_delay":{
 		"reg":"_moment_recall
-			|_time_recall
+			|_time_you_recall
 			|_again_sleep
 			|_waitme_time",
 		"type":"ck_delay"
@@ -71,7 +71,7 @@
 		"type":"ck_close"
 	},
 	"ck_agenda_add":{
-		"reg":"_new_agenda_remand
+		"reg":"_new(_prep)*_agenda_remand
 			|_new_agenda_clock
 			|_remand_me_time
 			|_time_remand_me
@@ -90,6 +90,7 @@
 			|_cancle_time_all_clock
 			|_cancle_time_clock
 			|_time_clock_no_le
+			|_only_left_time
 			|_time_all_no
 			|_nouse_del
 			|_time_rest

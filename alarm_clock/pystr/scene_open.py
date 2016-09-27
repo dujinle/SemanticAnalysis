@@ -47,6 +47,6 @@ class SceneOpen(Base):
 		if tnum == 0:
 			SceneParam._set_msg(struct,self.data['msg']['no_close_ck']);
 		else:
-			msg_id = SceneParam._get_random_id(self.data['msg']['open_num_ck']);
+			msg_id = SceneParam._get_random_id(len(self.data['msg']['open_num_ck']));
 			struct['result']['msg'] = self.data['msg']['open_num_ck'][msg_id];
 

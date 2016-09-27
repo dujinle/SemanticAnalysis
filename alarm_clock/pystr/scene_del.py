@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import common,alarm_common,pgsql
+import common,datetime,math
 from common import logging
 from myexception import MyException
 from base import Base
@@ -28,7 +28,7 @@ class SceneDel(Base):
 				if len(cks) > 0:
 					self._del_cks(cks,super_b,struct);
 				else:
-					struct['result']['msg'] = self.data['msg']['ck_unknow'][0];
+					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(format(e));
@@ -59,7 +59,9 @@ class SceneDel(Base):
 		mid = 4;
 		if struct.has_key('intervals'):
 			inters = struct['intervals'];
-			if struct['ttag'].find('_time_clock') <> -1 or struct['ttag'].find('_time_all_clock') <> -1:
+			if struct['ttag'].find('_time_clock') <> -1\
+				or struct['ttag'].find('_time_all_clock') <> -1\
+				or struct['ttag'].find('_only_left_time') <> -1:
 				if inters[0]['scope'] == 'hour':
 				#找到某段时间的闹钟 晚上所有的闹钟
 					start = inters[0]['start'];
@@ -83,7 +85,7 @@ class SceneDel(Base):
 					if end[did] - start[did] > 1: able = able + math.pow(2,week + 1);
 					for ck in super_b.clocks:
 						clock = super_b.clocks[ck];
-						if clock.has_key('able') and clock['able'] == able:
+						if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 							cks.append(ck);
 					del struct['intervals'];
 					return cks;
@@ -108,3 +110,4 @@ class SceneDel(Base):
 			elif struct['ttag'].find('_just_that') <> -1:
 				if not super_b.prev_ck is None:
 					cks.append(super_b.prev_ck);
+		return cks

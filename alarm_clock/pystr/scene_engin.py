@@ -24,6 +24,9 @@ from scene_open import SceneOpen
 from scene_close import SceneClose
 from scene_prompt import ScenePrompt
 from scene_able import SceneAble
+from scene_del import SceneDel
+from scene_madd import SceneMadd
+from scene_time import SceneTime
 
 from concept import Concept
 from dist_scene import DistScene
@@ -50,6 +53,9 @@ class SEngin():
 		self.scene_close = SceneClose();
 		self.scene_prompt = ScenePrompt();
 		self.scene_able = SceneAble();
+		self.scene_del = SceneDel();
+		self.scene_madd = SceneMadd();
+		self.scene_time = SceneTime();
 
 	def init(self,fdir):
 		self.scene_con.load_data(fdir + '/concept.txt');
@@ -65,6 +71,9 @@ class SEngin():
 		self.scene_close.load_data(fdir + '/scene_close.txt');
 		self.scene_prompt.load_data(fdir + '/scene_prompt.txt');
 		self.scene_able.load_data(fdir + '/scene_able.txt');
+		self.scene_del.load_data(fdir + '/scene_del.txt');
+		self.scene_madd.load_data(fdir + '/scene_madd.txt');
+		self.scene_time.load_data(fdir + './scene_time.txt');
 
 
 	def _init(self,struct):
@@ -103,6 +112,12 @@ class SEngin():
 					self.scene_prompt.encode(struct,self);
 				if struct['ck_scene'] == 'ck_able':
 					self.scene_able.encode(struct,self);
+				if struct['ck_scene'] == 'ck_del':
+					self.scene_del.encode(struct,self);
+				if struct['ck_scene'] == 'ck_madd':
+					self.scene_madd.encode(struct,self);
+				if struct['ck_scene'] == 'ck_mo_time':
+					self.scene_time.encode(struct,self);
 			else:
 				struct['result']['msg'] = u'没有明白你的要求';
 			if struct.has_key('step') and struct['step'] == 'end':

@@ -13,14 +13,8 @@ import common,pgsql
 import math,datetime
 from common import logging
 from myexception import MyException
-
-data = dict();
-def _load_data(dfile):
-	global data;
-	try:
-		data = common.read_json(dfile);
-	except Exception as e:
-		raise MyException(format(e));
+dfile = os.path.join(base_path,'../tdata/scene_param.txt')
+data = common.read_json(dfile);
 
 def _if_exist(struct,super_b):
 	if struct.has_key('ck_name'):
@@ -237,8 +231,8 @@ def _get_cks_num(struct):
 	return inum;
 
 def _get_cur_week():
-	time = time.localtime();
-	return time[6];
+	times = time.localtime();
+	return times[6];
 
 def _get_cur_time(): return time.localtime();
 

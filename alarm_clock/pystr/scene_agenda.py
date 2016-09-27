@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,json,copy
-import re,time
+import sys,os,json
+import re
 reload(sys);
 sys.setdefaultencoding('utf-8');
 #============================================
@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import common,pgsql
+import common,math
 from common import logging
 from myexception import MyException
 from base import Base
@@ -29,7 +29,7 @@ class SceneAgenda(Base):
 				logging.info('the alarm clock is exist so add failed!')
 				return None;
 			elif struct['step'] == 'start':
-				if super_b.myclock is None: super_b.myclock = dict();
+				super_b.myclock = dict();
 				self._set_agenda_info(struct,super_b);
 				if struct['ttag'].find('time') == -1:
 					msg_id = SceneParam._get_random_id(len(self.data['msg']['set_time']));
@@ -70,6 +70,11 @@ class SceneAgenda(Base):
 		if struct.has_key('ck_able'):
 			myclock['able'] = struct['ck_able'];
 			del struct['ck_able'];
+		elif not struct.has_key('ck_able'):
+			week = SceneParam._get_cur_week();
+			myclock['able'] = dict();
+			myclock['able']['type'] = 'week';
+			myclock['able']['able'] = math.pow(2,week);
 		return 0;
 
 	def _set_agenda_info(self,struct,super_b):

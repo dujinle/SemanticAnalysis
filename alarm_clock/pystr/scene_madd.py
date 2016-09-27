@@ -9,7 +9,8 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import common,alarm_common,pgsql,scene_param
+import common
+import scene_param as SceneParam
 from common import logging
 from myexception import MyException
 from base import Base
@@ -48,23 +49,6 @@ class SceneMadd(Base):
 	def _set_time(self,struct,super_b):
 		myclock = super_b.myclock;
 		if struct.has_key('ck_time'):
-			times = struct['ck_time']['time'];
-			hour = int(times.split(':')[0]);
-			if hour >= self.data['common']['getup_time'][0] \
-				and hour <= self.data['common']['getup_time'][1]:
-				struct['ck_scene'] = 'ck_getup_add';
-				myclock['type'] = 'getup';
-				#时间设置完成回应信息
-				struct['result']['msg'] = self.data['msg']['add_getup_ck'];
-				#todo send msg......
-				self._send_msg(struct['result'])
-			else:
-				struct['ck_scene'] = 'ck_agenda_add';
-				myclock['type'] = 'agenda';
-				#时间设置完成回应信息
-				struct['result']['msg'] = self.data['msg']['add_agenda_ck'];
-				#todo send msg......
-				self._send_msg(struct['result'])
 			myclock['time'] = struct['ck_time']['time'];
 			del struct['ck_time'];
 		else:
@@ -79,18 +63,18 @@ class SceneMadd(Base):
 			del struct['ck_able'];
 
 	def _add_more_cks(self,num,struct,super_b):
-		idx = 0;
+		onum = num;
 		while True:
-			if idx >= num: break;
+			if num <= 0: break;
 			super_b.myclock = dict();
 			if len(struct['intervals']) <> num:
 				struct['result']['msg'] = self.data['msg']['less_time'][0];
-				break;
+				return None;
 			SceneParam._find_time(struct);
 			self._set_time(struct,super_b);
-			idx = idx + 1;
+			num = num - 1;
 			super_b.clocks[super_b.myclock['time']] = super_b.myclock;
 			del struct['intervals'][0];
 		if struct.has_key('intervals'): del struct['intervals'];
-		struct['result']['msg'] = (self.data['msg']['madd_succ'][0] %(num));
+		struct['result']['msg'] = (self.data['msg']['madd_succ'][0] %(onum));
 

@@ -28,6 +28,13 @@ class Concept(Base):
 					struct['text'] = struct['text'].replace('time',tdic['mystr'],1);
 					clocks.append(tdic);
 					del struct['rep'][0];
+				elif st.find('time') <> -1:
+					tdic = dict();
+					tdic['type'] = '_time';
+					tdic['mystr'] = struct['rep'][0];
+					struct['text'] = struct['text'].replace('time',tdic['mystr']);
+					clocks.append(tdic);
+					del struct['rep'][0];
 				for key in self.data.keys():
 					self._match_item(st,clocks,key);
 			if struct.has_key('rep'): del struct['rep'];

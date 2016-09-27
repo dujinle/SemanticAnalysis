@@ -9,7 +9,8 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import common,alarm_common,pgsql,scene_param
+import common
+import scene_param as SceneParam
 from common import logging
 from myexception import MyException
 from base import Base
@@ -44,7 +45,7 @@ class SceneTime(Base):
 
 	def _change_time(self,cks,num,scope,tdir,super_b):
 		for ck in cks:
-			clock = super_b.clocks[ck]:
+			clock = super_b.clocks[ck];
 			time = clock['time'];
 			tarray = time.split(':');
 			hour = int(tarray[0]);
