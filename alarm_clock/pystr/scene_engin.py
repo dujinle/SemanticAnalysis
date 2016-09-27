@@ -1,0 +1,82 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
+import sys,os,json,copy
+import re,time
+reload(sys);
+sys.setdefaultencoding('utf-8');
+#============================================
+''' import MyException module '''
+base_path = os.path.dirname(__file__);
+sys.path.append(os.path.join(base_path,'../../commons'));
+#============================================
+import pgsql
+import common
+from common import logging
+from myexception import MyException
+from scene_add import SceneAdd
+from scene_getup import SceneGetup
+from scene_agenda import SceneAgenda
+from scene_search import SceneSearch
+
+from concept import Concept
+from dist_scene import DistScene
+from prev_scene import PrevScene
+
+class SEngin():
+
+	def __init__(self,wordseg):
+		self.clocks = dict();
+		self.myclock = None;
+
+		self.scene_con = Concept();
+		self.dist_scene = DistScene();
+		self.prev_scene = PrevScene();
+		self.wordseg = wordseg;
+
+		self.scene_add = SceneAdd();
+		self.scene_getup = SceneGetup();
+		self.scene_agenda = SceneAgenda();
+		self.scene_search = SceneSearch();
+
+	def init(self,fdir):
+		self.scene_con.load_data(fdir + '/concept.txt');
+		self.dist_scene.load_data(fdir + '/dist_scene.txt');
+
+		self.scene_add.load_data(fdir + '/scene_add.txt');
+		self.scene_getup.load_data(fdir + '/scene_getup.txt');
+		self.scene_agenda.load_data(fdir + '/scene_agenda.txt');
+		self.scene_search.load_data(fdir + '/scene_search.txt');
+
+
+	def _init(self,struct):
+		if struct.has_key('clocks'): del struct['clocks'];
+		if struct.has_key('ck_name'): del struct['ck_name'];
+		if struct.has_key('ck_time'): del struct['ck_time'];
+		if struct.has_key('result'): struct['result'] = dict();
+		if struct.has_key('ttag'): del struct['ttag'];
+
+	def encode(self,struct):
+		try:
+			self._init(struct);
+			self.prev_scene.encode(struct);
+			struct['inlist'] = self.wordseg.tokens(struct['text']);
+
+			self.scene_con.encode(struct);
+			self.dist_scene.encode(struct);
+			if struct.has_key('ck_scene'):
+				if struct['ck_scene'] == 'ck_add':
+					self.scene_add.encode(struct,self);
+				if struct['ck_scene'] == 'ck_getup_add':
+					self.scene_getup.encode(struct,self);
+				if struct['ck_scene'] == 'ck_agenda_add':
+					self.scene_agenda.encode(struct,self);
+				if struct['ck_scene'] == 'ck_search':
+					self.scene_search.encode(struct,self);
+			else:
+				struct['result']['msg'] = u'没有明白你的要求';
+			if struct.has_key('step') and struct['step'] == 'end':
+				del struct['ck_scene'];
+				del struct['step']
+			struct['cks'] = self.clocks;
+		except Exception as e:
+			raise MyException(format(e));

@@ -1,0 +1,20 @@
+#添加闹钟场景设置
+{
+	"common":{
+		"getup_time":[5,9]
+	},
+	"scene":{
+		"getup":"起床",
+		"agenda":"日程"
+	},
+	"info":["内容","事项","名称"],
+	"meeting":"会议",
+	"drink":"喝",
+	"msg":{
+		"start_msg":["好的"],
+		"set_time":["请设置闹钟时间"],
+		"ck_exist":["闹钟已经存在"],
+		"unknow_time":["没的时间啊我走了"],
+		"set_succ":["成功设置%s提醒"]
+	}
+}
