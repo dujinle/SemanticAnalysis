@@ -40,11 +40,11 @@ tef.load_data('./tdata/TEFestival.txt');
 ts.load_data('./tdata/TSolarterm.txt');
 td.load_data('./tdata/TDecade.txt');
 tof.load_data('./tdata/TFront.txt');
-tre.load_data('./tdata/TReplace.txt');
+tre.load_data('./tdata/TReplace.txt.han');
 tmood.load_data('./tdata/TMood.txt');
 
 struct = dict();
-struct['text'] = u'5分钟后'#的的10点半给9月2号设置一个早上8点响的闹铃'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
+struct['text'] = u'一个小时后'#的的10点半给9月2号设置一个早上8点响的闹铃'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
 struct['intervals'] = list();
 struct['mood'] = list();
 struct['my_inter_id'] = 0;

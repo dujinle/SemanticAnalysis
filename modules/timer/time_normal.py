@@ -152,7 +152,7 @@ class TBucket(Base):
 				end = time_common._list_copy(curtime,my_interval['end'],idx);
 				start[idx] = curtime[idx] + left_tag['interval'][0];
 				end[idx] = curtime[idx] + left_tag['interval'][1];
-				struct['scope'] = 'year';
+				struct['scope'] = left_tag['scope'];
 			my_interval['str'] = my_interval['str'] + left_tag['mstr'];
 			if not my_interval.has_key('type'): my_interval['type'] = 'time_nt';
 			time_common._make_sure_time(start,idx);

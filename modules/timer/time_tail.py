@@ -33,44 +33,28 @@ class TTail(Base):
 			if struct.has_key('uttag') and struct['prev_func'] == 'time_ut':
 				left_tag = struct['uttag'];
 				tid = time_common.tmenu[left_tag['scope']]
-				if left_tag['scope'] == 'day' and left_tag['mstr'].find(u'天') <> -1:
-					if mdic is None: del struct['uttag'];
-					struct['step_id'] = struct['step_id'] + 1;
-					my_interval['str'] = my_interval['str'] + left_tag['mstr'];
-					my_interval['str'] = my_interval['str'] + mdic['mstr'];
-					for idx,i in enumerate(start):
-						start[idx] = end[idx] = curtime[idx];
-						if tid == idx: break;
-					dnum = int(left_tag['num']);
-					if mdic['dir'] == '-':
-						end[tid] = start[tid] - dnum;
-						start[0] = 'null';
-					elif mdic['dir'] == '+':
-						start[tid] = end[tid] + dnum + 1;
-						end[0] = 'null';
-					my_interval['scope'] = struct['scope'];
-					my_interval['value'] = dnum;
+				if mdic is None:
 					del struct['uttag'];
-					del struct['scope'];
-				elif left_tag['scope'] == 'min':
-					if mdic is None: del struct['uttag'];
+					my_interval.update(left_tag);
 					struct['step_id'] = struct['step_id'] + 1;
-					my_interval['str'] = my_interval['str'] + left_tag['mstr'];
-					my_interval['str'] = my_interval['str'] + mdic['mstr'];
-					for idx,i in enumerate(start):
-						start[idx] = end[idx] = curtime[idx];
-						if tid == idx: break;
-					dnum = int(left_tag['num']);
-					if mdic['dir'] == '-':
-						end[tid] = start[tid] - dnum;
-						start[0] = 'null';
-					elif mdic['dir'] == '+':
-						start[tid] = end[tid] + dnum + 1;
-						end[0] = 'null';
-					my_interval['scope'] = struct['scope'];
-					my_interval['value'] = dnum;
-					del struct['uttag'];
-					del struct['scope'];
+					return 0;
+				struct['step_id'] = struct['step_id'] + mdic['slen'];
+				my_interval['str'] = my_interval['str'] + left_tag['mstr'];
+				my_interval['str'] = my_interval['str'] + mdic['mstr'];
+				for idx,i in enumerate(start):
+					start[idx] = end[idx] = curtime[idx];
+					if tid == idx: break;
+				dnum = int(left_tag['num']);
+				if mdic['dir'] == '-':
+					end[tid] = start[tid] - dnum;
+					start[0] = 'null';
+				elif mdic['dir'] == '+':
+					start[tid] = end[tid] + dnum;
+					end[0] = 'null';
+				my_interval['scope'] = struct['scope'];
+				my_interval['value'] = dnum;
+				del struct['uttag'];
+				del struct['scope'];
 			elif struct.has_key('intervals') and len(struct['intervals']) > 0:
 				if not struct.has_key('prev_func'): return 0;
 				tid = time_common.tmenu[struct['scope']];
@@ -87,7 +71,7 @@ class TTail(Base):
 					elif mdic['dir'] == '+':
 						start[tid] = end[tid];
 						end[0] = 'null';
-					struct['step_id'] = struct['step_id'] + 1;
+					struct['step_id'] = struct['step_id'] + mdic['slen'];
 					my_interval['str'] = my_interval['str'] + mdic['mstr'];
 				my_interval['scope'] = struct['scope'];
 				del struct['scope'];
@@ -98,14 +82,15 @@ class TTail(Base):
 		except MyException as e: raise e;
 
 	def _get_match_reg(self,inputstr):
-		prev = u'前';
-		tail = u'后';
+		prev = u'[以之]*前';
+		tail = u'[以之]*后';
 		comp = re.compile(prev);
 		match = comp.match(inputstr);
 		if not match is None:
 			mydic = dict();
 			mydic['mstr'] = match.group(0);
 			mydic['dir'] = '-';
+			mydic['slen'] = len(mydic['mstr']);
 			return mydic;
 		comp = re.compile(tail);
 		match = comp.match(inputstr);
@@ -113,6 +98,7 @@ class TTail(Base):
 			mydic = dict();
 			mydic['mstr'] = match.group(0);
 			mydic['dir'] = '+';
+			mydic['slen'] = len(mydic['mstr']);
 			return mydic;
 		return None;
 
