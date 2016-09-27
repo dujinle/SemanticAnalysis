@@ -36,6 +36,7 @@ class TTail(Base):
 				if mdic is None:
 					del struct['uttag'];
 					my_interval.update(left_tag);
+					my_interval['str'] = my_interval['str'] + left_tag['mstr'];
 					struct['step_id'] = struct['step_id'] + 1;
 					return 0;
 				struct['step_id'] = struct['step_id'] + mdic['slen'];
