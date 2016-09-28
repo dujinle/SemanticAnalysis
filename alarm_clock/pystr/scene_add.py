@@ -78,6 +78,7 @@ class SceneAdd(Base):
 			struct['result']['msg'] = self.data['msg']['unknow_time'][msg_id];
 			struct['step'] = 'end';
 			return -1;
+		if struct.has_key('intervals'): del struct['intervals'];
 		return 0;
 
 	def _set_able(self,struct,super_b):

@@ -81,4 +81,5 @@ class SceneGetup(Base):
 		if struct.has_key('ck_able'):
 			myclock['able'] = struct['ck_able'];
 			del struct['ck_able'];
+		if struct.has_key('intervals'): del struct['intervals'];
 		return 0;

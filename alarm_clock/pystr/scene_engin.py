@@ -31,6 +31,7 @@ from scene_time import SceneTime
 from concept import Concept
 from dist_scene import DistScene
 from prev_scene import PrevScene
+import scene_param as SceneParam
 
 class SEngin():
 
@@ -83,6 +84,16 @@ class SEngin():
 		if struct.has_key('result'): struct['result'] = dict();
 		if struct.has_key('ttag'): del struct['ttag'];
 
+	def _tail(self,struct):
+		if struct.has_key('clocks'): del struct['clocks'];
+		if struct.has_key('ck_name'): del struct['ck_name'];
+		if struct.has_key('ck_time'): del struct['ck_time'];
+		if struct.has_key('ttag'): del struct['ttag'];
+	#	if struct.has_key('inlist'): del struct['inlist'];
+		if struct.has_key('tag'): del struct['tag'];
+		if struct.has_key('mood'): del struct['mood'];
+
+
 	def encode(self,struct):
 		try:
 			self._init(struct);
@@ -124,5 +135,7 @@ class SEngin():
 				del struct['ck_scene'];
 				del struct['step']
 			struct['cks'] = self.clocks;
+			SceneParam._degbu_info(struct);
+			self._tail(struct);
 		except Exception as e:
 			raise MyException(format(e));

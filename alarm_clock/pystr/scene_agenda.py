@@ -75,6 +75,7 @@ class SceneAgenda(Base):
 			myclock['able'] = dict();
 			myclock['able']['type'] = 'week';
 			myclock['able']['able'] = math.pow(2,week);
+		if struct.has_key('intervals'): del struct['intervals'];
 		return 0;
 
 	def _set_agenda_info(self,struct,super_b):

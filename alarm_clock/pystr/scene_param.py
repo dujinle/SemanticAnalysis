@@ -129,32 +129,32 @@ def _find_cks_bytime(struct,super_b):
 	end = inter['end'];
 
 	able = 0;
-	idx = start[hid];
+	hid = 3;
+	mid = 4;
+	idx = start[2];
 	while True:
-		if able == 0 and idx == end[hid]:
+		if able == 0 and idx == end[2]:
 			if start[0] == 'null':
-				week = SceneParam._get_week(end[0],end[1],end[2]);
+				week = _get_week(end[0],end[1],end[2]);
 				able = math.pow(2,week);
 				break;
 			elif end[0] == 'null':
-				week = SceneParam._get_week(start[0],start[1],start[2]);
+				week = _get_week(start[0],start[1],start[2]);
 				able = math.pow(2,week);
 				break;
 			else:
-				week = SceneParam._get_week(start[0],start[1],start[2]);
+				week = _get_week(start[0],start[1],start[2]);
 				able = math.pow(2,week);
 				break;
-		elif idx == end[hid]: break;
-		week = SceneParam._get_week(end[0],end[1],idx);
+		elif idx == end[2]: break;
+		week = _get_week(end[0],end[1],idx);
 		able = able + math.pow(2,week);
 		idx = idx + 1;
-
-	hid = 3;
-	mid = 4;
 	for ck in super_b.clocks:
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);
 		mins = int(clock['time'].split(':')[1]);
+		print able,clock['time'],clock['able'],start,end
 		if start[0] == 'null':
 			if hour < end[hid] or (hour == end[hid] and mins <= end[mid]):
 				if clock.has_key('able') and clock['able']['able'] == able:
@@ -165,8 +165,8 @@ def _find_cks_bytime(struct,super_b):
 					cks.append(ck);
 		else:
 			if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
-				if hour < end[hid] or (hour == end[hid] and end[mid] >= mins):
-					if clock.has_key('able') and clock['able']['able'] == able:
+				if hour < end[hid]:
+					if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 						cks.append(ck);
 	return cks;
 
@@ -249,3 +249,25 @@ def _get_random_id(total):
 def _set_msg(struct,datamsg):
 	msg_id = _get_random_id(len(datamsg));
 	struct['result']['msg'] = datamsg[msg_id];
+
+def _degbu_info(struct):
+	if struct.has_key('clocks'):
+		debug_strs = ''
+		for ck in struct['clocks']:
+			debug_strs = debug_strs + '<' + ck['mystr'] + '>';
+		struct['debug_strs'] = debug_strs;
+		del struct['clocks'];
+	if struct.has_key('ttag'):
+		debug_strs = ''
+		tarray = struct['ttag'].split('_');
+		for tag in tarray:
+			if tag == '': continue;
+			debug_strs = debug_strs + '<' + tag + '>';
+		struct['debug_tag'] = debug_strs;
+		del struct['ttag'];
+	if struct.has_key('cks'):
+		cks = list();
+		for ck in struct['cks'].keys():
+			clock = struct['cks'][ck];
+			cks.append(ck + '|' + clock['time']);
+		struct['cks'] = cks;

@@ -32,11 +32,13 @@ class SceneTime(Base):
 
 	def _change_cks(self,struct,super_b):
 		if struct['ttag'].find('_ahead_time_call') <> -1:
-			self._change_time_bytag('_ahead_time_call',struct,super_b,'-');
+			self._change_time_bytag('_ahead_time_call',struct,super_b,'prev');
+		elif struct['ttag'].find('_ahead_time_remand') <> -1:
+			self._change_time_bytag('_ahead_time_remand',struct,super_b,'prev');
 		elif struct['ttag'].find('_defer_time') <> -1:
-			self._change_time_bytag('_defer_time',struct,super_b,'+');
+			self._change_time_bytag('_defer_time',struct,super_b,'after');
 		elif struct['ttag'].find('_pass_time_recall') <> -1:
-			self._change_time_bytag('_pass_time_recall',struct,super_b,'+');
+			self._change_time_bytag('_pass_time_recall',struct,super_b,'after');
 		elif struct['ttag'].find('_moveto_time') <> -1:
 			self._reset_ck_bytag('_moveto_time',struct,super_b);
 		elif struct['ttag'].find('_info_swap') <> -1:
@@ -51,11 +53,11 @@ class SceneTime(Base):
 			hour = int(tarray[0]);
 			tmin = int(tarray[1]);
 			if scope == 'min':
-				if tdic == '-': tmin = tmin - num;
-				elif tdic == '+': tmin = tmin + num;
+				if tdir == 'prev': tmin = tmin - int(num);
+				elif tdir == 'after': tmin = tmin + int(num);
 			elif scope == 'hour':
-				if tdic == '-': hour = hour - num;
-				elif tdic == '+': tmin = tmin + num;
+				if tdir == 'prev': hour = hour - int(num);
+				elif tdir == 'after': hour = hour + int(num);
 			if tmin >= 60:
 				tmin = tmin - 60;
 				hour = hour + 1;
@@ -77,16 +79,17 @@ class SceneTime(Base):
 			struct['result']['msg'] = self.data['msg']['ck_unknow'][0];
 			return None;
 		elif cks is None or len(cks) == 0:
+			cks = list();
 			cks.append(super_b.myclock['key']);
 		inters = struct['intervals'][0];
 		if not inters.has_key('num'):
 			struct['result']['msg'] = self.data['msg']['invalid_com'][0];
 			return None;
-		self._change_time(cks,inters['num'],inters['scope'],tdir);
-		if tdir == '-':
-			struct['result']['msg'] = (self.data['msg']['ahead_succ'][0] %(inters['num'],self.data[inters['scope']]));
-		elif tdir == '+':
-			struct['result']['msg'] = (self.data['msg']['defer_succ'][0] %(inters['num'],self.data[inters['scope']]));
+		self._change_time(cks,inters['num'],inters['scope'],tdir,super_b);
+		if tdir == 'prev':
+			struct['result']['msg'] = (self.data['msg']['ahead_succ'][0] %(int(inters['num']),self.data[inters['scope']]));
+		elif tdir == 'after':
+			struct['result']['msg'] = (self.data['msg']['defer_succ'][0] %(int(inters['num']),self.data[inters['scope']]));
 
 	def _swap_cks_info(self,tag,struct,super_b):
 		end = struct['ttag'].find(tag);
