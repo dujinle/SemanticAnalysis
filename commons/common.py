@@ -20,7 +20,7 @@ def read_json(dfile):
 		line = fid.readline();
 		if not line:
 			break;
-		line = line.strip('\n');
+		line = line.replace('\r','').replace('\n','').replace('\t','');
 		if len(line) <= 0 or line[0] == '#':
 			continue;
 		ondata.append(line);

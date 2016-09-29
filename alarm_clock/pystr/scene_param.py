@@ -212,6 +212,15 @@ def _find_cks_byinfo(struct,super_b):
 		cinfo = struct['text'][:cinfo_id];
 		if super_b.clocks.has_key(cinfo):
 			cks.append(cinfo);
+	return cks;
+
+def _find_cks_bytype(ttype,super_b):
+	cks = list();
+	for ck in super_b.clocks.keys():
+		clock = super_b.clocks[ck];
+		if clock.has_key('type') and clock['type'] == ttype:
+			cks.append(ck);
+	return cks;
 
 def _get_match_str(struct,tag):
 	comp = re.compile(data[tag]['str']);
@@ -265,9 +274,9 @@ def _degbu_info(struct):
 			debug_strs = debug_strs + '<' + tag + '>';
 		struct['debug_tag'] = debug_strs;
 		del struct['ttag'];
-	if struct.has_key('cks'):
+	if struct.has_key('mcks'):
 		cks = list();
-		for ck in struct['cks'].keys():
-			clock = struct['cks'][ck];
+		for ck in struct['mcks'].keys():
+			clock = struct['mcks'][ck];
 			cks.append(ck + '|' + clock['time']);
 		struct['cks'] = cks;

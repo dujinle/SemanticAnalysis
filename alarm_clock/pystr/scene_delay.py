@@ -14,8 +14,8 @@ from myexception import MyException
 from common import logging
 import scene_param as SceneParam
 
-from base import Base
-class SceneDelay(Base):
+from scene_base import SceneBase
+class SceneDelay(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:

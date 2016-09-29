@@ -27,6 +27,8 @@ from scene_able import SceneAble
 from scene_del import SceneDel
 from scene_madd import SceneMadd
 from scene_time import SceneTime
+from scene_bell import SceneBell
+from scene_sbell import SceneSBell
 
 from concept import Concept
 from dist_scene import DistScene
@@ -57,6 +59,8 @@ class SEngin():
 		self.scene_del = SceneDel();
 		self.scene_madd = SceneMadd();
 		self.scene_time = SceneTime();
+		self.scene_bell = SceneBell();
+		self.scene_sbell = SceneSBell();
 
 	def init(self,fdir):
 		self.scene_con.load_data(fdir + '/concept.txt');
@@ -74,7 +78,9 @@ class SEngin():
 		self.scene_able.load_data(fdir + '/scene_able.txt');
 		self.scene_del.load_data(fdir + '/scene_del.txt');
 		self.scene_madd.load_data(fdir + '/scene_madd.txt');
-		self.scene_time.load_data(fdir + './scene_time.txt');
+		self.scene_time.load_data(fdir + '/scene_time.txt');
+		self.scene_bell.load_data(fdir + '/scene_bell.txt');
+		self.scene_sbell.load_data(fdir + '/scene_sbell.txt');
 
 
 	def _init(self,struct):
@@ -129,12 +135,16 @@ class SEngin():
 					self.scene_madd.encode(struct,self);
 				if struct['ck_scene'] == 'ck_mo_time':
 					self.scene_time.encode(struct,self);
+				if struct['ck_scene'] == 'ck_cbell':
+					self.scene_bell.encode(struct,self);
+				if struct['ck_scene'] == 'ck_sbell':
+					self.scene_sbell.encode(struct,self);
 			else:
 				struct['result']['msg'] = u'没有明白你的要求';
 			if struct.has_key('step') and struct['step'] == 'end':
 				del struct['ck_scene'];
 				del struct['step']
-			struct['cks'] = self.clocks;
+			struct['mcks'] = self.clocks;
 			SceneParam._degbu_info(struct);
 			self._tail(struct);
 		except Exception as e:

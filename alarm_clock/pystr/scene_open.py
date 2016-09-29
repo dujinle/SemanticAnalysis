@@ -13,9 +13,9 @@ import common
 from myexception import MyException
 from common import logging
 import scene_param as SceneParam
-from base import Base
+from scene_base import SceneBase
 
-class SceneOpen(Base):
+class SceneOpen(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:

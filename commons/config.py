@@ -76,7 +76,7 @@ dfiles = {
 		"1":os.path.join(abspath,'data','flight','FT.txt'),
 		"2":os.path.join(abspath,'data','flight','AIR.txt')
 	},
-	'Alarm':os.path.join(abspath,'data','alarm'),
+	'Alarm':os.path.join(abspath,'alarm_clock','tdata'),
 	'Music':{
 		"1":os.path.join(abspath,'data','music','MT.txt'),
 		"2":os.path.join(abspath,'data','music','MSR.txt'),

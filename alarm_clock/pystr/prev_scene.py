@@ -11,13 +11,13 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
 import common
 from myexception import MyException
-from base import Base
+from scene_base import SceneBase
 punct = {
 	'。':'',
 	'，':''
 };
 #根据模板区分不同的场景
-class PrevScene(Base):
+class PrevScene(SceneBase):
 
 	def encode(self,struct):
 		try:

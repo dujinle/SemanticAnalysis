@@ -9,81 +9,104 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import common
+import common,datetime
 from myexception import MyException
 from common import logging
 import scene_param as SceneParam
-from base import Base
+from scene_base import SceneBase
 
 #直接设置闹铃生效日期
-class SceneAble(Base):
+class SceneAble(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
 			logging.info('go into set alarm date able......');
-			if super_b.myclock is None:
-				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
-				struct['code'] = 'exit';
-				return None;
 			if not struct.has_key('step'): struct['step'] = 'start';
 
 			if struct['step'] == 'start':
 				self._encode_able(struct,super_b);
-				struct['step'] = 'end';
+			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(format(e));
 
 	def _encode_able(self,struct,super_b):
-		myclock = super_b.myclock;
-		if struct['ttag'].find('everyday') <> -1:
-			tdic = dict();
-			tdic['type'] = 'everyday';
-			tdic['able'] = math.pow(2,7);
-			myclock['able'] = tdic;
-			SceneParam._set_msg(struct,self.data['msg']['set_able_succ']);
-
-
-	def _encode_date_able(self,struct,super_b):
-		myclock = super_b.myclock;
-		tdic = dict();
-		if myclock.has_key('able'): tdic = myclock['able'];
-
-		tag = struct['ttag'];
-		if tag.find('_workday') <> -1:
-			tdic['type'] = 'workday'
-			tdic['able'] = math.pow(2,5) - 1;
-		elif tag.find('_workend') <> -1:
-			tdic['type'] = 'workend';
-			tdic['able'] = math.pow(2,7) - math.pow(2,5);
-		elif tag.find('_time_no_call') <> -1:
-			able = 127;
-			if tdic.has_key('able'): able = tdic['able'];
-			for inter in struct['intervals']:
-				if myinterval['scope'] == 'day':
-					times = inter['start'];
-					dat = datetime.date(int(times[0]),int(times[1]),int(times[2]));
-					week = dat.weekday();
-					able = able - math.pow(2,week);
-			tdic['able'] = able;
-			tdic['type'] = 'day';
-		elif tag.find('_time_call') <> -1:
-			able = 0;
-			if tdic.has_key('able'): able = tdic['able'];
-			for inter in struct['intervals']:
-				if myinterval['scope'] == 'day':
-					times = inter['start'];
-					dat = datetime.date(int(times[0]),int(times[1]),int(times[2]));
-					week = dat.weekday();
-					able = able + math.pow(2,week);
-			tdic['able'] = able;
-			tdic['type'] = 'day';
-		if tdic.has_key('type'): struct['ck_able'] = tdic;
-
-	def _set_able(self,struct,super_b):
-		myclock = super_b.myclock;
-		if struct.has_key('ck_able'):
-			myclock['able'] = struct['ck_able'];
-			del struct['ck_able'];
-			struct['result']['msg'] = self.data['msg']['set_able_succ'][0];
-		else:
-			struct['result']['msg'] = self.data['msg']['able_nothing'][0];
+		cks = None;
+		if struct['ttag'].find('time_no_call_me_wake') <> -1:
+			ptag_id = struct['ttag'].find('time_no_call_me_wake');
+			prev_tag = struct['ttag'][:ptag_id];
+			if prev_tag.find('time') <> -1:
+				cks = SceneParam._find_cks_bytime(struct,super_b);
+			if cks is None or len(cks) == 0:
+				cks = SceneParam._find_cks_byinfo(struct,super_b);
+			if len(cks) == 0:
+				cks = SceneParam._find_cks_bytype('getup',super_b);
+			if len(cks) == 0:
+				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+				return None;
+			for ck in cks:
+				clock = super_b.clocks[ck];
+				able = 127;
+				if clock.has_key('able'): able = clock['able']['able'];
+				for inter in struct['intervals']:
+					if inter['scope'] == 'day':
+						times = inter['start'];
+						dat = datetime.date(int(times[0]),int(times[1]),int(times[2]));
+						week = dat.weekday();
+						able = able - math.pow(2,week);
+				clock['able']['able'] = able;
+			if struct.has_key('intervals'): del struct['intervals'];
+		elif struct['ttag'].find('_workday_call') <> -1:
+			ptag_id = struct['ttag'].find('_workday_call');
+			prev_tag = struct['ttag'][:ptag_id];
+			if prev_tag.find('time') <> -1:
+				cks = SceneParam._find_cks_bytime(struct,super_b);
+			if cks is None or len(cks) == 0:
+				cks = SceneParam._find_cks_byinfo(struct,super_b);
+			if len(cks) == 0 and super_b.myclock is None:
+				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+				return None;
+			elif len(cks) == 0:
+				cks.append(super_b.myclock['key']);
+			for ck in cks:
+				clock = super_b.clocks[ck];
+				if not clock.has_key('able'):
+					clock['able'] = dict();
+					clock['able']['type'] = 'workday';
+				clock['able']['able'] = math.pow(2,5) - 1;
+		elif struct['ttag'].find('_pass_workday') <> -1:
+			ptag_id = struct['ttag'].find('_pass_workday');
+			prev_tag = struct['ttag'][:ptag_id];
+			if prev_tag.find('time') <> -1:
+				cks = SceneParam._find_cks_bytime(struct,super_b);
+			if cks is None or len(cks) == 0:
+				cks = SceneParam._find_cks_byinfo(struct,super_b);
+			if len(cks) == 0 and super_b.myclock is None:
+				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+				return None;
+			elif len(cks) == 0:
+				cks.append(super_b.myclock['key']);
+			for ck in cks:
+				clock = super_b.clocks[ck];
+				if not clock.has_key('able'):
+					clock['able'] = dict();
+					clock['able']['type'] = 'workend';
+				clock['able']['able'] = math.pow(2,7) - math.pow(2,5);
+		elif struct['ttag'].find('_everyday') <> -1:
+			ptag_id = struct['ttag'].find('_everyday');
+			prev_tag = struct['ttag'][:ptag_id];
+			if prev_tag.find('time') <> -1:
+				cks = SceneParam._find_cks_bytime(struct,super_b);
+			if cks is None or len(cks) == 0:
+				cks = SceneParam._find_cks_byinfo(struct,super_b);
+			if len(cks) == 0 and super_b.myclock is None:
+				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+				return None;
+			elif len(cks) == 0:
+				cks.append(super_b.myclock['key']);
+			for ck in cks:
+				clock = super_b.clocks[ck];
+				if not clock.has_key('able'):
+					clock['able'] = dict();
+					clock['able']['type'] = 'week';
+				clock['able']['able'] = math.pow(2,7) - 1;
+		SceneParam._set_msg(struct,self.data['msg']['set_able_succ']);

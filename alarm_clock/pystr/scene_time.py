@@ -13,10 +13,10 @@ import common
 import scene_param as SceneParam
 from common import logging
 from myexception import MyException
-from base import Base
+from scene_base import SceneBase
 
 #修改闹钟时间的场景设置
-class SceneTime(Base):
+class SceneTime(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:

@@ -33,6 +33,7 @@ class SceneMager:
 	def init(self,dtype):
 		try:
 			fdir = config.dfiles[dtype];
+			print fdir
 			self.timer.init('Timer');
 			self.mytag.init('Mytag');
 			self.engine.init(fdir);

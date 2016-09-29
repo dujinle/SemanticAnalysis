@@ -12,11 +12,11 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 import common,datetime,math
 from common import logging
 from myexception import MyException
-from base import Base
+from scene_base import SceneBase
 import scene_param as SceneParam
 
 #删除指定的闹钟场景设置
-class SceneDel(Base):
+class SceneDel(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:

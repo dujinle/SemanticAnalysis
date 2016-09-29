@@ -13,11 +13,11 @@ import common
 import scene_param as SceneParam
 from common import logging
 from myexception import MyException
-from base import Base
+from scene_base import SceneBase
 import scene_param as SceneParam
 
 #添加多个闹钟场景 或者带有时间
-class SceneMadd(Base):
+class SceneMadd(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:

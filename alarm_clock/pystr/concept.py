@@ -11,9 +11,9 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
 import common
 from myexception import MyException
-from base import Base
+from scene_base import SceneBase
 
-class Concept(Base):
+class Concept(SceneBase):
 
 	def encode(self,struct):
 		try:

@@ -8,12 +8,14 @@ import sys,os
 base_path = os.path.dirname(__file__);
 
 sys.path.append(base_path + '/webpy');
+sys.path.append(base_path + '/../alarm_clock/webstr');
 #sys.path.append(base_path + '/../commons');
 #---------------------------------------------
 
 import tornado.ioloop
 import tornado.web
 from webpy import *
+from scene_result import SceneResultHandler
 
 class Application(tornado.web.Application):
 	def __init__(self):
@@ -28,6 +30,7 @@ class Application(tornado.web.Application):
 			(r"/temperature",TempHandler),
 			(r"/timer",TimerHandler),
 			(r"/get_result",ResultHandler),
+			(r"/get_sresult",SceneResultHandler),
 			(r"/save_data",SaveHandler),
 			(r"/reset",ResetHandler),
 			(r"/get",GetHandler),

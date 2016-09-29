@@ -9,23 +9,23 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import common,alarm_common
+import common
 from myexception import MyException
 from common import logging
-
-from base import Base
+import scene_param as SceneParam
+from scene_base import SceneBase
 
 #直接设置铃声提示音的场景
-class SceneSBell(Base):
+class SceneSBell(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
 			logging.info('go into set alarm bell');
 			if super_b.myclock is None:
-				struct['result']['msg'] = self.data['msg']['ck_unknow'][0];
+				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
 				struct['code'] = 'exit';
 				return None;
-			if not sturct.has_key('step'): struct['step'] = 'start';
+			if not struct.has_key('step'): struct['step'] = 'start';
 
 			if struct['step'] == 'start':
 				self._encode_bell(struct,super_b);
@@ -41,7 +41,13 @@ class SceneSBell(Base):
 				myclock['bell'].update(self.data['rings'][tm]);
 				myclock['bell']['name'] = tm;
 				break;
+		for tm in self.data['music']:
+			if tm in struct['inlist']:
+				if not myclock.has_key('bell'): myclock['bell'] = dict();
+				myclock['bell'].update(self.data['music'][tm]);
+				myclock['bell']['name'] = tm;
+				break;
 		if myclock.has_key('bell') and myclock['bell'].has_key('name'):
-			struct['result']['msg'] = self.data['msg']['set_bell_succ'][0];
+			SceneParam._set_msg(struct,self.data['msg']['set_bell_succ']);
 		else:
-			struct['result']['msg'] = self.data['msg']['bell_unknow'][0];
+			SceneParam._set_msg(struct,self.data['msg']['bell_unknow']);

@@ -12,11 +12,11 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 import common,math
 from common import logging
 from myexception import MyException
-from base import Base
+from scene_base import SceneBase
 import scene_param as SceneParam
 
 #新增日程闹钟 或者带有时间的
-class SceneAgenda(Base):
+class SceneAgenda(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:

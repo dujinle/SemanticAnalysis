@@ -12,11 +12,11 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 import common,pgsql
 from common import logging
 from myexception import MyException
-from base import Base
+from scene_base import SceneBase
 import scene_param as SceneParam
 
 #添加闹钟场景 或者带有时间
-class SceneAdd(Base):
+class SceneAdd(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
@@ -28,7 +28,7 @@ class SceneAdd(Base):
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['start_msg']));
 				struct['result']['msg'] = self.data['msg']['start_msg'][msg_id];
 				super_b.myclock = dict();
-				self._send_msg(struct['result'])
+				#self._send_msg(struct['result'])
 				#开始询问时间设置
 				if struct['ttag'].find('time') == -1:
 					msg_id = SceneParam._get_random_id(len(self.data['msg']['set_time']));
@@ -62,7 +62,7 @@ class SceneAdd(Base):
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['add_getup_ck']));
 				struct['result']['msg'] = self.data['msg']['add_getup_ck'][msg_id];
 				#todo send msg......
-				self._send_msg(struct['result'])
+				#self._send_msg(struct['result'])
 			else:
 				struct['ck_scene'] = 'ck_agenda_add';
 				myclock['type'] = 'agenda';
@@ -70,7 +70,7 @@ class SceneAdd(Base):
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['add_agenda_ck']));
 				struct['result']['msg'] = self.data['msg']['add_agenda_ck'][msg_id];
 				#todo send msg......
-				self._send_msg(struct['result'])
+				#self._send_msg(struct['result'])
 			myclock['time'] = struct['ck_time']['time'];
 			del struct['ck_time'];
 		else:

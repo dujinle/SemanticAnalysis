@@ -12,26 +12,10 @@ sys.path.append(base_path);
 sys.path.append(base_path + '/../mainpy');
 #===================================================
 
-from mager import Mager
-MAGER = None;
-
 class RequestHandler(tornado.web.RequestHandler):
 
-	mager = None;
 	def __init__(self,*args,**kwargs):
 		tornado.web.RequestHandler.__init__(self, *args, **kwargs);
-		try:
-			global MAGER
-			if MAGER is None:
-				MAGER = Mager();
-				MAGER.init();
-				print 'creat menj success ......';
-		except Exception as e:
-			raise e;
-
-	def get_mager(self):
-		global MAGER;
-		return MAGER;
 
 	def write(self, trunk):
 		if type(trunk) == int:

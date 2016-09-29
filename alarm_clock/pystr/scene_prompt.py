@@ -14,9 +14,9 @@ from myexception import MyException
 from common import logging
 import scene_param as SceneParam
 
-from base import Base
+from scene_base import SceneBase
 #闹铃提示方式设置
-class ScenePrompt(Base):
+class ScenePrompt(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
