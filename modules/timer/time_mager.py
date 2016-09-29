@@ -76,6 +76,10 @@ class TimeMager:
 						struct['my_inter_id'] = struct['my_inter_id'] + 1;
 					struct['step_id'] = struct['step_id'] + 1;
 				else: cur_status = True;
+			if struct.has_key('step_id'): del struct['step_id'];
+			if struct.has_key('my_inter_id'): del struct['my_inter_id'];
+			if struct.has_key('scope'): del struct['scope'];
+			if struct.has_key('prev_func'): del struct['prev_func'];
 			return struct;
 		except MyException as e:
 			res = common.get_dicstr(struct);
