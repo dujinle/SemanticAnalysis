@@ -21,7 +21,6 @@ class SceneSearch(SceneBase):
 		try:
 			logging.info('go into search scene......');
 			if not struct.has_key('step'): struct['step'] = 'start';
-			common.print_dic(struct);
 			if struct['step'] == 'start':
 				struct['result']['msg'] = self.data['msg']['set_start'];
 				#self.send_msg(struct);

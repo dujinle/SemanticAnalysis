@@ -19,7 +19,10 @@
 		"type":"ck_madd"
 	},
 	"ck_cbell":{
-		"reg":"_change_prep_bell|_bell_no_beaut|_change_prep_style|_has_what_style",
+		"reg":"_change_prep_bell
+			|_bell_no_beaut
+			|_change_prep_style
+			|_has_what_style",
 		"type":"ck_cbell"
 	},
 	"ck_sbell":{
@@ -93,9 +96,12 @@
 		"reg":"_time_clock_cancle
 			|_cancle_time_all_clock
 			|_cancle_time_clock
-			|_time_clock_no_le
+			|_time_clock(_all)*_no_le
 			|_only_left_time
+			|((_remind)|(_clock))(_all)*_del
+			|_del_pastdue_clock
 			|_time_all_no
+			|_prep_del
 			|_nouse_del
 			|_time_rest
 			|_just_that_no",
@@ -106,6 +112,7 @@
 			|_time_has_some_thing
 			|_has_some
 			|_has_what_thing
+			|_yes_what_info
 			|_info_yes_what",
 		"type":"ck_search"
 	},

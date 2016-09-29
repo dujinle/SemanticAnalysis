@@ -24,90 +24,86 @@ class SceneDel(SceneBase):
 			if not struct.has_key('step'): struct['step'] = 'start';
 			#启动时响应回复
 			if struct['step'] == 'start':
-				cks = self._find_cks(struct,super_b);
-				if len(cks) > 0:
-					self._del_cks(cks,super_b,struct);
-				else:
+				cks = self._get_match_cks(struct,super_b);
+				if cks is None or len(cks) == 0:
 					SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
+				else:
+					self._del_cks(cks,super_b,struct);
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(format(e));
 
 	def _del_cks(self,cks,super_b,struct):
 		info = '';
+		delnum = 0;
 		if struct['ttag'].find('_only_left_time') <> -1:
 			for ck in super_b.clocks.keys():
 				if ck in cks: continue;
 				clk = super_b.clocks[ck];
 				if clk.has_key('info'): info = clk['info'];
+				if not super_b.myclock is None and super_b.myclock['key'] == ck:
+					super_b.myclock = None;
 				del super_b.clocks[ck];
+				delnum = delnum + 1;
 		else:
 			for ck in cks:
 				if super_b.clocks.has_key(ck):
+					if not super_b.myclock is None and super_b.myclock['key'] == ck:
+						super_b.myclock = None;
 					clk = super_b.clocks[ck];
 					if clk.has_key('info'): info = clk['info'];
 					del super_b.clocks[ck];
-		if len(cks) > 1:
+					delnum = delnum + 1
+		if delnum > 1:
 			struct['result']['msg'] = (self.data['msg']['del_cks'][0] %(info,u'等'));
 		else:
 			struct['result']['msg'] = (self.data['msg']['del_cks'][0] %(info,''));
 
-	def _find_cks(self,struct,super_b):
+	def _get_match_cks(self,struct,super_b):
 		cks = list();
-		did = 2;
-		hid = 3;
-		mid = 4;
-		if struct.has_key('intervals'):
-			inters = struct['intervals'];
-			if struct['ttag'].find('_time_clock') <> -1\
-				or struct['ttag'].find('_time_all_clock') <> -1\
-				or struct['ttag'].find('_only_left_time') <> -1:
-				if inters[0]['scope'] == 'hour':
-				#找到某段时间的闹钟 晚上所有的闹钟
-					start = inters[0]['start'];
-					end = inters[0]['end'];
-					for ck in super_b.clocks:
-						clock = super_b.clocks[ck];
-						hour = int(clock['time'].split(':')[0]);
-						mins = int(clock['time'].split(':')[1]);
-						if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
-							if hour < end[hid] or (hour == end[hid] and end[mid] >= mins):
-								cks.append(ck);
-					del struct['intervals'];
-					return cks;
-				elif inters[0]['scope'] == 'day':
-				#找到某天的闹钟 今天的闹钟
-					start = inters[0]['start'];
-					end = inters[0]['end'];
-					dat = datetime.date(int(start[0]),int(start[1]),int(start[2]));
-					week = dat.weekday();
-					able = math.pow(2,week);
-					if end[did] - start[did] > 1: able = able + math.pow(2,week + 1);
-					for ck in super_b.clocks:
-						clock = super_b.clocks[ck];
-						if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
-							cks.append(ck);
-					del struct['intervals'];
-					return cks;
-		else:
-			if struct['ttag'].find('_nouse_del') <> -1:
-				for ck in super_b.clocks:
-					clk = super_b.clocks[ck]
-					if clk['status']['type'] == 'close':
-						cks.append(ck);
-			elif struct['ttag'].find('_pastdue_clock') <> -1:
-				for ck in super_b.clocks:
-					clk = super_b.clocks[ck];
-					if clk.has_key('due') and ck['due']['type'] == 'past':
-						cks.append(ck);
-					elif not clk.has_key('due'):
-						cks.append(ck);
-			elif struct['ttag'].find('_prep') <> -1:
-				for tnum in SceneParam.num.keys():
-					if tnum in struct['inlist']:
-						ckeys = super_b.clocks.keys();
-						cks.append(ckeys[SceneParam.num[tnum]]);
-			elif struct['ttag'].find('_just_that') <> -1:
-				if not super_b.prev_ck is None:
-					cks.append(super_b.prev_ck);
+		ttag = struct['ttag'];
+		if len(re.findall('((_del)|(_cancle))_pastdue_clock',ttag)) > 0:
+			cks = SceneParam._find_cks_pastdue(super_b);
+		#处理 删除/取消.....闹钟/提醒
+		elif len(re.findall('((_cancle)|(_del))_.*_clock',ttag)) > 0:
+			cks = self._get_cks_by_tag(struct,super_b,'_clock');
+		elif len(re.findall('((_cancle)|(_del))_.*_remind',ttag)) > 0:
+			cks = self._get_cks_by_tag(struct,super_b,'_remind');
+		#....闹钟/提醒....删了/不要了
+		elif len(re.findall('.*_clock(_all)*((_no)|(_del)|(_cancle))',ttag)) > 0:
+			cks = self._get_cks_by_tag(struct,super_b,'_clock');
+		elif len(re.findall('.*_remind(_all)*((_no)|(_del)|(_cancle))',ttag)) > 0:
+			cks = self._get_cks_by_tag(struct,super_b,'_remind');
+		elif len(re.findall('_time(_all)*((_no)|(_del)|(_cancle))',ttag)) > 0:
+			cks = self._get_cks_by_tag(struct,super_b,None);
+		elif len(re.findall('_time',ttag)) > 0:
+			cks = self._get_cks_by_tag(struct,super_b,None);
+		elif len(re.findall('_prep((_del)|(_cancle))',ttag)) > 0:
+			cks = SceneParam._find_cks_prep(struct,super_b);
+		elif len(re.findall('_just_that((_no)|(_del)|(_cancle))',ttag)) > 0:
+			if super_b.myclock is None: return None;
+			cks = list();
+			cks.append(super_b.myclock['key']);
+		elif len(re.findall('_nouse((_no)|(_del)|(_cancle))',ttag)) > 0:
+			cks = SceneParam._find_cks_nouse(super_b);
 		return cks
+
+	def _get_cks_by_tag(self,struct,super_b,tag):
+		ttag = struct['ttag'];
+		end = len(ttag);
+		if not tag is None: end = ttag.find(tag);
+		pre_tag = ttag[:end];
+		cks = None;
+		if pre_tag.find('time') <> -1:
+			cks = SceneParam._find_cks_bytime(struct,super_b);
+			del struct['intervals'][0];
+		else:
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+		if (cks is None or len(cks) == 0) and super_b.myclock is None:
+			struct['result']['msg'] = self.data['msg']['ck_unknow'][0];
+			return None;
+		elif cks is None or len(cks) == 0:
+			cks = list();
+			cks.append(super_b.myclock['key']);
+		return cks;
+

@@ -155,13 +155,16 @@ def _find_cks_bytime(struct,super_b):
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);
 		mins = int(clock['time'].split(':')[1]);
-		if start[0] == 'null':
+		if start[hid] == 0 and end[hid] == 0:
+			if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
+				cks.append(ck);
+		elif start[0] == 'null':
 			if hour < end[hid] or (hour == end[hid] and mins <= end[mid]):
-				if clock.has_key('able') and clock['able']['able'] == able:
+				if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 					cks.append(ck);
 		elif end[0] == 'null':
-			if hour < start[hid] or (hour == start[hid] and mins <= start[mid]):
-				if clock.has_key('able') and clock['able']['able'] == able:
+			if hour > start[hid] or (hour == start[hid] and mins > start[mid]):
+				if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 					cks.append(ck);
 		else:
 			if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
@@ -172,7 +175,6 @@ def _find_cks_bytime(struct,super_b):
 
 def _find_cks_byinfo(struct,super_b):
 	cks = list();
-	global data;
 	if struct['ttag'].find('_prev_prep_clock') <> -1:
 		if super_b.myclock is None: return cks;
 		cur_key = super_b.myclock['key'];
@@ -188,6 +190,14 @@ def _find_cks_byinfo(struct,super_b):
 		if (idx + 1) >= len(mycks): idx = -1;
 		key = mycks[idx + 1];
 		cks.append(key);
+	elif len(re.findall('_and.*_relate',struct['ttag'])) > 0:
+		startid = struct['text'].find(data['and']);
+		endid = struct['text'].find(data['relate']);
+		cinfo = struct['text'][startid + 1:endid];
+		for ck in super_b.clocks.keys():
+			clock = super_b.clocks[ck];
+			if clock.has_key('info') and clock['info'].find(cinfo) > 0:
+				cks.append(ck);
 	if struct['ttag'].find('_moveto') <> -1:
 		tstr =_get_match_str(struct,'_moveto');
 		if tstr is None: return cks;
@@ -220,6 +230,40 @@ def _find_cks_bytype(ttype,super_b):
 		clock = super_b.clocks[ck];
 		if clock.has_key('type') and clock['type'] == ttype:
 			cks.append(ck);
+	return cks;
+
+def _find_cks_pastdue(super_b):
+	cks = list();
+	week = _get_cur_week();
+	left_able = 127;
+	if week > 0:
+		left_able = math.pow(2,7) - math.pow(2,week - 1);
+	mtime = _get_cur_time();
+	for ck in super_b.clocks:
+		clock = super_b.clocks[ck];
+		hour = int(clock['time'].split(':')[0]);
+		mins = int(clock['time'].split(':')[1]);
+		if int(left_able) & int(clock['able']['able']) > 1:
+			cks.append(ck);
+		elif int(left_able) & int(clock['able']['able']) == 1:
+			if hour < mtime[3] or (hour == mtime[3] and mins < mtime[4]):
+				cks.append(ck);
+	return cks;
+
+def _find_cks_nouse(super_b):
+	cks = list();
+	for ck in super_b.clocks.keys():
+		clock = super_b.clocks[ck];
+		if clock.has_key('status') and clock['status']['type'] == 'close':
+			cks.append(ck);
+	return cks;
+
+def _find_cks_prep(struct,super_b):
+	cks = list();
+	for s in struct['inlist']:
+		if data['num'].has_key(s):
+			num = data['num'][s];
+			cks.append(super_b.clocks.keys()[num - 1]);
 	return cks;
 
 def _get_match_str(struct,tag):
