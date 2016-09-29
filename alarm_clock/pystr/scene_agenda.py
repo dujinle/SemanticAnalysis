@@ -83,7 +83,7 @@ class SceneAgenda(SceneBase):
 		if struct['text'].find(self.data['drink']) <> -1:
 			tid = struct['text'].find(self.data['drink']);
 			myclock['info'] = struct['text'][tid:];
-		elif struct['ttag'].find('_remand_me') <> -1:
+		elif struct['ttag'].find('_remind_me') <> -1:
 			tid = struct['text'].find(u'提醒我') + 3;
 			myclock['info'] = struct['text'][tid:];
 		elif struct['ttag'].find('_meeting') <> -1:

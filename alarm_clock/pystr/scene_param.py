@@ -75,7 +75,7 @@ def _save_tag(super_b):
 		pgsql.pg_close_cursor(cur);
 	except Exception as e:
 		raise e;
-
+'''
 def _find_able_cks(struct,super_b):
 	cks = list();
 	if struct['ttag'].find('_time_to_time') <> -1:
@@ -120,6 +120,7 @@ def _find_able_cks(struct,super_b):
 					if hour < end[hid] or (hour == end[hid] and end[mid] >= mins):
 						cks.append(ck);
 	return cks;
+'''
 
 def _find_cks_bytime(struct,super_b):
 	cks = list();
@@ -154,7 +155,6 @@ def _find_cks_bytime(struct,super_b):
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);
 		mins = int(clock['time'].split(':')[1]);
-		print able,clock['time'],clock['able'],start,end
 		if start[0] == 'null':
 			if hour < end[hid] or (hour == end[hid] and mins <= end[mid]):
 				if clock.has_key('able') and clock['able']['able'] == able:
@@ -165,7 +165,7 @@ def _find_cks_bytime(struct,super_b):
 					cks.append(ck);
 		else:
 			if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
-				if hour < end[hid]:
+				if hour < end[hid] or (hour == end[hid] and mins < end[mid]):
 					if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 						cks.append(ck);
 	return cks;
@@ -173,6 +173,21 @@ def _find_cks_bytime(struct,super_b):
 def _find_cks_byinfo(struct,super_b):
 	cks = list();
 	global data;
+	if struct['ttag'].find('_prev_prep_clock') <> -1:
+		if super_b.myclock is None: return cks;
+		cur_key = super_b.myclock['key'];
+		mycks = super_b.clocks.keys();
+		idx = mycks.index(cur_key);
+		key = mycks[idx - 1];
+		cks.append(key);
+	elif struct['ttag'].find('_next_prep_clock') <> -1:
+		if super_b.myclock is None: return cks;
+		cur_key = super_b.myclock['key'];
+		mycks = super_b.clocks.keys();
+		idx = mycks.index(cur_key);
+		if (idx + 1) >= len(mycks): idx = -1;
+		key = mycks[idx + 1];
+		cks.append(key);
 	if struct['ttag'].find('_moveto') <> -1:
 		tstr =_get_match_str(struct,'_moveto');
 		if tstr is None: return cks;
@@ -189,21 +204,6 @@ def _find_cks_byinfo(struct,super_b):
 		cinfo = struct['text'][:cinfo_id];
 		if super_b.clocks.has_key(cinfo):
 			cks.append(cinfo);
-	elif struct['ttag'].find('_prev_prep_clock') <> -1:
-		if super_b.myclock is None: return cks;
-		cur_key = super_b.myclock['key'];
-		mycks = super_b.clocks.keys();
-		idx = mycks.index(cur_key);
-		key = mycks[idx - 1];
-		cks.append(key);
-	elif struct['ttag'].find('_next_prep_clock') <> -1:
-		if super_b.myclock is None: return cks;
-		cur_key = super_b.myclock['key'];
-		mycks = super_b.clocks.keys();
-		idx = mycks.index(cur_key);
-		if (idx + 1) >= len(mycks): idx = -1;
-		key = mycks[idx + 1];
-		cks.append(key);
 	elif struct['ttag'].find('_clock') <> -1:
 		tstr =_get_match_str(struct,'_clock');
 		if tstr is None: return cks;
@@ -280,3 +280,5 @@ def _degbu_info(struct):
 			clock = struct['mcks'][ck];
 			cks.append(ck + '|' + clock['time']);
 		struct['cks'] = cks;
+	if struct.has_key('intervals'): del struct['intervals'];
+

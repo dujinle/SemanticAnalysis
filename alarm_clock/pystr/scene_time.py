@@ -31,10 +31,8 @@ class SceneTime(SceneBase):
 			raise MyException(format(e));
 
 	def _change_cks(self,struct,super_b):
-		if struct['ttag'].find('_ahead_time_call') <> -1:
-			self._change_time_bytag('_ahead_time_call',struct,super_b,'prev');
-		elif struct['ttag'].find('_ahead_time_remand') <> -1:
-			self._change_time_bytag('_ahead_time_remand',struct,super_b,'prev');
+		if struct['ttag'].find('_ahead_time') <> -1:
+			self._change_time_bytag('_ahead_time',struct,super_b,'prev');
 		elif struct['ttag'].find('_defer_time') <> -1:
 			self._change_time_bytag('_defer_time',struct,super_b,'after');
 		elif struct['ttag'].find('_pass_time_recall') <> -1:
@@ -67,8 +65,9 @@ class SceneTime(SceneBase):
 			clock['time'] = str(hour) + ':' + str(tmin);
 
 	def _change_time_bytag(self,tag,struct,super_b,tdir):
-		end = struct['ttag'].find(tag);
-		pre_tag = struct['ttag'][:end];
+		ttag = struct['ttag'];
+		end = ttag.find(tag);
+		pre_tag = ttag[:end];
 		cks = None;
 		if pre_tag.find('time') <> -1:
 			cks = SceneParam._find_cks_bytime(struct,super_b);
@@ -84,6 +83,7 @@ class SceneTime(SceneBase):
 		inters = struct['intervals'][0];
 		if not inters.has_key('num'):
 			struct['result']['msg'] = self.data['msg']['invalid_com'][0];
+			struct['ttag'] = ttag;
 			return None;
 		self._change_time(cks,inters['num'],inters['scope'],tdir,super_b);
 		if tdir == 'prev':
@@ -135,8 +135,9 @@ class SceneTime(SceneBase):
 		struct['result']['msg'] = self.data['msg']['swap_succ'][0];
 
 	def _reset_ck_bytag(self,tag,struct,super_b):
-		end = struct['ttag'].find(tag);
-		pre_tag = struct['ttag'][:end];
+		ttag = struct['ttag'];
+		end = ttag.find(tag);
+		pre_tag = ttag[:end];
 		cks = None;
 		if pre_tag.find('_time') <> -1:
 			cks = SceneParam._find_cks_bytime(struct,super_b);

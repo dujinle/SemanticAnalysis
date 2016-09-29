@@ -6,7 +6,7 @@
 		"ck_exist":["闹钟已经存在"],
 		"ck_unknow":["没有找到指定的闹钟"],
 		"bell_unknow":["不支持这个铃声"],
-		"no_bell_sure":['你不喜欢吗那就返回默认铃声了'],
+		"no_bell_sure":["你不喜欢吗那就返回默认铃声了"],
 		"type_unknow":["不知道提示音类型默认铃声哦"],
 		"set_bell_type":["请确定铃声的类型-音乐或默认铃声"],
 		"raise_music":["推荐一首大海歌曲可以吗"],
@@ -14,20 +14,24 @@
 	},
 	"rings":{
 		"sea":{
-			"type":"ring",
 			"addr":"sea.mp3"
 		},
 		"bird":{
-			"type":"ring",
 			"addr":"bird.mp3"
-		},
+		}
+	},
+	"music":{
 		"红豆":{
-			"type":"music",
 			"addr":"hongdou.mp3"
 		},
 		"绿豆":{
-			"type":"music",
 			"addr":"lvdou.mp3"
+		},
+		"大海":{
+			"addr":"dahai.mp3"
+		},
+		"波浪":{
+			"addr":"bolang.mp3"
 		}
 	}
 }

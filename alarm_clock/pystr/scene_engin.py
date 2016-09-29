@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf-8');
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'../../commons'));
 #============================================
-import pgsql
+import pgsql,collections
 import common
 from common import logging
 from myexception import MyException
@@ -38,7 +38,7 @@ import scene_param as SceneParam
 class SEngin():
 
 	def __init__(self,wordseg):
-		self.clocks = dict();
+		self.clocks = collections.OrderedDict();
 		self.myclock = None;
 
 		self.scene_con = Concept();

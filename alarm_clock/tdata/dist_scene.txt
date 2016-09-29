@@ -19,7 +19,7 @@
 		"type":"ck_madd"
 	},
 	"ck_cbell":{
-		"reg":"_change_bell|_bell_no_beaut|_change_style|_has_what_style",
+		"reg":"_change_prep_bell|_bell_no_beaut|_change_prep_style|_has_what_style",
 		"type":"ck_cbell"
 	},
 	"ck_sbell":{
@@ -33,7 +33,10 @@
 		"type":"ck_prompt"
 	},
 	"ck_able":{
-		"reg":"_moveto_everyday_remand",
+		"reg":"_moveto_everyday_remind
+			|_time_no_call_me_wake
+			|_workday_call
+			|_pass_workday",
 		"type":"ck_able"
 	},
 	"ck_stop":{
@@ -71,13 +74,14 @@
 		"type":"ck_close"
 	},
 	"ck_agenda_add":{
-		"reg":"_new(_prep)*_agenda_remand
+		"reg":"_new(_prep)*_agenda_remind
 			|_new_agenda_clock
-			|_remand_me_time
-			|_time_remand_me
-			|_moment_remand_me
-			|_time(_remand_me)*_meeting
+			|_remind_me_time
+			|_time_remind_me
+			|_moment_remind_me
+			|_time(_remind_me)*_meeting
 			|_new_meeting_clock
+			|_new_prep_time_remind
 			|_call_me_time_go
 			|_new_time_go_clock
 			|_time_gout
@@ -108,7 +112,12 @@
 	"ck_mo_time":{
 		"reg":"_ahead_time_call
 			|_moveto_time
-			|_changeto_time",
+			|_clock_ahead_time
+			|_defer_time
+			|_ahead_time_remind
+			|_changeto_time
+			|_info_swap
+			|_pass_time_recall",
 		"type":"ck_mo_time"
 	}
 }
