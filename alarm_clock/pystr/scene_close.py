@@ -67,8 +67,12 @@ class SceneClose(Base):
 				else:
 					if hour == start[hid] and mins == start[mid]:
 						cks.append(ck);
-		elif struct['ttag'].find('_close_clock') <> -1:
-			cks = super_b.clocks.keys();
+		elif len(re.findall('((_remind)|(_clock))(_all)*(_close)',struct['ttag'])) > 0:
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+			if len(cks) == 0: cks = super_b.clocks.keys();
+		elif len(re.findall('_close.*((_clock)|(_remind))',struct['ttag'])) <> -1:
+			cks = SceneParam._find_cks_byinfo(struct,super_b);
+			if len(cks) == 0: cks = super_b.clocks.keys();
 		return cks;
 
 	def _close_cks(self,cks,super_b):

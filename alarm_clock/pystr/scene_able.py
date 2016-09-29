@@ -34,25 +34,21 @@ class SceneAble(SceneBase):
 		if struct['ttag'].find('time_no_call_me_wake') <> -1:
 			ptag_id = struct['ttag'].find('time_no_call_me_wake');
 			prev_tag = struct['ttag'][:ptag_id];
-			if prev_tag.find('time') <> -1:
-				cks = SceneParam._find_cks_bytime(struct,super_b);
-			if cks is None or len(cks) == 0:
-				cks = SceneParam._find_cks_byinfo(struct,super_b);
-			if len(cks) == 0:
-				cks = SceneParam._find_cks_bytype('getup',super_b);
+			cks = SceneParam._find_cks_bytype('getup',super_b);
 			if len(cks) == 0:
 				SceneParam._set_msg(struct,self.data['msg']['ck_unknow']);
 				return None;
 			for ck in cks:
 				clock = super_b.clocks[ck];
 				able = 127;
-				if clock.has_key('able'): able = clock['able']['able'];
+				if clock.has_key('able'): able = int(clock['able']['able']);
 				for inter in struct['intervals']:
 					if inter['scope'] == 'day':
 						times = inter['start'];
 						dat = datetime.date(int(times[0]),int(times[1]),int(times[2]));
 						week = dat.weekday();
-						able = able - math.pow(2,week);
+						if int(able) & int(math.pow(2,week)) > 0:
+							able = able - math.pow(2,week);
 				clock['able']['able'] = able;
 			if struct.has_key('intervals'): del struct['intervals'];
 		elif struct['ttag'].find('_workday_call') <> -1:
