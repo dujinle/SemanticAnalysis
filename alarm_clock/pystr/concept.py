@@ -12,6 +12,7 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 import common
 from myexception import MyException
 from scene_base import SceneBase
+import scene_param as SceneParam
 
 class Concept(SceneBase):
 
@@ -35,8 +36,14 @@ class Concept(SceneBase):
 					struct['text'] = struct['text'].replace('time',tdic['mystr']);
 					clocks.append(tdic);
 					del struct['rep'][0];
-				for key in self.data.keys():
-					self._match_item(st,clocks,key);
+				else:
+					tag = False;
+					for key in self.data.keys():
+						if self._match_item(st,clocks,key) == True:
+							tag = True;
+							break;
+					if tag == False:
+						clocks.append(st);
 			if struct.has_key('rep'): del struct['rep'];
 
 		except MyException as e: raise e;
@@ -49,4 +56,6 @@ class Concept(SceneBase):
 				tdic['mystr'] = strs;
 				tdic['type'] = mtype;
 				clocks.append(tdic);
+				return True;
+		return False;
 

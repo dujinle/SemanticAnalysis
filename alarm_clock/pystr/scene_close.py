@@ -30,7 +30,7 @@ class SceneClose(Base):
 				if len(cks) > 0:
 					close_num = self._close_cks(cks,super_b);
 					msg_id = SceneParam._get_random_id(len(self.data['msg']['close_succ']));
-					struct['result']['msg'] = (self.data['msg']['close_succ'][msg_id] %close_num);
+					struct['result']['msg'] = (self.data['msg']['close_succ'][msg_id]);
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(format(e));

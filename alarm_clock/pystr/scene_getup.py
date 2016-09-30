@@ -42,8 +42,11 @@ class SceneGetup(SceneBase):
 				SceneParam._calc_able(struct);
 			self._set_clock(struct,super_b);
 			self._analysis_mytag(struct,super_b);
-			super_b.myclock['key'] = super_b.myclock['time'];
-			super_b.clocks[super_b.myclock['time']] = super_b.myclock;
+			if super_b.myclock.has_key('name'):
+				super_b.myclock['key'] = super_b.myclock['name'];
+			else:
+				super_b.myclock['key'] = super_b.myclock['time'];
+			super_b.clocks[super_b.myclock['key']] = super_b.myclock;
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(format(e));
@@ -59,15 +62,19 @@ class SceneGetup(SceneBase):
 				umin = usual_time['value'].split(':')[1];
 				mhour = mytime.split(':')[0];
 				mmin = mytime.split(':')[1];
-				if int(uhour) > int(mhour):
+				if int(uhour) > int(mhour) and int(mhour) > 3:
 					msg_id = SceneParam._get_random_id(len(self.data['msg']['rise_early']));
 					struct['result']['msg'] = self.data['msg']['rise_early'][msg_id];
-				elif int(uhour) == int(mhour) and int(mmin) < int(umin) + 20:
-					msg_id = SceneParam._get_random_id(len(self.data['msg']['rise_early']));
-					struct['result']['msg'] = self.data['msg']['rise_early'][msg_id];
-				else:
+				elif (int(uhour) <= int(mhour) or (int(uhour) == int(mhour) and int(mmin) >= int(umin)))\
+					and int(mhour) <= 8:
+						msg_id = SceneParam._get_random_id(len(self.data['msg']['rise_common']));
+						struct['result']['msg'] = self.data['msg']['rise_common'][msg_id];
+				elif int(mhour) > 8 and int(mhour) <= 11:
 					msg_id = SceneParam._get_random_id(len(self.data['msg']['rise_late']));
 					struct['result']['msg'] = self.data['msg']['rise_late'][msg_id];
+				else:
+					msg_id = SceneParam._get_random_id(len(self.data['msg']['rise_common']));
+					struct['result']['msg'] = self.data['msg']['rise_common'][msg_id];
 				return True;
 		return False;
 
@@ -85,5 +92,8 @@ class SceneGetup(SceneBase):
 			myclock['able'] = dict();
 			myclock['able']['type'] = 'week';
 			myclock['able']['able'] = math.pow(2,7) - 1;
+		if struct.has_key('ck_name'):
+			myclock['name'] = struct['ck_name'];
+			del struct['ck_name'];
 		if struct.has_key('intervals'): del struct['intervals'];
 		return 0;

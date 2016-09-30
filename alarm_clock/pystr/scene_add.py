@@ -31,6 +31,7 @@ class SceneAdd(SceneBase):
 				#self._send_msg(struct['result'])
 				#开始询问时间设置
 				if struct['ttag'].find('time') == -1:
+					self._set_name(struct,super_b);
 					msg_id = SceneParam._get_random_id(len(self.data['msg']['set_time']));
 					struct['result']['msg'] = self.data['msg']['set_time'][msg_id];
 					struct['step'] = 'set_time';
@@ -38,8 +39,10 @@ class SceneAdd(SceneBase):
 				else:
 					SceneParam._find_time(struct);
 					SceneParam._calc_able(struct);
-					self._set_time(struct,super_b);
+					if self._set_time(struct,super_b) == -1:
+						return None;
 					self._set_able(struct,super_b);
+					self._set_name(struct,super_b);
 			elif struct['step'] == 'set_time':
 				SceneParam._find_time(struct);
 				SceneParam._calc_able(struct);
@@ -90,3 +93,10 @@ class SceneAdd(SceneBase):
 			myclock['able'] = dict();
 			myclock['able']['type'] = 'week';
 			myclock['able']['able'] = '127';
+
+	def _set_name(self,struct,super_b):
+		myclock = super_b.myclock;
+		if struct.has_key('ck_name'):
+			myclock['name'] = struct['ck_name'];
+			del struct['ck_name'];
+

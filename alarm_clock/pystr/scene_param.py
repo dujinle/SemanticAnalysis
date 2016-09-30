@@ -71,6 +71,80 @@ def _save_tag(super_b):
 	except Exception as e:
 		raise e;
 
+def _find_ck_name(struct):
+	ttag = struct['ttag'];
+	if ttag.find('_clock') <> -1:
+		idx = len(struct['clocks']) - 1;
+		tag = False;
+		name = '';
+		while True:
+			if idx < 0: break;
+			cl = struct['clocks'][idx];
+			if tag == True and isinstance(cl,dict): break;
+			if isinstance(cl,dict) and cl['type'] == '_clock':
+				tag = True;
+			elif tag == True and cl == u'的':
+				pass;
+			elif tag == True:
+				name = cl + name;
+			idx = idx - 1;
+		return name;
+	if ttag.find('_remind') <> -1:
+		idx = len(struct['clocks']) - 1;
+		tag = False;
+		name = '';
+		while True:
+			if idx < 0: break;
+			cl = struct['clocks'][idx];
+			if tag == True and isinstance(cl,dict): break;
+			if isinstance(cl,dict) and cl['type'] == '_remind':
+				tag = True;
+			elif tag == True and cl == u'的':
+				pass;
+			elif tag == True:
+				name = cl + name;
+			idx = idx - 1;
+		return name;
+	return None;
+	return None;
+
+def _find_tag_name(struct):
+	ttag = struct['ttag'];
+	if ttag.find('_clock') <> -1:
+		idx = len(struct['clocks']) - 1;
+		tag = False;
+		name = '';
+		while True:
+			if idx < 0: break;
+			cl = struct['clocks'][idx];
+			if tag == True and isinstance(cl,dict): break;
+			if isinstance(cl,dict) and cl['type'] == '_clock':
+				tag = True;
+			elif tag == True and cl == u'的':
+				pass;
+			elif tag == True:
+				name = cl + name;
+			idx = idx - 1;
+		return name;
+	if ttag.find('_remind') <> -1:
+		idx = len(struct['remind']) - 1;
+		tag = False;
+		name = '';
+		while True:
+			if idx < 0: break;
+			cl = struct['clocks'][idx];
+			if tag == True and isinstance(cl,dict): break;
+			if isinstance(cl,dict) and cl['type'] == '_remind':
+				tag = True;
+			elif tag == True and cl == u'的':
+				pass;
+			elif tag == True:
+				name = cl + name;
+			idx = idx - 1;
+		return name;
+	return None;
+	return None;
+
 def _find_cks_bytime(struct,super_b):
 	cks = list();
 	if struct['ttag'].find('_time') == -1: return cks;
@@ -117,7 +191,11 @@ def _find_cks_bytime(struct,super_b):
 
 def _find_cks_byinfo(struct,super_b):
 	cks = list();
-	if struct['ttag'].find('_prev_prep_clock') <> -1:
+	common.print_dic(struct);
+	if struct.has_key('ck_name'):
+		cks.append(struct['ck_name']);
+		del struct['ck_name'];
+	elif struct['ttag'].find('_prev_prep_clock') <> -1:
 		if super_b.myclock is None: return cks;
 		cur_key = super_b.myclock['key'];
 		mycks = super_b.clocks.keys();
@@ -249,9 +327,9 @@ def _degbu_info(struct):
 	if struct.has_key('clocks'):
 		debug_strs = ''
 		for ck in struct['clocks']:
-			debug_strs = debug_strs + '<' + ck['mystr'] + '>';
+			if isinstance(ck,dict):
+				debug_strs = debug_strs + '<' + ck['mystr'] + '>';
 		struct['debug_strs'] = debug_strs;
-		del struct['clocks'];
 	if struct.has_key('ttag'):
 		debug_strs = ''
 		tarray = struct['ttag'].split('_');

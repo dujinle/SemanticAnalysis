@@ -78,29 +78,32 @@
 		"type":"ck_close"
 	},
 	"ck_agenda_add":{
-		"reg":"_new(_prep)*_agenda_remind
+		"reg":"_new(_prep)*_agenda(_remind)*
 			|_new_agenda_clock
 			|_remind_me_time
 			|_time_remind_me
 			|_set_prep(_time)*_clock_info_yes
 			|_moment_remind_me
-			|_time(_remind_me)*_meeting
+			|_time.*_meeting
 			|_new.*_meeting((_clock)|(_remind))
 			|_new_prep(_time)*_remind
 			|_call_me_time_go
 			|_new_time_go_clock
+			|_new.*_info.*_remind
 			|_time_cout
-			|_time_go
+			|_time.*_go
+			|_time.*_info
 			|_new_time_clock_info",
 		"type":"ck_agenda_add"
 	},
 	"ck_getup_add":{
 		"reg":"(_time)*_call_me_wake
+			|_time_wake
 			|((_new)|(_set))(_prep)*_wake_clock",
 		"type":"ck_getup_add"
 	},
 	"ck_del":{
-		"reg":"_time_clock_cancle
+		"reg":"(_time)*_clock((_cancle)|(_del))
 			|_cancle_time_all_clock
 			|_cancle_time_clock
 			|_time_clock(_all)*_no_le
@@ -108,9 +111,10 @@
 			|((_remind)|(_clock))(_all)*_del
 			|_del_pastdue_clock
 			|_time(_all)*_no
-			|((_del)|(_cancle)).*_clock
+			|((_del)|(_cancle)).*((_clock)|(_cancle))
 			|_prep_del
 			|_nouse_del
+			|(_del)|(_cancle)
 			|_time_rest
 			|_just_that_no",
 		"type":"ck_del"
@@ -120,6 +124,7 @@
 			|_time_has_some_thing
 			|_has_some
 			|_see.*_clock
+			|_see.*_remind
 			|_has_what_thing
 			|_yes_what_info
 			|_clock_yes_what
@@ -127,10 +132,10 @@
 		"type":"ck_search"
 	},
 	"ck_mo_time":{
-		"reg":"_ahead_time_call
+		"reg":"_ahead.*_time(_call)*
 			|_moveto_time
 			|_clock_ahead_time
-			|_defer_time
+			|_defer.*_time
 			|_ahead_time_remind
 			|_changeto_time
 			|_info_swap

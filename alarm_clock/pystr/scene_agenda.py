@@ -51,6 +51,11 @@ class SceneAgenda(SceneBase):
 				super_b.myclock['key'] = super_b.myclock['info'];
 				msg_id = SceneParam._get_random_id(len(self.data['msg']['set_succ']));
 				struct['result']['msg'] = (self.data['msg']['set_succ'][msg_id] %(super_b.myclock['info']));
+			elif super_b.myclock.has_key('name'):
+				super_b.myclock['key'] = super_b.myclock['name'];
+				super_b.clocks[super_b.myclock['key']] = super_b.myclock;
+				msg_id = SceneParam._get_random_id(len(self.data['msg']['set_succ']));
+				struct['result']['msg'] = (self.data['msg']['set_succ'][msg_id] %(super_b.myclock['name']));
 			else:
 				super_b.clocks[super_b.myclock['time']] = super_b.myclock;
 				super_b.myclock['key'] = super_b.myclock['time'];
@@ -75,29 +80,35 @@ class SceneAgenda(SceneBase):
 			myclock['able'] = dict();
 			myclock['able']['type'] = 'week';
 			myclock['able']['able'] = math.pow(2,week);
+		if struct.has_key('ck_name'):
+			myclock['name'] = struct['ck_name'];
+			del struct['ck_name'];
 		if struct.has_key('intervals'): del struct['intervals'];
 		return 0;
 
 	def _set_agenda_info(self,struct,super_b):
-		myclock = super_b.myclock;
-		if struct['text'].find(self.data['drink']) <> -1:
-			tid = struct['text'].find(self.data['drink']);
-			myclock['info'] = struct['text'][tid:];
-		elif struct['ttag'].find('_cout') <> -1:
-			myclock['info'] = self.data['cout'];
-		elif struct['ttag'].find('_go') <> -1:
-			tid = struct['inlist'].index(u'去');
-			myclock['info'] = struct['inlist'][tid + 1];
-		elif struct['ttag'].find('_remind_me') <> -1:
-			tid = struct['text'].find(u'提醒我') + 3;
-			myclock['info'] = struct['text'][tid:];
-		elif struct['ttag'].find('_meeting') <> -1:
-			myclock['info'] = self.data['meeting'];
-		elif struct['ttag'].find('_info') <> -1:
-			for content in self.data['infois']:
-				if struct['text'].find(content) <> -1:
-					tid = struct['text'].find(content) + len(content);
-					myclock['info'] = struct['text'][tid:];
-					break;
-		if myclock.has_key('info') and myclock['info'] == '':
-			del myclock['info'];
+		try:
+			myclock = super_b.myclock;
+			if struct['ttag'].find('_cout') <> -1:
+				myclock['info'] = self.data['cout'];
+			elif struct['ttag'].find('_go') <> -1:
+				tid = struct['inlist'].index(u'去');
+				myclock['info'] = struct['inlist'][tid + 1];
+			elif struct['ttag'].find('_meeting') <> -1:
+				myclock['info'] = self.data['meeting'];
+			elif struct['ttag'].find('_remind_me') <> -1:
+				tid = struct['text'].find(u'提醒我') + 3;
+				myclock['info'] = struct['text'][tid:];
+			elif struct['text'].find(self.data['drink']) <> -1:
+				tid = struct['text'].find(self.data['drink']);
+				myclock['info'] = struct['text'][tid:];
+			elif struct['ttag'].find('_info') <> -1:
+				for content in self.data['infois']:
+					if struct['text'].find(content) <> -1:
+						tid = struct['text'].find(content) + len(content);
+						myclock['info'] = struct['text'][tid:];
+						break;
+			if myclock.has_key('info') and myclock['info'] == '':
+				del myclock['info'];
+		except Exception as e:
+			raise MyException(format(e));

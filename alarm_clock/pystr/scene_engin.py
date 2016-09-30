@@ -35,6 +35,12 @@ from dist_scene import DistScene
 from prev_scene import PrevScene
 import scene_param as SceneParam
 
+msg = [
+	u'我还在实习期，还需要多点时间熟悉情况',
+	u'难死宝宝了，让我再学习学习吧',
+	u'这事儿现在搞不定，您再等等呗'
+];
+err_msg = ["好头疼，我得再学习学习..."];
 class SEngin():
 
 	def __init__(self,wordseg):
@@ -91,8 +97,8 @@ class SEngin():
 		if struct.has_key('ttag'): del struct['ttag'];
 
 	def _tail(self,struct):
-		if struct.has_key('clocks'): del struct['clocks'];
-		if struct.has_key('ck_name'): del struct['ck_name'];
+	#	if struct.has_key('clocks'): del struct['clocks'];
+	#	if struct.has_key('ck_name'): del struct['ck_name'];
 		if struct.has_key('ck_time'): del struct['ck_time'];
 		if struct.has_key('ttag'): del struct['ttag'];
 	#	if struct.has_key('inlist'): del struct['inlist'];
@@ -140,7 +146,8 @@ class SEngin():
 				if struct['ck_scene'] == 'ck_sbell':
 					self.scene_sbell.encode(struct,self);
 			else:
-				struct['result']['msg'] = u'没有明白你的要求';
+				msg_id = SceneParam._get_random_id(len(msg));
+				struct['result']['msg'] = msg[msg_id];
 			if struct.has_key('step') and struct['step'] == 'end':
 				del struct['ck_scene'];
 				del struct['step']
@@ -148,4 +155,8 @@ class SEngin():
 			SceneParam._degbu_info(struct);
 			self._tail(struct);
 		except Exception as e:
+			if struct.has_key('step'): del struct['step']
+			if struct.has_key('ck_scene'): del struct['ck_scene'];
+			msg_id = SceneParam._get_random_id(len(err_msg));
+			struct['result']['msg'] = err_msg[msg_id];
 			raise MyException(format(e));

@@ -2,7 +2,7 @@
 {
 	"msg":{
 		"close_start":["能关闭%d个闹钟"],
-		"close_succ":["已经关闭%d个闹钟"],
+		"close_succ":["闹钟已经帮您关了"],
 		"ck_exist":["闹钟已经存在"],
 		"ck_unknow":["没有找到可以关闭的闹钟"]
 	}

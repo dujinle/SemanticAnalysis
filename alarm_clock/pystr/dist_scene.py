@@ -12,6 +12,7 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 import common
 from myexception import MyException
 from scene_base import SceneBase
+import scene_param as SceneParam
 
 #根据模板区分不同的场景
 class DistScene(SceneBase):
@@ -20,8 +21,12 @@ class DistScene(SceneBase):
 		try:
 			tag = '';
 			for ck in struct['clocks']:
-				tag = tag + ck['type'];
+				if isinstance(ck,dict):
+					tag = tag + ck['type'];
 			struct['ttag'] = tag;
+			name = SceneParam._find_ck_name(struct);
+			if not name is None and len(name) > 0:
+				struct['ck_name'] = name;
 			self._find_scene(tag,struct);
 		except MyException as e: raise e;
 

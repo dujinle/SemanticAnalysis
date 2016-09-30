@@ -54,20 +54,28 @@ class SceneDel(SceneBase):
 					if clk.has_key('info'): info = clk['info'];
 					del super_b.clocks[ck];
 					delnum = delnum + 1
+		msg_id = SceneParam._get_random_id(len(self.data['msg']['del_cks']));
+		struct['result']['msg'] = self.data['msg']['del_cks'][msg_id];
+		'''
 		if delnum > 1 and len(info) > 0:
 			struct['result']['msg'] = (self.data['msg']['del_cks'][0] %(info,u'等'));
 		else:
 			struct['result']['msg'] = (self.data['msg']['del_cks'][0] %(info,''));
+		'''
 
 	def _get_match_cks(self,struct,super_b):
 		cks = list();
 		ttag = struct['ttag'];
 		if len(re.findall('((_del)|(_cancle))_pastdue_clock',ttag)) > 0:
 			cks = SceneParam._find_cks_pastdue(super_b);
+		elif len(re.findall('(_cancle)|(_del)_all_clock',ttag)) > 0:
+			cks = super_b.clocks.keys();
+		elif len(re.findall('_all((_clock)|(_remind)).*(_cancle)|(_del)',ttag)) > 0:
+			cks = super_b.clocks.keys();
 		#处理 删除/取消.....闹钟/提醒
-		elif len(re.findall('((_cancle)|(_del))_.*_clock',ttag)) > 0:
+		elif len(re.findall('((_cancle)|(_del)).*_clock',ttag)) > 0:
 			cks = self._get_cks_by_tag(struct,super_b,'_clock');
-		elif len(re.findall('((_cancle)|(_del))_.*_remind',ttag)) > 0:
+		elif len(re.findall('((_cancle)|(_del)).*_remind',ttag)) > 0:
 			cks = self._get_cks_by_tag(struct,super_b,'_remind');
 		#....闹钟/提醒....删了/不要了
 		elif len(re.findall('.*_clock(_all)*((_no)|(_del)|(_cancle))',ttag)) > 0:
