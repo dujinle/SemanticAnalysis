@@ -86,3 +86,7 @@ class SceneAdd(SceneBase):
 		if struct.has_key('ck_able'):
 			myclock['able'] = struct['ck_able'];
 			del struct['ck_able'];
+		else:
+			myclock['able'] = dict();
+			myclock['able']['type'] = 'week';
+			myclock['able']['able'] = '127';

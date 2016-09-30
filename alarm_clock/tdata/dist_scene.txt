@@ -5,7 +5,7 @@
 			|_clock_set
 			|_set_clock
 			|_new_clock
-			|_new_prep_clock
+			|_new_prep(_time)*_clock
 			|_set_prep_clock
 			|_anew_open_clock
 			|_pverb_prep_clock

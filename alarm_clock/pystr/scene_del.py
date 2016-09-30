@@ -54,7 +54,7 @@ class SceneDel(SceneBase):
 					if clk.has_key('info'): info = clk['info'];
 					del super_b.clocks[ck];
 					delnum = delnum + 1
-		if delnum > 1:
+		if delnum > 1 and len(info) > 0:
 			struct['result']['msg'] = (self.data['msg']['del_cks'][0] %(info,u'等'));
 		else:
 			struct['result']['msg'] = (self.data['msg']['del_cks'][0] %(info,''));
