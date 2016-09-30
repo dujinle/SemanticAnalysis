@@ -28,7 +28,7 @@ class SceneGetup(SceneBase):
 				logging.info('the alarm clock is exist so add failed!')
 				return None;
 			elif struct['step'] == 'start':
-				if super_b.myclock is None: super_b.myclock = dict();
+				super_b.myclock = dict();
 				if struct['ttag'].find('time') == -1:
 					msg_id = SceneParam._get_random_id(len(self.data['msg']['set_time']));
 					struct['result']['msg'] = self.data['msg']['set_time'][0];
@@ -50,7 +50,6 @@ class SceneGetup(SceneBase):
 
 	def _analysis_mytag(self,struct,super_b):
 		ck = super_b.myclock;
-		print 'go into _analysis_mytag......'
 		if struct.has_key('tag') and struct['tag'].has_key(u'起床'):
 			if not ck.has_key('time'): return False;
 			usual_time = struct['tag'][u'起床'];

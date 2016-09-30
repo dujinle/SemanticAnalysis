@@ -94,6 +94,11 @@
 			|_new_time_clock_info",
 		"type":"ck_agenda_add"
 	},
+	"ck_getup_add":{
+		"reg":"(_time)*_call_me_wake
+			|((_new)|(_set))(_prep)*_wake_clock",
+		"type":"ck_getup_add"
+	},
 	"ck_del":{
 		"reg":"_time_clock_cancle
 			|_cancle_time_all_clock
