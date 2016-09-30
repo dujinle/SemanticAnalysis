@@ -83,6 +83,8 @@ class SceneAgenda(SceneBase):
 		if struct['text'].find(self.data['drink']) <> -1:
 			tid = struct['text'].find(self.data['drink']);
 			myclock['info'] = struct['text'][tid:];
+		elif struct['ttag'].find('_cout') <> -1:
+			myclock['info'] = self.data['cout'];
 		elif struct['ttag'].find('_go') <> -1:
 			tid = struct['inlist'].index(u'去');
 			myclock['info'] = struct['inlist'][tid + 1];
@@ -91,8 +93,6 @@ class SceneAgenda(SceneBase):
 			myclock['info'] = struct['text'][tid:];
 		elif struct['ttag'].find('_meeting') <> -1:
 			myclock['info'] = self.data['meeting'];
-		elif struct['ttag'].find('_cout') <> -1:
-			myclock['info'] = self.data['cout'];
 		elif struct['ttag'].find('_info') <> -1:
 			for content in self.data['infois']:
 				if struct['text'].find(content) <> -1:

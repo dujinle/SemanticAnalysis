@@ -86,7 +86,7 @@
 			|_moment_remind_me
 			|_time(_remind_me)*_meeting
 			|_new_meeting_clock
-			|_new_prep_time_remind
+			|_new_prep(_time)*_remind
 			|_call_me_time_go
 			|_new_time_go_clock
 			|_time_cout

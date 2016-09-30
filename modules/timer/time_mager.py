@@ -113,10 +113,12 @@ try:
 	wordseg = WordSeg();
 	mg = TimeMager(wordseg);
 	mg.init('Timer');
+	struct = dict();
+	struct['text'] = u'下午3点以后';
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'14点15分30秒'));
 	#common.print_dic(mg.encode(u'凌晨'));
-	common.print_dic(mg.encode(u'7点一刻'));
+	common.print_dic(mg.encode(struct));
 	#common.print_dic(mg.encode(u'今年中秋节'));
 	#common.print_dic(mg.encode(u'下午2点30分'));
 	#common.print_dic(mg.encode(u'上周末'));
