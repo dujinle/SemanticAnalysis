@@ -78,28 +78,21 @@ def _find_cks_bytime(struct,super_b):
 	start = inter['start'];
 	end = inter['end'];
 
-	able = 0;
+	able = week = 0;
 	hid = 3;
 	mid = 4;
-	idx = start[2];
-	while True:
-		if able == 0 and idx == end[2]:
-			if start[0] == 'null':
-				week = _get_week(end[0],end[1],end[2]);
-				able = math.pow(2,week);
-				break;
-			elif end[0] == 'null':
-				week = _get_week(start[0],start[1],start[2]);
-				able = math.pow(2,week);
-				break;
-			else:
-				week = _get_week(start[0],start[1],start[2]);
-				able = math.pow(2,week);
-				break;
-		elif idx == end[2]: break;
-		week = _get_week(end[0],end[1],idx);
-		able = able + math.pow(2,week);
-		idx = idx + 1;
+	if start[0] == 'null':
+		week = _get_week(end[0],end[1],end[2]);
+		able = math.pow(2,week);
+	elif end[0] == 'null':
+		week = _get_week(start[0],start[1],start[2]);
+		able = math.pow(2,week);
+	else:
+		week = _get_week(start[0],start[1],start[2]);
+		able = math.pow(2,week);
+		eweek = _get_week(end[0],end[1],end[2]);
+		if eweek - week > 1 or eweek - week < -1:
+			able = able + math.pow(2,week + 1);
 	for ck in super_b.clocks:
 		clock = super_b.clocks[ck];
 		hour = int(clock['time'].split(':')[0]);
