@@ -70,52 +70,6 @@ def _save_tag(super_b):
 		pgsql.pg_close_cursor(cur);
 	except Exception as e:
 		raise e;
-'''
-def _find_able_cks(struct,super_b):
-	cks = list();
-	if struct['ttag'].find('_time_to_time') <> -1:
-		start = struct['intervals'][0]['start'];
-		end = struct['intervals'][1]['start'];
-		hid = 3;
-		mid = 4;
-		for ck in super_b.clocks:
-			clock = super_b.clocks[ck];
-			hour = int(clock['time'].split(':')[0]);
-			mins = int(clock['time'].split(':')[1]);
-			if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
-				if hour < end[hid] or (hour == end[hid] and end[mid] >= mins):
-					cks.append(ck);
-	elif struct['ttag'].find('_time_all_clock') <> -1:
-		start = struct['intervals'][0]['start'];
-		end = struct['intervals'][0]['end'];
-		for ck in super_b.clocks:
-			clock = super_b.clocks[ck];
-			hour = int(clock['time'].split(':')[0]);
-			mins = int(clock['time'].split(':')[1]);
-			if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
-				if hour < end[hid] or (hour == end[hid] and end[mid] >= mins):
-					cks.append(ck);
-	elif struct['ttag'].find('_time') <> -1:
-		start = struct['intervals'][0]['start'];
-		end = struct['intervals'][0]['end'];
-		hid = 3;
-		mid = 4;
-		for ck in super_b.clocks:
-			clock = super_b.clocks[ck];
-			hour = int(clock['time'].split(':')[0]);
-			mins = int(clock['time'].split(':')[1]);
-			if start[0] == 'null':
-				if hour < end[hid] or (hour == end[hid] and mins <= end[mid]):
-					cks.append(ck);
-			elif end[0] == 'null':
-				if hour < start[hid] or (hour == start[hid] and mins <= start[mid]):
-					cks.append(ck);
-			else:
-				if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
-					if hour < end[hid] or (hour == end[hid] and end[mid] >= mins):
-						cks.append(ck);
-	return cks;
-'''
 
 def _find_cks_bytime(struct,super_b):
 	cks = list();
@@ -158,7 +112,7 @@ def _find_cks_bytime(struct,super_b):
 				if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 					cks.append(ck);
 		elif end[0] == 'null':
-			if hour > start[hid] or (hour == start[hid] and mins > start[mid]):
+			if hour > start[hid] or (hour == start[hid] and mins >= start[mid]):
 				if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 					cks.append(ck);
 		else:

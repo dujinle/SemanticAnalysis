@@ -5,7 +5,7 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"16"
 		}
 	},
 	{
@@ -15,17 +15,17 @@
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"16"
 		}
 	},
 	{
 		"key":"和刘总的约会",
 		"info":"和刘总的约会",
-		"time":"13:0",
+		"time":"15:0",
 		"type":"agenda",
 		"able":{
 			"type":"week",
-			"able":"8"
+			"able":"16"
 		}
 	},
 	{
@@ -34,7 +34,7 @@
 		"time":"9:0",
 		"able":{
 			"type":"week",
-			"able":"16"
+			"able":"32"
 		}
 	}
 ]

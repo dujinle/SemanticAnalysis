@@ -24,63 +24,29 @@ def analysis_result(struct,ans):
 		key = ans['key'];
 		clock = struct['mcks'][key];
 		if ans.has_key('time'):
-			if ans['time'] == clock['time']:
-				return True;
-			else:
+			if ans['time'] <> clock['time']:
 				return False;
 		elif ans.has_key('info'):
-			if ans['info'] == clock['info']:
-				return True;
-			else:
+			if ans['info'] <> clock['info']:
 				return False;
 		elif ans.has_key('able'):
-			if ans['able'] == clock['able']['able']:
-				return True;
-			else:
+			if int(ans['able']) <> int(clock['able']['able']):
 				return False;
 	elif type(ans) == list:
 		for item in ans:
 			key = item['key'];
 			clock = struct['mcks'][key];
 			if item.has_key('time'):
-				if item['time'] == clock['time']:
-					return True;
-				else:
+				if item['time'] <> clock['time']:
 					return False;
 			elif item.has_key('info'):
-				if item['info'] == clock['info']:
-					return True;
-				else:
+				if item['info'] <> clock['info']:
 					return False;
 			elif item.has_key('able'):
-				if item['able'] == clock['able']['able']:
-					return True;
-				else:
+				if int(item['able']) <> int(clock['able']['able']):
 					return False;
-	return False;
+	return True;
 
-def del_param(argv):
-	ifile = tfile = tmode = '';
-	if argv[1] == '-i':
-		ifile = argv[2];
-	else:
-		print 'Usage:%s -i [init] -t [test] -m [mtime|....]' %argv[0];
-		sys.exit(-1);
-	if argv[3] == '-t':
-		tfile = argv[4];
-	else:
-		print 'Usage:%s -i [init] -t [test] -m [mtime|....]' %argv[0];
-		sys.exit(-1);
-	if argv[5] == '-m':
-		tmode = argv[6];
-	else:
-		print 'Usage:%s -i [init] -t [test] -m [mtime|....]' %argv[0];
-		sys.exit(-1);
-	return (ifile,tfile,tmode);
-
-if len(sys.argv) <= 1:
-	print 'Usage:%s -i [init] -t [test] -m [mtime|....]' %sys.argv[0];
-	sys.exit(-1);
 
 wd = WordSeg();
 timer = TimeMager(wd);
@@ -93,17 +59,14 @@ tag.init('Mytag');
 
 struct = dict();
 struct['result'] = dict();
-#params read
-ifile,tfile,tmode = del_param(sys.argv);
-#init data
-ck_list = common.read_json(ifile);
-for ck in ck_list:
-	se.clocks[ck['key']] = ck;
-se.myclock = ck_list[0];
 #read test file
-tests = common.read_json(tfile);
+tests = common.read_json('./mtime.test');
 #start tests
 for test in tests:
+	ck_list = common.read_json('./mtime.init');
+	for ck in ck_list:
+		se.clocks[ck['key']] = ck;
+	se.myclock = ck_list[0];
 	struct['text'] = test['test'];
 	timer.encode(struct);
 	tag.encode(struct);
@@ -114,3 +77,4 @@ for test in tests:
 	else:
 		print test['test'],'faile';
 		common.print_dic(struct);
+		sys.exit(-1)
