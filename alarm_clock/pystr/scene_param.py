@@ -163,7 +163,7 @@ def _find_cks_bytime(struct,super_b):
 					cks.append(ck);
 		else:
 			if hour > start[hid] or (hour == start[hid] and start[mid] <= mins):
-				if hour < end[hid] or (hour == end[hid] and mins < end[mid]):
+				if hour < end[hid] or (hour == end[hid] and mins <= end[mid]):
 					if clock.has_key('able') and int(clock['able']['able']) & int(able) > 0:
 						cks.append(ck);
 	return cks;

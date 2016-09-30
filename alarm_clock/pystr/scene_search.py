@@ -39,7 +39,8 @@ class SceneSearch(SceneBase):
 		elif struct['ttag'].find('_time_has_some_thing') <> -1\
 			or struct['ttag'].find('_time_has_what_thing') <> -1\
 			or struct['ttag'].find('_time_has_some_prep_thing') <> -1\
-			or struct['ttag'].find('_time_yes_what_info') <> -1:
+			or struct['ttag'].find('_time_yes_what_info') <> -1\
+			or struct['ttag'].find('_clock_yes_what') <> -1:
 			cks = SceneParam._find_cks_bytime(struct,super_b);
 			return cks;
 		elif struct['ttag'].find('_after_has_what_thing') <> -1:
@@ -68,6 +69,11 @@ class SceneSearch(SceneBase):
 						cks.append(ck);
 			return cks;
 		elif struct['ttag'].find('_prep_info_yes_what') <> -1:
+			inum = SceneParam._get_cks_num(struct);
+			keys = super_b.clocks.keys();
+			cks.append(keys[inum - 1]);
+			return cks;
+		elif len(re.findall('see.*_prep_clock',struct['ttag'])) > 0:
 			inum = SceneParam._get_cks_num(struct);
 			keys = super_b.clocks.keys();
 			cks.append(keys[inum - 1]);

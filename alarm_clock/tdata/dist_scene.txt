@@ -118,8 +118,10 @@
 		"reg":"_see_has_some_clock
 			|_time_has_some_thing
 			|_has_some
+			|_see.*_clock
 			|_has_what_thing
 			|_yes_what_info
+			|_clock_yes_what
 			|_info_yes_what",
 		"type":"ck_search"
 	},
