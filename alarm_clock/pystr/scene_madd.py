@@ -61,6 +61,10 @@ class SceneMadd(SceneBase):
 		if struct.has_key('ck_able'):
 			myclock['able'] = struct['ck_able'];
 			del struct['ck_able'];
+		else:
+			myclock['able'] = dict();
+			myclock['able']['type'] = 'week';
+			myclock['able']['able'] = '127'
 
 	def _add_more_cks(self,num,struct,super_b):
 		onum = num;
@@ -71,8 +75,11 @@ class SceneMadd(SceneBase):
 				struct['result']['msg'] = self.data['msg']['less_time'][0];
 				return None;
 			SceneParam._find_time(struct);
+			SceneParam._calc_able(struct);
 			self._set_time(struct,super_b);
+			self._set_able(struct,super_b);
 			num = num - 1;
+			super_b.myclock['key'] = super_b.myclock['time'];
 			super_b.clocks[super_b.myclock['time']] = super_b.myclock;
 			del struct['intervals'][0];
 		if struct.has_key('intervals'): del struct['intervals'];

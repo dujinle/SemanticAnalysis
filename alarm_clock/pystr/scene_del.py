@@ -90,9 +90,8 @@ class SceneDel(SceneBase):
 
 	def _get_cks_by_tag(self,struct,super_b,tag):
 		ttag = struct['ttag'];
-		end = len(ttag);
-		if not tag is None: end = ttag.find(tag);
-		pre_tag = ttag[:end];
+		pre_tag = ttag;
+		if not tag is None: pre_tag = ttag[:ttag.find(tag)];
 		cks = None;
 		if pre_tag.find('time') <> -1:
 			cks = SceneParam._find_cks_bytime(struct,super_b);
