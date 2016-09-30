@@ -83,24 +83,21 @@ class SceneAgenda(SceneBase):
 		if struct['text'].find(self.data['drink']) <> -1:
 			tid = struct['text'].find(self.data['drink']);
 			myclock['info'] = struct['text'][tid:];
+		elif struct['ttag'].find('_go') <> -1:
+			tid = struct['inlist'].index(u'去');
+			myclock['info'] = struct['inlist'][tid + 1];
 		elif struct['ttag'].find('_remind_me') <> -1:
 			tid = struct['text'].find(u'提醒我') + 3;
 			myclock['info'] = struct['text'][tid:];
 		elif struct['ttag'].find('_meeting') <> -1:
 			myclock['info'] = self.data['meeting'];
-		elif struct['ttag'].find('_gout') <> -1:
-			myclock['info'] = self.data['gout'];
-		elif struct['ttag'].find('_go') <> -1:
-			tid = struct['inlist'].index(u'去');
-			myclock['info'] = struct['inlist'][tid + 1];
+		elif struct['ttag'].find('_cout') <> -1:
+			myclock['info'] = self.data['cout'];
 		elif struct['ttag'].find('_info') <> -1:
-			for content in self.data['info']:
+			for content in self.data['infois']:
 				if struct['text'].find(content) <> -1:
-					tid = struct['text'].find(content);
+					tid = struct['text'].find(content) + len(content);
 					myclock['info'] = struct['text'][tid:];
 					break;
-		elif struct['text'].find(self.data['drink']) <> -1:
-			tid = struct['text'].find(self.data['drink']);
-			myclock['info'] = struct['text'][tid:];
 		if myclock.has_key('info') and myclock['info'] == '':
 			del myclock['info'];

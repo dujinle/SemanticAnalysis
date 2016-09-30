@@ -45,18 +45,13 @@ def _calc_able(struct):
 	if struct.has_key('ck_date'):
 		date = struct['ck_date'];
 		tdic = dict();
-		if date['type'] == 'time_ut' or date['type'] == 'time_nt':
-			tdic['repeat'] = 'once';
-			tdic['date'] = date['date'];
-			tdic['type'] = 'date';
-		if date['type'] == 'time_wt':
-			dates = date['date'].split('/');
-			dat = datetime.date(int(dates[0]),int(dates[1]),int(dates[2]));
-			week = dat.weekday();
-			able = math.pow(2,week);
-			tdic['type'] = 'week';
-			tdic['repeat'] = 'repeat';
-			tdic['able'] = able;
+		dates = date['date'].split('/');
+		dat = datetime.date(int(dates[0]),int(dates[1]),int(dates[2]));
+		week = dat.weekday();
+		able = math.pow(2,week);
+		tdic['type'] = 'week';
+		tdic['repeat'] = 'repeat';
+		tdic['able'] = able;
 		del struct['ck_date'];
 		struct['ck_able'] = tdic;
 
