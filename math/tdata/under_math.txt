@@ -1,0 +1,12 @@
+{
+	"msg":{
+		"unknow":["没有找到相关的信息"],
+		"cal_succ":["肯定是%d啊，这么简单"]
+	},
+	"models":[
+		{
+			"reg":"MULTIPLY.*HOWMANY",
+			"func":"multiply"
+		}
+	]
+}
