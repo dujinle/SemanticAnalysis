@@ -1,0 +1,12 @@
+{
+	"是":{
+		"stype":"IS",
+		"str":"是",
+		"type":"COPULA"
+	},
+	"等于":{
+		"stype":"EQUAL",
+		"type":"COPULA",
+		"str":"等于"
+	}
+}

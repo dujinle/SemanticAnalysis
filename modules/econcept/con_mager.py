@@ -16,6 +16,8 @@ class ConMager():
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeBody'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomePlace'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeThing'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeAbst'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeCopula'));
 		self.tag_objs.append(MarkObjs(self.net_data,'Adjs'));
 		self.tag_objs.append(MarkObjs(self.net_data,'Verbs'));
 		self.tag_objs.append(MarkPronoun(self.net_data,'Bpronoun'));

@@ -2,36 +2,37 @@
 	"音乐":{
 		"scope":"Music",
 		"stype":"MUSIC",
-		"str":"音乐"
+		"str":"音乐",
+		"type":"STH"
 	},
 	"电话":{
 		"scope":"Phone",
 		"stype":"PHONE",
-		"str":"电话"
+		"str":"电话",
+		"type":"STH"
 	},
 	"信息":{
 		"scope":"Phone",
 		"stype":"MESSAGE",
-		"str":"信息"
+		"str":"信息",
+		"type":"STH"
 	},
 	"新闻":{
 		"scope":"News",
 		"stype":"NEWS",
-		"str":"新闻"
+		"str":"新闻",
+		"type":"STH"
 	},
 	"新歌":{
 		"scope":"Music",
 		"stype":"NEWMUSIC",
-		"str":"新歌"
+		"str":"新歌",
+		"type":"STH"
 	},
 	"英文":{
 		"scope":"Trans",
 		"stype":"ENGLISH",
-		"str":"英文"
-	},
-	"美食推荐":{
-		"scope":"Food",
-		"stype":"FOODSPOT",
-		"str":"美食推荐"
+		"str":"英文",
+		"type":"STH"
 	}
 }

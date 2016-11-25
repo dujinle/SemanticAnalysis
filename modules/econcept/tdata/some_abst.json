@@ -1,0 +1,13 @@
+{
+	"美食推荐":{
+		"scope":"Food",
+		"stype":"FOODSPOT",
+		"str":"美食推荐",
+		"type":"SABST"
+	},
+	"内容":{
+		"stype":"CONTENT",
+		"type":"SABST",
+		"str":"内容"
+	}
+}
