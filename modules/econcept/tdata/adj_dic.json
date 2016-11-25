@@ -1,0 +1,17 @@
+{
+	"喜欢的":{
+		"stype":"FAVORITE",
+		"str":"喜欢的",
+		"type":"ADJ"
+	},
+	"最爱的":{
+		"stype":"FAVORITE",
+		"str":"最爱的",
+		"type":"ADJ"
+	},
+	"能听的":{
+		"stype":"CANLISTEN",
+		"str":"能听的",
+		"type":"ADJ"
+	}
+}

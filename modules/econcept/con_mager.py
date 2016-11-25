@@ -4,8 +4,8 @@ import os,sys
 import common,config
 from net_data import NetData
 from mark_objs import MarkObjs
-from merge_objs import MergeObjs
-from merge_sds import MergeSbDoSth
+from mark_pronoun import MarkPronoun
+
 from con_tail import ConTail
 
 class ConMager():
@@ -13,21 +13,18 @@ class ConMager():
 		self.tag_objs = list();
 		self.net_data = NetData();
 
-		self.tag_objs.append(MarkObjs(self.net_data));
-		self.tag_objs.append(MergeObjs(self.net_data));
-		self.tag_objs.append(MergeSbDoSth(self.net_data));
-		self.tag_objs.append(ConTail());
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeBody'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomePlace'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeThing'));
+		self.tag_objs.append(MarkObjs(self.net_data,'Adjs'));
+		self.tag_objs.append(MarkObjs(self.net_data,'Verbs'));
+		self.tag_objs.append(MarkPronoun(self.net_data,'Bpronoun'));
+		self.tag_objs.append(MarkPronoun(self.net_data,'Lpronoun'));
+		self.tag_objs.append(MarkPronoun(self.net_data,'PlaceSpace'));
 
 	def init(self,dtype):
 		try:
-			nfile = config.dfiles[dtype]['1'];
-			self.net_data.set_noun_net(nfile);
-
-			vfile = config.dfiles[dtype]['2'];
-			self.net_data.set_verb_net(vfile);
-
-			gfile = config.dfiles[dtype]['3'];
-			self.net_data.set_gerund_net(gfile);
+			self.net_data.load_data();
 		except Exception as e:
 			raise e;
 

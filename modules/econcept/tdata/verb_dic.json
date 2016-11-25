@@ -1,63 +1,47 @@
 {
-    "打": {
-        "rto": [
-            "打电话"
-        ], 
-        "stype": "VERB", 
-        "str": "打"
-    }, 
-    "叫": {
-        "stype": "VERB", 
-        "str": "叫"
-    }, 
-    "找": {
-        "stype": "VERB", 
-        "str": "找"
-    }, 
-    "买": {
-        "rto": [
-            "买包烟", 
-            "买菜"
-        ], 
-        "stype": "VERB", 
-        "str": "买"
-    }, 
-    "接": {
-        "stype": "VERB", 
-        "str": "接"
-    }, 
-    "打扫": {
-        "rto": [
-            "打扫卫生"
-        ], 
-        "stype": "VERB", 
-        "str": "打扫"
-    }, 
-    "拿": {
-        "rto": [
-            "拿文件"
-        ], 
-        "stype": "VERB", 
-        "str": "拿"
-    }, 
-    "去": {
-        "stype": "GOTO", 
-        "str": "去"
-    }, 
-    "下楼": {
-        "stype": "VERB", 
-        "str": "下楼"
-    }, 
-    "盖": {
-        "rto": [
-            "盖章"
-        ], 
-        "stype": "VERB", 
-        "str": "盖"
-    },
-	"出门":{
-		"rto":["家"],
-		"stype":"GOUT",
-		"str":"出门"
+	"打":{
+		"stype":"HIT",
+		"str":"打",
+		"type":"DO"
+	},
+	"去":{
+		"stype":"GOTO",
+		"str":"去",
+		"type":"DO"
+	},
+	"发":{
+		"stype":"SEND",
+		"str":"发",
+		"type":"DO"
+	},
+	"给":{
+		"stype":"GIVE",
+		"str":"给",
+		"type":"INTERACT"
+	},
+	"出门去":{
+		"stype":"GOUTGOTO",
+		"str":"出门去",
+		"type":"ACTION"
+	},
+	"停":{
+		"stype":"STOP",
+		"str":"停",
+		"type":"ACTION"
+	},
+	"吹牛":{
+		"stype":"BRAG",
+		"str":"吹牛",
+		"type":"ACTION"
+	},
+	"翻译":{
+		"stype":"TRANS",
+		"str":"翻译",
+		"type":"ACTION"
+	},
+	"推荐":{
+		"stype":"HOTLISTS",
+		"str":"推荐",
+		"type":"ACTION"
 	}
 }

@@ -1,0 +1,12 @@
+{
+	"公司":{
+		"stype":"COMPANY",
+		"str":"公司",
+		"type":"SP"
+	},
+	"家":{
+		"stype":"HOME",
+		"str":"家",
+		"type":"SP"
+	}
+}

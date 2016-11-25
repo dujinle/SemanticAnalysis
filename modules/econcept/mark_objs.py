@@ -1,25 +1,27 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import os,sys
+import os,sys,common
 from myexception import MyException
 import struct_utils as Sutil
 #标记对象名词以及链接的网络
 class MarkObjs():
-	def __init__(self,net_data):
+	def __init__(self,net_data,key):
 		self.net_data = net_data;
+		self.key = key;
+
+	def load_data(self,dfile): pass;
 
 	def encode(self,struct):
 		try:
-			if not struct.has_key('Objs'): struct['Objs'] = list();
-			if not struct.has_key('Verbs'): struct['Verbs'] = list();
+			if not struct.has_key(self.key): struct[self.key] = list();
 			self._mark_objs(struct);
+			Sutil._link_split_words(struct,self.key);
 		except Exception:
 			raise MyException(sys.exc_info());
 
 	def _mark_objs(self,struct):
-		noun = self.net_data.get_noun_net();
-		vbs = self.net_data.get_verb_net();
-		gerund = self.net_data.get_gerund_net();
+		data = self.net_data.get_data_key(self.key);
+		if data is None: return None;
 		idx = 0;
 		while True:
 			if idx >= len(struct['text']): break;
@@ -27,35 +29,10 @@ class MarkObjs():
 			wd = '';
 			for word in list(strs):
 				wd = wd + word;
-				if noun.has_key(wd):
-					wc = noun[wd];
-					struct['Objs'].append(wc);
+				if data.has_key(wd):
+					tdic = data[wd];
 					idx = idx + len(wd) - 1;
-					wd = '';
-					break;
-				elif vbs.has_key(wd):
-					wc = vbs[wd];
-					struct['Verbs'].append(wc);
-					idx = idx + len(wd) - 1;
-					wd = '';
-					break;
-				elif gerund.has_key(wd):
-					wc = gerund[wd];
-					struct['Objs'].append(wc);
-					idx = idx + len(wd) - 1;
+					struct[self.key].append(tdic);
 					wd = '';
 					break;
 			idx = idx + 1;
-
-		#把连续的动词合并为一个词,这里是因为分词的不理想导致动词的分开
-		#Sutil._merge_cont_tag(struct,'Verbs');
-		tid = 0;
-		for verb in struct['Verbs']:
-			if verb['str'] in struct['inlist'] or len(verb['str']) == 1:
-				continue;
-			tid = Sutil._merge_some_words(struct,verb['str'],tid);
-		tid = 0;
-		for verb in struct['Objs']:
-			if verb['str'] in struct['inlist'] or len(verb['str']) == 1:
-				continue;
-			tid = Sutil._merge_some_words(struct,verb['str'],tid);

@@ -1,0 +1,37 @@
+{
+	"音乐":{
+		"scope":"Music",
+		"stype":"MUSIC",
+		"str":"音乐"
+	},
+	"电话":{
+		"scope":"Phone",
+		"stype":"PHONE",
+		"str":"电话"
+	},
+	"信息":{
+		"scope":"Phone",
+		"stype":"MESSAGE",
+		"str":"信息"
+	},
+	"新闻":{
+		"scope":"News",
+		"stype":"NEWS",
+		"str":"新闻"
+	},
+	"新歌":{
+		"scope":"Music",
+		"stype":"NEWMUSIC",
+		"str":"新歌"
+	},
+	"英文":{
+		"scope":"Trans",
+		"stype":"ENGLISH",
+		"str":"英文"
+	},
+	"美食推荐":{
+		"scope":"Food",
+		"stype":"FOODSPOT",
+		"str":"美食推荐"
+	}
+}
