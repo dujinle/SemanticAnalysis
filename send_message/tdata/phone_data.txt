@@ -1,14 +1,17 @@
 {
-	"MINE":{
-		"phone":"1234567890",
-		"name":"ABCD"
+	"Phone":{
+		"MINE":{
+			"phone":"1234567890",
+			"name":"ABCD"
+		},
+		"FIRST":{
+			"phone":"1234567890",
+			"name":"ABCD"
+		},
+		"WIFE":{
+			"phone":"9090909090",
+			"name":"DDDDDD"
+		}
 	},
-	"FIRST":{
-		"phone":"1234567890",
-		"name":"ABCD"
-	},
-	"WIFE":{
-		"phone":"9090909090",
-		"name":"DDDDDD"
-	}
+	"Message":"知道啦，又出差真是的"
 }
