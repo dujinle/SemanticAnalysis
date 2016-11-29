@@ -25,6 +25,7 @@ class MarkUnit():
 		for unit in self.data.keys():
 			if struct['text'].find(unit) <> -1:
 				tdic = dict();
+				tdic['type'] = 'UNIT';
 				tdic['stype'] = 'UNIT';
 				tdic['str'] = unit;
 				struct['Units'].append(tdic);

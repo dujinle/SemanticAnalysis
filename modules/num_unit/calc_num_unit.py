@@ -25,10 +25,11 @@ class CalcNumUnit():
 	def _calc_num_unit(self,struct):
 		nlist = struct['Nums'];
 		ulist = struct['Units'];
-		nid = uid = pid = 0;
+		nid = uid = 0;
 		while True:
 			if nid >= len(nlist): break;
 			num = nlist[nid];
+			uid = 0;
 			while True:
 				if uid >= len(ulist): break;
 				unit = ulist[uid];
@@ -36,10 +37,9 @@ class CalcNumUnit():
 				if struct['text'].find(ustr) <> -1:
 					tdic = dict();
 					tdic['type'] = 'Nunit';
+					tdic['stype'] = num['type'] + unit['type'];
 					tdic['str'] = ustr;
-					tdic['stc'] = list();
-					tdic['stc'].append(num);
-					tdic['stc'].append(unit);
+					tdic['stc'] = [num,unit];
 					struct['Nunit'].append(tdic);
 					del ulist[uid],nlist[nid];
 					nid = nid - 1;

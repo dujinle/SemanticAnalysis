@@ -20,7 +20,7 @@ class NunitMager:
 		self.tag_objs.append(MarkUnit());
 		self.tag_objs.append(MarkRelat());
 		self.tag_objs.append(CalcNumUnit());
-		self.tag_objs.append(NunitTail());
+#		self.tag_objs.append(NunitTail());
 
 	def init(self,dtype):
 		try:

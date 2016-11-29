@@ -3,6 +3,7 @@
 import os,sys,common,re
 from myexception import MyException
 import struct_utils as Sutil
+import hanzi2num as Han2Dig
 
 class MarkNum():
 	def __init__(self):
@@ -32,19 +33,25 @@ class MarkNum():
 	def _mark_num(self,struct):
 		words = struct['text'];
 		match = self._match_num_reg(words);
-		if not match is None:
-			for item in match:
+		for key in match.keys():
+			item = match[key];
+			for it in item:
 				tdic = dict();
-				tdic['stype'] = 'NUM';
-				tdic['str'] = item;
+				tdic['type'] = 'NUM';
+				if key == 'nreg':
+					tdic['stype'] = it;
+				else:
+					tdic['stype'] = str(Han2Dig.cn2dig(it));
+				tdic['str'] = it;
 				struct['Nums'].append(tdic);
 
 	def _match_num_reg(self,words):
+		tdic = dict();
 		for key in self.data:
 			idata = self.data[key];
 			comp = re.compile(idata);
 			match = comp.findall(words);
 			if match is None or len(match) == 0:
 				continue;
-			return match;
-		return None;
+			tdic[key] = match;
+		return tdic;

@@ -55,8 +55,8 @@ class MarkRelat():
 				ustr = pit['str'] + unit['str'];
 				if struct['text'].find(ustr) <> -1:
 					tdic = dict();
-					tdic['type'] = 'RELAT';
-					tdic['stype'] = pit['stype'];
+					tdic['type'] = pit['type'] + unit['type'];
+					tdic['stype'] = pit['stype'] + unit['stype'];
 					tdic['str'] = ustr;
 					tdic['stc'] = [pit,unit];
 					struct['RelatStc'].append(tdic);
