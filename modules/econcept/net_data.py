@@ -17,7 +17,11 @@ class NetData():
 			"PlaceSpace":os.path.join(abspath,'tdata','place_space.json'),
 			"Bpronoun":os.path.join(abspath,'tdata','body_pronoun.json'),
 			"Lpronoun":os.path.join(abspath,'tdata','logical_pronoun.json'),
-			"SomeAbst":os.path.join(abspath,'tdata','some_abst.json')
+			"SomeAbst":os.path.join(abspath,'tdata','some_abst.json'),
+			"Adverb":os.path.join(abspath,'tdata','adverb_dic.json'),
+			"Units":os.path.join(abspath,'tdata','unit_dic.json'),
+			"Nums":os.path.join(abspath,'tdata','num_dic.json'),
+			"Relate":os.path.join(abspath,'tdata','relative.json')
 		}
 		self.data = {
 			"Adjs":None,
@@ -29,7 +33,11 @@ class NetData():
 			"PlaceSpace":None,
 			"Bpronoun":None,
 			"Lpronoun":None,
-			"SomeAbst":None
+			"SomeAbst":None,
+			"Adverb":None,
+			"Relate":None,
+			"Units":None,
+			"Nums":None
 		}
 
 	def get_data_key(self,key):

@@ -5,12 +5,32 @@
 			"这次可以送点钱。",
 			"要不然买个表吧？",
 			"某宝今天下午2点可以送到公司，要买吗？"
-		]
+		],
+		"baby_info":["根据京东商城儿童礼物搜索排行推荐，已将信息发送到你手机上，请您选择。"],
+		"express_sel":["是送回家还是送到公司？"],
+		"express_ser":["已完成操作，明天上午10点左右送到，京东快递员，陈京东，手机号：13833885588"],
+		"buy_ser":["根据上次购买记录，已完成订单，明天下午会送到家里。"]
 	},
 	"models":[
 		{
 			"reg":"BUYGIFT.*HASONEWHATHOTLISTSFINISH",
 			"func":"shop"
+		},
+		{
+			"reg":"SENDWHATGOOD",
+			"func":"search"
+		},
+		{
+			"reg":"SELECTFINISH",
+			"func":"selected"
+		},
+		{
+			"reg":"SENDCOMPANY",
+			"func":"express"
+		},
+		{
+			"reg":"BUYFOOD",
+			"func":"buy"
 		}
 	]
 }

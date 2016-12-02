@@ -8,5 +8,10 @@
 		"stype":"EQUAL",
 		"type":"COPULA",
 		"str":"等于"
+	},
+	"可以":{
+		"stype":"CAN",
+		"type":"VERBE",
+		"str":"可以"
 	}
 }

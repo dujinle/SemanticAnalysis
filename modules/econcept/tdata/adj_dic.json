@@ -13,5 +13,10 @@
 		"stype":"CANLISTEN",
 		"str":"能听的",
 		"type":"ADJ"
+	},
+	"5星级":{
+		"stype":"FIVESTAR",
+		"type":"LEVEL",
+		"str":"5星级"
 	}
 }

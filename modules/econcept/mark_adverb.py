@@ -38,19 +38,14 @@ class MarkPronoun():
 						if len(isr) == 0: continue;
 						tdic = dict();
 						tdic['str'] = isr;
-						if item.has_key('type'):
-							tdic['type'] = item['type'];
-						else:
-							tdic['type'] = self.key;
+						tdic['type'] = self.key;
 						tdic['stype'] = item['stype'];
 						struct[self.key].append(tdic);
 				else:
 					tdic = dict();
-					tdic['str'] = it;
-					if item.has_key('type'):
-						tdic['type'] = item['type'];
-					else:
-						tdic['type'] = self.key;
+					tdic['str'] = isr;
+					tdic['type'] = self.key;
 					tdic['stype'] = item['stype'];
 					struct[self.key].append(tdic);
+
 

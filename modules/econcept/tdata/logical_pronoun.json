@@ -1,58 +1,58 @@
 {
 	"EVERY":{
 		"reg":["各","诸","每","每种","每次","每个","各种","各项","各个"],
-		"type":"EVERY"
+		"stype":"EVERY"
 	},
 	"ONEOF":{
 		"reg":["某","某种","某次","某个","某些","之一"],
-		"type":"ONEOF"
+		"stype":"ONEOF"
 	},
 	"HASONE":{
 		"reg":["有","有个"],
-		"type":"HASONE"
+		"stype":"HASONE"
 	},
 	"OTHERONE":{
 		"reg":["其他","其它","其余","另外","别的","别个"],
-		"type":"OTHERONE"
+		"stype":"OTHERONE"
 	},
 	"HASSOME":{
 		"reg":["有些"],
-		"type":"HASSOME"
+		"stype":"HASSOME"
 	},
 	"SELF":{
 		"reg":["本"],
-		"type":"SELF"
+		"stype":"SELF"
 	},
 	"ALL":{
 		"reg":["全","一切"],
-		"type":"ALL"
+		"stype":"ALL"
 	},
 	"ANY":{
 		"reg":["任","任何","任意"],
-		"type":"ANY"
+		"stype":"ANY"
 	},
 	"THETWO":{
 		"reg":["两者","二者"],
-		"type":"THETWO"
+		"stype":"THETWO"
 	},
 	"THETHREE":{
 		"reg":["三者"],
-		"type":"THETHREE"
+		"stype":"THETHREE"
 	},
 	"THEFOUR":{
 		"reg":["四者"],
-		"type":"THEFOUR"
+		"stype":"THEFOUR"
 	},
 	"FIRSTONE":{
 		"reg":["其一","前者"],
-		"type":"FIRSTONE"
+		"stype":"FIRSTONE"
 	},
 	"SECONDONE":{
 		"reg":["其次","其二"],
-		"type":"SECONDONE"
+		"stype":"SECONDONE"
 	},
 	"LIKETHIS":{
 		"reg":["之类"],
-		"type":"LIKETHIS"
+		"stype":"LIKETHIS"
 	}
 }

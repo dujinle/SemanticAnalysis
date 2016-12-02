@@ -8,5 +8,25 @@
 		"stype":"HOME",
 		"str":"家",
 		"type":"SP"
+	},
+	"联通":{
+		"stype":"COMPANY",
+		"str":"联通",
+		"type":"SP"
+	},
+	"广州":{
+		"stype":"CITY",
+		"type":"SP",
+		"str":"广州"
+	},
+	"北京":{
+		"stype":"CITY",
+		"type":"SP",
+		"str":"北京"
+	},
+	"国贸":{
+		"stype":"MANSION",
+		"type":"SP",
+		"str":"国贸"
 	}
 }

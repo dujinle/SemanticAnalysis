@@ -14,5 +14,10 @@
 		"stype":"BABY",
 		"str":"宝贝",
 		"type":"SB"
+	},
+	"客户":{
+		"stype":"CUSTOMER",
+		"str":"客户",
+		"type":"SB"
 	}
 }
