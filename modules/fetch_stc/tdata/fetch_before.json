@@ -1,0 +1,26 @@
+[
+	{
+		"start":"SomeBody",
+		"end":"Units"
+	},
+	{
+		"start":"SomePlace",
+		"end":"Units"
+	},
+	{
+		"start":"SomeThing",
+		"end":"Units"
+	},
+	{
+		"start":"Verbs",
+		"end":"Units"
+	},
+	{
+		"start":"Verbs",
+		"end":"PlaceSpace"
+	},
+	{
+		"start":"Times",
+		"end":"Nunit"
+	}
+]

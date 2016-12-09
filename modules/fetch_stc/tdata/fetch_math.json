@@ -1,7 +1,7 @@
 {
 	"乘以":{
 		"stype":"MULTIPLY",
-		"scope":"Math",
+		"scene":"Math",
 		"str":"乘以",
 		"reg":"NUM乘以NUM"
 	}

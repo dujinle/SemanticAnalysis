@@ -1,0 +1,13 @@
+{
+	"MERGE":[
+		{
+			"start":"SomeNums",
+			"end":"SomeUnits",
+			"key":"Nunit",
+			"force":"tail"
+		}
+	],
+	"USELESS":[
+		"SomeTmood"
+	]
+}

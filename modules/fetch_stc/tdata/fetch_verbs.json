@@ -5,46 +5,12 @@
 			"end":"SomeThing",
 			"force":"prev",
 			"desc":""
-		}
-	],
-	"NATHAN":[
-		{
-			"start":"SomeBody",
-			"end":"Verbs",
-			"force":"tail",
-			"desc":""
-		}
-	],
-	"ADJ":[
-		{
-			"start":"SomeBody",
-			"end":"Adjs",
-			"type":"adj",
-			"force":"tail"
 		},
 		{
-			"start":"Adjs",
+			"start":"Verbs",
 			"end":"SomeBody",
-			"type":"adj",
-			"force":"prev"
-		},
-		{
-			"start":"SomeThing",
-			"end":"Adjs",
-			"type":"adj",
-			"force":"tail"
-		},
-		{
-			"start":"Adjs",
-			"end":"SomeThing",
-			"type":"adj",
-			"force":"prev"
-		},
-		{
-			"start":"Localizer",
-			"end":"Nunit",
-			"type":"attr",
-			"force":"mid"
+			"force":"prev",
+			"desc":""
 		}
 	]
 }
