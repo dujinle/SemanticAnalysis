@@ -1,0 +1,28 @@
+{
+#疑问代词 干啥?
+	"WHICH":{
+		"reg":["哪","哪儿","谁"],
+		"stype":"WHICH",
+		"type":"QUESTION"
+	},
+	"WHAT":{
+		"reg":["什么","啥","甚么","干啥"],
+		"stype":"WHAT",
+		"type":"QUESTION"
+	},
+	"HOW":{
+		"reg":["怎","怎么","如何","咋","何","何以"],
+		"stype":"HOW",
+		"type":"QUESTION"
+	},
+	"WHY":{
+		"reg":["为啥","为什么"],
+		"stype":"WHY",
+		"type":"QUESTION"
+	},
+	"HOWMANY":{
+		"reg":["几","多少"],
+		"stype":"HOWMANY",
+		"type":"QUESTION"
+	}
+}

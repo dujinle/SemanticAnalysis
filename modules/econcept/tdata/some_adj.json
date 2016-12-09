@@ -1,0 +1,37 @@
+{
+	"喜欢的":{
+		"stype":"FAVORITE",
+		"str":"喜欢的",
+		"type":"ADJ"
+	},
+	"最爱的":{
+		"stype":"FAVORITE",
+		"str":"最爱的",
+		"type":"ADJ"
+	},
+	"能听的":{
+		"stype":"CANLISTEN",
+		"str":"能听的",
+		"type":"ADJ"
+	},
+	"好":{
+		"stype":"GOOD",
+		"type":"ADJ",
+		"str":"好"
+	},
+	"真":{
+		"stype":"TRUE",
+		"type":"ADJ",
+		"str":"真"
+	},
+	"恶心":{
+		"stype":"SICK",
+		"type":"ADJ",
+		"str":"恶心"
+	},
+	"连线":{
+		"stype":"WIRED",
+		"type":"ADJ",
+		"str":"连线"
+	}
+}

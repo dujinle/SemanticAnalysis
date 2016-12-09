@@ -1,0 +1,29 @@
+{
+#不规则动词 IVERB
+	"出门":{
+		"stype":"GOUT",
+		"str":"出门",
+		"type":"IRREGULAR"
+	},
+	"再看":{
+		"stype":"LATER",
+		"type":"IRREGULAR",
+		"str":"再看"
+	},
+	"起床":{
+		"stype":"GETUP",
+		"type":"IRREGULAR",
+		"str":"起床",
+		"scene":"Alarm"
+	},
+	"上门":{
+		"stype":"VISIT",
+		"type":"IRREGULAR",
+		"str":"上门"
+	},
+	"吹牛":{
+		"stype":"BRAG",
+		"str":"吹牛",
+		"type":"IRREGULAR"
+	}
+}

@@ -27,12 +27,19 @@ class MarkObjs():
 			if idx >= len(struct['text']): break;
 			strs = struct['text'][idx:];
 			wd = '';
+			wlist = list();
 			for word in list(strs):
 				wd = wd + word;
 				if data.has_key(wd):
-					tdic = data[wd];
-					idx = idx + len(wd) - 1;
-					struct[self.key].append(tdic);
-					wd = '';
-					break;
+					wlist.append(wd);
+			max_len = 0;
+			words = None;
+			for istr in wlist:
+				if len(istr) > max_len:
+					max_len = len(istr);
+					words = istr;
+			if not words is None:
+				tdic = data[words];
+				struct[self.key].append(tdic);
+				idx = idx + len(words) - 1;
 			idx = idx + 1;

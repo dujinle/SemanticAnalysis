@@ -1,0 +1,33 @@
+{
+	"美食推荐":{
+		"scene":"Food",
+		"stype":"FOODSPOT",
+		"str":"美食推荐",
+		"type":"SABST"
+	},
+	"内容":{
+		"stype":"CONTENT",
+		"type":"SABST",
+		"str":"内容"
+	},
+	"钓鱼":{
+		"stype":"FISHING",
+		"type":"SABST",
+		"str":"钓鱼"
+	},
+	"生日":{
+		"stype":"BIRTHDAY",
+		"type":"SABST",
+		"str":"生日"
+	},
+	"基本":{
+		"stype":"BASIC",
+		"type":"SABST",
+		"str":"基本"
+	},
+	"翻译":{
+		"stype":"TRANSTION",
+		"type":"SABST",
+		"str":"翻译"
+	}
+}

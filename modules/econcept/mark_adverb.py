@@ -48,4 +48,3 @@ class MarkPronoun():
 					tdic['stype'] = item['stype'];
 					struct[self.key].append(tdic);
 
-

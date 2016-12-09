@@ -1,0 +1,8 @@
+{
+#时间副词
+	"TADVERB":{
+		"type":"TADVERB",
+		"stype":"USUALLY",
+		"reg":["基本","平时"]
+	}
+}

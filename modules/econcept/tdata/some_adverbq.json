@@ -1,0 +1,13 @@
+{
+#情态副词
+	"SO":{
+		"type":"MOOD",
+		"stype":"SO",
+		"reg":["真"]
+	},
+	"BYWAY":{
+		"type":"MOOD",
+		"stype":"BYWAY",
+		"reg":["顺便"]
+	}
+}
