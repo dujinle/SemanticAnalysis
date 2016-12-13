@@ -44,11 +44,13 @@ class FetchVerbs():
 				match = comp.search(struct['text']);
 				if not match is None:
 					if item['force'] == 'prev':
-						pit[item['key']] = vit;
+						pit['child'] = vit;
+						vit['rtype'] = item['key'];
 						del struct[item['end']][tid];
 						tid = tid - 1;
 					else:
-						vit[item['key']] = pit;
+						vit['child'] = pit;
+						pit['rtype'] = item['key'];
 						del struct[item['start']][pid];
 						pid = pid - 1;
 				tid = tid + 1;

@@ -17,21 +17,27 @@ class Fetch3Layer():
 
 	def encode(self,struct):
 		try:
+			print 'go into fetch 3......' + str(struct['deal']);
 			self._fetch_3L(struct);
 		except Exception:
 			raise MyException(sys.exc_info());
 
 	def _fetch_3L(self,struct):
+		ret = False;
 		for key in self.data.keys():
 			item = self.data[key];
 			for it in item:
-				self._merge_objs(struct,it);
+				mret = self._merge_objs(struct,it);
+				if mret == 1 and ret == False:
+					ret = True;
+		print ret
+		if struct['deal'] == False: struct['deal'] = ret;
 
 	def _merge_objs(self,struct,item):
-		if not struct.has_key(item['start']): return None;
-		if not struct.has_key(item['end']): return None;
+		if not struct.has_key(item['start']): return -1;
+		if not struct.has_key(item['end']): return -1;
 
-		pid = tid = 0;
+		merg = pid = tid = 0;
 		while True:
 			if pid >= len(struct[item['start']]): break;
 
@@ -52,6 +58,7 @@ class Fetch3Layer():
 				comp = re.compile(pstr);
 				match = comp.search(struct['text']);
 				if not match is None:
+					merg = 1;
 					if item['force'] == 'tail':
 						vit[item['type']] = pit;
 						struct['text'] = struct['text'].replace(pstr,vit['str'],1);
@@ -68,3 +75,4 @@ class Fetch3Layer():
 			pid = pid + 1;
 		if len(struct[item['end']]) == 0: del struct[item['end']];
 		if len(struct[item['start']]) == 0: del struct[item['start']];
+		return merg;

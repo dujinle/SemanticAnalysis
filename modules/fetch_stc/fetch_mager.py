@@ -2,26 +2,27 @@
 #-*- coding:utf-8 -*-
 import os,sys
 import common,config
+import struct_utils as Sutil
+from fetch_1layer import Fetch1Layer
+from fetch_2layer import Fetch2Layer
+from fetch_3layer import Fetch3Layer
 from fetch_math import FetchMath
-from fetch_verbs import FetchVerbs
-from fetch_artist import FetchArtist
-from fetch_belongs import FetchBelongs
-from fetch_verb_stc import FetchVerbStc
-from fetch_local_unit import FetchLocalUnit
+from fetch_before import FetchBefore
 
-from con_tail import ConTail
+from fetch_tail import FetchTail
 
 class FetchMager():
 	def __init__(self):
 		self.tag_objs = list();
+		self.tail = FetchTail();
 
-		self.tag_objs.append(FetchBelongs());
-		self.tag_objs.append(FetchVerbs());
-		self.tag_objs.append(FetchVerbStc());
-		self.tag_objs.append(FetchArtist());
+		self.tag_objs.append(FetchBefore()); #简单消除歧义词性
+		self.tag_objs.append(Fetch1Layer());
+		self.tag_objs.append(Fetch2Layer());
+		self.tag_objs.append(Fetch3Layer());
+		self.tag_objs.append(Fetch3Layer());
+
 		self.tag_objs.append(FetchMath());
-		self.tag_objs.append(FetchLocalUnit());
-#		self.tag_objs.append(ConTail());
 
 	def init(self,dtype):
 		try:
@@ -35,7 +36,17 @@ class FetchMager():
 
 	def encode(self,struct):
 		try:
-			for obj in self.tag_objs:
-				obj.encode(struct);
+			struct['remove'] = list();
+			struct['deal'] = True;
+			idx = 0;
+			while True:
+				if struct.has_key('deal') and struct['deal'] == True:
+					for obj in self.tag_objs:
+						obj.encode(struct);
+				else:
+					break;
+				idx = idx + 1;
+			del struct['deal'];
+			self.tail.encode(struct);
 		except Exception as e:
 			raise e;

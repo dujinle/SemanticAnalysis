@@ -4,7 +4,7 @@ import os,sys,common,re
 import struct_utils as Sutil
 from myexception import MyException
 
-#进行第三层的解析 合并一些 符合条件的 结构
+#进行第四层的解析 合并一些 符合条件的 结构
 class Fetch4Layer():
 	def __init__(self):
 		self.data = None;
@@ -17,11 +17,11 @@ class Fetch4Layer():
 
 	def encode(self,struct):
 		try:
-			self._fetch_3L(struct);
+			self._fetch_4L(struct);
 		except Exception:
 			raise MyException(sys.exc_info());
 
-	def _fetch_3L(self,struct):
+	def _fetch_4L(self,struct):
 		for key in self.data.keys():
 			item = self.data[key];
 			for it in item:

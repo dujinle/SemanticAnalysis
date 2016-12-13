@@ -17,20 +17,26 @@ class Fetch2Layer():
 
 	def encode(self,struct):
 		try:
+			print 'go into fetch 2......' + str(struct['deal']);
 			self._fetch_2L(struct);
 		except Exception:
 			raise MyException(sys.exc_info());
 
 	def _fetch_2L(self,struct):
+		ret = False;
 		for key in self.data.keys():
 			item = self.data[key];
 			for it in item:
-				self._merge_objs(struct,it);
+				mret = self._merge_objs(struct,it);
+				if mret == 1 and ret == False:
+					ret = True;
+		print ret
+		if struct['deal'] == False: struct['deal'] = ret;
 
 	def _merge_objs(self,struct,item):
-		if not struct.has_key(item['key']): return None;
+		if not struct.has_key(item['key']): return -1;
 
-		pid = tid = 0;
+		merg = pid = tid = 0;
 		while True:
 			if pid >= len(struct[item['key']]): break;
 
@@ -51,6 +57,7 @@ class Fetch2Layer():
 				comp = re.compile(pstr);
 				match = comp.search(struct['text']);
 				if not match is None:
+					merg = 1;
 					if item['force'] == 'tail':
 						vit[item['type']] = pit;
 						struct['text'] = struct['text'].replace(pstr,vit['str'],1);
@@ -67,3 +74,4 @@ class Fetch2Layer():
 				tid = tid + 1;
 			pid = pid + 1;
 		if len(struct[item['key']]) == 0: del struct[item['key']];
+		return merg;

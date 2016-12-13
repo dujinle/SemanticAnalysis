@@ -3,8 +3,20 @@
 		{
 			"start":"SomeNums",
 			"end":"SomeUnits",
+			"st":"NUM",
+			"et":"QUANTIFIER",
 			"key":"Nunit",
+			"type":"QUANTIFIER",
 			"force":"tail"
+		},
+		{
+			"start":"SomeVerb",
+			"end":"SomeAux",
+			"st":"PSYCHO",
+			"et":"OF",
+			"key":"SomeAdjs",
+			"type":"ADJ",
+			"force":"prev"
 		}
 	],
 	"USELESS":[
