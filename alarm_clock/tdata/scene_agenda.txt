@@ -96,7 +96,7 @@
 			"ftag":"break"
 		},
 		{
-			"reg":"_remind_me",
+			"reg":"_remind.*_me",
 			"start":{
 				"tag":"_me",
 				"type":"filter"
