@@ -58,19 +58,24 @@ class Fetch3Layer():
 				comp = re.compile(pstr);
 				match = comp.search(struct['text']);
 				if not match is None:
-					merg = 1;
 					if item['force'] == 'tail':
-						vit[item['type']] = pit;
-						struct['text'] = struct['text'].replace(pstr,vit['str'],1);
-						struct['remove'].append(pit['str']);
-						del struct[item['start']][pid];
-						pid = pid - 1;
+						if not vit.has_key(item['type']):
+							merg = 1;
+							vit[item['type']] = pit;
+							vit['flg'] = True;
+							struct['text'] = struct['text'].replace(pstr,vit['str'],1);
+							struct['remove'].append(pit['str']);
+							del struct[item['start']][pid];
+							pid = pid - 1;
 					elif item['force'] == 'prev':
-						pit[item['type']] = vit;
-						struct['text'] = struct['text'].replace(pstr,pit['str'],1);
-						struct['remove'].append(vit['str']);
-						del struct[item['end']][tid];
-						tid = tid - 1;
+						if not pit.has_key(item['type']):
+							merg = 1;
+							pit[item['type']] = vit;
+							pit['flg'] = True;
+							struct['text'] = struct['text'].replace(pstr,pit['str'],1);
+							struct['remove'].append(vit['str']);
+							del struct[item['end']][tid];
+							tid = tid - 1;
 				tid = tid + 1;
 			pid = pid + 1;
 		if len(struct[item['end']]) == 0: del struct[item['end']];

@@ -36,7 +36,7 @@ class Fetch2Layer():
 	def _merge_objs(self,struct,item):
 		if not struct.has_key(item['key']): return -1;
 
-		merg = pid = tid = 0;
+		merg = pid = 0;
 		while True:
 			if pid >= len(struct[item['key']]): break;
 
@@ -58,15 +58,17 @@ class Fetch2Layer():
 				match = comp.search(struct['text']);
 				if not match is None:
 					merg = 1;
+					pstr = pstr.replace(item['desc'],'',1);
 					if item['force'] == 'tail':
 						vit[item['type']] = pit;
+						vit['flg'] = True;
 						struct['text'] = struct['text'].replace(pstr,vit['str'],1);
 						struct['remove'].append(pit['str']);
 						del struct[item['key']][pid];
 						pid = pid - 1;
-						break;
 					elif item['force'] == 'prev':
 						pit[item['type']] = vit;
+						pit['flg'] = True;
 						struct['text'] = struct['text'].replace(pstr,pit['str'],1);
 						struct['remove'].append(vit['str']);
 						del struct[item['end']][tid];

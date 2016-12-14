@@ -19,7 +19,9 @@ class FetchMath():
 		try:
 			if not struct.has_key('Math'): struct['Math'] = list();
 			self._mark_objs(struct);
-			self._fetch_math(struct);
+			ret = self._fetch_math(struct);
+			if ret == 1 and struct['deal'] == False:
+				struct['deal'] = True;
 			Sutil._link_split_words(struct,'Math');
 		except Exception:
 			raise MyException(sys.exc_info());
@@ -36,6 +38,7 @@ class FetchMath():
 				tdic = self._get_words_type(wd,Math);
 				if not tdic is None:
 					struct['Math'].append(tdic);
+					struct['text'] = struct['text'].replace(wd,'',1);
 					idx = idx + len(wd) - 1;
 					wd = '';
 					break;
@@ -49,6 +52,7 @@ class FetchMath():
 		return None;
 
 	def _fetch_math(self,struct):
+		merg = 0;
 		for math in struct['Math']:
 			pstr = math['reg'];
 			nlist = list();
@@ -56,23 +60,25 @@ class FetchMath():
 			tid = pid = 0;
 			while True:
 				tid = pid;
-				if tid >= len(struct['Nums']): break;
+				if tid >= len(struct['SomeNums']): break;
 				while True:
 					if pstr.find('NUM') == -1: break;
-					if tid >= len(struct['Nums']): break;
-					it = struct['Nums'][tid];
+					if tid >= len(struct['SomeNums']): break;
+					it = struct['SomeNums'][tid];
 					nlist.append(it);
 					rlist.append(it);
 					pstr = pstr.replace('NUM',it['str'],1);
-					del struct['Nums'][tid];
+					del struct['SomeNums'][tid];
 				if struct['text'].find(pstr) <> -1:
-					math['nums'] = nlist;
+					merg = 1;
+					math['SomeNums'] = nlist;
 					del math['reg'];
 					nlist = list();
 					break;
 				else:
-					rlist.extend(struct['Nums']);
-					struct['Nums'] = rlist;
+					rlist.extend(struct['SomeNums']);
+					struct['SomeNums'] = rlist;
 					rlist = list();
 					pid = pid + 1;
 					nlist = list();
+		return merg

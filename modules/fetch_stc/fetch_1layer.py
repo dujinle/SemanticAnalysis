@@ -68,6 +68,7 @@ class Fetch1Layer():
 					if item['force'] == 'tail': tdic['stype'] = vit['stype'];
 					elif item['force'] == 'prev': tdic['stype'] = pit['stype'];
 					tdic['stc'] = [pit,vit];
+					tdic['flg'] = True;
 					struct[item['key']].append(tdic);
 					struct['remove'].append(pit['str']);
 					struct['remove'].append(vit['str']);
@@ -85,10 +86,12 @@ class Fetch1Layer():
 	def _fetch_useless(self,struct,key):
 		if not struct.has_key(key): return -1;
 		if len(struct[key]) == 0: return -1;
-		tid = 0;
+		merg = tid = 0;
 		while True:
 			if tid >= len(struct[key]): break;
 			vit = struct[key][tid];
-			struct['text'] = struct['text'].replace(vit['str'],'',1);
+			if struct['text'].find(vit['str']) <> -1:
+				merg = 1;
+				struct['text'] = struct['text'].replace(vit['str'],'',1);
 			tid = tid + 1;
-		return 1;
+		return merg;

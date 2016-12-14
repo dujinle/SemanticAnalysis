@@ -42,5 +42,8 @@ class FetchTail():
 				if struct.has_key('remove'):
 					if item['str'] in struct['remove']:
 						continue;
+				if struct.has_key(item['str']):
+					sit = struct[item['str']];
+					if sit.has_key('flg'): continue;
 				struct[item['str']] = item;
 			del struct[key];
