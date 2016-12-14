@@ -25,5 +25,10 @@
 		"stype":"BRAG",
 		"str":"吹牛",
 		"type":"IRREGULAR"
+	},
+	"去过":{
+		"stype":"GONE",
+		"str":"去过",
+		"type":"IRREGULAR"
 	}
 }

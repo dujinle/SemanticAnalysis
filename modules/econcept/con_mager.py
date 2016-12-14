@@ -17,16 +17,15 @@ class ConMager():
 		self.net_data = NetData();
 
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeObjs'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeCopula'));#标记系动词
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeOther'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeAdjs'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeVerb'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeAux'));		#标记助词
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeUnits'));
 		self.tag_objs.append(MarkNum(self.net_data,'SomeNums'));
 		self.tag_objs.append(MarkTmood(self.net_data,'SomeTmood'));
-		self.tag_objs.append(MarkPronoun(self.net_data,'SomePronoun'));#标记代词
-		self.tag_objs.append(MarkPronoun(self.net_data,'SomeSpace'));#标记方位词
-		self.tag_objs.append(MarkPronoun(self.net_data,'SomeAdverb'));#标记副词
+		self.tag_objs.append(MarkPronoun(self.net_data,'SomePronoun'));	#标记代词
+		self.tag_objs.append(MarkPronoun(self.net_data,'SomeSpace'));	#标记方位词
+		self.tag_objs.append(MarkPronoun(self.net_data,'SomeAdverb'));	#标记副词
 
 	def init(self,dtype):
 		try:
@@ -37,7 +36,6 @@ class ConMager():
 	def encode(self,struct):
 		try:
 			struct['merg'] = list();
-			struct['split'] = list();
 			self._fetch_time(struct);
 			for obj in self.tag_objs:
 				obj.encode(struct);

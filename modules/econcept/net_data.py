@@ -19,6 +19,7 @@ class NetData():
 			"SomeAdjs":os.path.join(abspath,'tdata','some_adj.json'),
 			#动词数据加载地址
 			"SomeVerb":[
+				os.path.join(abspath,'tdata','some_verbx.json'),#判定动词
 				os.path.join(abspath,'tdata','some_verbi.json'),#不规则动词
 				os.path.join(abspath,'tdata','some_verbt.json'),#趋向动词
 				os.path.join(abspath,'tdata','some_verbl.json'),#LET 动词
@@ -46,7 +47,10 @@ class NetData():
 				os.path.join(abspath,'tdata','some_adverbr.json'),#频率副词
 				os.path.join(abspath,'tdata','some_adverbq.json') #情态副词
 			],
-			"SomeCopula":os.path.join(abspath,'tdata','some_copula.json'),
+			#助词数据加载地址
+			"SomeAux":[
+				os.path.join(abspath,'tdata','some_auxj.json')#结构助词
+			],
 			"SomeSpace":os.path.join(abspath,'tdata','some_pspace.json'),
 			"SomeUnits":os.path.join(abspath,'tdata','some_unit.json'),
 			"SomeNums":os.path.join(abspath,'tdata','some_num.json'),
@@ -57,12 +61,12 @@ class NetData():
 			"SomeAdjs":dict(),
 			"SomeVerb":dict(),
 			"SomeObjs":dict(),
-			"SomeCopula":dict(),
 			"SomeSpace":dict(),
 			"SomePronoun":dict(),
 			"SomeAdverb":dict(),
 			"SomeUnits":dict(),
 			"SomeNums":dict(),
+			"SomeAux":dict(),
 			"SomePrep":dict(),
 			"SomeTmood":dict(),
 			"SomeOther":dict()

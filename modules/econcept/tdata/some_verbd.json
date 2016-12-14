@@ -15,6 +15,16 @@
 		"type":"DO",
 		"str":"拨"
 	},
+	"发":{
+		"stype":"SEND",
+		"type":"DO",
+		"str":"发"
+	},
+	"给":{
+		"stype":"GIVE",
+		"type":"DO",
+		"str":"给"
+	},
 	"打":{
 		"stype":"HIT",
 		"str":"打",

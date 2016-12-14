@@ -5,6 +5,11 @@
 		"str":"停",
 		"type":"ACTION"
 	},
+	"等于":{
+		"stype":"EQUAL",
+		"str":"等于",
+		"type":"ACTION"
+	},
 	"有":{
 		"stype":"HAVE",
 		"str":"有",

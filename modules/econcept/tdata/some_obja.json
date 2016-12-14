@@ -29,5 +29,11 @@
 		"stype":"TRANSTION",
 		"type":"SABST",
 		"str":"翻译"
+	},
+	"日程":{
+		"scene":"Alarm",
+		"stype":"AGENDA",
+		"type":"SABST",
+		"str":"日程"
 	}
 }

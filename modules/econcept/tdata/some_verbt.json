@@ -15,6 +15,11 @@
 		"type":"TEND",
 		"str":"上"
 	},
+	"下":{
+		"stype":"DOWN",
+		"type":"TEND",
+		"str":"下"
+	},
 	"回来":{
 		"stype":"BACK",
 		"type":"TEND",

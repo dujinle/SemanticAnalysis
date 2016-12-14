@@ -30,7 +30,7 @@ class MarkNum():
 				else:
 					tdic['stype'] = str(Han2Dig.cn2dig(it));
 				tdic['str'] = it;
-				struct['Nums'].append(tdic);
+				struct[self.key].append(tdic);
 
 	def _match_num_reg(self,words):
 		data = self.net_data.get_data_key(self.key);

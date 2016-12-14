@@ -1,0 +1,18 @@
+{
+#助词数据
+	"的":{
+		"stype":"DE",
+		"type":"OF",
+		"str":"的"
+	},
+	"得":{
+		"stype":"DE",
+		"type":"VOF",
+		"str":"得"
+	},
+	"地":{
+		"stype":"DE",
+		"type":"OFV",
+		"str":"地"
+	}
+}
