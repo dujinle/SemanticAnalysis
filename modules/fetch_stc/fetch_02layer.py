@@ -4,8 +4,8 @@ import os,sys,common,re
 import struct_utils as Sutil
 from myexception import MyException
 
-#进行第一层的解析 合并一些 符合条件的 词组 比如 数字单位组个
-class Fetch1Layer():
+#进行第2层的解析 合并一些 符合条件的 词组 比如 数字单位组个
+class Fetch02Layer():
 	def __init__(self):
 		self.data = None;
 
@@ -17,12 +17,12 @@ class Fetch1Layer():
 
 	def encode(self,struct):
 		try:
-			print 'go into fetch 1......' + str(struct['deal']);
-			self._fetch_1L(struct);
+			print 'go into fetch 02......' + str(struct['deal']);
+			self._fetch_02L(struct);
 		except Exception:
 			raise MyException(sys.exc_info());
 
-	def _fetch_1L(self,struct):
+	def _fetch_02L(self,struct):
 		ret = False;
 		for key in self.data.keys():
 			item = self.data[key];
@@ -64,9 +64,16 @@ class Fetch1Layer():
 					merg = 1;
 					tdic = dict();
 					tdic['str'] = pstr;
-					tdic['type'] = item['type'];
-					if item['force'] == 'tail': tdic['stype'] = vit['stype'];
-					elif item['force'] == 'prev': tdic['stype'] = pit['stype'];
+					if item['force'] == 'tail':
+						tdic['type'] = vit['type'];
+						tdic['stype'] = vit['stype'];
+					elif item['force'] == 'prev':
+						tdic['type'] = pit['type'];
+						tdic['stype'] = pit['stype'];
+					elif item['force'] == 'all':
+						tdic['stype'] = pit['stype'] + vit['stype'];
+					if item.has_key('type'):
+						tdic['type'] = item['type'];
 					tdic['stc'] = [pit,vit];
 					tdic['flg'] = True;
 					struct[item['key']].append(tdic);

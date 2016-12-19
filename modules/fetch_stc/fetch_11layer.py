@@ -4,8 +4,8 @@ import os,sys,common,re
 import struct_utils as Sutil
 from myexception import MyException
 
-#进行第三层的解析 合并一些 符合条件的 结构
-class Fetch3Layer():
+#进行第11层的解析 合并一些 符合条件的 结构
+class Fetch11Layer():
 	def __init__(self):
 		self.data = None;
 
@@ -17,12 +17,12 @@ class Fetch3Layer():
 
 	def encode(self,struct):
 		try:
-			print 'go into fetch 3......' + str(struct['deal']);
-			self._fetch_3L(struct);
+			print 'go into fetch 11......' + str(struct['deal']);
+			self._fetch_11L(struct);
 		except Exception:
 			raise MyException(sys.exc_info());
 
-	def _fetch_3L(self,struct):
+	def _fetch_11L(self,struct):
 		ret = False;
 		for key in self.data.keys():
 			item = self.data[key];
@@ -31,7 +31,7 @@ class Fetch3Layer():
 				if mret == 1 and ret == False:
 					ret = True;
 		print ret
-		if struct['deal'] == False: struct['deal'] = ret;
+		struct['deal'] = ret;
 
 	def _merge_objs(self,struct,item):
 		if not struct.has_key(item['start']): return -1;

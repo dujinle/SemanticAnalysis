@@ -38,7 +38,6 @@ class FetchMath():
 				tdic = self._get_words_type(wd,Math);
 				if not tdic is None:
 					struct['Math'].append(tdic);
-					struct['text'] = struct['text'].replace(wd,'',1);
 					idx = idx + len(wd) - 1;
 					wd = '';
 					break;
@@ -52,12 +51,14 @@ class FetchMath():
 		return None;
 
 	def _fetch_math(self,struct):
-		merg = 0;
-		for math in struct['Math']:
+		pid = merg = 0;
+		while True:
+			if pid >= len(struct['Math']): break;
+			math = struct['Math'][pid];
+			if math.has_key('nums'): break;
 			pstr = math['reg'];
 			nlist = list();
 			rlist = list();
-			tid = pid = 0;
 			while True:
 				tid = pid;
 				if tid >= len(struct['SomeNums']): break;
@@ -70,8 +71,9 @@ class FetchMath():
 					pstr = pstr.replace('NUM',it['str'],1);
 					del struct['SomeNums'][tid];
 				if struct['text'].find(pstr) <> -1:
+					struct['text'] = struct['text'].replace(pstr,'',1);
 					merg = 1;
-					math['SomeNums'] = nlist;
+					math['nums'] = nlist;
 					del math['reg'];
 					nlist = list();
 					break;
@@ -81,4 +83,5 @@ class FetchMath():
 					rlist = list();
 					pid = pid + 1;
 					nlist = list();
+			pid = pid + 1;
 		return merg
