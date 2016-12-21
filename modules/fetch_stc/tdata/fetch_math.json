@@ -4,5 +4,11 @@
 		"scene":"Math",
 		"str":"乘以",
 		"reg":"NUM乘以NUM"
+	},
+	"*":{
+		"stype":"MULTIPLY",
+		"scene":"Math",
+		"str":"*",
+		"reg":"NUM*NUM"
 	}
 }

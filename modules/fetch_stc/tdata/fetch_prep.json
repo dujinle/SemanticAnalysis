@@ -1,0 +1,12 @@
+{
+	"MERGE":[
+		{
+			"start":"SomeVerb",
+			"end":"SomePrep",
+			"st":"*",
+			"et":"TAIL",
+			"key":"SomeVerb",
+			"force":"prev"
+		}
+	]
+}

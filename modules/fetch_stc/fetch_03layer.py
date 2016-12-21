@@ -42,7 +42,8 @@ class Fetch03Layer():
 			if pid >= len(struct[item['start']]): break;
 
 			pit = struct[item['start']][pid];
-			if pit['type'] <> item['st'] and item['st'] <> '*':
+			if item.has_key('nst') and  pit['type'] == item['nst']\
+				or pit['type'] <> item['st'] and item['st'] <> '*':
 				pid = pid + 1;
 				continue;
 
@@ -50,14 +51,16 @@ class Fetch03Layer():
 			while True:
 				if tid >= len(struct[item['end']]): break;
 				vit = struct[item['end']][tid];
-				if vit['type'] <> item['et'] and item['et'] <> '*':
+				if item.has_key('net') and  pit['type'] == item['net']\
+					or vit['type'] <> item['et'] and item['et'] <> '*':
 					tid = tid + 1;
 					continue;
 
-				pstr = pit['str'] + vit['str'];
+				pstr = pit['str'] + item['desc'] + vit['str'];
 				comp = re.compile(pstr);
 				match = comp.search(struct['text']);
 				if not match is None:
+					pstr = match.group(0);
 					if item['force'] == 'tail':
 						if not vit.has_key(item['type']):
 							merg = 1;

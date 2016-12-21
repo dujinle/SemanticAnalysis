@@ -1,21 +1,30 @@
 {
 	"ADJ":[
 		{
-			"start":"SomeAdjs",
+			"start":"SomeAdj",
 			"end":"SomeObjs",
 			"st":"ADJ",
 			"et":"SB",
-			"type":"adj",
+			"type":"padj",
 			"force":"tail",
 			"desc":""
 		},
 		{
-			"start":"SomeAdjs",
+			"start":"SomeAdj",
 			"end":"SomeObjs",
 			"st":"ADJ",
 			"et":"STH",
-			"type":"adj",
+			"type":"padj",
 			"force":"tail",
+			"desc":""
+		},
+		{
+			"end":"SomeAdj",
+			"start":"SomeObjs",
+			"et":"ADJP",
+			"st":"SP",
+			"type":"padj",
+			"force":"prev",
 			"desc":""
 		}
 	],
@@ -28,6 +37,15 @@
 			"type":"belong",
 			"force":"tail",
 			"desc":""
+		},
+		{
+			"start":"SomeTime",
+			"end":"SomeObjs",
+			"st":"TIME",
+			"et":"SABST",
+			"type":"time",
+			"force":"tail",
+			"desc":"(的)*"
 		}
 	],
 	"VERBS":[
@@ -50,17 +68,6 @@
 			"desc":""
 		}
 	],
-	"STATUS":[
-		{
-			"start":"SomePronoun",
-			"end":"SomeVerbs",
-			"st":"*",
-			"et":"*",
-			"type":"child",
-			"force":"tail",
-			"desc":""
-		}
-	],
 	"SPACE":[
 		{
 			"start":"SomeObjs",
@@ -80,7 +87,8 @@
 			"et":"SB",
 			"st":"NUNIT",
 			"type":"num",
-			"force":"tail"
+			"force":"tail",
+			"desc":""
 		},
 		{
 			"start":"Nunit",
@@ -88,16 +96,28 @@
 			"et":"STH",
 			"st":"NUNIT",
 			"type":"num",
-			"force":"tail"
+			"force":"tail",
+			"desc":""
+		},
+#数词修饰对象
+		{
+			"start":"SomeNums",
+			"end":"SomeObjs",
+			"et":"SB",
+			"st":"NUM",
+			"type":"num",
+			"force":"tail",
+			"desc":""
 		},
 #副词修饰形容词
 		{
 			"start":"SomeAdverb",
-			"end":"SomeAdjs",
+			"end":"SomeAdj",
 			"st":"MOOD",
 			"et":"ADJ",
 			"type":"mood",
-			"force":"tail"
+			"force":"tail",
+			"desc":""
 		},
 #量词 修饰动词 表示 次数
 		{
@@ -106,23 +126,40 @@
 			"st":"DO",
 			"et":"UNIT",
 			"type":"rate",
-			"force":"prev"
+			"force":"prev",
+			"desc":""
 		},
+#副词修饰动词
 		{
 			"start":"SomeAdverb",
 			"end":"SomeVerb",
 			"st":"*",
+			"nst":"SCOPE",
 			"et":"*",
+			"net":"",
 			"type":"padv",
-			"force":"tail"
+			"force":"tail",
+			"desc":""
 		},
+#副词描述动词 在后面
 		{
 			"start":"SomeVerb",
 			"end":"SomeAdverb",
 			"st":"ACTION",
 			"et":"*",
 			"type":"child",
-			"force":"prev"
+			"force":"prev",
+			"desc":""
+		},
+#形容词修饰动词 充当副词的角色
+		{
+			"start":"SomeAdj",
+			"end":"SomeVerb",
+			"st":"ADJ",
+			"et":"*",
+			"type":"padj",
+			"force":"tail",
+			"desc":""
 		},
 #疑问代词 操作单位词 指代具体的类型
 		{
@@ -131,7 +168,8 @@
 			"st":"QUESTION",
 			"et":"QUANTIFIER",
 			"type":"child",
-			"force":"prev"
+			"force":"prev",
+			"desc":""
 		}
 	]
 }

@@ -9,6 +9,14 @@
 			"type":"child",
 			"force":"prev"
 		},
+		{
+			"start":"SomeVerb",
+			"end":"SomeObjs",
+			"st":"*",
+			"et":"SBATTR",
+			"type":"child",
+			"force":"prev"
+		},
 #动词 表示操作SomeThing
 		{
 			"start":"SomeVerb",

@@ -100,14 +100,8 @@ class Fetch01Layer():
 							if item['force'] == 'tail': tdic['type'] = vit['type'];
 							else: tdic['type'] = pit['type'];
 							tdic['stc'] = [pit,vit];
-							struct[item['key']].append(tdic);
-							if pid > tid:
-								del struct[item['key']][tid];
-								del struct[item['key']][pid - 1];
-							else:
-								del struct[item['key']][pid];
-								del struct[item['key']][tid - 1];
-							pid = pid - 1;
+							struct[item['key']][pid] = tdic;
+							del struct[item['key']][tid];
 							tid = tid - 1;
 					tid = tid + 1;
 			pid = pid + 1;

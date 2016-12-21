@@ -31,11 +31,13 @@ class Fetch02Layer():
 					mret = self._merge_objs(struct,it);
 					if mret == 1 and ret == False:
 						ret = True;
+			'''
 			elif key == 'USELESS':
 				for it in item:
 					mret = self._fetch_useless(struct,it);
 					if mret == 1 and ret == False:
 						ret = True;
+			'''
 		print ret
 		struct['deal'] = ret;
 
