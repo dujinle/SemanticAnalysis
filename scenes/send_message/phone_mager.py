@@ -9,21 +9,23 @@ sys.path.append(os.path.join(base_path,'../../commons'));
 
 import common,config
 from common import logging
-from shop_data import ShopData
+from phone_data import PhoneData
 from myexception import MyException
-from shop_analysis import ShopAnalysis
+from phone_analysis import PhoneAnalysis
+from phone_mkobj import PhoneMkobj
 
-class ShopMager:
+class PhoneMager:
 	def __init__(self):
 		self.tag_objs = list();
-		self.sdata = ShopData();
-		self.tag_objs.append(ShopAnalysis());
+		self.pdata = PhoneData();
+		self.tag_objs.append(PhoneMkobj())
+		self.tag_objs.append(PhoneAnalysis());
 
 	def init(self,dtype):
 		try:
 			step = 1;
 			fdir = config.dfiles[dtype];
-			self.sdata.load_data(fdir['1']);
+			self.pdata.load_data(fdir[str(step)]);
 			step = step + 1;
 			for obj in self.tag_objs:
 				obj.load_data(fdir[str(step)]);
@@ -32,9 +34,9 @@ class ShopMager:
 
 	def encode(self,struct):
 		try:
-			print 'go into Shop mager......'
+			print 'go into phone mager......'
 			for obj in self.tag_objs:
-				obj.encode(struct,self.sdata);
+				obj.encode(struct,self.pdata);
 		except Exception as e:
 			logging.error(str(e));
 			print e;
