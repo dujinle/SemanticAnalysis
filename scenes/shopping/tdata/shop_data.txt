@@ -1,0 +1,11 @@
+{
+	"COMPANY":[
+		"对面5楼川中滋味有优惠可以考虑"
+	],
+	"11111":[
+		"aaaaaaa",
+		"bbbbbbb",
+		"ccccccc",
+		"ddddddd"
+	]
+}
