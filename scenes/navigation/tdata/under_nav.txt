@@ -4,12 +4,17 @@
 		"refuel_info":[
 			"加油、加油、老板加油。",
 			"已将最近的油站标注在地图上，同步发送到车载主机上。"
-		]
+		],
+		"user_info":["通信录上已匹配了肖总的地址，同步发送到您的手机上面。"]
 	},
 	"models":[
 		{
 			"reg":"CARNEEDREFUEL",
 			"func":"refuel"
+		},
+		{
+			"reg":"DROPINVISIT",
+			"func":"visit"
 		}
 	]
 }

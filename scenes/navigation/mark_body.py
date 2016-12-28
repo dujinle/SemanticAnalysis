@@ -2,7 +2,7 @@
 #-*- coding:utf-8 -*-
 import os,sys,common
 from myexception import MyException
-from nav_base import NavBase
+from com_base import ComBase as NavBase
 import struct_utils as Sutil
 #标记用户列表中的数据
 class MarkBody(NavBase):
