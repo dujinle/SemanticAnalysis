@@ -3,7 +3,7 @@
 import sys,os,common,re
 from common import logging
 from myexception import MyException
-from guide_base import GuideBase
+from com_base import ComBase as GuideBase
 import com_funcs as ComFuncs
 
 #处理新闻场景
@@ -13,8 +13,6 @@ class GuideAnalysis(GuideBase):
 		try:
 			logging.info('go into news analysis ......');
 			if not struct.has_key('step'): struct['step'] = 'start';
-			self._fetch_all_types(struct);
-
 			func = self._fetch_func(struct);
 			if struct['step'] == 'start':
 				if func is None:
@@ -28,31 +26,6 @@ class GuideAnalysis(GuideBase):
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(sys.exc_info());
-
-	def _fetch_all_types(self,struct):
-		self._fetch_type(struct,'Objs');
-		self._fetch_type(struct,'Sds');
-		self._fetch_type(struct,'LocalPrep');
-		self._fetch_type(struct,'PerPronom');
-		self._fetch_type(struct,'PrepCom');
-		self._fetch_type(struct,'VerbCom');
-
-	def _fetch_type(self,struct,key):
-		if struct.has_key(key):
-			for item in struct[key]: struct[item['str']] = item;
-			del struct[key];
-
-	def _fetch_func(self,struct):
-		reg = '';
-		for istr in struct['inlist']:
-			if not struct.has_key(istr): continue;
-			reg = reg + struct[istr]['stype'];
-
-		for model in self.data['models']:
-			comp = re.compile(model['reg']);
-			match = comp.search(reg);
-			if not match is None: return model['func'];
-		return None;
 
 	#获取轨迹路线
 	def _get_guide(self,struct,super_b):
@@ -79,12 +52,12 @@ class GuideAnalysis(GuideBase):
 		for istr in struct['inlist']:
 			if not struct.has_key(istr): continue;
 			item = struct[istr];
-			if item['stype'].find('GOTOSP') <> -1:
-				if item.has_key('stc'):
-					for nit in item['stc']:
-						if nit['stype'] == 'SP':
-							end = nit['str'];
-							break;
+			if item['stype'] == 'GO':
+				if item.has_key('child'):
+					nit = item['child'];
+					if nit['type'] == 'SP':
+						end = nit['str'];
+						break;
 			if not end is None: break;
 		start = self.data['local'];
 		guide = super_b.get_guide(start,end);

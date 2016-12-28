@@ -6,7 +6,7 @@
 	},
 	"models":[
 		{
-			"reg":"GOTOSP",
+			"reg":"GOSP",
 			"func":"gop"
 		},
 		{

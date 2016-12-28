@@ -3,7 +3,7 @@
 import sys,os,common,random
 from common import logging
 from myexception import MyException
-from guide_base import GuideBase
+from com_base import ComBase as GuideBase
 
 #处理出行场景
 class GuideData(GuideBase):
