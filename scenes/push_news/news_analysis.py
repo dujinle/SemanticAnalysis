@@ -3,7 +3,7 @@
 import sys,os,common,re
 from common import logging
 from myexception import MyException
-from news_base import NewsBase
+from com_base import ComBase as NewsBase
 import news_param as NewParam
 
 #处理新闻场景
@@ -13,47 +13,19 @@ class NewsAnalysis(NewsBase):
 		try:
 			logging.info('go into news analysis ......');
 			if not struct.has_key('step'): struct['step'] = 'start';
-			self._fetch_all_types(struct);
 
 			func = self._fetch_func(struct);
 			if struct['step'] == 'start':
 				if not func is None and func == 'get':
-					print 'get func:[' + func + ']......';
 					self._get_news(struct,super_b);
 					struct['step'] = 'which';
 					return None;
 			elif struct['step'] == 'which':
 				if not func is None and func == 'get_info':
-					print 'get func:[' + func + ']......';
 					self._get_new_by_title(struct,super_b);
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(sys.exc_info());
-
-	def _fetch_all_types(self,struct):
-		self._fetch_type(struct,'Objs');
-		self._fetch_type(struct,'Sds');
-		self._fetch_type(struct,'LocalPrep');
-		self._fetch_type(struct,'PerPronom');
-		self._fetch_type(struct,'PrepCom');
-		self._fetch_type(struct,'VerbCom');
-
-	def _fetch_type(self,struct,key):
-		if struct.has_key(key):
-			for item in struct[key]: struct[item['str']] = item;
-			del struct[key];
-
-	def _fetch_func(self,struct):
-		reg = '';
-		for istr in struct['inlist']:
-			if not struct.has_key(istr): continue;
-			reg = reg + struct[istr]['stype'];
-
-		for model in self.data['models']:
-			comp = re.compile(model['reg']);
-			match = comp.search(reg);
-			if not match is None: return model['func'];
-		return None;
 
 	#通过订阅的新闻板块推荐新闻
 	def _get_news(self,struct,super_b):

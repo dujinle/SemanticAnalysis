@@ -3,7 +3,7 @@
 import sys,os,common,random
 from common import logging
 from myexception import MyException
-from news_base import NewsBase
+from com_base import ComBase as NewsBase
 
 #处理新闻场景
 class NewsData(NewsBase):
@@ -29,8 +29,10 @@ class NewsData(NewsBase):
 		while True:
 			if n <= 0: break;
 			idx = random.randint(0,len(plate));
+			if idx >= len(plate): idx = idx - 1;
 			items = self.data[plate[idx]];
 			nidx = random.randint(0,len(items));
+			if nidx == len(items): nidx = nidx - 1;
 			nlist.append(items[nidx]);
 			n = n - 1;
 		return nlist;
