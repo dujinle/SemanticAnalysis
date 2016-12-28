@@ -1,0 +1,12 @@
+{
+	"msg":{
+		"unknow":["没有找到相应的信息"],
+		"homek_succ":["根据58同城的推荐，已将信息发送到你手机上，请您选择。"]
+	},
+	"models":[
+		{
+			"reg":"SEARCHPEOPLE.*CLEANHOME",
+			"func":"home_keep"
+		}
+	]
+}
