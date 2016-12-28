@@ -1,0 +1,11 @@
+{
+	"msg":{
+		"unknow":["没有找到相关的信息"]
+	},
+	"models":[
+		{
+			"reg":"ENGLISHTRANS",
+			"func":"get"
+		}
+	]
+}
