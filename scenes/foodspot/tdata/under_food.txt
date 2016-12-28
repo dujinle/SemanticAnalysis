@@ -1,0 +1,22 @@
+{
+	"local":"11111",
+	"msg":{
+		"unknow":["没有找到相关的信息"],
+		"near_succ":["帮你找到%d个信息:%s"],
+		"more_succ":["已经把附近5公里内的美食在手机地图上进行标注，请老板手动选择"],
+		"sure_succ":["已完成预定","搞定","没问题"],
+		"require":["几点到？多少人？环境要求？"],
+		"no_time":["没有具体的预定时间"]
+	},
+	"models":[
+		{
+			"reg":"FOODSPOT",
+			"func":"food_spot"
+		},
+		{
+			"reg":"(HAVEWHATOTHERONERECOMMEND)
+				|(GONE)",
+			"func":"get_more"
+		}
+	]
+}
