@@ -1,0 +1,571 @@
+{
+#形容人感官的词语
+    "甜": {
+        "stype": "SWEET",
+        "type": "FADJ",
+        "str": "甜",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "咸": {
+        "stype": "SALTY",
+        "type": "FADJ",
+        "str": "咸",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "酸": {
+        "stype": "TART",
+        "type": "FADJ",
+        "str": "酸",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "苦": {
+        "stype": "BITTER",
+        "type": "FADJ",
+        "str": "苦",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "辣": {
+        "stype": "PEPPERY",
+        "type": "FADJ",
+        "str": "辣",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "涩": {
+        "stype": "PUCKERY",
+        "type": "FADJ",
+        "str": "涩",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "淡": {
+        "stype": "TASTELESS",
+        "type": "FADJ",
+        "str": "淡",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "腻": {
+        "stype": "GREASY",
+        "type": "FADJ",
+        "str": "腻",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "甘": {
+        "stype": "SWEET",
+        "type": "FADJ",
+        "str": "甘",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "苦涩": {
+        "stype": "BITTER",
+        "type": "FADJ",
+        "str": "苦涩",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "平淡": {
+        "stype": "FLAT",
+        "type": "FADJ",
+        "str": "平淡",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "鲜美": {
+        "stype": "DELICIOUS",
+        "type": "FADJ",
+        "str": "鲜美",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "诱人": {
+        "stype": "ATTRACTIVE",
+        "type": "FADJ",
+        "str": "诱人",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "独特": {
+        "stype": "UNIQUE",
+        "type": "FADJ",
+        "str": "独特",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "醇厚": {
+        "stype": "MELLOW",
+        "type": "FADJ",
+        "str": "醇厚",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "甜美": {
+        "stype": "SWEET",
+        "type": "FADJ",
+        "str": "甜美",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "香辣": {
+        "stype": "SPICY",
+        "type": "FADJ",
+        "str": "香辣",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "油腻": {
+        "stype": "GREASY",
+        "type": "FADJ",
+        "str": "油腻",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "甜蜜": {
+        "stype": "SWEET",
+        "type": "FADJ",
+        "str": "甜蜜",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "甘甜": {
+        "stype": "SWEET",
+        "type": "FADJ",
+        "str": "甘甜",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "大": {
+        "str": "大",
+        "type": "FADJ",
+        "stype": "BIG",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "小": {
+        "str": "小",
+        "type": "FADJ",
+        "stype": "SMALL",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "高": {
+        "str": "高",
+        "type": "FADJ",
+        "stype": "HIGH",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "低": {
+        "str": "低",
+        "type": "FADJ",
+        "stype": "LOW",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "明": {
+        "stype": "BRIGHT",
+        "type": "FADJ",
+        "str": "明",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "暗": {
+        "stype": "DARK",
+        "type": "FADJ",
+        "str": "暗",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "动": {
+        "stype": "KINETIC",
+        "type": "FADJ",
+        "str": "动",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "静": {
+        "stype": "QUIET",
+        "type": "FADJ",
+        "str": "静",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "清": {
+        "stype": "LIMPID",
+        "type": "FADJ",
+        "str": "清",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "浊": {
+        "stype": "TURBID",
+        "type": "FADJ",
+        "str": "浊",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "嘈杂": {
+        "stype": "NOISY",
+        "type": "FADJ",
+        "str": "嘈杂",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "缓慢": {
+        "stype": "SLOW",
+        "type": "FADJ",
+        "str": "缓慢",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "悦耳": {
+        "stype": "MELODIOUS",
+        "type": "FADJ",
+        "str": "悦耳",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "凄惨": {
+        "stype": "MISERABLE",
+        "type": "FADJ",
+        "str": "凄惨",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "尖细": {
+        "stype": "WIRY",
+        "type": "FADJ",
+        "str": "尖细",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "低沉": {
+        "stype": "DEEP",
+        "type": "FADJ",
+        "str": "低沉",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "浑厚": {
+        "stype": "POWERFUL",
+        "type": "FADJ",
+        "str": "浑厚",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "美妙": {
+        "stype": "WONDERFUL",
+        "type": "FADJ",
+        "str": "美妙",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "清脆": {
+        "stype": "SILVERY",
+        "type": "FADJ",
+        "str": "清脆",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "急促": {
+        "stype": "RAPID",
+        "type": "FADJ",
+        "str": "急促",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "凄厉": {
+        "stype": "HEARTRENDING",
+        "type": "FADJ",
+        "str": "凄厉",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "悠扬": {
+        "stype": "MELODIOUS",
+        "type": "FADJ",
+        "str": "悠扬",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "鸦雀无声": {
+        "stype": "SILENT",
+        "type": "FADJ",
+        "str": "鸦雀无声",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "清楚": {
+        "stype": "CLEAR",
+        "type": "FADJ",
+        "str": "清楚",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "寂静": {
+        "stype": "SILENT",
+        "type": "FADJ",
+        "str": "寂静",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "安静": {
+        "stype": "QUIET",
+        "type": "FADJ",
+        "str": "安静",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "高亢": {
+        "stype": "RESOUNDING",
+        "type": "FADJ",
+        "str": "高亢",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "香": {
+        "stype": "FRAGRANT",
+        "type": "FADJ",
+        "str": "香",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "臭": {
+        "stype": "SMELLY",
+        "type": "FADJ",
+        "str": "臭",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "清淡": {
+        "stype": "LIGHT",
+        "type": "FADJ",
+        "str": "清淡",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "清幽": {
+        "stype": "QUIET",
+        "type": "FADJ",
+        "str": "清幽",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "淡雅": {
+        "stype": "ELEGANT",
+        "type": "FADJ",
+        "str": "淡雅",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "浓厚": {
+        "stype": "DENSE",
+        "type": "FADJ",
+        "str": "浓厚",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "浓郁": {
+        "stype": "STRONG",
+        "type": "FADJ",
+        "str": "浓郁",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "醇香": {
+        "stype": "MELLOW",
+        "type": "FADJ",
+        "str": "醇香",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "紧": {
+        "stype": "TIGHT",
+        "type": "FADJ",
+        "str": "紧",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "松": {
+        "stype": "LOOSE",
+        "type": "FADJ",
+        "str": "松",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "硬": {
+        "stype": "HARD",
+        "type": "FADJ",
+        "str": "硬",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "软": {
+        "stype": "MILD",
+        "type": "FADJ",
+        "str": "软",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "冷": {
+        "stype": "COLD",
+        "type": "FADJ",
+        "str": "冷",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "热": {
+        "stype": "HOT",
+        "type": "FADJ",
+        "str": "热",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "滑": {
+        "stype": "SMOOTH",
+        "type": "FADJ",
+        "str": "滑",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "粗": {
+        "stype": "THICK",
+        "type": "FADJ",
+        "str": "粗",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "脆": {
+        "stype": "CRISP",
+        "type": "FADJ",
+        "str": "脆",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "头痛": {
+        "stype": "INTRACTABLE",
+        "type": "FADJ",
+        "str": "头痛",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "柔软": {
+        "stype": "SOFT",
+        "type": "FADJ",
+        "str": "柔软",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "坚硬": {
+        "stype": "HARD",
+        "type": "FADJ",
+        "str": "坚硬",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "炽热": {
+        "stype": "FIERY",
+        "type": "FADJ",
+        "str": "炽热",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "冰凉": {
+        "stype": "ICE_COLD",
+        "type": "FADJ",
+        "str": "冰凉",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "火热": {
+        "stype": "FIERY",
+        "type": "FADJ",
+        "str": "火热",
+        "desc": [
+            "FEEL"
+        ]
+    },
+    "烫手": {
+        "stype": "THORNY",
+        "type": "FADJ",
+        "str": "烫手",
+        "desc": [
+            "FEEL"
+        ]
+    }
+}

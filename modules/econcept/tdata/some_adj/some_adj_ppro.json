@@ -1,0 +1,363 @@
+{
+    "好": {
+        "stype": "GOOD",
+        "type": "PRADJ",
+        "str": "好",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "坏": {
+        "stype": "BAD",
+        "type": "PRADJ",
+        "str": "坏",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "落落大方": {
+        "stype": "NATURAL_AND_GRACEFUL",
+        "type": "PRADJ",
+        "str": "落落大方",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "宽": {
+        "stype": "WIDE",
+        "type": "PRADJ",
+        "str": "宽",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "窄": {
+        "stype": "NARROW",
+        "type": "PRADJ",
+        "str": "窄",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "机智": {
+        "stype": "TACTFUL",
+        "type": "PRADJ",
+        "str": "机智",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "机警": {
+        "stype": "ALERT",
+        "type": "PRADJ",
+        "str": "机警",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "聪明": {
+        "stype": "INTELLIGENT",
+        "type": "PRADJ",
+        "str": "聪明",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "热情": {
+        "stype": "ENTHUSIASTIC",
+        "type": "PRADJ",
+        "str": "热情",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "直爽": {
+        "stype": "FRANK",
+        "type": "PRADJ",
+        "str": "直爽",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "旺盛": {
+        "stype": "EXUBERANT",
+        "type": "PRADJ",
+        "str": "旺盛",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "急躁": {
+        "stype": "IRRITABLE",
+        "type": "PRADJ",
+        "str": "急躁",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "安静": {
+        "stype": "QUIET",
+        "type": "PRADJ",
+        "str": "安静",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "沉默": {
+        "stype": "SILENT",
+        "type": "PRADJ",
+        "str": "沉默",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "敏捷": {
+        "stype": "NIMBLE",
+        "type": "PRADJ",
+        "str": "敏捷",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "好动": {
+        "stype": "ACTIVE",
+        "type": "PRADJ",
+        "str": "好动",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "孤僻": {
+        "stype": "SOLITARY",
+        "type": "PRADJ",
+        "str": "孤僻",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "差": {
+        "stype": "BAD",
+        "type": "PRADJ",
+        "str": "差",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "渊博": {
+        "stype": "ERUDITE",
+        "type": "PRADJ",
+        "str": "渊博",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "博古通今": {
+        "stype": "ERUDITE",
+        "type": "PRADJ",
+        "str": "博古通今",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "博学": {
+        "stype": "ERUDITE",
+        "type": "PRADJ",
+        "str": "博学",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "博识": {
+        "stype": "ERUDITE",
+        "type": "PRADJ",
+        "str": "博识",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "高": {
+        "stype": "HIGH",
+        "type": "PRADJ",
+        "str": "高",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "低": {
+        "stype": "LOW",
+        "type": "PRADJ",
+        "str": "低",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "强": {
+        "stype": "STRONG",
+        "type": "PRADJ",
+        "str": "强",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "弱": {
+        "stype": "WEAK",
+        "type": "PRADJ",
+        "str": "弱",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "端正": {
+        "stype": "UPRIGHT",
+        "type": "PRADJ",
+        "str": "端正",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "薄命": {
+        "stype": "UNLUCKY",
+        "type": "PRADJ",
+        "str": "薄命",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "心狠手辣": {
+        "stype": "RUTHLESS",
+        "ctype": "MERGE",
+        "type": "PRADJ",
+        "str": "心狠手辣",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "公平": {
+        "stype": "IMPARTIAL",
+        "type": "PRADJ",
+        "str": "公平",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "公正": {
+        "stype": "IMPARTIAL",
+        "type": "PRADJ",
+        "str": "公正",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "英明": {
+        "stype": "WISE",
+        "type": "PRADJ",
+        "str": "英明",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "马虎": {
+        "stype": "CARELESS",
+        "type": "PRADJ",
+        "str": "马虎",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "严谨": {
+        "stype": "STRICT",
+        "type": "PRADJ",
+        "str": "严谨",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "狼狈": {
+        "stype": "UNCOLLECTED",
+        "type": "PRADJ",
+        "str": "狼狈",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "凄凉": {
+        "stype": "DISMAL",
+        "type": "PRADJ",
+        "str": "凄凉",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "可怜": {
+        "stype": "POOR",
+        "type": "PRADJ",
+        "str": "可怜",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "惨重": {
+        "stype": "DISASTROUS",
+        "type": "PRADJ",
+        "str": "惨重",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "顺畅": {
+        "stype": "SMOOTH",
+        "type": "PRADJ",
+        "str": "顺畅",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "顺利": {
+        "stype": "FAVORING",
+        "type": "PRADJ",
+        "str": "顺利",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "顺当": {
+        "stype": "SMOOTH",
+        "type": "PRADJ",
+        "str": "顺当",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "不妙": {
+        "stype": "BAD",
+        "type": "PRADJ",
+        "str": "不妙",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "妥当": {
+        "stype": "APPROPRIATE",
+        "type": "PRADJ",
+        "str": "妥当",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "疏远": {
+        "stype": "DISTANT",
+        "type": "PRADJ",
+        "str": "疏远",
+        "desc": [
+            "PPRO"
+        ]
+    },
+    "著名": {
+        "stype": "FAMOUS",
+        "type": "PRADJ",
+        "str": "著名",
+        "desc": [
+            "PPRO"
+        ]
+    }
+}
