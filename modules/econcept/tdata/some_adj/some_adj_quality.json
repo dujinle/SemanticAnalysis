@@ -28,7 +28,7 @@
 		"str":"厚",
 		"type":"QADJ",
 		"stype":"THICK",
-		"desc":["QUALITY"]	
+		"desc":["QUALITY"]
 	},
 	"强":{
 		"str":"强",
@@ -41,7 +41,7 @@
 		"type":"QADJ",
 		"stype":"WEAK",
 		"desc":["QUALITY"]
-	}
+	},
 	"高":{
 		"str":"高",
 		"type":"QADJ",
@@ -77,7 +77,7 @@
 		"type":"QADJ",
 		"stype":"MIXED",
 		"desc":["QUALITY"]
-	}
+	},
 	"生":{
 		"str":"生",
 		"type":"QADJ",

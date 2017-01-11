@@ -11,7 +11,7 @@
 		"type":"STADJ",
 		"stype":"WET",
 		"desc":["STATUS"]
-	}
+	},
 	"疏散":{
 		"str":"疏散",
 		"type":"STADJ",

@@ -40,7 +40,7 @@
 		"str":"日复一日",
 		"type":"TADJ",
 		"stype":"DAY_TO_DAY",
-		"ctype":"MERGE"
+		"ctype":"MERGE",
 		"desc":["TIME"]
 	},
 	"日月如梭":{
@@ -56,7 +56,6 @@
 		"stype":"TRANSIENT",
 		"ctype":"MERGE",
 		"desc":["TIME"]
-		
 	},
 	"光阴似箭":{
 		"str":"光阴似箭",
