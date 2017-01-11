@@ -1,180 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-	<link rel="stylesheet" href="{{ static_url("css/index.css") }}" type="text/css">
-    <!-- link rel="stylesheet" href="index.css" type="text/css" -->
-    <title>Title</title>
+<title>语义网络 </title>
+<style type="text/css">
+div#header {background-color:#0CF;}
+div#body_header {background-color:#FFF;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link href="{{ static_url('css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
+<!--slider-->
+<script type="text/javascript" src="{{ static_url('scripts/modernizr.custom.53451.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('scripts/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('scripts/jquery.gallery.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('scripts/enjoyqw.js') }}"></script>
+<script type="text/javascript">
+
+	$(function() {
+			$('#dg-container').gallery({
+				autoplay	:	true
+			});
+		});
+	var $basepath = 'http://192.168.102.130:8082/';
+	function render(html){
+		var obj = null;
+		url = $basepath + html;
+		window.location.href=url;
+	}
+</script>
 </head>
 <body>
-<div class="box">
-    <div class="header">语义识别
-            <ul class="__show_content">
-                <li id="audio">声音</li>
-                <li id="temperature">温度</li>
-                <li id="wind">风速</li>
-                <li id="time">时间</li>
-                <li id="adders">地点</li>
-            </ul>
-    </div>
-    <div class="main">
-        <div class="left">
-            <div class="margin">
-                <span class="text">原始文本:</span>
-                <input class="one" type="text" id="intext">
-            </div>
-            <div class="margin">
-                <span class="text">分词结果:</span>
-                <div class="two_text" id="sptext"></div>
-            </div>
-            <div class="margin">
-                <span class="text">语义结果:</span>
-                <textarea class="three_text" id="retext" rows="5" cols="50"></textarea>
-            </div>
-            <div class="button_box">
-                <input class="button" type="button" value="语义体验" onclick="GetResult()">
-            </div>
-        </div>
-        <div class="right">
-            <div class="top">
-                <div class="del">
-                    <span>删除分词:</span><input class="input" type="text" id="del_word">
-                    <div class="top_button"><input class="input_button" type="button" value="确定" onclick="DealWords('SP','del','del_word',null)"></div>
-                </div>
-                <div class="add">
-                    <span>添加分词:</span><input class="input" type="text" id="add_word">
-                    <div class="top_button"><input class="input_button" type="button" value="确定" onclick="add_word('SP','add','add_word',null)"></div>
-                </div>
-                <div class="save">
-                    <span class="save_text">保存修改:</span>
-                    <div class=""><input class="input_button" type="button" value="确定" onclick="add_word('SP','add','add_word',null)"></div>
-                </div>
-            </div>
-            <div class="R_left">
-                <div class="M">
-                    <div class="row_1">
-                        <span class="title">名词(M)：</span>
-                        <input class="text" type="text" id="M">
-                        <input class="button" value="注入" type="button" onclick="DealWords('M','add','M',null)">
-                        <input class="button" value="删除" type="button" onclick="DealWords('M','del','M',null)">
-                        <input class="button" value="获取" type="button" onclick="DealWords('M','get',null,null)">
-                    </div>
-                </div>
-                <div class="M1">
-                <div class="row_1">
-                    <span class="title">名词修饰(M1)：</span>
-                    <input class="text" type="text" id="M1">
-                    <input class="button" value="注入" type="button" onclick="DealWords('M1','add','M1','choose')">
-                    <input class="button" value="删除" type="button" onclick="DealWords('M1','del','M1',null)">
-                    <input class="button" value="获取" type="button" onclick="DealWords('M1','get',null,null)">
-                </div>
-                <div class="row_2">
-                    <span>方向:</span>
-                    <input type="radio" name="choose" value="正" ><span>+</span>
-                    <input type="radio" name="choose" value="负" ><span>-</span>
-                    <input type="radio" name="choose" value="有" ><span>有</span>
-                    <input type="radio" name="choose" value="无" ><span>无</span>
-                    <input type="radio" name="choose" value="OFF" ><span>invalid</span>
-                </div>
-            </div>
-                <div class="F">
-                    <div class="row_1">
-                        <span class="title">动词(F)：</span>
-                        <input class="text" type="text" id="F">
-                        <input class="button" value="注入" type="button" onclick="DealWords('F','add','F','choose1')" >
-                        <input class="button" value="删除" type="button" onclick="DealWords('F','del','F',null)" >
-                        <input class="button" value="获取" type="button" onclick="DealWords('F','get',null,null)" >
-                    </div>
-                    <div class="row_2">
-                        <span>方向:</span>
-                        <input type="radio" name="choose1" value="正" ><span>+</span>
-                        <input type="radio" name="choose1" value="负" ><span>-</span>
-                        <input type="radio" name="choose1" value="有" ><span>有</span>
-                        <input type="radio" name="choose1" value="无" ><span>无</span>
-                        <input type="radio" name="choose1" value="OFF" ><span>invalid</span>
-                    </div>
-                </div>
-                <div class="F1">
-                    <div class="row_1">
-                        <span class="title">动词性修饰(F1)：</span>
-                        <input class="text" type="text" id="F1">
-                        <input class="button" value="注入" type="button" onclick="DealWords('F1','add','F1','choose2')" >
-                        <input class="button" value="删除" type="button" onclick="DealWords('F1','del','F1',null)" >
-                        <input class="button" value="获取" type="button" onclick="DealWords('F1','get',null,null)" >
-                    </div>
-                    <div class="row_2">
-                        <span>方向:</span>
-                        <input type="radio" name="choose2" value="正" ><span>+</span>
-                        <input type="radio" name="choose2" value="负" ><span>-</span>
-                        <input type="radio" name="choose2" value="有" ><span>有</span>
-                        <input type="radio" name="choose2" value="无" ><span>无</span>
-                        <input type="radio" name="choose2" value="OFF" ><span>invalid</span>
-                    </div>
-                </div>
-                <div class="X">
-                    <div class="row_1">
-                        <span class="title">方向形容词(X)：</span>
-                        <input class="text" type="text" id="X">
-                        <input class="button" value="注入" type="button" onclick="DealWords('X','add','X','choose3')" >
-                        <input class="button" value="删除" type="button" onclick="DealWords('X','del','X',null)" >
-                        <input class="button" value="获取" type="button" onclick="DealWords('X','get',null,null)" >
-                    </div>
-                    <div class="row_2">
-                        <span>方向:</span>
-                        <input type="radio" name="choose4" value="正" ><span>+</span>
-                        <input type="radio" name="choose4" value="负" ><span>-</span>
-                        <input type="radio" name="choose4" value="有" ><span>有</span>
-                        <input type="radio" name="choose4" value="无" ><span>无</span>
-                        <input type="radio" name="choose4" value="OFF" ><span>invalid</span>
-                    </div>
-                </div>
-                <div class="X1">
-                    <div class="row_1">
-                        <span class="title">方向性修饰词(X1)：</span>
-                        <input class="text" type="text" id="X1">
-                        <input class="button" value="注入" type="button" onclick="DealWords('X1','add','X1','choose4')" >
-                        <input class="button" value="删除" type="button" onclick="DealWords('X1','del','X1',null)" >
-                        <input class="button" value="获取" type="button" onclick="DealWords('X1','get',null,null)" >
-                    </div>
-                    <div class="row_2">
-                        <span>方向:</span>
-                        <input type="radio" name="choose4" value="取反" ><span>取反</span>
-                        <input type="radio" name="choose4" value="OFF" ><span>invalid</span>
-                    </div>
-                </div>
-                <div class="C">
-                    <div class="row_1">
-                        <span class="title">程度形容词(C)：</span>
-                        <input class="text" type="text" id="C">
-                        <input class="button" value="注入" type="button" onclick="DealWords('C','add','C','choose5')" >
-                        <input class="button" value="删除" type="button" onclick="DealWords('C','del','C',null)" >
-                        <input class="button" value="获取" type="button" onclick="DealWords('C','get',null,null)" >
-                    </div>
-					<div class="row_2">
-						<span>方向:</span>
-						<input type="radio" name="choose5" value="高" ><span>高</span>
-						<input type="radio" name="choose5" value="中" ><span>中</span>
-						<input type="radio" name="choose5" value="低" ><span>低</span>
-					</div>
-                </div>
-                <div class="Mp">
-                    <div class="row_1">
-                        <span class="title">模板(Mp)：</span>
-                        <input class="text" type="text" id="Mp">
-                        <input class="button" value="注入" type="button" onclick="DealWords('PM','add','Mp',null)">
-                        <input class="button" value="删除" type="button" onclick="DealWords('PM','del','Mp',null)">
-                        <input class="button" value="获取" type="button" onclick="DealWords('PM','get',null,null)">
-                    </div>
-                </div>
-            </div>
-            <div class="R_right">
-                <textarea  class="r_text" id="status_id" rows="33" cols="35"></textarea>
-            </div>
-        </div>
-    </div>
+<div id="header">
+  <div class="header">
+      <h1>语义网络</h1>
+  </div>
 </div>
-<script src="{{ static_url('scripts/jquery-1.7.2.min.js')}}" type="text/javascript"></script>
-<script type="text/javascript">   var $basepath = 'http://218.240.151.116:28082/';</script>
-<script src="{{ static_url('scripts/enjoyqw.js')}}" type="text/javascript"></script>
+<div id="body_header">
+ <div class="body">
+ <br />
+ <big>欢迎,使用者</big>
+   <br />
+ <big>语义网络，是一个准确、快速、方便的</big>
+   <br />
+ <big>解析生活中的语句的网站</big>
+   </div>
+</div>
+
+<div class="container">
+    <section id="dg-container" class="dg-container">
+		<div class="dg-wrapper">
+		<a href="javascript:void(0)" onclick="render('voice');return false;"><img src="{{ static_url('imgs/声音.png') }}" alt="image1" /></a>
+		<a href="javascript:void(0)" onclick="render('temperature');return false;"><img src="{{ static_url('imgs/温度.png') }}" alt="image2" /></a>
+		<a href="javascript:void(0)" onclick="render('alarm');return false;"><img src="{{ static_url('imgs/闹钟设置.png') }}" alt="image3" /></a>
+		<a href="javascript:void(0)" onclick="render('timer');return false;" ><img src="{{ static_url('imgs/时间.png') }}" alt="image4" /></a>
+		<a href="javascript:void(0)" onclick="render('local');return false;" ><img src="{{ static_url('imgs/位置.png') }}" alt="image5" />
+		<a href="javascript:void(0)" onclick="render('music');return false;" ><img src="{{ static_url('imgs/音乐.png') }}" alt="image6" />
+		<a href="javascript:void(0)" onclick="render('catering');return false;" ><img src="{{ static_url('imgs/餐饮.png') }}" alt="image6" />
+		<a href="javascript:void(0)" onclick="render('travel');return false;" ><img src="{{ static_url('imgs/交通查询.png') }}" alt="image6" />
+		<a href="javascript:void(0)" onclick="render('');return false;"><img src="{{ static_url('imgs/风速.png') }}" alt="image3" /></a>
+		</div>
+    </section>
+</div>
+
+</div>
 </body>
 </html>

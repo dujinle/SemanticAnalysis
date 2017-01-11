@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="{{ static_url("css/voice.css") }}" type="text/css">
+	<!-- link rel="stylesheet" href="index.css" type="text/css" -->
+	<script type="text/javascript"> var $mdl="Voice";</script>
+	<script type="text/javascript" src="{{ static_url('scripts/base.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('scripts/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('scripts/enjoyqw.js') }}"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="box">
+    <div class="header">语义识别
+            <ul class="__show_content">
+                <li id="audio">声音</li>
+            </ul>
+    </div>
+    <div class="main">
+        <div class="left">
+            <div class="margin">
+                <span class="text">原始文本:</span>
+                <input class="one" type="text" id="intext">
+            </div>
+            <div class="margin">
+                <span class="text">分词结果:</span>
+                <div class="two_text" id="sptext"></div>
+            </div>
+            <div class="margin">
+                <span class="text">语义结果:</span>
+                <textarea class="three_text" id="retext" rows="5" cols="50"></textarea>
+            </div>
+            <div class="button_box">
+                <input class="button" type="button" value="语义体验" onclick="GetResult()">
+            </div>
+        </div>
+        <div class="right">
+            <div class="top">
+                <div class="del">
+                    <span>删除分词:</span><input class="input" type="text" id="del_word">
+                    <div class="top_button"><input class="input_button" type="button" value="确定" onclick="DealWords('SP','del','del_word',null)"></div>
+                </div>
+                <div class="add">
+                    <span>添加分词:</span><input class="input" type="text" id="add_word">
+                    <div class="top_button"><input class="input_button" type="button" value="确定" onclick="DealWords('SP','add','add_word',null)"></div>
+                </div>
+                <div class="save">
+                    <span class="save_text">保存修改:</span>
+                    <div class=""><input class="input_button" type="button" value="确定" onclick="save_data('Voice')"></div>
+                </div>
+            </div>
+            <div class="R_left">
+                <div class="M">
+                    <div class="row_1">
+                        <span class="title">名词(M)：</span>
+                        <input class="text" type="text" id="M">
+                        <input class="button" value="注入" type="button" onclick="DealWords('M','add','M',null)">
+                        <input class="button" value="删除" type="button" onclick="DealWords('M','del','M',null)">
+                        <input class="button" value="获取" type="button" onclick="DealWords('M','get',null,null)">
+                    </div>
+                </div>
+                <div class="M1">
+                <div class="row_1">
+                    <span class="title">名词修饰(M1)：</span>
+                    <input class="text" type="text" id="M1">
+                    <input class="button" value="注入" type="button" onclick="DealWords('M1','add','M1','choose')">
+                    <input class="button" value="删除" type="button" onclick="DealWords('M1','del','M1',null)">
+                    <input class="button" value="获取" type="button" onclick="DealWords('M1','get',null,null)">
+                </div>
+                <div class="row_2">
+                    <span>方向:</span>
+                    <input type="radio" name="choose" value="正" ><span>正</span>
+                    <input type="radio" name="choose" value="负" ><span>负</span>
+                    <input type="radio" name="choose" value="有" ><span>有</span>
+                    <input type="radio" name="choose" value="无" ><span>无</span>
+                    <input type="radio" name="choose" value="值" ><span>值</span>
+                    <input type="radio" name="choose" value="OFF" ><span>invalid</span>
+                </div>
+            </div>
+                <div class="F">
+                    <div class="row_1">
+                        <span class="title">动词(F)：</span>
+                        <input class="text" type="text" id="F">
+                        <input class="button" value="注入" type="button" onclick="DealWords('F','add','F','choose1')" >
+                        <input class="button" value="删除" type="button" onclick="DealWords('F','del','F',null)" >
+                        <input class="button" value="获取" type="button" onclick="DealWords('F','get',null,null)" >
+                    </div>
+                    <div class="row_2">
+                        <span>方向:</span>
+                        <input type="radio" name="choose1" value="正" ><span>正</span>
+                        <input type="radio" name="choose1" value="负" ><span>负</span>
+                        <input type="radio" name="choose1" value="有" ><span>有</span>
+                        <input type="radio" name="choose1" value="无" ><span>无</span>
+                        <input type="radio" name="choose1" value="值" ><span>值</span>
+                        <input type="radio" name="choose1" value="OFF" ><span>invalid</span>
+                    </div>
+                </div>
+                <div class="F1">
+                    <div class="row_1">
+                        <span class="title">动词性修饰(F1)：</span>
+                        <input class="text" type="text" id="F1">
+                        <input class="button" value="注入" type="button" onclick="DealWords('F1','add','F1','choose2')" >
+                        <input class="button" value="删除" type="button" onclick="DealWords('F1','del','F1',null)" >
+                        <input class="button" value="获取" type="button" onclick="DealWords('F1','get',null,null)" >
+                    </div>
+                    <div class="row_2">
+                        <span>方向:</span>
+                        <input type="radio" name="choose2" value="正" ><span>正</span>
+                        <input type="radio" name="choose2" value="负" ><span>负</span>
+                        <input type="radio" name="choose2" value="有" ><span>有</span>
+                        <input type="radio" name="choose2" value="无" ><span>无</span>
+                        <input type="radio" name="choose2" value="值" ><span>值</span>
+                        <input type="radio" name="choose2" value="OFF" ><span>invalid</span>
+                    </div>
+                </div>
+                <div class="X">
+                    <div class="row_1">
+                        <span class="title">方向形容词(X)：</span>
+                        <input class="text" type="text" id="X">
+                        <input class="button" value="注入" type="button" onclick="DealWords('X','add','X','choose3')" >
+                        <input class="button" value="删除" type="button" onclick="DealWords('X','del','X',null)" >
+                        <input class="button" value="获取" type="button" onclick="DealWords('X','get',null,null)" >
+                    </div>
+                    <div class="row_2">
+                        <span>方向:</span>
+                        <input type="radio" name="choose3" value="正" ><span>正</span>
+                        <input type="radio" name="choose3" value="负" ><span>负</span>
+                        <input type="radio" name="choose3" value="有" ><span>有</span>
+                        <input type="radio" name="choose3" value="无" ><span>无</span>
+                        <input type="radio" name="choose3" value="OFF" ><span>invalid</span>
+                    </div>
+                </div>
+                <div class="X1">
+                    <div class="row_1">
+                        <span class="title">方向性修饰词(X1)：</span>
+                        <input class="text" type="text" id="X1">
+                        <input class="button" value="注入" type="button" onclick="DealWords('X1','add','X1','choose4')" >
+                        <input class="button" value="删除" type="button" onclick="DealWords('X1','del','X1',null)" >
+                        <input class="button" value="获取" type="button" onclick="DealWords('X1','get',null,null)" >
+                    </div>
+                    <div class="row_2">
+                        <span>方向:</span>
+                        <input type="radio" name="choose4" value="!" ><span>取反</span>
+                        <input type="radio" name="choose4" value="OFF" ><span>invalid</span>
+                    </div>
+                </div>
+                <div class="C">
+                    <div class="row_1">
+                        <span class="title">程度形容词(C)：</span>
+                        <input class="text" type="text" id="C">
+                        <input class="button" value="注入" type="button" onclick="DealWords('C','add','C','choose5')" >
+                        <input class="button" value="删除" type="button" onclick="DealWords('C','del','C',null)" >
+                        <input class="button" value="获取" type="button" onclick="DealWords('C','get',null,null)" >
+                    </div>
+					<div class="row_2">
+						<span>方向:</span>
+						<input type="radio" name="choose5" value="最" ><span>最</span>
+						<input type="radio" name="choose5" value="高" ><span>高</span>
+						<input type="radio" name="choose5" value="中" ><span>中</span>
+						<input type="radio" name="choose5" value="低" ><span>低</span>
+						<input type="radio" name="choose5" value="底" ><span>底</span>
+					</div>
+                </div>
+                <div class="Z">
+                    <div class="row_1">
+                        <span class="title">综合修饰(Z)：</span>
+                        <input class="text" type="text" id="Z">
+                        <input class="button" value="注入" type="button" onclick="DealWords('Z','add','Z','choose6')" >
+                        <input class="button" value="删除" type="button" onclick="DealWords('Z','del','Z',null)" >
+                        <input class="button" value="获取" type="button" onclick="DealWords('Z','get',null,null)" >
+                    </div>
+                    <div class="row_2">
+                        <span>方向:</span>
+                        <input type="radio" name="choose6" value="正" ><span>正</span>
+                        <input type="radio" name="choose6" value="负" ><span>负</span>
+                        <input type="radio" name="choose6" value="有" ><span>有</span>
+                        <input type="radio" name="choose6" value="无" ><span>无</span>
+                        <input type="radio" name="choose6" value="OFF" ><span>invalid</span>
+                    </div>
+                </div>
+                <div class="Mp">
+                    <div class="row_1">
+                        <span class="title">模板(Mp)：</span>
+                        <input class="text" type="text" id="Mp">
+                        <input class="button" value="注入" type="button" onclick="DealWords('PM','add','Mp',null)">
+                        <input class="button" value="删除" type="button" onclick="DealWords('PM','del','Mp',null)">
+                        <input class="button" value="获取" type="button" onclick="DealWords('PM','get',null,null)">
+                    </div>
+                </div>
+
+            </div>
+            <div class="R_right">
+                <textarea  class="r_text" id="status_id" rows="33" cols="35"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

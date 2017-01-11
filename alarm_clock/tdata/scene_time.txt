@@ -1,0 +1,94 @@
+#闹钟停止响铃场景设置
+{
+	"min":"分钟",
+	"hour":"小时",
+	"msg":{
+		"set_start":["好的,这就帮您设置"],
+		"set_stop_succ":["不响了好好休息啊"],
+		"ck_exist":["闹钟已经存在"],
+		"invalid_com":["无效的指令"],
+		"modify_succ":["闹钟修改成功了"],
+		"ahead_succ":["好啊，未雨绸缪，已经帮您提前了%d%s啦"],
+		"defer_succ":["好的，已经帮您推迟%d%s啦"],
+		"ck_able":["闹钟的提醒已经修改成功"],
+		"ck_time":["闹钟的时间已经修改成功"],
+		"ck_unknow":["没有找到指定的闹钟"],
+		"swap_unknow":["没有找到要交换的闹钟"],
+		"swap_succ":["闹钟内容交换成功"],
+		"more_cks":["不支持多个闹钟进行交换"]
+	},
+#-----------------------------------------------------
+#灵活配置查询闹钟的事件
+#t2t==>find_cks time_to_time
+#time==>find_cks_bytime
+#info==>find_cks_byinfo
+#after==>find_cks_after_time
+#tat==>find_cks_time_and_time
+#-----------------------------------------------------
+	"template":[
+		{
+			"reg":"_time_to_time",
+			"func":"t2t"
+		},
+		{
+			"reg":"_time.*_ahead_time
+				|_time.*_defer_time
+				|_time.*_pass_time_recall
+				|_time.*_moveto_time",
+			"func":"time"
+		},
+		{
+			"reg":"_time_and_time",
+			"func":"tat"
+		},
+		{
+			"reg":"[^_.]{1,}_ahead_time
+				|[^_.]{1,}_defer_time
+				|[^_.]{1,}_pass_time_recall
+				|[^_.]{1,}_moveto_time",
+			"func":"info"
+		},
+		{
+			"reg":"_ahead_time
+				|_defer_time
+				|_pass_time_recall
+				|_moveto_time",
+			"func":"this"
+		},
+		{
+			"reg":"_after_has_what_thing
+				|_after_has_what_agenda
+				|_time_left_what_agenda
+				|_time_left_what_thing
+				|_workoff_after_has_some
+				|_workoff_after_has_what",
+			"func":"after"
+		}
+	],
+#-----------------------------------------------------
+#获取闹钟的标签信息
+#-----------------------------------------------------
+	"temptag":[
+		{
+			"reg":"_moveto_time",
+			"start":{
+				"tag":"",
+				"type":""
+			},
+			"end":{
+				"tag":"_moveto",
+				"type":"filter"
+			},
+			"type":"calc",
+			"level":"high",
+			"ftag":"continue"
+		},
+		{
+			"reg":"_cout.*_clock
+				|_cout.*_remind
+				|_cout.*_agenda",
+			"type":"value",
+			"value":"出门"
+		}
+	]
+}

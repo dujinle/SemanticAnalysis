@@ -7,82 +7,72 @@ import collections
 
 #==============================================================
 ''' import tagpy wordsegs '''
-abspath = os.path.abspath(__file__);
-base_path = os.path.split(abspath)[0];
+base_path = os.path.dirname(__file__);
 
-sys.path.append(base_path + '/tagpy');
-sys.path.append(base_path + '/wordsegs');
-sys.path.append(base_path + '/../commons');
+sys.path.append(os.path.join(base_path,'./voice'));
+sys.path.append(os.path.join(base_path,'./temperature'));
+sys.path.append(os.path.join(base_path,'./timer'));
+sys.path.append(os.path.join(base_path,'./location'));
+sys.path.append(os.path.join(base_path,'./flight'));
+sys.path.append(os.path.join(base_path,'./catering'));
+sys.path.append(os.path.join(base_path,'./music'));
+sys.path.append(os.path.join(base_path,'./alarm_clock'));
+sys.path.append(os.path.join(base_path,'./wordsegs'));
+sys.path.append(os.path.join(base_path,'../commons'));
 #==============================================================
 
 from wordseg import WordSeg
-import common
-import config
+import common,config
 from myexception import MyException
-from marktag import M
-from marktag import C
-from marktag import F
-from marktag import X
-from extendtag import X1
-from extendtag import M1
-from extendtag import F1
-from extendtag import Z
-from checktag import PM
-from calctag import Calc
+from voice_mager import VoiceMager
+from temp_mager import TempMager
+from time_mager import TimeMager
+from local_mager import LocalMager
+from music_mager import MusicMager
+from catering_mager import CateringMager
+from flight_mager import FlightMager
+from alarm_mager import AlarmMager
 
-#@common.singleton
 class Mager:
 	def __init__(self):
 		self.wordseg = WordSeg();
-		self.tag_objs = list();
+		self.modules = dict();
+		self.modules['Voice'] = VoiceMager(self.wordseg);
+		self.modules['Temp'] = TempMager(self.wordseg);
+		self.modules['Timer'] = TimeMager(self.wordseg);
+		self.modules['Local'] = LocalMager(self.wordseg);
+		self.modules['Music'] = MusicMager(self.wordseg);
+		self.modules['Catering'] = CateringMager(self.wordseg);
+		self.modules['Flight'] = FlightMager(self.wordseg);
+		self.modules['Alarm'] = AlarmMager(self.wordseg);
 
-		# mark tag objs #
-		self.tag_objs.append(M());
-		self.tag_objs.append(C());
-		self.tag_objs.append(F());
-		self.tag_objs.append(X());
-		# extend tag objs #
-		self.tag_objs.append(X1());
-		self.tag_objs.append(M1());
-		self.tag_objs.append(F1());
-		self.tag_objs.append(Z());
-		# calc tag obj #
-		self.tag_objs.append(PM());
-		self.tag_objs.append(Calc());
-
-	def init(self,dtype):
+	def init(self):
 		try:
-			step = 1;
-			dfiles = config.dfiles[dtype];
-			for obj in self.tag_objs:
-				obj.load_data(dfiles[str(step)]);
-				step = step + 1;
+			for key in self.modules:
+				self.modules[key].init(key);
 		except MyException as e:
 			raise e;
 
-	def encode(self,inlist):
-		struct = collections.OrderedDict();
-		struct['text'] = inlist;
-		struct['taglist'] = list();
-		try:
-			struct['inlist'] = self.wordseg.tokens(inlist);
-			for obj in self.tag_objs:
-				obj.init();
-				obj.encode(struct);
-			return struct;
-		except MyException as e:
-			res = common.get_dicstr(struct);
-			res = e.value + '\n' +res;
-			raise MyException(res);
+	def encode(self,inlist,mdl):
 
-	def deal_data(self,fname,action,data):
+		struct = collections.OrderedDict();
+		module = config.dtype;
+		if not mdl is None: module = mdl;
+
 		try:
-			for obj in self.tag_objs:
-				ret = obj.deal_data(fname,action,data);
-				if ret == common.PASS:
-					continue;
-				elif not ret is None:
-					return ret;
+			mobj = self.modules[module];
+			return mobj.encode(inlist);
+		except MyException as e:
+			raise e;
+
+	def deal_data(self,mdl,fname,action,data):
+		module = config.dtype;
+		if not mdl is None: module = mdl;
+
+		try:
+			mobj = self.modules[module];
+			res = mobj.deal_data(fname,action,data);
+			return res;
 		except MyException as e:
 			raise e;
 
@@ -94,29 +84,29 @@ class Mager:
 		except MyException as e:
 			raise e;
 
-	def write_file(self):
+	def write_file(self,mdl):
+
+		module = config.dtype;
+		if not mdl is None: module = mdl;
 		try:
-			step = 1;
-			dfiles = config.dfiles[config.dtype];
-			for obj in self.tag_objs:
-				obj.write_file(dfiles[str(step)]);
-				step = step + 1;
+			mobj = self.modules[module];
+			mobj.write_file(module);
 			self.wordseg.write_file();
 		except MyException as e:
 			raise e;
 '''
 try:
 	mg = Mager();
-	mg.init('Voice');
+	mg.init();
 	#mg.write_file();
 	#common.print_dic(mg.encode(u'把声音调大点'));
-	mg.sp_deal('del',{'value':u'大点'});
-	common.print_dic(mg.encode(u'把声音调大点'));
+	#mg.sp_deal('del',{'value':u'大点'});
+	common.print_dic(mg.encode(u'设置一个闹钟','Alarm'));
+	#mg.sp_deal('del',{'value':u'静音'});
+	#mg.deal_data('M','add',{'value':u'音'});
+	#common.print_dic(mg.encode(u'静音'));
+	#mg.sp_deal('del',{'value':u'最大声'});
+	#common.print_dic(mg.encode(u'大点声'));
 except MyException as e:
 	print e.value;
 '''
-#mg.deal_data('M','add',{"type":"M","value":u"音频"});
-#mg = Mager();
-#data = mg.deal_data('M','get',None);
-#common.print_dic(data);
-#print_dic(mg.encode(u'把声音关了'));

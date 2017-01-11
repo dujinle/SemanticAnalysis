@@ -1,0 +1,12 @@
+{
+	"起床":{
+		"value":"7:0",
+		"type":"time",
+		"vtype":"string"
+	},
+	"职业":{
+		"value":["程序猿","程序员"],
+		"vtype":"list",
+		"type":"string"
+	}
+}

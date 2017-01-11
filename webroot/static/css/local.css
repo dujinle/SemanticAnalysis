@@ -1,0 +1,250 @@
+heml,
+body,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体";
+}
+input,
+button {
+  outline: none;
+  word-wrap: break-word;
+}
+ul,
+li {
+  list-style: none;
+}
+
+.box {
+  width: 1200px;
+  height: 100%;
+  margin: 40px auto;
+  border: 1px solid #000;
+}
+.box .header {
+  width: 1200px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 30px;
+  border-bottom: 1px solid #000;
+  box-sizing: border-box;
+  background: #42abf8;
+  position: absolute;
+}
+.box .header .__show_text,
+.box .header .__show_button {
+  width: 80px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  float: right;
+  margin: 10px;
+  font-size: 20px;
+}
+.box .header .__show_content {
+  width: 400px;
+  height: 30px;
+  position: absolute;
+  right: -20px;
+  top: 15px;
+ /* cursor: pointer;*/
+}
+.box .header .__show_content li {
+  font-size: 16px;
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  border: 1px solid #000;
+  float: left;
+  background: white;
+}
+.box .header .__show_content .select {
+  color: white;
+  background: #F8A842;
+}
+.box .main {
+  width: 100%;
+  height: 800px;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-top: 50px;
+}
+.box .main .left {
+  box-sizing: border-box;
+  width: 400px;
+  border-right: 1px solid #000 ;
+  height: 800px;
+  padding: 10px;
+  float: left;
+}
+.box .main .left .margin {
+  margin-bottom: 10px;
+}
+.box .main .left .text {
+  display: inline-block;
+  font-size: 20px;
+  text-align: center;
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: top;
+  float: left;
+}
+.box .main .left .one {
+  width: 264px;
+  height: 20px;
+  line-height: 20px;
+}
+.box .main .left .two_text {
+  width: 264px;
+  height: 150px;
+  border: 1px solid #000;
+  margin-left: 100px;
+}
+.box .main .left .three_text {
+  width: 264px;
+  height: 350px;
+  border: 1px solid #000;
+}
+.box .main .left .button_box {
+  width: 30%;
+  margin: 0 auto;
+}
+.box .main .left .button_box .button {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.box .main .right {
+  width: 800px;
+  height: 100%;
+  margin-left: 400px;
+  box-sizing: border-box;
+}
+.box .main .right .top {
+  box-sizing: border-box;
+  padding: 10px;
+  border-bottom: 1px solid #000;
+  height: 100px;
+}
+.box .main .right .top .input {
+  width: 100px;
+  height: 25px;
+  vertical-align: top;
+}
+.box .main .right .top .input_button {
+  width: 70px;
+  height: 25px;
+}
+.box .main .right .top .top_button {
+  margin-left: 70px;
+  margin-top: 10px;
+  width: 70px;
+  height: 20px;
+  line-height: 20px;
+}
+.box .main .right .top .del {
+  height: 70px;
+  width: auto;
+  float: left;
+}
+.box .main .right .top .add {
+  height: 70px;
+  width: 200px;
+  margin-left: 200px;
+}
+.box .main .right .top .save_text {
+  float: left;
+  margin-right: 20px;
+}
+.box .main .right .top .save {
+  width: 200px;
+  margin-left: 500px;
+  margin-top: -70px;
+}
+.box .main .right .R_left {
+  border-right: 1px solid #000000;
+  width: 500px;
+  float: left;
+  padding:20px 10px;
+  box-sizing: border-box;
+  height: 800px;
+}
+.box .main .right .R_left .title {
+  font-size: 15px;
+  font-weight: bold;
+}
+.box .main .right .R_left .text {
+  width: 150px;
+  height: 25px;
+  line-height: 25px;
+}
+.box .main .right .R_left .button {
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+  line-height: 25px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.box .main .right .R_left .button:active {
+  color: white;
+  background: #42abf8;
+}
+.box .main .right .R_left .M,
+.box .main .right .R_left .C{
+  border-bottom: 1px solid #000;
+  line-height: 30px;
+}
+.box .main .right .R_left .Mp{
+  margin-top: 10px;
+  border-bottom: none !important;
+}
+.box .main .right .R_left .M1,
+.box .main .right .R_left .F,
+.box .main .right .R_left .F1,
+.box .main .right .R_left .X,
+.box .main .right .R_left .X1,
+.box .main .right .R_left .Z{
+  height: 85px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #000;
+}
+.box .main .right .R_left .M .row_1,
+.box .main .right .R_left .M1 .row_1,
+.box .main .right .R_left .F .row_1,
+.box .main .right .R_left .F1 .row_1,
+.box .main .right .R_left .X .row_1,
+.box .main .right .R_left .X1 .row_1,
+.box .main .right .R_left .Mp .row_1,
+.box .main .right .R_left .Z .row_1,{
+  height: 40px;
+  line-height: 40px;
+}
+.box .main .right .R_left .M1 .row_2,
+.box .main .right .R_left .F .row_2,
+.box .main .right .R_left .F1 .row_2,
+.box .main .right .R_left .X .row_2,
+.box .main .right .R_left .X1 .row_2 ,
+.box .main .right .R_left .Z.row_2{
+  margin-top: 10px;
+  height: 20px;
+  line-height: 20px;
+}
+.box .main .right.R_right  {
+  width:100% ;
+padding-left:10px;
+  height: 528px;
+  box-sizing: content-box;
+}
+.box .main .right .R_right .r_text {
+	padding: 10px;
+	width:95%;
+	margin:10px;
+}

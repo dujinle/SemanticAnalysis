@@ -17,11 +17,16 @@ from handler import RequestHandler
 class SaveHandler(RequestHandler):
 
 	@tornado.gen.coroutine
-	def get(self):
+	@common.json_loads_body
+	def post(self):
 		try:
+			if not self.body_json.has_key('mdl'):
+				self.except_handle('not found module type');
+				return ;
+			mdl = self.body_json['mdl'];
 			mager = self.get_mager();
-			rest = mager.write_file();
-			self.write(self.gen_result(0,'save data success',None));
+			rest = mager.write_file(mdl);
+			self.write(self.gen_result(0,mdl + 'save data success',None));
 		except Exception,e:
-			self.except_handle('save data failed');
+			self.except_handle(mdl + 'save data failed');
 			return ;

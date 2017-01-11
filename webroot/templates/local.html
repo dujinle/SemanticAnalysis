@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="{{ static_url("css/local.css") }}" type="text/css">
+	<!-- link rel="stylesheet" href="index.css" type="text/css" -->
+	<script type="text/javascript"> var $mdl="Local"; </script>
+	<script type="text/javascript" src="{{ static_url('scripts/base.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('scripts/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('scripts/local.js') }}"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="box">
+    <div class="header">语义识别
+		<ul class="__show_content">
+			<li id="">定位</li>
+		</ul>
+	</div>
+    <div class="main">
+        <div class="left">
+            <div class="margin">
+                <span class="text">原始文本:</span>
+                <input class="one" type="text" id="intext">
+            </div>
+            <div class="margin">
+                <span class="text">分词结果:</span>
+                <div class="two_text" id="sptext"></div>
+            </div>
+            <div class="margin">
+                <span class="text">语义结果:</span>
+                <textarea class="three_text" id="retext" rows="5" cols="50"></textarea>
+            </div>
+            <div class="button_box">
+                <input class="button" type="button" value="语义体验" onclick="GetResult()">
+            </div>
+        </div>
+        <div class="right">
+            <div class="top">
+                <div class="del">
+                    <span>删除分词:</span><input class="input" type="text" id="del_word">
+                    <div class="top_button"><input class="input_button" type="button" value="确定" onclick="DealWords('SP','del','del_word',null)"></div>
+                </div>
+                <div class="add">
+                    <span>添加分词:</span><input class="input" type="text" id="add_word">
+                    <div class="top_button"><input class="input_button" type="button" value="确定" onclick="DealWords('SP','add','add_word',null)"></div>
+                </div>
+                <div class="save">
+                    <span class="save_text">保存修改:</span>
+                    <div class=""><input class="input_button" type="button" value="确定" onclick="#"></div>
+                </div>
+            </div>
+            <div class="R_right">
+                <textarea  class="r_text" id="status_id" rows="33" cols="35"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

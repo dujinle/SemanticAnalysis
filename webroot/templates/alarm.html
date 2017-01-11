@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html " charset="UTF-8">
+    <title>语义网络</title>
+    <link rel="stylesheet" type="text/css" href="{{ static_url('css/travel.css') }}">
+	<script type="text/javascript"> var $mdl="Alarm"; </script>
+   <script type="text/javascript" src="{{ static_url('scripts/base.js') }}"></script>
+   <script  type="text/javascript" language="JavaScript" src="{{ static_url('scripts/travel.js') }}"></script>
+   <script type="text/javascript" src="{{ static_url('scripts/jquery.min.js') }}"></script>
+</head>
+<body>
+<!-- 头部设置-->
+ <div id="box">
+     <div class="header">
+         <h1 >语义网络</h1>
+		 <ul class="show_content">
+			<li>闹钟设置</li>
+		 </ul>
+     </div>
+     <!-- 左侧设置-->
+	<div class="content">
+		<div class="content-left">
+			<div class="left-text1">
+				<span class="text-big">原始文本:</span><input type="text" id="intext" class="text1" value="" *size="10" />
+			</div>
+			<div class="left-text2">
+				<span class="text-big">分词结果:</span><textarea id="sptext" class="text1" rows="5" *cols="30" readonly></textarea>
+			</div>
+			<div class="left-text3">
+				<span class="text-big">语义解析:</span><textarea id="retext" class="text1" rows="15" *cols="30" readonly></textarea>
+			</div>
+			<div class="left-button">
+				<input type="button" id="searchButton" value="语义解析" class="big_button" onclick="GetResult()"/>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

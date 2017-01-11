@@ -10,8 +10,11 @@ function GetResult(){
 	}
 	var sptext = document.getElementById("sptext");
 	var restext  = document.getElementById("retext");
+	sptext.innerText = null;
+	restext.innerText = null;
 	var jdata = {
-		'text':intext.value
+		'text':intext.value,
+		'mdl':$mdl
 	};
 	var obj = null;
 	$.ajax({
@@ -32,7 +35,7 @@ function GetResult(){
 	if(json_obj != null && json_obj.code == 0){
 		result = json_obj.result;
 		sptext.innerText = result.inlist;
-		restext.innerText = JSON.stringify(result,null,"\t");
+		restext.innerText = JSON.stringify(result,null," ");
 		return true;
 	}else{
 		restext.innerText = json_obj.message.replace(/#/g,'\n');
@@ -65,6 +68,7 @@ function DealWords(type,action,vid,did){
 		}
 	}
 	idata.type = type;
+	idata.mdl = $mdl;
 	if(dir != null){
 		idata.dir = dir;
 	}
@@ -82,7 +86,7 @@ function DealWords(type,action,vid,did){
 	y = document.getElementById('status_id');
 	if(obj != null && obj.code == 0){
 		if(action == 'get'){
-			y.innerText = JSON.stringify(obj.result,null,'\t');
+			y.innerText = JSON.stringify(obj.result,null,' ');
 		}else{
 			y.innerText = obj.message.replace(/#/g,'\n');
 		}
@@ -92,12 +96,17 @@ function DealWords(type,action,vid,did){
 	return false;
 }
 
-function save_data(){
+function save_data(mdl){
 	var obj = null;
+	data = {
+		'mdl':mdl
+	};
 	$.ajax({
 		async:false,
 		url: $basepath + 'save_data',
-		type:'get',
+		type:'post',
+		dataType:"text",
+		data:JSON.stringify(data),
 		success:function(data){
 			obj = data;
 		},

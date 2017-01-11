@@ -8,18 +8,29 @@ import sys,os
 base_path = os.path.dirname(__file__);
 
 sys.path.append(base_path + '/webpy');
+sys.path.append(base_path + '/../alarm_clock/webstr');
 #sys.path.append(base_path + '/../commons');
 #---------------------------------------------
 
 import tornado.ioloop
 import tornado.web
 from webpy import *
+from scene_result import SceneResultHandler
 
 class Application(tornado.web.Application):
 	def __init__(self):
 		handlers = [
 			(r"/doctor",DocterHandler),
+			(r"/voice",VoiceHandler),
+			(r"/local",LocalHandler),
+			(r"/music",MusicHandler),
+			(r"/alarm",AlarmHandler),
+			(r"/catering",CateringHandler),
+			(r"/travel",TravelHandler),
+			(r"/temperature",TempHandler),
+			(r"/timer",TimerHandler),
 			(r"/get_result",ResultHandler),
+			(r"/get_sresult",SceneResultHandler),
 			(r"/save_data",SaveHandler),
 			(r"/reset",ResetHandler),
 			(r"/get",GetHandler),
@@ -35,11 +46,39 @@ class Application(tornado.web.Application):
 		tornado.web.Application.__init__(self, handlers, **settings);
 
 class DocterHandler(tornado.web.RequestHandler):
-	def post(self):
-		self.render('index.html');
-
 	def get(self):
 		self.render('index.html');
+
+class VoiceHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('voice.html');
+
+class TempHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('temperature.html');
+class TimerHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('timer.html');
+
+class LocalHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('local.html');
+
+class MusicHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('music.html');
+
+class CateringHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('catering.html');
+
+class TravelHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('travel.html');
+
+class AlarmHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.render('alarm.html');
 
 if __name__=="__main__":
 

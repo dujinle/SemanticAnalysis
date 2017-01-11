@@ -1,0 +1,49 @@
+{
+	"regs":[
+		{
+			"type":"date",
+			"scope": "day",
+			"reg": "[0-3]*[0-9][天日号]"
+		},
+		{
+			"type":"date",
+			"scope": "month",
+			"reg": "[0-2]*[0-9]月"
+		},
+		{
+			"type":"date",
+			"scope": "hour",
+			"reg": "[0-6]*[0-9][时点]"
+		},
+		{
+			"type":"num",
+			"scope": "hour",
+			"reg": "[0-6]*[0-9]小时"
+		},
+		{
+			"type":"num",
+			"scope":"hour",
+			"reg":"[1-9](个)*小时"
+		},
+		{
+			"type":"num",
+			"scope": "min",
+			"reg": "[0-6]*[0-9]分钟"
+		},
+		{
+			"type":"date",
+			"scope": "min",
+			"reg": "[0-6]*[0-9]分"
+		},
+		{
+			"type":"date",
+			"scope": "year",
+			"reg": "[0-9]{3,4}年"
+		},
+		{
+			"type":"date",
+			"scope": "sec",
+			"reg": "[0-6]*[0-9]秒"
+		}
+	]
+}

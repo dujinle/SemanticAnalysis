@@ -1,0 +1,102 @@
+{
+  "keys": [
+    "刻钟", 
+    "刻", 
+    "季度", 
+    "旬", 
+    "半月"
+  ], 
+  "regs": [
+    {
+      "scope": "qt", 
+      "reg": "[1-9]{1,}K", 
+      "same": [
+        "刻钟", 
+        "刻"
+      ], 
+      "attr": [
+        "num"
+      ]
+    }, 
+    {
+      "scope": "jd", 
+      "reg": "[第][1-4]K", 
+      "same": [
+        "季度"
+      ], 
+      "attr": [
+        "date"
+      ]
+    }, 
+    {
+      "scope": "xun", 
+      "interval": [
+        1, 
+        10
+      ], 
+      "reg": "上K", 
+      "same": [
+        "旬"
+      ], 
+      "attr": [
+        "date"
+      ]
+    }, 
+    {
+      "scope": "xun", 
+      "interval": [
+        10, 
+        20
+      ], 
+      "reg": "中K", 
+      "same": [
+        "旬"
+      ], 
+      "attr": [
+        "date"
+      ]
+    }, 
+    {
+      "scope": "xun", 
+      "interval": [
+        20, 
+        30
+      ], 
+      "reg": "下K", 
+      "same": [
+        "旬"
+      ], 
+      "attr": [
+        "date"
+      ]
+    }, 
+    {
+      "scope": "bmon", 
+      "interval": [
+        0, 
+        15
+      ], 
+      "reg": "上K", 
+      "same": [
+        "半月"
+      ], 
+      "attr": [
+        "date"
+      ]
+    }, 
+    {
+      "scope": "bmon", 
+      "interval": [
+        15, 
+        30
+      ], 
+      "reg": "下K", 
+      "same": [
+        "半月"
+      ], 
+      "attr": [
+        "date"
+      ]
+    }
+  ]
+}

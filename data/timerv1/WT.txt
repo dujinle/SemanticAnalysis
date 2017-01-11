@@ -1,0 +1,59 @@
+{
+  "keys": [
+    "星期", 
+    "周", 
+    "礼拜"
+  ], 
+  "regs": [
+    {
+      "scope": "week", 
+      "vtype": "num", 
+      "reg": "([1-9]*[0-9])*个*K", 
+      "same": [
+        "星期", 
+        "周", 
+        "礼拜"
+      ], 
+      "attr": [
+        "num"
+      ]
+    }, 
+    {
+      "scope": "week", 
+      "vtype": "num", 
+      "reg": "K[1-6]", 
+      "same": [
+        "星期", 
+        "周", 
+        "礼拜"
+      ], 
+      "attr": [
+        "date"
+      ]
+    }, 
+    {
+      "scope": "week", 
+      "vtype": "word", 
+      "reg": "K(天|日)", 
+      "same": [
+        "星期", 
+        "周", 
+        "礼拜"
+      ], 
+      "attr": [
+        "date"
+      ]
+    }, 
+    {
+      "scope": "week", 
+      "vtype": "words", 
+      "reg": "K末", 
+      "same": [
+        "周"
+      ], 
+      "attr": [
+        "date"
+      ]
+    }
+  ]
+}
