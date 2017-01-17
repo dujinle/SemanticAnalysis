@@ -1,0 +1,81 @@
+{
+    "满足": {
+        "stype": "SATISFY",
+        "type": "PMOOD",
+        "str": "满足"
+    },
+    "放心": {
+        "stype": "FEEL_RELIEVED",
+        "type": "PMOOD",
+        "str": "放心"
+    },
+    "快乐": {
+        "stype": "HAPPY",
+        "type": "PMOOD",
+        "str": "快乐"
+    },
+    "兴奋": {
+        "stype": "EXCITE",
+        "type": "PMOOD",
+        "str": "兴奋"
+    },
+    "放松": {
+        "stype": "RELAX",
+        "type": "PMOOD",
+        "str": "放松"
+    },
+    "疲累": {
+        "stype": "TIRED",
+        "type": "PMOOD",
+        "str": "疲累"
+    },
+    "惊慌": {
+        "stype": "PANIC",
+        "type": "PMOOD",
+        "str": "惊慌"
+    },
+    "害怕": {
+        "stype": "FEAR",
+        "type": "PMOOD",
+        "str": "害怕"
+    },
+    "悲伤": {
+        "stype": "SORROW",
+        "type": "PMOOD",
+        "str": "悲伤"
+    },
+    "忧虑": {
+        "type": "WORRY",
+        "str": "忧虑"
+    },
+    "绝望": {
+        "stype": "DESPAIR",
+        "type": "PMOOD",
+        "str": "绝望"
+    },
+    "失望": {
+        "stype": "DISAPPOINT",
+        "type": "PMOOD",
+        "str": "失望"
+    },
+    "愤怒": {
+        "stype": "RAGE",
+        "type": "PMOOD",
+        "str": "愤怒"
+    },
+    "嫉妒": {
+        "stype": "ENVY",
+        "type": "PMOOD",
+        "str": "嫉妒"
+    },
+    "怨恨": {
+        "stype": "HATE",
+        "type": "PMOOD",
+        "str": "怨恨"
+    },
+    "懊悔": {
+        "stype": "REGRET",
+        "type": "PMOOD",
+        "str": "懊悔"
+    }
+}

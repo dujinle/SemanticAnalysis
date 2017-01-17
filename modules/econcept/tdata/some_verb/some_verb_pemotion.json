@@ -1,0 +1,127 @@
+{
+    "敬爱": {
+        "stype": "LOVE", 
+        "type": "PYSCHO", 
+        "str": "敬爱"
+    }, 
+    "爱慕": {
+        "stype": "ADORE", 
+        "type": "PYSCHO", 
+        "str": "爱慕"
+    }, 
+    "感激": {
+        "stype": "THANK", 
+        "type": "PYSCHO", 
+        "str": "感激"
+    }, 
+    "信任": {
+        "stype": "TRUST", 
+        "type": "PYSCHO", 
+        "str": "信任"
+    }, 
+    "原谅": {
+        "stype": "FORGIVE", 
+        "type": "PYSCHO", 
+        "str": "原谅"
+    }, 
+    "同情": {
+        "stype": "PITY", 
+        "type": "PYSCHO", 
+        "str": "同情"
+    }, 
+    "想念": {
+        "stype": "MISS", 
+        "type": "PYSCHO", 
+        "str": "想念"
+    }, 
+    "感动": {
+        "stype": "AFFECT", 
+        "type": "PYSCHO", 
+        "str": "感动"
+    }, 
+    "怀念": {
+        "stype": "MISS", 
+        "type": "PYSCHO", 
+        "str": "怀念"
+    }, 
+    "嘲讽": {
+        "stype": "SNEER", 
+        "type": "PYSCHO", 
+        "str": "嘲讽"
+    }, 
+    "关切": {
+        "stype": "CARE", 
+        "type": "PYSCHO", 
+        "str": "关切"
+    }, 
+    "热爱": {
+        "stype": "LOVE", 
+        "type": "PYSCHO", 
+        "str": "热爱"
+    }, 
+    "珍惜": {
+        "stype": "TREASURE", 
+        "type": "PYSCHO", 
+        "str": "珍惜"
+    }, 
+    "欣赏": {
+        "stype": "ENJOY", 
+        "type": "PYSCHO", 
+        "str": "欣赏"
+    }, 
+    "喜爱": {
+        "stype": "LIKE", 
+        "type": "PYSCHO", 
+        "str": "喜爱"
+    }, 
+    "羡慕": {
+        "stype": "ENVY", 
+        "type": "PYSCHO", 
+        "str": "羡慕"
+    }, 
+    "喜欢": {
+        "stype": "LOVE", 
+        "type": "PYSCHO", 
+        "str": "喜欢"
+    }, 
+    "怜惜": {
+        "stype": "PITY", 
+        "type": "PYSCHO", 
+        "str": "怜惜"
+    }, 
+    "抱怨": {
+        "stype": "GRUMBLE", 
+        "type": "PYSCHO", 
+        "str": "抱怨"
+    }, 
+    "怨恨": {
+        "stype": "HATE", 
+        "type": "PYSCHO", 
+        "str": "怨恨"
+    }, 
+    "讨厌": {
+        "stype": "LOATHE", 
+        "type": "PYSCHO", 
+        "str": "讨厌"
+    }, 
+    "担心": {
+        "stype": "WORRY", 
+        "type": "PYSCHO", 
+        "str": "担心"
+    }, 
+    "责备": {
+        "stype": "BLAME", 
+        "type": "PYSCHO", 
+        "str": "责备"
+    }, 
+    "遗憾": {
+        "stype": "REGRET", 
+        "type": "PYSCHO", 
+        "str": "遗憾"
+    }, 
+    "怀疑": {
+        "stype": "SUSPECT", 
+        "type": "PYSCHO", 
+        "str": "怀疑"
+    }
+}
