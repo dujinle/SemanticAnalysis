@@ -1,0 +1,132 @@
+{
+    "知晓": {
+        "stype": "KNOW", 
+        "type": "PMIND", 
+        "str": "知晓"
+    }, 
+    "回忆": {
+        "stype": "RECOLLECT", 
+        "type": "PMIND", 
+        "str": "回忆"
+    }, 
+    "忘记": {
+        "stype": "FORGET", 
+        "type": "PMIND", 
+        "str": "忘记"
+    }, 
+    "认识": {
+        "stype": "KNOW", 
+        "type": "PMIND", 
+        "str": "认识"
+    }, 
+    "注意": {
+        "stype": "NOTICE", 
+        "type": "PMIND", 
+        "str": "注意"
+    }, 
+    "感觉": {
+        "stype": "FEEL", 
+        "type": "PMIND", 
+        "str": "感觉"
+    }, 
+    "发觉": {
+        "stype": "FIND", 
+        "type": "PMIND", 
+        "str": "发觉"
+    }, 
+    "熟悉": {
+        "stype": "KNOW_WELL", 
+        "type": "PMIND", 
+        "str": "熟悉"
+    }, 
+    "了解": {
+        "stype": "KNOW", 
+        "type": "PMIND", 
+        "str": "了解"
+    }, 
+    "记得": {
+        "stype": "REMEMBER", 
+        "type": "PMIND", 
+        "str": "记得"
+    }, 
+    "明白": {
+        "stype": "UNDERSTAND", 
+        "type": "PMIND", 
+        "str": "明白"
+    }, 
+    "懂得": {
+        "stype": "UNDERSTAND", 
+        "type": "PMIND", 
+        "str": "懂得"
+    }, 
+    "小心": {
+        "stype": "TAKE_CARE", 
+        "type": "PMIND", 
+        "str": "小心"
+    }, 
+    "觉得": {
+        "stype": "FEEL", 
+        "type": "PMIND", 
+        "str": "觉得"
+    }, 
+    "思考": {
+        "stype": "THINK", 
+        "type": "PMIND", 
+        "str": "思考"
+    }, 
+    "想象": {
+        "stype": "IMAGINE", 
+        "type": "PMIND", 
+        "str": "想象"
+    }, 
+    "幻想": {
+        "stype": "FANTASY", 
+        "type": "PMIND", 
+        "str": "幻想"
+    }, 
+    "考虑": {
+        "stype": "CONSIDER", 
+        "type": "PMIND", 
+        "str": "考虑"
+    }, 
+    "体会": {
+        "stype": "TASTE", 
+        "type": "PMIND", 
+        "str": "体会"
+    }, 
+    "计划": {
+        "stype": "PLAN", 
+        "type": "PMIND", 
+        "str": "计划"
+    }, 
+    "打算": {
+        "stype": "PLAN", 
+        "type": "PMIND", 
+        "str": "打算"
+    }, 
+    "想": {
+        "stype": "WANT", 
+        "type": "PMIND", 
+        "str": "想"
+    }, 
+    "估计": {
+        "stype": "ESTIMATE", 
+        "type": "PMIND", 
+        "str": "估计"
+    }, 
+    "猜": {
+        "stype": "GUESS", 
+        "type": "PMIND", 
+        "str": "猜"
+    }, 
+    "推测": {
+        "stype": "SPECULATE", 
+        "type": "PMIND", 
+        "str": "推测"
+    }, 
+    "探索": {
+        "stype": "EXPLORE", 
+        "type": "PMIND", 
+        "str": "探索"
+    }
+}

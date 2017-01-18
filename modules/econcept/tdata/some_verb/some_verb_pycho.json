@@ -1,0 +1,28 @@
+{
+#心理动词 这些动词前面可以加入十分、很或者自己存在
+	"想":{
+		"stype":"MISS",
+		"type":"PSYCHO",
+		"str":"想"
+	},
+	"相信":{
+		"stype":"BELIEVE",
+		"type":"PSYCHO",
+		"str":"相信"
+	},
+	"想要":{
+		"stype":"WANT",
+		"type":"PSYCHO",
+		"str":"想要"
+	},
+	"最爱":{
+		"stype":"LOVE",
+		"type":"PSYCHO",
+		"str":"最爱"
+	},
+	"喜欢":{
+		"stype":"LIKE",
+		"type":"PSYCHO",
+		"str":"喜欢"
+	}
+}

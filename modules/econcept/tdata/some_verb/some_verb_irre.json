@@ -1,0 +1,34 @@
+{
+#不规则动词 IVERB
+	"出门":{
+		"stype":"GOUT",
+		"str":"出门",
+		"type":"IRREGULAR"
+	},
+	"起床":{
+		"stype":"GETUP",
+		"type":"IRREGULAR",
+		"str":"起床",
+		"scene":"Alarm"
+	},
+	"上门":{
+		"stype":"DROPIN",
+		"type":"IRREGULAR",
+		"str":"上门"
+	},
+	"吹牛":{
+		"stype":"BRAG",
+		"str":"吹牛",
+		"type":"IRREGULAR"
+	},
+	"去过":{
+		"stype":"GONE",
+		"str":"去过",
+		"type":"IRREGULAR"
+	},
+	"算了":{
+		"stype":"FORGETIT",
+		"str":"算了",
+		"type":"IRREGULAR"
+	}
+}
