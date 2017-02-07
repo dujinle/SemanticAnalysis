@@ -1,0 +1,322 @@
+{
+    "做事": {
+        "stype": "WORK",
+        "type": "PDEAL",
+        "str": "做事"
+    },
+    "摆弄": {
+        "stype": "SWAY",
+        "type": "PDEAL",
+        "str": "摆弄"
+    },
+    "料理": {
+        "stype": "MANAGE",
+        "type": "PDEAL",
+        "str": "料理"
+    },
+    "安排": {
+        "stype": "PLAN",
+        "type": "PDEAL",
+        "str": "安排"
+    },
+    "整": {
+        "stype": "DO",
+        "type": "PDEAL",
+        "str": "整"
+    },
+    "干活": {
+        "stype": "WORK",
+        "type": "PDEAL",
+        "str": "干活"
+    },
+    "搞": {
+        "stype": "DO",
+        "type": "PDEAL",
+        "str": "搞"
+    },
+    "弄": {
+        "stype": "DO",
+        "type": "PDEAL",
+        "str": "弄"
+    },
+    "忙碌": {
+        "stype": "BUSY",
+        "type": "PDEAL",
+        "str": "忙碌"
+    },
+    "领头": {
+        "stype": "LEAD",
+        "type": "PDEAL",
+        "str": "领头"
+    },
+    "主管": {
+        "stype": "MANAGE",
+        "type": "PDEAL",
+        "str": "主管"
+    },
+    "负责": {
+        "stype": "MANAGE",
+        "type": "PDEAL",
+        "str": "负责"
+    },
+    "掌管": {
+        "stype": "MANAGE",
+        "type": "PDEAL",
+        "str": "掌管"
+    },
+    "做主": {
+        "stype": "DECIDE",
+        "type": "PDEAL",
+        "str": "做主"
+    },
+    "节约": {
+        "stype": "ECONOMIZE",
+        "type": "PDEAL",
+        "str": "节约"
+    },
+    "浪费": {
+        "stype": "WASTE",
+        "type": "PDEAL",
+        "str": "浪费"
+    },
+    "退缩": {
+        "stype": "RETREAT",
+        "type": "PDEAL",
+        "str": "退缩"
+    },
+    "转向": {
+        "stype": "TURN",
+        "type": "PDEAL",
+        "str": "转向"
+    },
+    "过关": {
+        "stype": "PASS",
+        "type": "PDEAL",
+        "str": "过关"
+    },
+    "给予": {
+        "stype": "GIVE",
+        "type": "PDEAL",
+        "str": "给予"
+    },
+    "取要": {
+        "stype": "GET",
+        "type": "PDEAL",
+        "str": "取要"
+    },
+    "挑选": {
+        "stype": "SELECT",
+        "type": "PDEAL",
+        "str": "挑选"
+    },
+    "使用": {
+        "stype": "USE",
+        "type": "PDEAL",
+        "str": "使用"
+    },
+    "处置": {
+        "stype": "HANDLE",
+        "type": "PDEAL",
+        "str": "处置"
+    },
+    "收存": {
+        "stype": "STORE",
+        "type": "PDEAL",
+        "str": "收存"
+    },
+    "收拾": {
+        "stype": "TIDY",
+        "type": "PDEAL",
+        "str": "收拾"
+    },
+    "遗失": {
+        "stype": "LOSE",
+        "type": "PDEAL",
+        "str": "遗失"
+    },
+    "寻找": {
+        "stype": "SEEK",
+        "type": "PDEAL",
+        "str": "寻找"
+    },
+    "阻碍": {
+        "stype": "HINDER",
+        "type": "PDEAL",
+        "str": "阻碍"
+    },
+    "占据": {
+        "stype": "OCCUPY",
+        "type": "PDEAL",
+        "str": "占据"
+    },
+    "分隔": {
+        "stype": "DIVIDE",
+        "type": "PDEAL",
+        "str": "分隔"
+    },
+    "合并": {
+        "stype": "MERGE",
+        "type": "PDEAL",
+        "str": "合并"
+    },
+    "掺和": {
+        "stype": "ADMIX",
+        "type": "PDEAL",
+        "str": "掺和"
+    },
+    "排队": {
+        "stype": "QUEUE",
+        "type": "PDEAL",
+        "str": "排队"
+    },
+    "插队": {
+        "stype": "CRASH_A_QUEUE",
+        "type": "PDEAL",
+        "str": "插队"
+    },
+    "围拢": {
+        "stype": "SURROUND",
+        "type": "PDEAL",
+        "str": "围拢"
+    },
+    "躲藏": {
+        "stype": "HIDE",
+        "type": "PDEAL",
+        "str": "躲藏"
+    },
+    "走动": {
+        "stype": "WALK",
+        "type": "PDEAL",
+        "str": "走动"
+    },
+    "离开": {
+        "stype": "LEAVE",
+        "type": "PDEAL",
+        "str": "离开"
+    },
+    "跟随": {
+        "stype": "FOLLOW",
+        "type": "PDEAL",
+        "str": "跟随"
+    },
+    "活动": {
+        "stype": "EXERCISE",
+        "type": "PDEAL",
+        "str": "活动"
+    },
+    "生活": {
+        "stype": "ACT",
+        "type": "PDEAL",
+        "str": "生活"
+    },
+    "熬": {
+        "stype": "ENDURE",
+        "type": "PDEAL",
+        "str": "熬"
+    },
+    "享受": {
+        "stype": "ENJOY",
+        "type": "PDEAL",
+        "str": "享受"
+    },
+    "发展": {
+        "stype": "DEVELOP",
+        "type": "PDEAL",
+        "str": "发展"
+    },
+    "生长": {
+        "stype": "GROW",
+        "type": "PDEAL",
+        "str": "生长"
+    },
+    "枯萎": {
+        "stype": "DROOP",
+        "type": "PDEAL",
+        "str": "枯萎"
+    },
+    "发芽": {
+        "stype": "SPROUT",
+        "type": "PDEAL",
+        "str": "发芽"
+    },
+    "产卵": {
+        "stype": "SPAWN",
+        "type": "PDEAL",
+        "str": "产卵"
+    },
+    "失败": {
+        "stype": "FAIL",
+        "type": "PDEAL",
+        "str": "失败"
+    },
+    "出错": {
+        "stype": "ERROR",
+        "type": "PDEAL",
+        "str": "出错"
+    },
+    "完成": {
+        "stype": "COMPLETE",
+        "type": "PDEAL",
+        "str": "完成"
+    },
+    "收尾": {
+        "stype": "END",
+        "type": "PDEAL",
+        "str": "收尾"
+    },
+    "结束": {
+        "stype": "END",
+        "type": "PDEAL",
+        "str": "结束"
+    },
+    "停止": {
+        "stype": "STOP",
+        "type": "PDEAL",
+        "str": "停止"
+    },
+    "成功": {
+        "stype": "SUCCEED",
+        "type": "PDEAL",
+        "str": "成功"
+    },
+    "走运": {
+        "stype": "LUCK",
+        "type": "PDEAL",
+        "str": "走运"
+    },
+    "弄妥": {
+        "stype": "GET_COMPLETE",
+        "type": "PDEAL",
+        "str": "弄妥"
+    },
+    "得手": {
+        "stype": "SUCCEED",
+        "type": "PDEAL",
+        "str": "得手"
+    },
+    "奖励": {
+        "stype": "REWARD",
+        "type": "PDEAL",
+        "str": "奖励"
+    },
+    "惩罚": {
+        "stype": "PUNISH",
+        "type": "PDEAL",
+        "str": "惩罚"
+    },
+    "得益": {
+        "stype": "PROFIT",
+        "type": "PDEAL",
+        "str": "得益"
+    },
+    "揩油": {
+        "stype": "HIJACK",
+        "type": "PDEAL",
+        "str": "揩油"
+    },
+    "依赖": {
+        "stype": "RELY",
+        "type": "PDEAL",
+        "str": "依赖"
+    }
+}
