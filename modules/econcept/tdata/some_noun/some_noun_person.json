@@ -1,0 +1,282 @@
+{
+    "媒人": {
+        "stype": "MATCHMAKER",
+        "type": "PERSON",
+        "str": "媒人"
+    },
+    "矮子": {
+        "stype": "SHORTY",
+        "type": "PERSON",
+        "str": "矮子"
+    },
+    "肥佬": {
+        "stype": "LAID_BACK",
+        "type": "PERSON",
+        "str": "肥佬"
+    },
+    "靓仔": {
+        "stype": "HANDSOME_YOUNG_MAN",
+        "type": "PERSON",
+        "str": "靓仔"
+    },
+    "美女": {
+        "stype": "BELLE",
+        "type": "PERSON",
+        "str": "美女"
+    },
+    "壮汉": {
+        "stype": "BRAWNY",
+        "type": "PERSON",
+        "str": "壮汉"
+    },
+    "醉汉": {
+        "stype": "DRUNKARD",
+        "type": "PERSON",
+        "str": "醉汉"
+    },
+    "孕妇": {
+        "stype": "PREGNANT_WOMAN",
+        "type": "PERSON",
+        "str": "孕妇"
+    },
+    "左撇子": {
+        "stype": "LEFT_HANDED",
+        "type": "PERSON",
+        "str": "左撇子"
+    },
+    "痞子": {
+        "stype": "RASCAL",
+        "type": "PERSON",
+        "str": "痞子"
+    },
+    "东家": {
+        "stype": "OWNER",
+        "type": "PERSON",
+        "str": "东家"
+    },
+    "雇主": {
+        "stype": "EMPLOYER",
+        "type": "PERSON",
+        "str": "雇主"
+    },
+    "顾客": {
+        "stype": "CLIENT",
+        "type": "PERSON",
+        "str": "顾客"
+    },
+    "老板": {
+        "stype": "BOSS",
+        "type": "PERSON",
+        "str": "老板"
+    },
+    "工人": {
+        "stype": "WORKER",
+        "type": "PERSON",
+        "str": "工人"
+    },
+    "能人": {
+        "stype": "HOMO_HABILIS",
+        "type": "PERSON",
+        "str": "能人"
+    },
+    "内行人": {
+        "stype": "INSIDERS",
+        "type": "PERSON",
+        "str": "内行人"
+    },
+    "财主": {
+        "stype": "THE_RICH_MAN",
+        "type": "PERSON",
+        "str": "财主"
+    },
+    "人才": {
+        "stype": "TALENT",
+        "type": "PERSON",
+        "str": "人才"
+    },
+    "不幸者": {
+        "stype": "UNFORTUNATE",
+        "type": "PERSON",
+        "str": "不幸者"
+    },
+    "尴尬者": {
+        "stype": "AWKWARDNESS",
+        "type": "PERSON",
+        "str": "尴尬者"
+    },
+    "生手": {
+        "stype": "TYRO",
+        "type": "PERSON",
+        "str": "生手"
+    },
+    "乡巴佬": {
+        "stype": "BUMPKIN",
+        "type": "PERSON",
+        "str": "乡巴佬"
+    },
+    "苦命人": {
+        "stype": "KARUMAKKARAYO",
+        "type": "PERSON",
+        "str": "苦命人"
+    },
+    "干部": {
+        "stype": "CADRES",
+        "type": "PERSON",
+        "str": "干部"
+    },
+    "领导": {
+        "stype": "LEADERSHIP",
+        "type": "PERSON",
+        "str": "领导"
+    },
+    "商人": {
+        "stype": "MERCHANT",
+        "type": "PERSON",
+        "str": "商人"
+    },
+    "服务人员": {
+        "stype": "SERVICE_PERSONNEL",
+        "type": "PERSON",
+        "str": "服务人员"
+    },
+    "科学家": {
+        "stype": "SCIENTIST",
+        "type": "PERSON",
+        "str": "科学家"
+    },
+    "经济学家": {
+        "stype": "ECONOMIST",
+        "type": "PERSON",
+        "str": "经济学家"
+    },
+    "农民": {
+        "stype": "PEASANT",
+        "type": "PERSON",
+        "str": "农民"
+    },
+    "军人": {
+        "stype": "SOLDIER",
+        "type": "PERSON",
+        "str": "军人"
+    },
+    "警察": {
+        "stype": "POLICE",
+        "type": "PERSON",
+        "str": "警察"
+    },
+    "军": {
+        "stype": "ARMY",
+        "type": "PERSON",
+        "str": "军"
+    },
+    "县令": {
+        "stype": "COUNTY_MAGISTRATE",
+        "type": "PERSON",
+        "str": "县令"
+    },
+    "宰相": {
+        "stype": "CHANCELLOR",
+        "type": "PERSON",
+        "str": "宰相"
+    },
+    "扒手": {
+        "stype": "PICKPOCKET",
+        "type": "PERSON",
+        "str": "扒手"
+    },
+    "流浪汉": {
+        "stype": "TRAMP",
+        "type": "PERSON",
+        "str": "流浪汉"
+    },
+    "二流子": {
+        "stype": "LOAFER",
+        "type": "PERSON",
+        "str": "二流子"
+    },
+    "经销商": {
+        "stype": "DEALER",
+        "type": "PERSON",
+        "str": "经销商"
+    },
+    "供应商": {
+        "stype": "SUPPLIER",
+        "type": "PERSON",
+        "str": "供应商"
+    },
+    "零售商": {
+        "stype": "DEALER",
+        "type": "PERSON",
+        "str": "零售商"
+    },
+    "买家": {
+        "stype": "BUYER",
+        "type": "PERSON",
+        "str": "买家"
+    },
+    "卖家": {
+        "stype": "SELLER",
+        "type": "PERSON",
+        "str": "卖家"
+    },
+    "尼姑": {
+        "stype": "BUDDHIST_NUN",
+        "type": "PERSON",
+        "str": "尼姑"
+    },
+    "和尚": {
+        "stype": "MONK",
+        "type": "PERSON",
+        "str": "和尚"
+    },
+    "好人": {
+        "stype": "GOOD_PERSON",
+        "type": "PERSON",
+        "str": "好人"
+    },
+    "雷锋": {
+        "stype": "LEI_FENG",
+        "type": "PERSON",
+        "str": "雷锋"
+    },
+    "聪明人": {
+        "stype": "SOLOMON",
+        "type": "PERSON",
+        "str": "聪明人"
+    },
+    "机灵鬼": {
+        "stype": "A_DEEP_CARDN",
+        "type": "PERSON",
+        "str": "机灵鬼"
+    },
+    "八婆": {
+        "stype": "EIGHT_WOMAN",
+        "type": "PERSON",
+        "str": "八婆"
+    },
+    "怪胎": {
+        "stype": "MOON_CALF",
+        "type": "PERSON",
+        "str": "怪胎"
+    },
+    "猪头": {
+        "stype": "PIG'S_HEAD",
+        "type": "PERSON",
+        "str": "猪头"
+    },
+    "母老虎": {
+        "stype": "TIGRESS",
+        "type": "PERSON",
+        "str": "母老虎"
+    },
+    "败家仔": {
+        "stype": "BLACK_SHEEP",
+        "type": "PERSON",
+        "str": "败家仔"
+    },
+    "懒虫": {
+        "stype": "SLACKER",
+        "type": "PERSON",
+        "str": "懒虫"
+    }
+}
