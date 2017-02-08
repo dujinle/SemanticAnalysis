@@ -10,10 +10,10 @@ class NetData():
 		self.dfiles = {
 			#名词对象数据加载地址
 			"SomeObjs":[
-				os.path.join(abspath,'tdata','some_objb.json'), #人物名称
-				os.path.join(abspath,'tdata','some_objp.json'),#地点名称
-				os.path.join(abspath,'tdata','some_objt.json'),#事物名称
-				os.path.join(abspath,'tdata','some_obja.json')  #抽象名词
+				os.path.join(abspath,'tdata','some_noun','some_noun_person.json'), #人物名称
+				os.path.join(abspath,'tdata','some_noun','some_noun_place.json'),#地点名称
+				os.path.join(abspath,'tdata','some_noun','some_noun_sth.json'),#事物名称
+				os.path.join(abspath,'tdata','some_noun','some_noun_absth.json')  #抽象名词
 			],
 			#形容词数据加载地址
 			"SomeAdjs":os.path.join(abspath,'tdata','some_adj.json'),
@@ -40,12 +40,12 @@ class NetData():
 			"SomePrep":os.path.join(abspath,'tdata','some_prep.json'),
 			#副词数据加载地址
 			"SomeAdverb":[
-				os.path.join(abspath,'tdata','some_adverbl.json'),#程度副词
-				os.path.join(abspath,'tdata','some_adverbt.json'),#时间副词
-				os.path.join(abspath,'tdata','some_adverbd.json'),#判定副词
-				os.path.join(abspath,'tdata','some_adverbs.json'),#范围副词
-				os.path.join(abspath,'tdata','some_adverbr.json'),#频率副词
-				os.path.join(abspath,'tdata','some_adverbq.json') #情态副词
+				os.path.join(abspath,'tdata','some_adverb','some_adverb_level.json'),#程度副词
+				os.path.join(abspath,'tdata','some_adverb','some_adverb_time.json'),#时间副词
+				os.path.join(abspath,'tdata','some_adverb','some_adverb_dect.json'),#判定副词
+				os.path.join(abspath,'tdata','some_adverb','some_adverb_scope.json'),#范围副词
+				os.path.join(abspath,'tdata','some_adverb','some_adverb_rate.json'),#频率副词
+				os.path.join(abspath,'tdata','some_adverb','some_adverb_mood.json') #情态副词
 			],
 			#助词数据加载地址
 			"SomeAux":[
