@@ -10,25 +10,25 @@ import collections
 base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'./commons'));
 
-sys.path.append(os.path.join(base_path,'./math'));
-sys.path.append(os.path.join(base_path,'./dmusic'));
-sys.path.append(os.path.join(base_path,'./flight'));
-sys.path.append(os.path.join(base_path,'./calendar'));
-sys.path.append(os.path.join(base_path,'./foodspot'));
-sys.path.append(os.path.join(base_path,'./shopping'));
-sys.path.append(os.path.join(base_path,'./nav_guide'));
-sys.path.append(os.path.join(base_path,'./push_news'));
-sys.path.append(os.path.join(base_path,'./navigation'));
-sys.path.append(os.path.join(base_path,'./on_off_line'));
-sys.path.append(os.path.join(base_path,'./translation'));
-sys.path.append(os.path.join(base_path,'./bvoice/pystr'));
-sys.path.append(os.path.join(base_path,'./send_message'));
+sys.path.append(os.path.join(base_path,'./scenes'));
+sys.path.append(os.path.join(base_path,'./scenes/math'));
+sys.path.append(os.path.join(base_path,'./scenes/dmusic'));
+sys.path.append(os.path.join(base_path,'./scenes/flight'));
+sys.path.append(os.path.join(base_path,'./scenes/calendar'));
+sys.path.append(os.path.join(base_path,'./scenes/foodspot'));
+sys.path.append(os.path.join(base_path,'./scenes/shopping'));
+sys.path.append(os.path.join(base_path,'./scenes/traffic'));
+sys.path.append(os.path.join(base_path,'./scenes/push_news'));
+sys.path.append(os.path.join(base_path,'./scenes/navigation'));
+sys.path.append(os.path.join(base_path,'./scenes/on_off_line'));
+sys.path.append(os.path.join(base_path,'./scenes/translation'));
+sys.path.append(os.path.join(base_path,'./scenes/bvoice/pystr'));
+sys.path.append(os.path.join(base_path,'./scenes/send_message'));
 
-sys.path.append(os.path.join(base_path,'./alarm_clock/pystr'));
-sys.path.append(os.path.join(base_path,'./ctemperature/pystr'));
+sys.path.append(os.path.join(base_path,'./scenes/alarm_clock/pystr'));
+sys.path.append(os.path.join(base_path,'./scenes/ctemperature/pystr'));
 
 sys.path.append(os.path.join(base_path,'./modules/timer'));
-sys.path.append(os.path.join(base_path,'./modules/tmood'));
 sys.path.append(os.path.join(base_path,'./modules/mytag'));
 sys.path.append(os.path.join(base_path,'./modules/wordsegs'));
 sys.path.append(os.path.join(base_path,'./modules/prev_deal'));
@@ -36,11 +36,6 @@ sys.path.append(os.path.join(base_path,'./modules/econcept'));
 sys.path.append(os.path.join(base_path,'./modules/fetch_stc'));
 sys.path.append(os.path.join(base_path,'./modules/dist_scene'));
 sys.path.append(os.path.join(base_path,'./modules/pronom_prep'));
-#sys.path.append(os.path.join(base_path,'./location'));
-#sys.path.append(os.path.join(base_path,'./flight'));
-#sys.path.append(os.path.join(base_path,'./catering'));
-#sys.path.append(os.path.join(base_path,'./music'));
-#sys.path.append(os.path.join(base_path,'./wordsegs'));
 #==============================================================
 
 import common,config
@@ -64,7 +59,6 @@ from o2o_mager import O2oMager
 from time_cmager import TimeMager
 from tag_cmager import MytagMager
 from pdeal_cmager import PDealMager
-from pprep_mager import PPrepMager
 from con_mager import ConMager
 from fetch_mager import FetchMager
 from dist_mager import DistMager
@@ -77,7 +71,6 @@ class Mager:
 		self.timer = TimeMager();
 		self.mytag = MytagMager();
 		self.pdeal = PDealMager();
-		self.pprep = PPrepMager();
 		self.concpt = ConMager();
 		self.fetch = FetchMager();
 		self.dist = DistMager();
@@ -89,7 +82,7 @@ class Mager:
 		self.modules['Temp'] = TempMager();
 		self.modules['Alarm'] = SceneMager();
 		self.modules['News'] = NewsMager();
-		self.modules['Nguide'] = GuideMager();
+		self.modules['Traffic'] = GuideMager();
 		self.modules['Music'] = MusicMager();
 		self.modules['Phone'] = PhoneMager();
 		self.modules['Calendar'] = CalMager();
@@ -100,10 +93,6 @@ class Mager:
 		self.modules['Nav'] = NavMager();
 		self.modules['Flight'] = FlightMager();
 		self.modules['O2O'] = O2oMager();
-#		self.modules['Local'] = LocalMager(self.wordseg);
-#		self.modules['Music'] = MusicMager(self.wordseg);
-#		self.modules['Catering'] = CateringMager(self.wordseg);
-#		self.modules['Flight'] = FlightMager(self.wordseg);
 
 	def set_step(self,step): self.struct['step'] = step;
 	def set_scene(self,scene):
@@ -115,7 +104,6 @@ class Mager:
 			self.timer.init('Timer');
 			self.mytag.init('Mytag');
 			self.pdeal.init('PDeal');
-			self.pprep.init('PrepPronom');
 			self.concpt.init('Concept');
 			self.fetch.init('Fetch');
 			self.dist.init('Dist');

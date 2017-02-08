@@ -6,7 +6,6 @@ from net_data import NetData
 from mark_num import MarkNum
 from mark_objs import MarkObjs
 from mark_pronoun import MarkPronoun
-from mark_regs import MarkRegs
 from mark_tmood import MarkTmood
 
 import struct_utils as Sutil

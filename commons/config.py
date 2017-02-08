@@ -49,21 +49,6 @@ dfiles = {
 		"9":os.path.join(abspath,'data','timer','TDecade.txt'),
 		"10":os.path.join(abspath,'data','timer','TMood.txt')
 	},
-	"TMood":{
-		"1":os.path.join(abspath,'modules','tmood','tdata','time_mood.txt'),
-		"2":None
-	},
-	"PrepPronom":{
-		"1":os.path.join(abspath,'modules','pronom_prep','tdata','prep_locality.txt'),
-		"2":os.path.join(abspath,'modules','pronom_prep','tdata','per_pronom.txt'),
-		"3":os.path.join(abspath,'modules','pronom_prep','tdata','prep_combine.txt'),
-		"4":os.path.join(abspath,'modules','pronom_prep','tdata','verb_combine.txt'),
-		"5":None
-	},
-	"Adverb":{
-		"1":os.path.join(abspath,'modules','adverb','tdata','degree_adverb.txt'),
-		"2":os.path.join(abspath,'modules','adverb','tdata','scope_adverb.txt')
-	},
 	"Nunit":{
 		"1":os.path.join(abspath,'modules','num_unit','tdata','num.txt'),
 		"2":os.path.join(abspath,'modules','num_unit','tdata','unit.txt'),
@@ -71,19 +56,19 @@ dfiles = {
 		"4":None,"5":None
 	},
 	"Concept":{
-		"1":os.path.join(abspath,'modules','econcept','tdata','noun_dic.json'),
-		"2":os.path.join(abspath,'modules','econcept','tdata','verb_dic.json'),
-		"3":os.path.join(abspath,'modules','econcept','tdata','gerund_dic.json'),
-		"4":None,"14":None,
-		"5":os.path.join(abspath,'modules','econcept','tdata','adj_dic.json'),
-		"6":os.path.join(abspath,'modules','econcept','tdata','people_pronoun.json'),
-		"7":os.path.join(abspath,'modules','econcept','tdata','logic_pronoun.json'),
-		"8":os.path.join(abspath,'modules','econcept','tdata','localizer.json'),
-		"9":os.path.join(abspath,'modules','econcept','tdata','fetch_adjs.json'),
-		"10":os.path.join(abspath,'modules','econcept','tdata','fetch_belongs.json'),
-		"11":os.path.join(abspath,'modules','econcept','tdata','fetch_action.json'),
-		"12":os.path.join(abspath,'modules','econcept','tdata','fetch_artist.json'),
-		"13":os.path.join(abspath,'modules','econcept','tdata','fetch_local_unit.json')
+		"1":None
+	},
+	"Fetch":{
+		"1":os.path.join(abspath,'modules','fetch_stc','tdata','fetch_before.json'),
+		"2":os.path.join(abspath,'modules','fetch_stc','tdata','fetch_01layer.json'),
+		"3":os.path.join(abspath,'modules','fetch_stc','tdata','fetch_02layer.json'),
+		"4":os.path.join(abspath,'modules','fetch_stc','tdata','fetch_03layer.json'),
+		"5":os.path.join(abspath,'modules','fetch_stc','tdata','fetch_math.json'),
+		"6":os.path.join(abspath,'modules','fetch_stc','tdata','fetch_10layer.json'),
+		"7":os.path.join(abspath,'modules','fetch_stc','tdata','fetch_11layer.json')
+	},
+	"Dist":{
+		"1":os.path.join(abspath,'modules','dist_scene','tdata','mark_dist.json')
 	},
 	'Local':{
 		"1":os.path.join(abspath,'data','location','HD')
@@ -92,38 +77,66 @@ dfiles = {
 		"1":os.path.join(abspath,'data','catering','CTR.txt'),
 		"2":os.path.join(abspath,'data','catering','CAT.txt')
 	},
-	'Flight':{
-		"1":os.path.join(abspath,'data','flight','FT.txt'),
-		"2":os.path.join(abspath,'data','flight','AIR.txt')
-	},
-	'Alarm':os.path.join(abspath,'alarm_clock','tdata'),
-	'News':{
-		"1":os.path.join(abspath,'push_news','tdata','pnews.txt'),
-		"2":os.path.join(abspath,'push_news','tdata','under_model.txt')
-	},
+	'Alarm':os.path.join(abspath,'scenes','alarm_clock','tdata'),
 	"Nguide":{
 		"1":os.path.join(abspath,'nav_guide','tdata','guide_data.txt'),
 		"2":os.path.join(abspath,'nav_guide','tdata','traffic.txt')
 	},
 	'Music':{
-		"1":os.path.join(abspath,'dmusic','tdata','music_data.txt'),
-		"2":os.path.join(abspath,'dmusic','tdata','under_music.txt'),
+		"1":os.path.join(abspath,'scenes','dmusic','tdata','music_data.txt'),
+		"2":os.path.join(abspath,'scenes','dmusic','tdata','under_music.txt'),
 		"3":os.path.join(abspath,'data','music','MT.txt'),
 		"4":os.path.join(abspath,'data','music','MSR.txt'),
 		"5":os.path.join(abspath,'data','music','MSN.txt')
-	},
-	'Phone':{
-		"1":os.path.join(abspath,'send_message','tdata','phone_data.txt'),
-		"2":os.path.join(abspath,'send_message','tdata','under_phone.txt')
-	},
-	'Calendar':{
-		"1":os.path.join(abspath,'calendar','tdata','cal_data.txt'),
-		"2":os.path.join(abspath,'calendar','tdata','under_cal.txt')
 	},
 	'Mytag':{
 		"1":os.path.join(abspath,'modules','mytag','tdata','mytag.txt')
 	},
 	"PDeal":{
 		"1":os.path.join(abspath,'modules','prev_deal','tdata','pdeal_replace.txt')
+	},
+	"Shop":{
+		"1":os.path.join(abspath,'scenes','shopping','tdata','shop_data.txt'),
+		"2":os.path.join(abspath,'scenes','shopping','tdata','under_shop.txt')
+	},
+	"Nav":{
+		"1":os.path.join(abspath,'scenes','navigation','tdata','nav_data.txt'),
+		"2":os.path.join(abspath,'scenes','navigation','tdata','under_nav.txt')
+	},
+	"O2O":{
+		"1":os.path.join(abspath,'scenes','on_off_line','tdata','o2o_data.txt'),
+		"2":os.path.join(abspath,'scenes','on_off_line','tdata','under_o2o.txt')
+	},
+	"Phone":{
+		"1":os.path.join(abspath,'scenes','send_message','tdata','phone_data.txt'),
+		"2":os.path.join(abspath,'scenes','send_message','tdata','phone_users.txt'),
+		"3":os.path.join(abspath,'scenes','send_message','tdata','under_phone.txt')
+	},
+	"Flight":{
+		"1":os.path.join(abspath,'scenes','flight','tdata','flight_data.txt'),
+		"2":os.path.join(abspath,'scenes','flight','tdata','under_flight.txt')
+	},
+	"News":{
+		"1":os.path.join(abspath,'scenes','push_news','tdata','pnews.txt'),
+		"2":os.path.join(abspath,'scenes','push_news','tdata','under_model.txt')
+	},
+	"Calendar":{
+		"1":os.path.join(abspath,'scenes','calendar','tdata','cal_data.txt'),
+		"2":os.path.join(abspath,'scenes','calendar','tdata','under_cal.txt')
+	},
+	"Traffic":{
+		"1":os.path.join(abspath,'scenes','traffic','tdata','guide_data.txt'),
+		"2":os.path.join(abspath,'scenes','traffic','tdata','traffic.txt')
+	},
+	"Math":{
+		"1":os.path.join(abspath,'scenes','math','tdata','under_math.txt')
+	},
+	"Food":{
+		"1":os.path.join(abspath,'scenes','foodspot','tdata','food_data.txt'),
+		"2":os.path.join(abspath,'scenes','foodspot','tdata','under_food.txt')
+	},
+	"Trans":{
+		"1":os.path.join(abspath,'scenes','translation','tdata','trans_data.txt'),
+		"2":os.path.join(abspath,'scenes','translation','tdata','under_trans.txt')
 	}
 };

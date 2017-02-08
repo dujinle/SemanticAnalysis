@@ -3,7 +3,7 @@
 import os,sys,re,common
 from myexception import MyException
 
-def _merge_some_words(struct,words,sid):
+def _merge_some_words(struct,words,sid,flg = False):
 	pid = struct['text'][sid:].find(words) + sid;
 	if pid == -1: return -1;
 	wlist = list(u'|'.join(struct['inlist']));
@@ -76,3 +76,9 @@ def _sort_by_apper(struct,kname):
 				ilist[idx] = pitem;
 			pid = pid + 1;
 		idx = idx + 1;
+
+def _link_split_words(struct,key):
+	for dic in struct[key]:
+		tstr = dic['str'];
+		if len(tstr) > 1:
+			_merge_some_words(struct,tstr,0,False);
