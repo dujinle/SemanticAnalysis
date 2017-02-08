@@ -1,0 +1,23 @@
+{
+#频率副词记录
+	"REPEAT":{
+		"type":"RATE",
+		"stype":"REPEAT",
+		"reg":["重复"]
+	},
+	"AGAIN":{
+		"type":"RATE",
+		"stype":"AGAIN",
+		"reg":["又","再","再次","再行","再三","再度","重新"]
+	},
+	"ALSO":{
+		"type":"RATE",
+		"stype":"ALSO",
+		"reg":["也"]
+	},
+	"ALMOST":{
+		"type":"RATE",
+		"stype":"ALMOST",
+		"reg":["基本","总是"]
+	}
+}
