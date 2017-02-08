@@ -1,0 +1,12 @@
+{
+	"生日":{
+		"stype":"BIRTHDAY",
+		"type":"SBATTR",
+		"str":"生日"
+	},
+	"手机":{
+		"stype":"TELEPHONE",
+		"type":"SBATTR",
+		"str":"手机"
+	}
+}
