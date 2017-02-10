@@ -1,0 +1,458 @@
+{
+    "航海家": {
+        "stype": "NAVIGATOR", 
+        "type": "SB", 
+        "str": "航海家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "探险家": {
+        "stype": "EXPLORER", 
+        "type": "SB", 
+        "str": "探险家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "旅行家": {
+        "stype": "TRAVELER", 
+        "type": "SB", 
+        "str": "旅行家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "收藏家": {
+        "stype": "COLLECTORS", 
+        "type": "SB", 
+        "str": "收藏家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "神话人物": {
+        "stype": "MYTH_CHARACTERS", 
+        "type": "SB", 
+        "str": "神话人物", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "小说人物": {
+        "stype": "CHARACTERS", 
+        "type": "SB", 
+        "str": "小说人物", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "动漫人物": {
+        "stype": "CARTOON_CHARACTERS", 
+        "type": "SB", 
+        "str": "动漫人物", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "单身汉": {
+        "stype": "BACHELOR", 
+        "type": "SB", 
+        "str": "单身汉", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "老姑婆": {
+        "stype": "SPINSTER", 
+        "type": "SB", 
+        "str": "老姑婆", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "寡妇": {
+        "stype": "WIDOW", 
+        "type": "SB", 
+        "str": "寡妇", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "唐人": {
+        "stype": "CHINESE", 
+        "type": "SB", 
+        "str": "唐人", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "江西老表": {
+        "stype": "JIANGXI_CLASS", 
+        "type": "SB", 
+        "str": "江西老表", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "北方人": {
+        "stype": "NORTHERNER", 
+        "type": "SB", 
+        "str": "北方人", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "南方人": {
+        "stype": "SOUTHERNERS", 
+        "type": "SB", 
+        "str": "南方人", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "外国人": {
+        "stype": "FOREIGNERS", 
+        "type": "SB", 
+        "str": "外国人", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "黑人": {
+        "stype": "BLACK", 
+        "type": "SB", 
+        "str": "黑人", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "白人": {
+        "stype": "WHITE", 
+        "type": "SB", 
+        "str": "白人", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "非洲人": {
+        "stype": "AFRICAN", 
+        "type": "SB", 
+        "str": "非洲人", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "粉丝": {
+        "stype": "FANS", 
+        "type": "SB", 
+        "str": "粉丝", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "屌丝": {
+        "stype": "LOSER", 
+        "type": "SB", 
+        "str": "屌丝", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "人群": {
+        "stype": "CROWD", 
+        "type": "SB", 
+        "str": "人群", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "代表": {
+        "stype": "REPRESENTATIVE", 
+        "type": "SB", 
+        "str": "代表", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "法人": {
+        "stype": "LEGAL PERSON", 
+        "type": "SB", 
+        "str": "法人", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "委员会": {
+        "stype": "COMMITTEE", 
+        "type": "SB", 
+        "str": "委员会", 
+        "desc": [
+            "PTRADE"
+        ]
+    },  
+    "哲学家": {
+        "stype": "PHILOSOPHER", 
+        "type": "SB", 
+        "str": "哲学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "教主": {
+        "stype": "HIERARCH", 
+        "type": "SB", 
+        "str": "教主", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "神父": {
+        "stype": "PRIEST", 
+        "type": "SB", 
+        "str": "神父", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "修女": {
+        "stype": "SISTER", 
+        "type": "SB", 
+        "str": "修女", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "政治家": {
+        "stype": "POLITICIANS", 
+        "type": "SB", 
+        "str": "政治家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "律师": {
+        "stype": "LAWYER", 
+        "type": "SB", 
+        "str": "律师", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "语言学家": {
+        "stype": "LINGUISTS", 
+        "type": "SB", 
+        "str": "语言学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "文学家": {
+        "stype": "LITTERATEUR", 
+        "type": "SB", 
+        "str": "文学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "新闻人物": {
+        "stype": "NEWSMAKER", 
+        "type": "SB", 
+        "str": "新闻人物", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "艺术家": {
+        "stype": "ARTIST", 
+        "type": "SB", 
+        "str": "艺术家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "历史学家": {
+        "stype": "HISTORIAN", 
+        "type": "SB", 
+        "str": "历史学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "考古学家": {
+        "stype": "ARCHAEOLOGISTS", 
+        "type": "SB", 
+        "str": "考古学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "教育家": {
+        "stype": "EDUCATORS", 
+        "type": "SB", 
+        "str": "教育家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "心理学家": {
+        "stype": "PSYCHOLOGISTS", 
+        "type": "SB", 
+        "str": "心理学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "教练": {
+        "stype": "COACH", 
+        "type": "SB", 
+        "str": "教练", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "数学家": {
+        "stype": "MATHEMATICIAN", 
+        "type": "SB", 
+        "str": "数学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "物理学家": {
+        "stype": "PHYSICISTS", 
+        "type": "SB", 
+        "str": "物理学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "天文学家": {
+        "stype": "ASTRONOMERS", 
+        "type": "SB", 
+        "str": "天文学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "地理学家": {
+        "stype": "GEOGRAPHER", 
+        "type": "SB", 
+        "str": "地理学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "化学家": {
+        "stype": "CHEMIST", 
+        "type": "SB", 
+        "str": "化学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "环境学家": {
+        "stype": "ENVIRONMENTALISTS", 
+        "type": "SB", 
+        "str": "环境学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "生物学家": {
+        "stype": "BIOLOGISTS", 
+        "type": "SB", 
+        "str": "生物学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "农业学家": {
+        "stype": "AGRICULTURAL_SCIENTISTS", 
+        "type": "SB", 
+        "str": "农业学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "工程师": {
+        "stype": "ENGINEER", 
+        "type": "SB", 
+        "str": "工程师", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "材料学家": {
+        "stype": "MATERIALS_SCIENTISTS", 
+        "type": "SB", 
+        "str": "材料学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "建筑师": {
+        "stype": "ARCHITECT", 
+        "type": "SB", 
+        "str": "建筑师", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "航天员": {
+        "stype": "ASTRONAUT", 
+        "type": "SB", 
+        "str": "航天员", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "医学家": {
+        "stype": "PHYSICIAN", 
+        "type": "SB", 
+        "str": "医学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "信息学家": {
+        "stype": "INFORMATIONIST", 
+        "type": "SB", 
+        "str": "信息学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "经济学家": {
+        "stype": "ECONOMISTS", 
+        "type": "SB", 
+        "str": "经济学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "管理学家": {
+        "stype": "MANAGERIALIST", 
+        "type": "SB", 
+        "str": "管理学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "军事学家": {
+        "stype": "MILITARY_SCIENTIST", 
+        "type": "SB", 
+        "str": "军事学家", 
+        "desc": [
+            "PTRADE"
+        ]
+    }, 
+    "司令员": {
+        "stype": "COMMANDER", 
+        "type": "SB", 
+        "str": "司令员", 
+        "desc": [
+            "PTRADE"
+        ]
+    }
+}
