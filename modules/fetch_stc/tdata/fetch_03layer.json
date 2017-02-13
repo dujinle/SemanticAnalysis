@@ -66,6 +66,16 @@
 			"type":"num",
 			"force":"prev",
 			"desc":""
+		},
+#动词与助词结合 不改变词义
+		{
+			"start":"SomeVerb",
+			"end":"SomeAux",
+			"st":"*",
+			"et":"AUX",
+			"type":"aux",
+			"force":"prev",
+			"desc":""
 		}
 	],
 	"SPACE":[

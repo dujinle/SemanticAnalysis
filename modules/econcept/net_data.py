@@ -11,6 +11,7 @@ class NetData():
 			#名词对象数据加载地址
 			"SomeObjs":[
 				os.path.join(abspath,'tdata','some_noun','some_noun_person.json'), #人物名称
+				os.path.join(abspath,'tdata','some_noun','some_noun_pname.json'), #人物名称
 				os.path.join(abspath,'tdata','some_noun','some_noun_place.json'),#地点名称
 				os.path.join(abspath,'tdata','some_noun','some_noun_sth.json'),#事物名称
 				os.path.join(abspath,'tdata','some_noun','some_noun_absth.json')  #抽象名词
