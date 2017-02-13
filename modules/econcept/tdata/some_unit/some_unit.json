@@ -48,5 +48,10 @@
 		"str":"斤",
 		"stype":"HEAVY",
 		"type":"QUANTIFIER"
+	},
+	"条":{
+		"str":"条",
+		"stype":"NUM",
+		"type":"QUANTIFIER"
 	}
 }
