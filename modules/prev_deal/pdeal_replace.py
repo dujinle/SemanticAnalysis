@@ -9,9 +9,11 @@ class PDealReplace(PDealBase):
 
 	def encode(self,struct):
 		try:
-			self._replace_str(struct);
-			self._deal_time_rep(struct);
-		except Exception as e: raise e;
+			pass;
+#			self._replace_str(struct);
+#			self._deal_time_rep(struct);
+		except Exception as e:
+			raise e;
 
 	def _replace_str(self,struct):
 		for reg in self.data['rep']:

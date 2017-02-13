@@ -26,4 +26,4 @@ class PDealMager:
 			for obj in self.tag_objs:
 				obj.encode(struct);
 		except Exception as e:
-			raise e;
+			raise MyException(sys.exc_info());
