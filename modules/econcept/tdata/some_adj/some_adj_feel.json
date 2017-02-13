@@ -2,7 +2,7 @@
 #形容人感官的词语
     "甜": {
         "stype": "SWEET",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "甜",
         "desc": [
             "FEEL"
@@ -10,7 +10,7 @@
     },
     "咸": {
         "stype": "SALTY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "咸",
         "desc": [
             "FEEL"
@@ -18,7 +18,7 @@
     },
     "酸": {
         "stype": "TART",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "酸",
         "desc": [
             "FEEL"
@@ -26,7 +26,7 @@
     },
     "苦": {
         "stype": "BITTER",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "苦",
         "desc": [
             "FEEL"
@@ -34,7 +34,7 @@
     },
     "辣": {
         "stype": "PEPPERY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "辣",
         "desc": [
             "FEEL"
@@ -42,7 +42,7 @@
     },
     "涩": {
         "stype": "PUCKERY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "涩",
         "desc": [
             "FEEL"
@@ -50,7 +50,7 @@
     },
     "淡": {
         "stype": "TASTELESS",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "淡",
         "desc": [
             "FEEL"
@@ -58,7 +58,7 @@
     },
     "腻": {
         "stype": "GREASY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "腻",
         "desc": [
             "FEEL"
@@ -66,7 +66,7 @@
     },
     "甘": {
         "stype": "SWEET",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "甘",
         "desc": [
             "FEEL"
@@ -74,7 +74,7 @@
     },
     "苦涩": {
         "stype": "BITTER",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "苦涩",
         "desc": [
             "FEEL"
@@ -82,7 +82,7 @@
     },
     "平淡": {
         "stype": "FLAT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "平淡",
         "desc": [
             "FEEL"
@@ -90,7 +90,7 @@
     },
     "鲜美": {
         "stype": "DELICIOUS",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "鲜美",
         "desc": [
             "FEEL"
@@ -98,7 +98,7 @@
     },
     "诱人": {
         "stype": "ATTRACTIVE",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "诱人",
         "desc": [
             "FEEL"
@@ -106,7 +106,7 @@
     },
     "独特": {
         "stype": "UNIQUE",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "独特",
         "desc": [
             "FEEL"
@@ -114,7 +114,7 @@
     },
     "醇厚": {
         "stype": "MELLOW",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "醇厚",
         "desc": [
             "FEEL"
@@ -122,7 +122,7 @@
     },
     "甜美": {
         "stype": "SWEET",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "甜美",
         "desc": [
             "FEEL"
@@ -130,7 +130,7 @@
     },
     "香辣": {
         "stype": "SPICY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "香辣",
         "desc": [
             "FEEL"
@@ -138,7 +138,7 @@
     },
     "油腻": {
         "stype": "GREASY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "油腻",
         "desc": [
             "FEEL"
@@ -146,7 +146,7 @@
     },
     "甜蜜": {
         "stype": "SWEET",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "甜蜜",
         "desc": [
             "FEEL"
@@ -154,7 +154,7 @@
     },
     "甘甜": {
         "stype": "SWEET",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "甘甜",
         "desc": [
             "FEEL"
@@ -162,7 +162,7 @@
     },
     "大": {
         "str": "大",
-        "type": "FADJ",
+        "type": "ADJ",
         "stype": "BIG",
         "desc": [
             "FEEL"
@@ -170,7 +170,7 @@
     },
     "小": {
         "str": "小",
-        "type": "FADJ",
+        "type": "ADJ",
         "stype": "SMALL",
         "desc": [
             "FEEL"
@@ -178,7 +178,7 @@
     },
     "高": {
         "str": "高",
-        "type": "FADJ",
+        "type": "ADJ",
         "stype": "HIGH",
         "desc": [
             "FEEL"
@@ -186,7 +186,7 @@
     },
     "低": {
         "str": "低",
-        "type": "FADJ",
+        "type": "ADJ",
         "stype": "LOW",
         "desc": [
             "FEEL"
@@ -194,7 +194,7 @@
     },
     "明": {
         "stype": "BRIGHT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "明",
         "desc": [
             "FEEL"
@@ -202,7 +202,7 @@
     },
     "暗": {
         "stype": "DARK",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "暗",
         "desc": [
             "FEEL"
@@ -210,7 +210,7 @@
     },
     "动": {
         "stype": "KINETIC",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "动",
         "desc": [
             "FEEL"
@@ -218,7 +218,7 @@
     },
     "静": {
         "stype": "QUIET",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "静",
         "desc": [
             "FEEL"
@@ -226,7 +226,7 @@
     },
     "清": {
         "stype": "LIMPID",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "清",
         "desc": [
             "FEEL"
@@ -234,7 +234,7 @@
     },
     "浊": {
         "stype": "TURBID",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "浊",
         "desc": [
             "FEEL"
@@ -242,7 +242,7 @@
     },
     "嘈杂": {
         "stype": "NOISY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "嘈杂",
         "desc": [
             "FEEL"
@@ -250,7 +250,7 @@
     },
     "缓慢": {
         "stype": "SLOW",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "缓慢",
         "desc": [
             "FEEL"
@@ -258,7 +258,7 @@
     },
     "悦耳": {
         "stype": "MELODIOUS",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "悦耳",
         "desc": [
             "FEEL"
@@ -266,7 +266,7 @@
     },
     "凄惨": {
         "stype": "MISERABLE",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "凄惨",
         "desc": [
             "FEEL"
@@ -274,7 +274,7 @@
     },
     "尖细": {
         "stype": "WIRY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "尖细",
         "desc": [
             "FEEL"
@@ -282,7 +282,7 @@
     },
     "低沉": {
         "stype": "DEEP",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "低沉",
         "desc": [
             "FEEL"
@@ -290,7 +290,7 @@
     },
     "浑厚": {
         "stype": "POWERFUL",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "浑厚",
         "desc": [
             "FEEL"
@@ -298,7 +298,7 @@
     },
     "美妙": {
         "stype": "WONDERFUL",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "美妙",
         "desc": [
             "FEEL"
@@ -306,7 +306,7 @@
     },
     "清脆": {
         "stype": "SILVERY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "清脆",
         "desc": [
             "FEEL"
@@ -314,7 +314,7 @@
     },
     "急促": {
         "stype": "RAPID",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "急促",
         "desc": [
             "FEEL"
@@ -322,7 +322,7 @@
     },
     "凄厉": {
         "stype": "HEARTRENDING",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "凄厉",
         "desc": [
             "FEEL"
@@ -330,7 +330,7 @@
     },
     "悠扬": {
         "stype": "MELODIOUS",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "悠扬",
         "desc": [
             "FEEL"
@@ -338,7 +338,7 @@
     },
     "鸦雀无声": {
         "stype": "SILENT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "鸦雀无声",
         "desc": [
             "FEEL"
@@ -346,7 +346,7 @@
     },
     "清楚": {
         "stype": "CLEAR",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "清楚",
         "desc": [
             "FEEL"
@@ -354,7 +354,7 @@
     },
     "寂静": {
         "stype": "SILENT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "寂静",
         "desc": [
             "FEEL"
@@ -362,7 +362,7 @@
     },
     "安静": {
         "stype": "QUIET",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "安静",
         "desc": [
             "FEEL"
@@ -370,7 +370,7 @@
     },
     "高亢": {
         "stype": "RESOUNDING",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "高亢",
         "desc": [
             "FEEL"
@@ -378,7 +378,7 @@
     },
     "香": {
         "stype": "FRAGRANT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "香",
         "desc": [
             "FEEL"
@@ -386,7 +386,7 @@
     },
     "臭": {
         "stype": "SMELLY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "臭",
         "desc": [
             "FEEL"
@@ -394,7 +394,7 @@
     },
     "清淡": {
         "stype": "LIGHT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "清淡",
         "desc": [
             "FEEL"
@@ -402,7 +402,7 @@
     },
     "清幽": {
         "stype": "QUIET",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "清幽",
         "desc": [
             "FEEL"
@@ -410,7 +410,7 @@
     },
     "淡雅": {
         "stype": "ELEGANT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "淡雅",
         "desc": [
             "FEEL"
@@ -418,7 +418,7 @@
     },
     "浓厚": {
         "stype": "DENSE",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "浓厚",
         "desc": [
             "FEEL"
@@ -426,7 +426,7 @@
     },
     "浓郁": {
         "stype": "STRONG",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "浓郁",
         "desc": [
             "FEEL"
@@ -434,7 +434,7 @@
     },
     "醇香": {
         "stype": "MELLOW",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "醇香",
         "desc": [
             "FEEL"
@@ -442,7 +442,7 @@
     },
     "紧": {
         "stype": "TIGHT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "紧",
         "desc": [
             "FEEL"
@@ -450,7 +450,7 @@
     },
     "松": {
         "stype": "LOOSE",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "松",
         "desc": [
             "FEEL"
@@ -458,7 +458,7 @@
     },
     "硬": {
         "stype": "HARD",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "硬",
         "desc": [
             "FEEL"
@@ -466,7 +466,7 @@
     },
     "软": {
         "stype": "MILD",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "软",
         "desc": [
             "FEEL"
@@ -474,7 +474,7 @@
     },
     "冷": {
         "stype": "COLD",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "冷",
         "desc": [
             "FEEL"
@@ -482,7 +482,7 @@
     },
     "热": {
         "stype": "HOT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "热",
         "desc": [
             "FEEL"
@@ -490,7 +490,7 @@
     },
     "滑": {
         "stype": "SMOOTH",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "滑",
         "desc": [
             "FEEL"
@@ -498,7 +498,7 @@
     },
     "粗": {
         "stype": "THICK",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "粗",
         "desc": [
             "FEEL"
@@ -506,7 +506,7 @@
     },
     "脆": {
         "stype": "CRISP",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "脆",
         "desc": [
             "FEEL"
@@ -514,7 +514,7 @@
     },
     "头痛": {
         "stype": "INTRACTABLE",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "头痛",
         "desc": [
             "FEEL"
@@ -522,7 +522,7 @@
     },
     "柔软": {
         "stype": "SOFT",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "柔软",
         "desc": [
             "FEEL"
@@ -530,7 +530,7 @@
     },
     "坚硬": {
         "stype": "HARD",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "坚硬",
         "desc": [
             "FEEL"
@@ -538,7 +538,7 @@
     },
     "炽热": {
         "stype": "FIERY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "炽热",
         "desc": [
             "FEEL"
@@ -546,7 +546,7 @@
     },
     "冰凉": {
         "stype": "ICE_COLD",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "冰凉",
         "desc": [
             "FEEL"
@@ -554,7 +554,7 @@
     },
     "火热": {
         "stype": "FIERY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "火热",
         "desc": [
             "FEEL"
@@ -562,10 +562,16 @@
     },
     "烫手": {
         "stype": "THORNY",
-        "type": "FADJ",
+        "type": "ADJ",
         "str": "烫手",
         "desc": [
             "FEEL"
         ]
-    }
+    },
+	"恶心":{
+		"stype":"SICK",
+		"type":"ADJ",
+		"str":"恶心",
+		"desc":["FEEL"]
+	}
 }

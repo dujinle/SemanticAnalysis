@@ -45,11 +45,6 @@
 		"str":"加油",
 		"type":"ACTION"
 	},
-	"需要":{
-		"stype":"NEED",
-		"type":"ACTION",
-		"str":"需要"
-	},
 	"拜访":{
 		"stype":"VISIT",
 		"type":"ACTION",
@@ -84,5 +79,10 @@
 		"stype":"REPLY",
 		"type":"ACTION",
 		"str":"回复"
+	},
+	"看":{
+		"stype":"SEE",
+		"type":"ACTION",
+		"str":"看"
 	}
 }

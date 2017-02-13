@@ -47,6 +47,7 @@ class Fetch02Layer():
 		if not struct.has_key(item['key']): struct[item['key']] = list();
 		merg = pid = tid = 0;
 		while True:
+			if len(struct[item['start']]) <= 0: break;
 			if pid >= len(struct[item['start']]): break;
 			pit = struct[item['start']][pid];
 			if item['st'] <> '*' and item['st'] <> pit['type']:
@@ -64,6 +65,7 @@ class Fetch02Layer():
 				comp = re.compile(pstr);
 				match = comp.search(struct['text']);
 				if not match is None:
+					print pstr,match.group(0),pid,tid;
 					merg = 1;
 					tdic = dict();
 					tdic['str'] = pstr;
@@ -82,11 +84,13 @@ class Fetch02Layer():
 					struct[item['key']].append(tdic);
 					struct['remove'].append(pit['str']);
 					struct['remove'].append(vit['str']);
+					common.print_dic(struct[item['start']][pid]);
+					common.print_dic(struct[item['end']][tid]);
 					del struct[item['start']][pid];
 					del struct[item['end']][tid];
-					tid = tid - 1;
 					pid = pid - 1;
 					Sutil._merge_some_words(struct,pstr,0,True);
+					break;
 				tid = tid + 1;
 			pid = pid + 1;
 		if len(struct[item['end']]) == 0: del struct[item['end']];

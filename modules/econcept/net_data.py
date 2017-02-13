@@ -33,7 +33,7 @@ class NetData():
 				os.path.join(abspath,'tdata','some_verbc.json'),#CALL 动词
 				os.path.join(abspath,'tdata','some_verbm.json'),#能愿动词
 				os.path.join(abspath,'tdata','some_verbp.json'),#心理动词
-				os.path.join(abspath,'tdata','some_verba.json') #ACTION 动词
+				os.path.join(abspath,'tdata','some_verb','some_verb_action.json') #ACTION 动词
 			],
 			#代词数据加载地址
 			"SomePronoun":[
