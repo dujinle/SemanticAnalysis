@@ -25,14 +25,14 @@ class NetData():
 			],
 			#动词数据加载地址
 			"SomeVerb":[
-				os.path.join(abspath,'tdata','some_verbx.json'),#判定动词
-				os.path.join(abspath,'tdata','some_verbi.json'),#不规则动词
-				os.path.join(abspath,'tdata','some_verbt.json'),#趋向动词
-				os.path.join(abspath,'tdata','some_verbl.json'),#LET 动词
-				os.path.join(abspath,'tdata','some_verbd.json'),#DO 动词
-				os.path.join(abspath,'tdata','some_verbc.json'),#CALL 动词
-				os.path.join(abspath,'tdata','some_verbm.json'),#能愿动词
-				os.path.join(abspath,'tdata','some_verbp.json'),#心理动词
+				os.path.join(abspath,'tdata','some_verb','some_verb_tend.json'),#趋向动词
+				os.path.join(abspath,'tdata','some_verb','some_verb_can.json'),#能愿动词
+				os.path.join(abspath,'tdata','some_verb','some_verb_pycho.json'),#心理动词
+				os.path.join(abspath,'tdata','some_verb','some_verb_xi.json'),#判定动词
+				os.path.join(abspath,'tdata','some_verb','some_verb_irre.json'),#不规则动词
+				os.path.join(abspath,'tdata','some_verb','some_verb_let.json'),#LET 动词
+				os.path.join(abspath,'tdata','some_verb','some_verb_call.json'),#CALL 动词
+				os.path.join(abspath,'tdata','some_verb','some_verb_do.json'),#DO 动词
 				os.path.join(abspath,'tdata','some_verb','some_verb_action.json') #ACTION 动词
 			],
 			#代词数据加载地址
