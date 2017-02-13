@@ -82,8 +82,6 @@ class Fetch02Layer():
 					struct[item['key']].append(tdic);
 					struct['remove'].append(pit['str']);
 					struct['remove'].append(vit['str']);
-					common.print_dic(struct[item['start']][pid]);
-					common.print_dic(struct[item['end']][tid]);
 					del struct[item['start']][pid];
 					del struct[item['end']][tid];
 					tid = tid - 1;
