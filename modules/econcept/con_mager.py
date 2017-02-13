@@ -16,10 +16,11 @@ class ConMager():
 		self.net_data = NetData();
 
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeObjs'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeAdjs'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeAdj'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeVerb'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeAux'));		#标记助词
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeUnits'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeOther'));
 		self.tag_objs.append(MarkNum(self.net_data,'SomeNums'));
 		self.tag_objs.append(MarkTmood(self.net_data,'SomeTmood'));
 		self.tag_objs.append(MarkPronoun(self.net_data,'SomePronoun'));	#标记代词

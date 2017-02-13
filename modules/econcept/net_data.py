@@ -16,7 +16,7 @@ class NetData():
 				os.path.join(abspath,'tdata','some_noun','some_noun_absth.json')  #抽象名词
 			],
 			#形容词数据加载地址
-			"SomeAdjs":[
+			"SomeAdj":[
 				os.path.join(abspath,'tdata','some_adj','some_adj_abstract.json'),
 				os.path.join(abspath,'tdata','some_adj','some_adj_appear.json'),
 				os.path.join(abspath,'tdata','some_adj','some_adj_feel.json'),
@@ -63,7 +63,7 @@ class NetData():
 			"SomeOther":os.path.join(abspath,'tdata','some_other.json')
 		}
 		self.data = {
-			"SomeAdjs":dict(),
+			"SomeAdj":dict(),
 			"SomeVerb":dict(),
 			"SomeObjs":dict(),
 			"SomeSpace":dict(),

@@ -54,6 +54,7 @@ class Fetch02Layer():
 				continue;
 			tid = 0;
 			while True:
+				if len(struct[item['start']]) <= 0: break;
 				if tid >= len(struct[item['end']]): break;
 				vit = struct[item['end']][tid];
 				if item['et'] <> '*' and item['et'] <> vit['type']:
@@ -81,6 +82,8 @@ class Fetch02Layer():
 					struct[item['key']].append(tdic);
 					struct['remove'].append(pit['str']);
 					struct['remove'].append(vit['str']);
+					common.print_dic(struct[item['start']][pid]);
+					common.print_dic(struct[item['end']][tid]);
 					del struct[item['start']][pid];
 					del struct[item['end']][tid];
 					tid = tid - 1;

@@ -2,31 +2,31 @@
 #形容状态的词语
 	"清晰":{
 		"str":"清晰",
-		"type":"ABADJ",
+		"type":"ADJ",
 		"stype":"CLEAR",
 		"desc":["ABST"]
 	},
 	"不详":{
 		"str":"不详",
-		"type":"ABADJ",
+		"type":"ADJ",
 		"stype":"UNCLEAR",
 		"desc":["ABST"]
 	},
 	"不便":{
 		"str":"不便",
-		"type":"ABADJ",
+		"type":"ADJ",
 		"stype":"INCONVENIENT",
 		"desc":["ABST"]
 	},
 	"好":{
 		"str":"好",
-		"type":"ABADJ",
+		"type":"ADJ",
 		"stype":"GOOD",
 		"desc":["ABST"]
 	},
 	"差":{
 		"str":"差",
-		"type":"ABADJ",
+		"type":"ADJ",
 		"stype":"BAD",
 		"desc":["ABST"]
 	}

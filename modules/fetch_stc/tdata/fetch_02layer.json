@@ -69,6 +69,16 @@
 			"type":"ACTION",
 			"force":"all"
 		},
+#形容词与助词结合
+		{
+			"start":"SomeAdj",
+			"end":"SomeAux",
+			"st":"ADJ",
+			"et":"AUX",
+			"key":"SomeNoun",
+			"type":"NOUN",
+			"force":"all"
+		},
 #判定副词修饰一般形容词 变为副词
 		{
 			"start":"SomeAdverb",
