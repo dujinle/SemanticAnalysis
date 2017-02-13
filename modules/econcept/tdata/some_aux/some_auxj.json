@@ -14,5 +14,10 @@
 		"stype":"DE",
 		"type":"OFV",
 		"str":"地"
+	},
+	"啦":{
+		"type":"AUX",
+		"stype":"LA",
+		"str":"啦"
 	}
 }

@@ -54,7 +54,7 @@ class NetData():
 			],
 			#助词数据加载地址
 			"SomeAux":[
-				os.path.join(abspath,'tdata','some_auxj.json')#结构助词
+				os.path.join(abspath,'tdata','some_aux','some_auxj.json')#结构助词
 			],
 			"SomeSpace":os.path.join(abspath,'tdata','some_pspace.json'),
 			"SomeUnits":os.path.join(abspath,'tdata','some_unit.json'),
