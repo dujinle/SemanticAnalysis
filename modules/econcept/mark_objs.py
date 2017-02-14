@@ -14,7 +14,10 @@ class MarkObjs():
 	def encode(self,struct):
 		try:
 			if not struct.has_key(self.key): struct[self.key] = list();
-			self._mark_objs(struct);
+			if struct.has_key('inlist'):
+				self._mark_objs_inlist(struct);
+			else:
+				self._mark_objs(struct);
 			Sutil._link_split_words(struct,self.key);
 		except Exception:
 			raise MyException(sys.exc_info());
@@ -22,6 +25,7 @@ class MarkObjs():
 	def _mark_objs(self,struct):
 		data = self.net_data.get_data_key(self.key);
 		if data is None: return None;
+
 		idx = 0;
 		while True:
 			if idx >= len(struct['text']): break;
@@ -43,3 +47,12 @@ class MarkObjs():
 				struct[self.key].append(tdic);
 				idx = idx + len(words) - 1;
 			idx = idx + 1;
+
+	def _mark_objs_inlist(self,struct):
+		data = self.net_data.get_data_key(self.key);
+		if data is None: return None;
+
+		for tstr in struct['inlist']:
+			if data.has_key(tstr):
+				tdic = data[tstr];
+				struct[self.key].append(tdic);

@@ -15,12 +15,15 @@ class MarkPronoun():
 	def encode(self,struct):
 		try:
 			if not struct.has_key(self.key): struct[self.key] = list();
-			self._mark_pronoun(struct);
+			if not struct.has_key('inlist'):
+				self._mark_objs(struct);
+			else:
+				self._mark_objs_inlist(struct);
 			Sutil._link_split_words(struct,self.key);
 		except Exception:
 			raise MyException(sys.exc_info());
 
-	def _mark_pronoun(self,struct):
+	def _mark_objs(self,struct):
 		data = self.net_data.get_data_key(self.key);
 		if data is None: return None;
 
@@ -54,3 +57,19 @@ class MarkPronoun():
 					tdic['stype'] = item['stype'];
 					struct[self.key].append(tdic);
 
+	def _mark_objs_inlist(self,struct):
+		data = self.net_data.get_data_key(self.key);
+		if data is None: return None;
+
+		for key in data.keys():
+			item = data[key];
+			for istr in item['reg']:
+				if istr in struct['inlist']:
+					tdic = dict();
+					tdic['str'] = isr;
+					if item.has_key('type'):
+						tdic['type'] = item['type'];
+					else:
+						tdic['type'] = self.key;
+					tdic['stype'] = item['stype'];
+					struct[self.key].append(tdic);
