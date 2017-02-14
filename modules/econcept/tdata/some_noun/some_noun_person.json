@@ -5,6 +5,12 @@
 		"str":"太太",
 		"desc":["PERSON"]
 	},
+	"宝贝":{
+		"stype":"BABY",
+		"type":"SB",
+		"str":"宝贝",
+		"desc":["PERSON"]
+	},
     "媒人": {
         "stype": "MATCHMAKER",
         "type": "SB",

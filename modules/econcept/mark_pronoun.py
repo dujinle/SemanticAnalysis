@@ -66,7 +66,7 @@ class MarkPronoun():
 			for istr in item['reg']:
 				if istr in struct['inlist']:
 					tdic = dict();
-					tdic['str'] = isr;
+					tdic['str'] = istr;
 					if item.has_key('type'):
 						tdic['type'] = item['type'];
 					else:
