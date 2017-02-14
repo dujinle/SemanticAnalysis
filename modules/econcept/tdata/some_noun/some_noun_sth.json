@@ -88,9 +88,9 @@
 		"type":"STH",
 		"scene":"Alarm"
 	},
-	"车辆":{
+	"汽车":{
 		"stype":"CAR",
-		"str":"车辆",
+		"str":"汽车",
 		"type":"STH"
 	}
 }

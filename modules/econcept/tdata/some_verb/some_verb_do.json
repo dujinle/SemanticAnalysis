@@ -99,5 +99,10 @@
 		"stype":"CONTACT",
 		"type":"DO",
 		"str":"联系"
+	},
+	"发动":{
+		"stype":"LAUNCH",
+		"type":"DO",
+		"str":"发动"
 	}
 }

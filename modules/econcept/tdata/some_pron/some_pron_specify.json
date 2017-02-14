@@ -6,7 +6,7 @@
 		"type":"RELATE"
 	},
 	"THAT":{
-		"reg":["那"],
+		"reg":["那条","那"],
 		"stype":"THAT",
 		"type":"RELATE"
 	},
