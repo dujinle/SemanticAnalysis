@@ -4,5 +4,10 @@
 		"type":"OTHER",
 		"stype":"NEXTONE",
 		"str":"下一首"
+	},
+	"受不了":{
+		"type":"OTHER",
+		"stype":"NO",
+		"str":"受不了"
 	}
 }

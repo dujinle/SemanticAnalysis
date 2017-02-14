@@ -16,7 +16,7 @@
 		{
 			"start":"SomeVerb",
 			"end":"SomeAux",
-			"st":"PSYCHO",
+			"st":"*",
 			"et":"OF",
 			"key":"SomeAdj",
 			"type":"ADJ",
@@ -27,17 +27,7 @@
 			"start":"SomeVerb",
 			"end":"SomeAux",
 			"st":"ACTION",
-			"et":"STRU",
-			"key":"SomeVerb",
-			"type":"ACTION",
-			"force":"all"
-		},
-#一般动词与助词结合变为名词
-		{
-			"start":"SomeVerb",
-			"end":"SomeAux",
-			"st":"ACTION",
-			"et":"STRU",
+			"et":"VOF",
 			"key":"SomeVerb",
 			"type":"ACTION",
 			"force":"all"

@@ -78,10 +78,6 @@ dfiles = {
 		"2":os.path.join(abspath,'data','catering','CAT.txt')
 	},
 	'Alarm':os.path.join(abspath,'scenes','alarm_clock','tdata'),
-	"Nguide":{
-		"1":os.path.join(abspath,'nav_guide','tdata','guide_data.txt'),
-		"2":os.path.join(abspath,'nav_guide','tdata','traffic.txt')
-	},
 	'Music':{
 		"1":os.path.join(abspath,'scenes','dmusic','tdata','music_data.txt'),
 		"2":os.path.join(abspath,'scenes','dmusic','tdata','under_music.txt'),

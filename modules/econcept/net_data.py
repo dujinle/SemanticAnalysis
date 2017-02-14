@@ -61,7 +61,7 @@ class NetData():
 			"SomeUnits":os.path.join(abspath,'tdata','some_unit','some_unit.json'),
 			"SomeNums":os.path.join(abspath,'tdata','some_num.json'),
 			"SomeTmood":os.path.join(abspath,'tdata','some_tmood.json'),
-			"SomeOther":os.path.join(abspath,'tdata','some_other.json')
+			"SomeOther":os.path.join(abspath,'tdata','some_other','some_other.json')
 		}
 		self.data = {
 			"SomeAdj":dict(),

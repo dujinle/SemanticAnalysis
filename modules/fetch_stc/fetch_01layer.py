@@ -98,7 +98,7 @@ class Fetch01Layer():
 							tdic['str'] = pstr;
 							tdic['stype'] = pit['stype'] + vit['stype'];
 							if item['force'] == 'tail': tdic['type'] = vit['type'];
-							else: tdic['type'] = pit['type'];
+							elif item['force'] == 'prev': tdic['type'] = pit['type'];
 							tdic['stc'] = [pit,vit];
 							struct[item['key']][pid] = tdic;
 							del struct[item['key']][tid];

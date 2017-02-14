@@ -82,7 +82,7 @@
 			"st":"MODALS",
 			"et":"*",
 			"type":"status",
-			"way":"fetch",
+			"way":"merge",
 			"force":"tail",
 			"desc":""
 		},

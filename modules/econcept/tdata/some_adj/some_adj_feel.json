@@ -208,14 +208,6 @@
             "FEEL"
         ]
     },
-    "动": {
-        "stype": "KINETIC",
-        "type": "ADJ",
-        "str": "动",
-        "desc": [
-            "FEEL"
-        ]
-    },
     "静": {
         "stype": "QUIET",
         "type": "ADJ",
