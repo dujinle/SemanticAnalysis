@@ -43,7 +43,7 @@ class NetData():
 				os.path.join(abspath,'tdata','some_pron','some_pron_specify.json') #相对代词
 			],
 			#介词数据加载地址
-			"SomePrep":os.path.join(abspath,'tdata','some_prep.json'),
+			"SomePrep":os.path.join(abspath,'tdata','some_prep','some_prep.json'),
 			#副词数据加载地址
 			"SomeAdverb":[
 				os.path.join(abspath,'tdata','some_adverb','some_adverb_level.json'),#程度副词
