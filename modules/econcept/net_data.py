@@ -37,10 +37,10 @@ class NetData():
 			],
 			#代词数据加载地址
 			"SomePronoun":[
-				os.path.join(abspath,'tdata','some_pronb.json'),#人称代词
-				os.path.join(abspath,'tdata','some_pronl.json'),#逻辑代词
-				os.path.join(abspath,'tdata','some_pronq.json'),#疑问代词
-				os.path.join(abspath,'tdata','some_pronx.json') #相对代词
+				os.path.join(abspath,'tdata','some_pron','some_pron_person.json'),#人称代词
+				os.path.join(abspath,'tdata','some_pron','some_pron_logic.json'),#逻辑代词
+				os.path.join(abspath,'tdata','some_pron','some_pron_question.json'),#疑问代词
+				os.path.join(abspath,'tdata','some_pron','some_pron_specify.json') #相对代词
 			],
 			#介词数据加载地址
 			"SomePrep":os.path.join(abspath,'tdata','some_prep.json'),
