@@ -24,5 +24,10 @@
 		"reg":["几","多少"],
 		"stype":"HOWMANY",
 		"type":"QUESTION"
+	},
+	"WICH_DAY":{
+		"reg":["几号"],
+		"stype":"WICHDAY",
+		"type":"QUESTION"
 	}
 }

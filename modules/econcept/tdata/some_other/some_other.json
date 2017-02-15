@@ -9,5 +9,15 @@
 		"type":"OTHER",
 		"stype":"NO",
 		"str":"受不了"
+	},
+	"OK":{
+		"type":"OTHER",
+		"stype":"YES",
+		"str":"OK"
+	},
+	"是的":{
+		"type":"OTHER",
+		"stype":"YES",
+		"str":"是的"
 	}
 }
