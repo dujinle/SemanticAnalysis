@@ -19,5 +19,10 @@
 		"type":"OTHER",
 		"stype":"YES",
 		"str":"是的"
+	},
+	"算了":{
+		"type":"OTHER",
+		"stype":"CANCEL",
+		"str":"算了"
 	}
 }
