@@ -83,7 +83,7 @@
 			"start":"SomeObjs",
 			"end":"SomeSpace",
 			"st":"SP",
-			"et":"PLACEMENT",
+			"et":"SPACE",
 			"type":"space",
 			"force":"prev",
 			"desc":""
