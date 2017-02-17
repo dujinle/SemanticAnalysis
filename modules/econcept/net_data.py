@@ -22,6 +22,7 @@ class NetData():
 				os.path.join(abspath,'tdata','some_adj','some_adj_abstract.json'),
 				os.path.join(abspath,'tdata','some_adj','some_adj_appear.json'),
 				os.path.join(abspath,'tdata','some_adj','some_adj_feel.json'),
+				os.path.join(abspath,'tdata','some_adj','some_adj_ppro.json'),
 				os.path.join(abspath,'tdata','some_adj','some_adj_level.json')
 			],
 			#动词数据加载地址
