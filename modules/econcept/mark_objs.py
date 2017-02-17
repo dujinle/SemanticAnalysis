@@ -18,7 +18,7 @@ class MarkObjs():
 				self._mark_objs_inlist(struct);
 			else:
 				self._mark_objs(struct);
-			Sutil._link_split_words(struct,self.key);
+				Sutil._link_split_words(struct,self.key);
 		except Exception:
 			raise MyException(sys.exc_info());
 

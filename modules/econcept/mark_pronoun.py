@@ -17,9 +17,9 @@ class MarkPronoun():
 			if not struct.has_key(self.key): struct[self.key] = list();
 			if not struct.has_key('inlist'):
 				self._mark_objs(struct);
+				Sutil._link_split_words(struct,self.key);
 			else:
 				self._mark_objs_inlist(struct);
-			Sutil._link_split_words(struct,self.key);
 		except Exception:
 			raise MyException(sys.exc_info());
 

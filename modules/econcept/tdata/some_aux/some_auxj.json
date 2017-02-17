@@ -19,5 +19,15 @@
 		"type":"AUX",
 		"stype":"LA",
 		"str":"啦"
+	},
+	"恩":{
+		"type":"AUX",
+		"stype":"YES",
+		"str":"恩"
+	},
+	"嗯":{
+		"type":"AUX",
+		"stype":"YES",
+		"str":"嗯"
 	}
 }
