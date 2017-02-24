@@ -104,5 +104,20 @@
 		"stype":"LAUNCH",
 		"type":"DO",
 		"str":"发动"
+	},
+	"接":{
+		"stype":"CATCH",
+		"type":"DO",
+		"str":"接"
+	},
+	"买":{
+		"stype":"BUY",
+		"type":"DO",
+		"str":"买"
+	},
+	"吃":{
+		"stype":"EAT",
+		"type":"DO",
+		"str":"吃"
 	}
 }

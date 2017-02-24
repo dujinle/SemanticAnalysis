@@ -19,7 +19,7 @@ class ConMager():
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeAdj'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeVerb'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeAux'));		#标记助词
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeUnits'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeUnits',False));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeOther'));
 		self.tag_objs.append(MarkNum(self.net_data,'SomeNums'));
 		self.tag_objs.append(MarkTmood(self.net_data,'SomeTmood'));
@@ -52,4 +52,5 @@ class ConMager():
 			inter['type'] = 'TIME';
 			inter['str'] = istr;
 			struct['Times'].append(inter);
-			struct['text'] = struct['text'].replace(istr,'',1);
+			#struct['text'] = struct['text'].replace(istr,'',1);
+		del struct['intervals'];

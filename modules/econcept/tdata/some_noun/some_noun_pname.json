@@ -2998,5 +2998,20 @@
         "type": "SB",
         "stype": "SIR",
         "str": "苏先生"
-    }
+    },
+	"小肖":{
+		"type":"SB",
+		"stype":"SIR",
+		"str":"小肖"
+	},
+	"肖先生":{
+		"type":"SB",
+		"stype":"SIR",
+		"str":"肖先生"
+	},
+	"肖总":{
+		"type":"SB",
+		"stype":"MR",
+		"str":"肖总"
+	}
 }

@@ -11,6 +11,12 @@
 		"str":"宝贝",
 		"desc":["PERSON"]
 	},
+	"客户":{
+		"stype":"CLIENT",
+		"type":"SB",
+		"str":"客户",
+		"desc":["PERSON"]
+	},
     "媒人": {
         "stype": "MATCHMAKER",
         "type": "SB",

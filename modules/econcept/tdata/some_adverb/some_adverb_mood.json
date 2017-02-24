@@ -9,5 +9,10 @@
 		"type":"MOOD",
 		"stype":"BYWAY",
 		"reg":["顺便"]
+	},
+	"CERTAINLY":{
+		"type":"MOOD",
+		"stype":"CERTAINLY",
+		"reg":["当然"]
 	}
 }

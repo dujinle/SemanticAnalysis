@@ -59,7 +59,7 @@
 #一般动词与趋向动词结合
 		{
 			"key":"SomeVerb",
-			"st":"*",
+			"st":"DO",
 			"et":"TEND",
 			"type":"status",
 			"way":"merge",

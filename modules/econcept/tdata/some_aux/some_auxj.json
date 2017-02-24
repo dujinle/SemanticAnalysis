@@ -29,5 +29,20 @@
 		"type":"AUX",
 		"stype":"YES",
 		"str":"嗯"
+	},
+	"吧":{
+		"type":"AUX",
+		"stype":"BA",
+		"str":"吧"
+	},
+	"了":{
+		"type":"AUX",
+		"stype":"LE",
+		"str":"了"
+	},
+	"啊":{
+		"type":"AUX",
+		"stype":"A",
+		"str":"啊"
 	}
 }

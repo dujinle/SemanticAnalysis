@@ -5,20 +5,21 @@ from myexception import MyException
 import struct_utils as Sutil
 #标记对象名词以及链接的网络
 class MarkObjs():
-	def __init__(self,net_data,key):
+	def __init__(self,net_data,key,flg = True):
 		self.net_data = net_data;
 		self.key = key;
+		self.flg = flg;
 
 	def load_data(self,dfile): pass;
 
 	def encode(self,struct):
 		try:
 			if not struct.has_key(self.key): struct[self.key] = list();
-			if struct.has_key('inlist'):
-				self._mark_objs_inlist(struct);
-			else:
+			if self.flg == False:
 				self._mark_objs(struct);
-				Sutil._link_split_words(struct,self.key);
+			elif struct.has_key('inlist'):
+				self._mark_objs_inlist(struct);
+			#Sutil._link_split_words(struct,self.key);
 		except Exception:
 			raise MyException(sys.exc_info());
 

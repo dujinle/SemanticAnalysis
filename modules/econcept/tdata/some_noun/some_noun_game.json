@@ -1,0 +1,226 @@
+{
+    "游戏": {
+        "stype": "GAME",
+        "type": "STH",
+        "str": "游戏",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "DNF": {
+        "stype": "DNF",
+        "type": "STH",
+        "str": "DNF",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "梦幻西游": {
+        "stype": "FANTASY_WESTWARD_JOURNEY",
+        "type": "STH",
+        "str": "梦幻西游",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "魔兽": {
+        "stype": "TANKS",
+        "type": "STH",
+        "str": "魔兽",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "LOL": {
+        "stype": "LOL",
+        "type": "STH",
+        "str": "LOL",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "剑网3": {
+        "stype": "SWORD_NET_3",
+        "type": "STH",
+        "str": "剑网3",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "魔域": {
+        "stype": "DEMON",
+        "type": "STH",
+        "str": "魔域",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "DOTA2": {
+        "stype": "DOTA2",
+        "type": "STH",
+        "str": "DOTA2",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "街头篮球": {
+        "stype": "STREET_BASKETBALL",
+        "type": "STH",
+        "str": "街头篮球",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "CF": {
+        "stype": "CF",
+        "type": "STH",
+        "str": "CF",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "YY": {
+        "stype": "YY",
+        "type": "STH",
+        "str": "YY",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "劲舞团": {
+        "stype": "AUDITION",
+        "type": "STH",
+        "str": "劲舞团",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "反恐精英": {
+        "stype": "COUNTER_STRIKE",
+        "type": "STH",
+        "str": "反恐精英",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "冒险岛": {
+        "stype": "ADVENTURE_ISLAND",
+        "type": "STH",
+        "str": "冒险岛",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "问道": {
+        "stype": "ASKED",
+        "type": "STH",
+        "str": "问道",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "逆战": {
+        "stype": "INVERSE_WARS",
+        "type": "STH",
+        "str": "逆战",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "大唐无双": {
+        "stype": "DATANG_UNIQUE",
+        "type": "STH",
+        "str": "大唐无双",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "龙之谷": {
+        "stype": "DRAGON_VALLEY",
+        "type": "STH",
+        "str": "龙之谷",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "热血江湖": {
+        "stype": "BLOOD_QUACK",
+        "type": "STH",
+        "str": "热血江湖",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "剑灵": {
+        "stype": "SWORD_SPIRIT",
+        "type": "STH",
+        "str": "剑灵",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "手办": {
+        "stype": "HAND_DO",
+        "type": "STH",
+        "str": "手办",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "圣斗士": {
+        "stype": "CRUSADES",
+        "type": "STH",
+        "str": "圣斗士",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "火影忍者": {
+        "stype": "NARUTO",
+        "type": "STH",
+        "str": "火影忍者",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "LOVELIVE": {
+        "stype": "LOVELIVE",
+        "type": "STH",
+        "str": "LOVELIVE",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "钢铁侠": {
+        "stype": "IRON_MAN",
+        "type": "STH",
+        "str": "钢铁侠",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "剑三": {
+        "stype": "SWORD_THREE",
+        "type": "STH",
+        "str": "剑三",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "哈利波特": {
+        "stype": "HARRY_POTTER",
+        "type": "STH",
+        "str": "哈利波特",
+        "desc": [
+            "GAME"
+        ]
+    },
+    "蝙蝠侠": {
+        "stype": "BATMAN",
+        "type": "STH",
+        "str": "蝙蝠侠",
+        "desc": [
+            "GAME"
+        ]
+    }
+}

@@ -20,6 +20,11 @@
 		"type":"PSYCHO",
 		"str":"最爱"
 	},
+	"需要":{
+		"stype":"NEED",
+		"type":"PSYCHO",
+		"str":"需要"
+	},
 	"喜欢":{
 		"stype":"LIKE",
 		"type":"PSYCHO",

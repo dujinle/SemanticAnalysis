@@ -1239,6 +1239,12 @@
             "FOOD"
         ]
     },
+	"菜":{
+		"stype":"VEGETABLE",
+		"type":"STH",
+		"str":"菜",
+		"desc":["FOOD"]
+	},
     "饭店": {
         "stype": "RESTAURANT",
         "type": "STH",
