@@ -3,7 +3,6 @@
 import os,sys
 import common,config
 from net_data import NetData
-from mark_num import MarkNum
 from mark_objs import MarkObjs
 from mark_pronoun import MarkPronoun
 from mark_tmood import MarkTmood
@@ -19,9 +18,7 @@ class ConMager():
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeAdj'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeVerb'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeAux'));		#标记助词
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeUnits',False));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeOther'));
-		self.tag_objs.append(MarkNum(self.net_data,'SomeNums'));
 		self.tag_objs.append(MarkTmood(self.net_data,'SomeTmood'));
 		self.tag_objs.append(MarkPronoun(self.net_data,'SomePronoun'));	#标记代词
 		self.tag_objs.append(MarkPronoun(self.net_data,'SomeSpace'));	#标记方位词

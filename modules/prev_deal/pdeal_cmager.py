@@ -3,6 +3,7 @@
 import sys,os
 import common,config
 from pdeal_replace import PDealReplace
+from pdeal_nunit import PDealNunit
 from myexception import MyException
 
 class PDealMager:
@@ -11,6 +12,7 @@ class PDealMager:
 
 		# mark tag objs #
 		self.tag_objs.append(PDealReplace());
+		self.tag_objs.append(PDealNunit());
 
 	def init(self,dtype):
 		try:

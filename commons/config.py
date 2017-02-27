@@ -49,12 +49,6 @@ dfiles = {
 		"9":os.path.join(abspath,'data','timer','TDecade.txt'),
 		"10":os.path.join(abspath,'data','timer','TMood.txt')
 	},
-	"Nunit":{
-		"1":os.path.join(abspath,'modules','num_unit','tdata','num.txt'),
-		"2":os.path.join(abspath,'modules','num_unit','tdata','unit.txt'),
-		"3":os.path.join(abspath,'modules','num_unit','tdata','relative.txt'),
-		"4":None,"5":None
-	},
 	"Concept":{
 		"1":None
 	},
@@ -89,7 +83,8 @@ dfiles = {
 		"1":os.path.join(abspath,'modules','mytag','tdata','mytag.txt')
 	},
 	"PDeal":{
-		"1":os.path.join(abspath,'modules','prev_deal','tdata','pdeal_replace.txt')
+		"1":os.path.join(abspath,'modules','prev_deal','tdata','pdeal_replace.txt'),
+		"2":os.path.join(abspath,'modules','prev_deal','tdata','pdeal_nunit.json')
 	},
 	"Shop":{
 		"1":os.path.join(abspath,'scenes','shopping','tdata','shop_data.txt'),
