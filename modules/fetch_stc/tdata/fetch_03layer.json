@@ -121,6 +121,15 @@
 			"force":"prev",
 			"desc":""
 		},
+		{
+			"start":"SomeVerb",
+			"end":"SomeUnits",
+			"st":"DO",
+			"et":"QUANTIFIER",
+			"type":"num",
+			"force":"prev",
+			"desc":""
+		},
 #副词修饰动词
 		{
 			"start":"SomeAdverb",

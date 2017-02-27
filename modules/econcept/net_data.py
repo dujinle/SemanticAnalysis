@@ -16,6 +16,7 @@ class NetData():
 				os.path.join(abspath,'tdata','some_noun','some_noun_sth.json'),   #事物名称
 				os.path.join(abspath,'tdata','some_noun','some_noun_absth.json'), #抽象名词
 				os.path.join(abspath,'tdata','some_noun','some_noun_food.json'),  #食物名词
+				os.path.join(abspath,'tdata','some_noun','some_noun_pattr.json'), #任务属性名词
 				os.path.join(abspath,'tdata','some_noun','some_noun_time.json')   #时间名词
 			],
 			#形容词数据加载地址
