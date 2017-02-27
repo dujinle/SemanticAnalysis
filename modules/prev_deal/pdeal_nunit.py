@@ -2,6 +2,7 @@
 #-*- coding:utf-8 -*-
 import os,sys,common,re
 from myexception import MyException
+import hanzi2num as Han2Dig
 from pdeal_base import PDealBase
 import struct_utils as Sutil
 #处理数字单位的组合
