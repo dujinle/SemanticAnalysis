@@ -49,24 +49,6 @@
 		}
 	],
 	"VERBS":[
-		{
-			"start":"SomeVerb",
-			"end":"SomeUnits",
-			"st":"*",
-			"et":"*",
-			"type":"num",
-			"force":"prev",
-			"desc":""
-		},
-		{
-			"start":"SomeVerb",
-			"end":"Nunit",
-			"st":"*",
-			"et":"NUNIT",
-			"type":"num",
-			"force":"prev",
-			"desc":""
-		},
 #动词与助词结合 不改变词义
 		{
 			"start":"SomeVerb",
@@ -134,7 +116,7 @@
 			"start":"SomeVerb",
 			"end":"Nunit",
 			"st":"DO",
-			"et":"UNIT",
+			"et":"NUNIT",
 			"type":"rate",
 			"force":"prev",
 			"desc":""

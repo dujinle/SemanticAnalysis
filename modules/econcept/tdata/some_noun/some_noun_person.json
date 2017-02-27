@@ -1,4 +1,10 @@
 {
+	"人":{
+		"stype":"PERSON",
+		"type":"SB",
+		"str":"人",
+		"desc":["PERSON"]
+	},
 	"太太":{
 		"stype":"WIFE",
 		"type":"SB",

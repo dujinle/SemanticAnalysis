@@ -81,7 +81,7 @@ class PDealNunit(PDealBase):
 			pit = struct['SomeNums'][pid];
 			tid = 0;
 			while True:
-				if len(struct['SomeNums']) <= 0: break;
+				if len(struct['SomeNums']) < 0: break;
 				if tid >= len(struct['SomeUnits']): break;
 				vit = struct['SomeUnits'][tid];
 				pstr = pit['str'] + vit['str'];
@@ -92,12 +92,13 @@ class PDealNunit(PDealBase):
 					Sutil._merge_some_words(struct,pstr,0,True);
 					tdic = dict();
 					tdic['str'] = pstr;
-					tdic['stype'] = 'NUNIT';
-					tdic['type'] = 'NUM';
+					tdic['type'] = 'NUNIT';
+					tdic['stype'] = 'NUM';
 					tdic['stc'] = [pit,vit];
 					struct['Nunit'].append(tdic);
 					del struct['SomeUnits'][tid];
 					del struct['SomeNums'][pid];
 					tid = tid - 1;
+					pid = pid - 1;
 				tid = tid + 1;
 			pid = pid + 1;

@@ -1,17 +1,7 @@
 {
 #词性组合并且发生了词性的变化
-#比如 数次和量词组合变为数量词
 #动词和助词组合变为形容词
 	"MERGE":[
-		{
-			"start":"SomeNums",
-			"end":"SomeUnits",
-			"st":"NUM",
-			"et":"QUANTIFIER",
-			"key":"Nunit",
-			"type":"NUNIT",
-			"force":"tail"
-		},
 #情态动词与助词结合变为形容词
 		{
 			"start":"SomeVerb",

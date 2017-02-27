@@ -36,7 +36,6 @@ class Fetch03Layer():
 	def _merge_objs(self,struct,item):
 		if not struct.has_key(item['start']): return -1;
 		if not struct.has_key(item['end']): return -1;
-
 		merg = pid = tid = 0;
 		while True:
 			if pid >= len(struct[item['start']]): break;
