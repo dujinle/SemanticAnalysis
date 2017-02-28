@@ -124,5 +124,10 @@
 		"stype":"AT",
 		"type":"DO",
 		"str":"在"
+	},
+	"连线":{
+		"stype":"CONTACT",
+		"type":"DO",
+		"str":"连线"
 	}
 }
