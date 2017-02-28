@@ -119,5 +119,10 @@
 		"stype":"EAT",
 		"type":"DO",
 		"str":"吃"
+	},
+	"在":{
+		"stype":"AT",
+		"type":"DO",
+		"str":"在"
 	}
 }

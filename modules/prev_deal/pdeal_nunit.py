@@ -26,7 +26,7 @@ class PDealNunit(PDealBase):
 			for it in item:
 				tdic = dict();
 				tdic['type'] = 'NUM';
-				if key == 'nreg':
+				if key == 'nreg' or key == 'freg':
 					tdic['stype'] = it;
 				else:
 					tdic['stype'] = str(Han2Dig.cn2dig(it));
