@@ -71,7 +71,7 @@ def json_loads_body(func):
 				logging.info(self.request.body);
 				self.body_json = json.loads(self.request.body);
 		except Exception, e:
-			raise MyException(format(e));
+			raise MyException(sys.exc_info());
 		return func(self, *args, **kwargs);
 	return wrapper;
 
