@@ -40,7 +40,7 @@ class ResultHandler(RequestHandler):
 			if len(itest) == 0:
 				self.except_handle('the param text is empty');
 				return ;
-			if scene == 'None' or len(scene) == 0:
+			if scene is None or scene == 'None' or len(scene) == 0:
 				scene = None;
 			logging.info('scene:%s input:%s' %(scene,itest));
 			sres = self.mager.encode(itest,scene);
