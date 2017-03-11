@@ -36,7 +36,6 @@ class ResultHandler(RequestHandler):
 				self.except_handle('not found argumen scene');
 			else:
 				scene = self.body_json['scene'];
-				return ;
 			if len(itest) == 0:
 				self.except_handle('the param text is empty');
 				return ;
