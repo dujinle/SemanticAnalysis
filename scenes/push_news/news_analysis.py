@@ -46,6 +46,7 @@ class NewsAnalysis(NewsBase):
 			nlist = super_b.get_news_by_random(news_num);
 		if nlist is None:
 			NewParam._set_msg(struct,self.data['msg']['no_news']);
+			logging.info(self.data['msg']['no_news'][0]);
 			return None;
 		idx = 1;
 		new_titles = '';
@@ -54,6 +55,7 @@ class NewsAnalysis(NewsBase):
 			idx = idx + 1;
 		if plates is None:
 			NewParam._set_msg(struct,self.data['msg']['get_news_info'],'',len(nlist),new_titles);
+			logging.info(new_titles);
 		else:
 			NewParam._set_msg(struct,self.data['msg']['get_news_info'],' '.join(plates),len(nlist),new_titles);
 
