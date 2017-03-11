@@ -143,6 +143,7 @@ class Mager:
 			self.dist.encode(self.struct);
 		if self.struct.has_key('scene'):
 			mdl = self.struct['scene'];
+			print 'get scene:',self.struct['scene'];
 #		'''
 #		self.struct['step'] = 'which';
 		if self.modules.has_key(mdl):

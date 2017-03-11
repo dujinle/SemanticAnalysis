@@ -10,6 +10,7 @@ sys.path.append(os.path.join(base_path,'../'));
 
 from mager import Mager
 from result import ResultHandler
+from set_scene import SetSceneHandler
 
 class Application(tornado.web.Application):
 	def __init__(self):
@@ -17,6 +18,7 @@ class Application(tornado.web.Application):
 		self.mager.init();
 		handlers = [
 			(r"/get_sresult",ResultHandler,{'mager':self.mager}),
+			(r"/set_scene",SetSceneHandler,{'mager':self.mager}),
 		];
 		settings = dict(
 				template_path = os.path.join(os.path.dirname(__file__),"templates"),

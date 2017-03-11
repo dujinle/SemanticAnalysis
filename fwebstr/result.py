@@ -29,16 +29,18 @@ class ResultHandler(RequestHandler):
 			if not self.body_json.has_key('text'):
 				self.except_handle('the url data format error');
 				return ;
-			if not self.body_json.has_key('mdl'):
-				self.except_handle('not found argumen mdl');
+			if not self.body_json.has_key('scene'):
+				self.except_handle('not found argumen scene');
 				return ;
-			mdl = self.body_json['mdl'];
+			scene = self.body_json['scene'];
 			itest = self.body_json['text'];
 			if len(itest) == 0:
 				self.except_handle('the param text is empty');
 				return ;
-			logging.info('mdl:%s input:%s' %(mdl,itest));
-			sres = self.mager.encode(itest,mdl);
+			if scene == 'None' or len(scene) == 0:
+				scene = None;
+			logging.info('scene:%s input:%s' %(scene,itest));
+			sres = self.mager.encode(itest,scene);
 			self.write(self.gen_result(0,'enjoy success',sres));
 		except Exception as e:
 			logging.error(str(e));
