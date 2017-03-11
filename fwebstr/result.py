@@ -44,6 +44,7 @@ class ResultHandler(RequestHandler):
 				scene = None;
 			logging.info('scene:%s input:%s' %(scene,itest));
 			sres = self.mager.encode(itest,scene);
+			common.print_dic(sres);
 			self.write(self.gen_result(0,'enjoy success',sres));
 		except Exception as e:
 			logging.error(str(e));
