@@ -41,8 +41,10 @@ class Fetch03Layer():
 			if pid >= len(struct[item['start']]): break;
 
 			pit = struct[item['start']][pid];
-			if item.has_key('nst') and  pit['type'] == item['nst']\
-				or pit['type'] <> item['st'] and item['st'] <> '*':
+			if item.has_key('nst') and  pit['type'] == item['nst']:
+				pid = pid + 1;
+				continue;
+			if Sutil._filter_type(item['st'],pit['type']) == False:
 				pid = pid + 1;
 				continue;
 
@@ -50,8 +52,10 @@ class Fetch03Layer():
 			while True:
 				if tid >= len(struct[item['end']]): break;
 				vit = struct[item['end']][tid];
-				if item.has_key('net') and  pit['type'] == item['net']\
-					or vit['type'] <> item['et'] and item['et'] <> '*':
+				if item.has_key('net') and  pit['type'] == item['net']:
+					tid = tid + 1;
+					continue;
+				if Sutil._filter_type(item['et'],vit['type']) == False:
 					tid = tid + 1;
 					continue;
 

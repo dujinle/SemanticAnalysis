@@ -36,7 +36,7 @@
 		"type":"ACTION"
 	},
 	"提醒":{
-		"stype":"RECOMMEND",
+		"stype":"REMIND",
 		"type":"ACTION",
 		"str":"提醒"
 	},

@@ -127,9 +127,9 @@ class Mager:
 	def encode(self,text,mdl = None):
 		self._clear_struct(self.struct);
 		self.struct['text'] = text;
+		self.struct['inlist'] = self.wordseg.tokens(self.struct['text']);
 		self.pdeal.encode(self.struct);
 		self.struct['otext'] = self.struct['text'];
-		self.struct['inlist'] = self.wordseg.tokens(self.struct['text']);
 		self.struct['result'] = dict();
 
 		self.timer.encode(self.struct);
@@ -137,10 +137,14 @@ class Mager:
 		self.concpt.encode(self.struct);
 #		common.print_dic(self.struct);
 		self.fetch.encode(self.struct);
-		if not self.struct.has_key('scene'):
+		if not mdl is None:
+			self.struct['scene'] = mdl;
+		elif not self.struct.has_key('scene'):
 			self.dist.encode(self.struct);
 		if self.struct.has_key('scene'):
 			mdl = self.struct['scene'];
+#		'''
+#		self.struct['step'] = 'which';
 		if self.modules.has_key(mdl):
 			self.struct['text'] = self.struct['otext'];
 			mobj = self.modules[mdl];
@@ -148,33 +152,45 @@ class Mager:
 		if self.struct.has_key('step') and self.struct['step'] == 'end':
 			del self.struct['scene'];
 			del self.struct['step'];
+#		'''
 		return self.struct;
 
-#'''
+'''
 try:
 	mg = Mager();
 	mg.init();
 #	common.print_dic(mg.encode(u'7点半叫我起床',None));
 #	common.print_dic(mg.encode(u'好啦，受不了真恶心，我起来啦！','Alarm'));
 #	common.print_dic(mg.encode(u'哦，对了提醒下我9点半打个电话给老张',None));
-#	common.print_dic(mg.encode(u'小秘，有什么新闻','News'));
-#	common.print_dic(mg.encode(u'有什么新闻','News'));
-#	common.print_dic(mg.encode(u'哟，又吹牛啦！国足那条',None));
-	common.print_dic(mg.encode(u'小秘我现在出门去公司了',None));
+#	common.print_dic(mg.encode(u'小秘，有什么新闻',None));
+#	common.print_dic(mg.encode(u'哟，又吹牛啦！国足那条','News'));
+#	common.print_dic(mg.encode(u'小秘我现在出门去公司了',None));
+#	common.print_dic(mg.encode(u'发动汽车',None));
+#	common.print_dic(mg.encode(u'宝贝的音乐',None));
 #	common.print_dic(mg.encode(u'太太喜欢的音乐',None));
 #	common.print_dic(mg.encode(u'小秘我最爱的音乐','Music'));
 #	common.print_dic(mg.encode(u'小秘停停停，有什么新歌能听的','Music'));
 #	common.print_dic(mg.encode(u'小秘，下一首','Music'));
 #	common.print_dic(mg.encode(u'小秘，给太太电话','Phone'));
 #	common.print_dic(mg.encode(u'小秘，今天几号','Calendar'));
-#	common.print_dic(mg.encode(u'英文翻译，nice','Trans'));
+#	common.print_dic(mg.encode(u'英文翻译，nice',None));
+#	common.print_dic(mg.encode(u'今天的日程',None));
 #	common.print_dic(mg.encode(u'小秘，175乘以8等于多少','Math'));
+#	common.print_dic(mg.encode(u'OK，打开免提',None));
+#	common.print_dic(mg.encode(u'是的',None));
+#	common.print_dic(mg.encode(u'继续',None));
+#	common.print_dic(mg.encode(u'拨',None));
+#	common.print_dic(mg.encode(u'算了',None));
 #	common.print_dic(mg.encode(u'公司附近美食推荐','Food'));
 #	common.print_dic(mg.encode(u'去过啦不好吃，有什么别的推荐','Food'));
 #	common.print_dic(mg.encode(u'1点10分，6人，安静',None));
+#	common.print_dic(mg.encode(u'恩',None));
+#	common.print_dic(mg.encode(u'再睡5分钟',None));
+#	common.print_dic(mg.encode(u'关闭闹钟',None));
 #	common.print_dic(mg.encode(u'小秘，发个信息给太太，内容是：明天早上的飞机到北京，后天回。下班后我来买菜，您去接宝贝回家。','Phone'));
 #	common.print_dic(mg.encode(u'念吧！','Phone'));
 #	common.print_dic(mg.encode(u'不用了','Phone'));
+#	common.print_dic(mg.encode(u'没啥好回复的','Phone'));
 #	common.print_dic(mg.encode(u'下午准备想去拜访下客户，顺便想要买点礼物，不知道有什么好推荐的。','Shop'));
 #	common.print_dic(mg.encode(u'车辆需要加油','Refuel'));
 #	common.print_dic(mg.encode(u'上门拜访联通的肖总','Nav'));
@@ -196,4 +212,4 @@ try:
 #	common.print_dic(mg.encode(u'重复拨',None));
 except Exception as e:
 	raise e;
-#'''
+'''

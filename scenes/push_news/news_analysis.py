@@ -32,7 +32,7 @@ class NewsAnalysis(NewsBase):
 		news_num = self.data['get_num'];
 		plates = None;
 		nlist = list();
-		if struct.has_key('tag'):
+		if struct.has_key('tag') and struct['tag'].has_key('NEWS'):
 			mytag = struct['tag'];
 			if mytag.has_key('NEWS'):
 				plates = value = mytag['NEWS']['value'];

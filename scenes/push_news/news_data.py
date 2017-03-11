@@ -33,6 +33,9 @@ class NewsData(NewsBase):
 			items = self.data[plate[idx]];
 			nidx = random.randint(0,len(items));
 			if nidx == len(items): nidx = nidx - 1;
+			if items[nidx] in nlist:
+				n = n - 1;
+				continue;
 			nlist.append(items[nidx]);
 			n = n - 1;
 		return nlist;

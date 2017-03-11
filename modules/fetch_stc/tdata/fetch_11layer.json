@@ -22,7 +22,7 @@
 		{
 			"end":"SomeVerb",
 			"start":"SomeObjs",
-			"et":"*",
+			"et":"^TEND",
 			"st":"SB",
 			"type":"parent",
 			"force":"tail"
@@ -40,7 +40,7 @@
 		{
 			"end":"SomeVerb",
 			"start":"SomePronoun",
-			"et":"*",
+			"et":"^TEND",
 			"st":"SB",
 			"type":"parent",
 			"force":"tail"

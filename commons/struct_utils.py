@@ -82,3 +82,13 @@ def _link_split_words(struct,key):
 		tstr = dic['str'];
 		if len(tstr) > 1:
 			_merge_some_words(struct,tstr,0,False);
+
+def _filter_type(stype,etype):
+	if stype[0] == '^':
+		if etype == stype[1:]:
+			return False;
+		else:
+			return True;
+	elif stype <> '*' and stype <> etype:
+		return False;
+	return True;

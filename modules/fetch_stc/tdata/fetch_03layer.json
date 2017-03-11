@@ -124,7 +124,7 @@
 		{
 			"start":"SomeVerb",
 			"end":"SomeUnits",
-			"st":"DO",
+			"st":"^TEND",
 			"et":"QUANTIFIER",
 			"type":"num",
 			"force":"prev",

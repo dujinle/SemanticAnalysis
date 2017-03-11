@@ -36,13 +36,12 @@ class Fetch11Layer():
 	def _merge_objs(self,struct,item):
 		if not struct.has_key(item['start']): return -1;
 		if not struct.has_key(item['end']): return -1;
-
 		merg = pid = tid = 0;
 		while True:
 			if pid >= len(struct[item['start']]): break;
 
 			pit = struct[item['start']][pid];
-			if pit['type'] <> item['st'] and item['st'] <> '*':
+			if Sutil._filter_type(item['st'],pit['type']) == False:
 				pid = pid + 1;
 				continue;
 
@@ -50,7 +49,7 @@ class Fetch11Layer():
 			while True:
 				if tid >= len(struct[item['end']]): break;
 				vit = struct[item['end']][tid];
-				if vit['type'] <> item['et'] and item['et'] <> '*':
+				if Sutil._filter_type(item['et'],vit['type']) == False:
 					tid = tid + 1;
 					continue;
 

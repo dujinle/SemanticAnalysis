@@ -1,0 +1,30 @@
+{
+	"Alarm":{
+		"reg":"(.*REMINDME.*HITPHONEGIVE)
+			|(TIMEHITGOLF)
+			|(REMINDME)
+			|(TIMEASK.*GOFISHING)"
+	},
+	"Nguide":{
+		"reg":"GOUT.*GO"
+	},
+	"Calendar":{
+		"reg":"HOWMANYHAO"
+	},
+	"Music":{
+		"reg":"DOWNSHOU"
+	},
+	"Navigation":{
+		"reg":"DROPINVISIT"
+	},
+	"O2O":{
+		"reg":"SEARCHPEOPLECLEANHOME"
+	},
+	"Shop":{
+		"reg":"(SENDWHATGOOD)
+			|(BUYFOOD)"
+	},
+	"Phone":{
+		"reg":"YUYINCONTACT"
+	}
+}
