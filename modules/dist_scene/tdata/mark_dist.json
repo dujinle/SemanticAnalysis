@@ -5,7 +5,7 @@
 			|(REMINDME)
 			|(TIMEASK.*GOFISHING)"
 	},
-	"Nguide":{
+	"Traffic":{
 		"reg":"GOUT.*GO"
 	},
 	"Calendar":{

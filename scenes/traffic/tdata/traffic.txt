@@ -6,11 +6,11 @@
 	},
 	"models":[
 		{
-			"reg":"GOSP",
+			"reg":"TENDSP",
 			"func":"gop"
 		},
 		{
-			"reg":"SPTOSP",
+			"reg":"SPTENDSP",
 			"func":"ptp"
 		}
 	]

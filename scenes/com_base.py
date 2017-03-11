@@ -17,16 +17,16 @@ class ComBase():
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
-	def _fetch_func(self,struct):
+	def _fetch_func(self,struct,tt = 'stype'):
 		reg = '';
 		for istr in struct['inlist']:
 			if not struct.has_key(istr): continue;
 			item = struct[istr];
 			if item.has_key('parent'):
-				reg = reg + item['parent']['stype'];
-			reg = reg + item['stype'];
+				reg = reg + item['parent'][tt];
+			reg = reg + item[tt];
 			if item.has_key('child'):
-				reg = reg + item['child']['stype'];
+				reg = reg + item['child'][tt];
 
 		for model in self.data['models']:
 			comp = re.compile(model['reg']);

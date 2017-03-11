@@ -13,7 +13,7 @@ class GuideAnalysis(GuideBase):
 		try:
 			logging.info('go into news analysis ......');
 			if not struct.has_key('step'): struct['step'] = 'start';
-			func = self._fetch_func(struct);
+			func = self._fetch_func(struct,'type');
 			if struct['step'] == 'start':
 				if func is None:
 					ComFuncs._set_msg(struct,self.data['msg']['unknow']);
