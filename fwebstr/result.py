@@ -26,14 +26,17 @@ class ResultHandler(RequestHandler):
 	@common.json_loads_body
 	def post(self):
 		try:
+			scene = itest = None;
 			if not self.body_json.has_key('text'):
 				self.except_handle('the url data format error');
 				return ;
+			itest = self.body_json['text'];
+
 			if not self.body_json.has_key('scene'):
 				self.except_handle('not found argumen scene');
+			else:
+				scene = self.body_json['scene'];
 				return ;
-			scene = self.body_json['scene'];
-			itest = self.body_json['text'];
 			if len(itest) == 0:
 				self.except_handle('the param text is empty');
 				return ;
