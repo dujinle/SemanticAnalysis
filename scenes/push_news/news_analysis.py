@@ -15,6 +15,7 @@ class NewsAnalysis(NewsBase):
 			if not struct.has_key('step'): struct['step'] = 'start';
 
 			func = self._fetch_func(struct);
+			logging.info('step:' + struct['step'] + 'func:' + func);
 			if struct['step'] == 'start':
 				if not func is None and func == 'get':
 					self._get_news(struct,super_b);
