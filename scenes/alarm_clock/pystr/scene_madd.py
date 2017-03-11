@@ -67,7 +67,7 @@ class SceneMadd(SceneBase):
 		while True:
 			if num <= 0: break;
 			super_b.myclock = dict();
-			if len(struct['intervals']) <> num:
+			if len(struct['Times']) <> num:
 				struct['result']['msg'] = self.data['msg']['less_time'][0];
 				return None;
 			SceneParam._find_time(struct);
@@ -77,7 +77,7 @@ class SceneMadd(SceneBase):
 			num = num - 1;
 			super_b.myclock['key'] = super_b.myclock['time'];
 			super_b.clocks[super_b.myclock['time']] = super_b.myclock;
-			del struct['intervals'][0];
-		if struct.has_key('intervals'): del struct['intervals'];
+			del struct['Times'][0];
+		if struct.has_key('Times'): del struct['Times'];
 		struct['result']['msg'] = (self.data['msg']['madd_succ'][0] %(onum));
 

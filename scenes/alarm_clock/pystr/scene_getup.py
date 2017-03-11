@@ -90,5 +90,5 @@ class SceneGetup(SceneBase):
 			myclock['able']['type'] = 'week';
 			myclock['able']['able'] = math.pow(2,7) - 1;
 		myclock['name'] = u'起床';
-		if struct.has_key('intervals'): del struct['intervals'];
+		if struct.has_key('Times'): del struct['Times'];
 		return 0;

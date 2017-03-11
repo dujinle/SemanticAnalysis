@@ -18,8 +18,8 @@ class PrevScene(SceneBase):
 			raise MyException(sys.exc_info());
 
 	def _replace_time_tag(self,struct):
-		if struct.has_key('intervals') and len(struct['intervals']) > 0:
-			inters = struct['intervals'];
+		if struct.has_key('Times') and len(struct['Times']) > 0:
+			inters = struct['Times'];
 			struct['time_strs'] = list();
 			for ints in inters:
 				tstr = ints['str'].replace('_','');
@@ -49,7 +49,7 @@ class PrevScene(SceneBase):
 
 
 	def _filter_time_str(self,struct):
-		if not struct.has_key('intervals'):
+		if not struct.has_key('Times'):
 			return None;
 		for reg in self.data['filter']:
 			regstr = reg['reg'];
@@ -60,11 +60,11 @@ class PrevScene(SceneBase):
 				tlen = len(match.group(0));
 				pstr = struct['text'][:pid];
 				cur = self._get_tag_ptime(struct,pstr);
-				del struct['intervals'][cur];
+				del struct['Times'][cur];
 
 	def _get_tag_ptime(self,struct,tstr):
 		tnum = 0;
-		for inter in struct['intervals']:
+		for inter in struct['Times']:
 			time_str = inter['str'].replace('_','');
 			pid = tstr.find(time_str);
 			if pid == -1:

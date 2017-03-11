@@ -37,10 +37,10 @@ class SceneTime(SceneBase):
 			self._reset_time(struct,cks,super_b);
 		elif struct['ttag'].find('_info_swap') <> -1:
 			self._swap_cks_info(cks,struct,super_b);
-		if struct.has_key('intervals'): del struct['intervals'];
+		if struct.has_key('Times'): del struct['Times'];
 
 	def _change_time(self,cks,struct,tdir,super_b):
-		inters = struct['intervals'][0];
+		inters = struct['Times'][0];
 		if not inters.has_key('num'):
 			SceneParam._set_msg(struct,self.data['msg']['invalid_com']);
 			return None;
@@ -79,7 +79,7 @@ class SceneTime(SceneBase):
 		SceneParam._set_msg(struct,self.data['msg']['swap_succ']);
 
 	def _change_able(self,struct,cks,super_b):
-		inter = struct['intervals'][0];
+		inter = struct['Times'][0];
 		start = inter['start'];
 		end = inter['end'];
 		able = SceneParam._get_time_able(start,end);
@@ -91,7 +91,7 @@ class SceneTime(SceneBase):
 		SceneParam._set_msg(struct,self.data['msg']['ck_able']);
 
 	def _reset_time(self,struct,cks,super_b):
-		inter = struct['intervals'][0];
+		inter = struct['Times'][0];
 		if inter['start'][3] == 'null' and inter['end'][3] == 'null': return None;
 		if inter['start'][4] == 'null':
 			time = str(inter['start'][3]) + ':0';
@@ -109,12 +109,12 @@ class SceneTime(SceneBase):
 		if match['func'] == 't2t':
 			print 'go into _find_cks_time_to_time......'
 			cks = SceneParam._find_cks_time_to_time(struct,super_b);
-			del struct['intervals'][0];
-			del struct['intervals'][0];
+			del struct['Times'][0];
+			del struct['Times'][0];
 			return cks;
 		if match['func'] == 'time':
 			cks = SceneParam._find_cks_bytime(struct,super_b);
-			del struct['intervals'][0];
+			del struct['Times'][0];
 			return cks;
 		if match['func'] == 'info':
 			print 'go into _find info cks......'
@@ -130,8 +130,8 @@ class SceneTime(SceneBase):
 		if match['func'] == 'tat':
 			print 'go into _find_time and time_cks......'
 			cks = SceneParam._find_cks_time_and_time(struct,super_b);
-			del struct['intervals'][0];
-			del struct['intervals'][0];
+			del struct['Times'][0];
+			del struct['Times'][0];
 			return cks;
 		if match['func'] == 'this':
 			if not super_b.myclock is None:

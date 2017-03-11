@@ -26,8 +26,8 @@ def _if_exist(struct,super_b):
 	return False;
 
 def _find_time(struct):
-	if struct.has_key('intervals') and len(struct['intervals']) > 0:
-		myinterval = struct['intervals'][0]
+	if struct.has_key('Times') and len(struct['Times']) > 0:
+		myinterval = struct['Times'][0]
 		times = myinterval['start'];
 		if myinterval['scope'] == 'day' or myinterval['scope'] == 'hour'\
 			or myinterval['scope'] == 'min' or myinterval['scope'] == 'sec':
@@ -166,7 +166,7 @@ def _find_tag_name(struct,tdic):
 def _find_cks_bytime(struct,super_b):
 	cks = list();
 	if struct['ttag'].find('_time') == -1: return cks;
-	inter = struct['intervals'][0];
+	inter = struct['Times'][0];
 	start = inter['start'];
 	end = inter['end'];
 	able = _get_time_able(start,end);
@@ -278,8 +278,8 @@ def _find_cks_by_num(struct,super_b):
 
 def _find_cks_time_to_time(struct,super_b):
 	cks = list();
-	inter_1 = struct['intervals'][0];
-	inter_2 = struct['intervals'][1];
+	inter_1 = struct['Times'][0];
+	inter_2 = struct['Times'][1];
 	start = inter_1['start'];
 	if start[0] == 'null': start = inter_1['end'];
 	end = inter_2['start'];
@@ -343,8 +343,8 @@ def _find_cks_time_to_time(struct,super_b):
 
 def _find_cks_time_and_time(struct,super_b):
 	cks = list();
-	inter_1 = struct['intervals'][0];
-	inter_2 = struct['intervals'][1];
+	inter_1 = struct['Times'][0];
+	inter_2 = struct['Times'][1];
 	start = inter_1['start'];
 	end = inter_2['start'];
 	if start[0] == 'null' or end[0] == 'null': return cks;
@@ -374,7 +374,7 @@ def _find_cks_after_time(struct,super_b):
 	cur_week = _get_cur_week();
 	able = math.pow(2,cur_week);
 	if struct['ttag'].find('_time') <> -1:
-		itime = struct['intervals'][0];
+		itime = struct['Times'][0];
 		if itime['scope'] <> 'day': return cks;
 		start = itime['start'];
 		end = itime['end'];
@@ -490,7 +490,7 @@ def _degbu_info(struct):
 			clock = struct['mcks'][ck];
 			cks.append(ck + '|' + clock['time']);
 		struct['cks'] = cks;
-	if struct.has_key('intervals'): del struct['intervals'];
+	if struct.has_key('Times'): del struct['Times'];
 
 def _make_tag_dic(start,stype,end,etype,ctype):
 	tdic = dict();

@@ -78,7 +78,7 @@ class SceneAgenda(SceneBase):
 		if struct.has_key('ck_name'):
 			myclock['name'] = struct['ck_name'];
 			del struct['ck_name'];
-		if struct.has_key('intervals'): del struct['intervals'];
+		if struct.has_key('Times'): del struct['Times'];
 		return 0;
 
 	def _set_agenda_info(self,struct,super_b):

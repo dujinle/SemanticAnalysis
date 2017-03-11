@@ -67,7 +67,7 @@ class SceneAdd(SceneBase):
 			msg_id = SceneParam._get_random_id(len(self.data['msg']['unknow_time']));
 			struct['result']['msg'] = self.data['msg']['unknow_time'][msg_id];
 			return -1;
-		if struct.has_key('intervals'): del struct['intervals'];
+		if struct.has_key('Times'): del struct['Times'];
 		return 0;
 
 	def _set_able(self,struct,super_b):
