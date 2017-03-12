@@ -4,9 +4,12 @@ import traceback,sys
 class MyException(Exception):
 
 	def __init__(self,info):
-		self.etype = info[0];
-		self.msg = info[1];
-		self.trace = traceback.extract_tb(info[2]);
+		try:
+			self.etype = info[0];
+			self.msg = info[1];
+			self.trace = traceback.extract_tb(info[2]);
+		except Exception e:
+			raise MyException(sys.exec_info());
 
 	def __str__(self):
 		infos = list();

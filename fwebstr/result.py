@@ -46,5 +46,5 @@ class ResultHandler(RequestHandler):
 			common.print_dic(sres);
 			self.write(self.gen_result(0,'enjoy success',sres));
 		except Exception as e:
-			logging.error(sys.exc_info());
+			logging.error(str(e));
 			raise e;
