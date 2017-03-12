@@ -4,14 +4,8 @@ from _mmseg import Dictionary as _Dictionary, Token, Algorithm
 
 class Dictionary(_Dictionary):
 	dictionaries = (
-		('chars', os.path.join(os.path.dirname(__file__), 'data', 'chars.dic')),
-		('words', os.path.join(os.path.dirname(__file__), 'data', 'words.dic')),
-		('words', os.path.join(os.path.dirname(__file__), 'data', 'local.dic')),
-		('words', os.path.join(os.path.dirname(__file__), 'data', 'singer.dic')),
-		('words', os.path.join(os.path.dirname(__file__), 'data', 'catering.dic')),
-		('words', os.path.join(os.path.dirname(__file__), 'data', 'quanguo_sqx.dic')),
-		('words', os.path.join(os.path.dirname(__file__), 'data', 'music_name.dic')),
-		('words', os.path.join(os.path.dirname(__file__), 'data', 'airline.dic')),
+		('chars', os.path.join(os.path.dirname(__file__), 'data', 't_chars.dic')),
+		('words', os.path.join(os.path.dirname(__file__), 'data', 't_words.dic')),
 	)
 
 	@staticmethod
@@ -37,13 +31,13 @@ class Dictionary(_Dictionary):
 		Dictionary.delin_word(word);
 	@staticmethod
 	def write_file():
-		wordsfile = os.path.join(os.path.dirname(__file__), 'data', 'words.dic');
+		wordsfile = os.path.join(os.path.dirname(__file__), 'data', 't_words.dic');
 		Dictionary.write2file(wordsfile);
 
 	@staticmethod
 	def rename_wordsfile():
 		try:
-			wordsfile = os.path.join(os.path.dirname(__file__), 'data', 'words.dic');
+			wordsfile = os.path.join(os.path.dirname(__file__), 'data', 't_words.dic');
 			os.rename(wordsfile,wordsfile + '.1');
 		except Exception as e:
 			raise e;
