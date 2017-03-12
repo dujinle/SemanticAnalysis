@@ -44,7 +44,8 @@ tre.load_data('./tdata/TReplace.txt.han');
 tmood.load_data('./tdata/TMood.txt');
 
 struct = dict();
-struct['text'] = u'10点30给'#9月2号设置一个早上8点响的闹铃'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
+struct['text'] = u'待到秋来9月8我花开后百花杀冲天香阵透长安满城尽带黄金甲，元正五年的八月末，大周王朝的首都，远洲成。';
+#10点30给'#9月2号设置一个早上8点响的闹铃'#5时3刻'#后晚'#3天后'#周末'#明天'#1季度'#下1世纪30年代'#周3'#明天12点20分'
 struct['intervals'] = list();
 struct['mood'] = list();
 struct['my_inter_id'] = 0;
@@ -64,8 +65,8 @@ while True:
 	ret += tef.encode(struct);
 	ret += ts.encode(struct);
 	ret += td.encode(struct);
-	ret += tmood.encode(struct);
-	if ret == -9:
+	tmood.encode(struct);
+	if ret == -8:
 		if cur_status == True:
 			tt.encode(struct);
 			cur_status = False;

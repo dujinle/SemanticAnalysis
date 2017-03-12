@@ -11,7 +11,6 @@ from time_decade import TDecade
 from time_front import TFront
 from time_tail import TTail
 from time_replace import TReplace
-from time_mood import TMood
 from myexception import MyException
 
 
@@ -31,7 +30,6 @@ class TimeMager:
 		self.tag_objs.append(TEFestival());
 		self.tag_objs.append(TSolarTerm());
 		self.tag_objs.append(TDecade());
-		self.tag_objs.append(TMood());
 
 	def init(self,dtype):
 		try:
@@ -40,7 +38,8 @@ class TimeMager:
 			for obj in self.tag_objs:
 				obj.load_data(dfiles[str(step)]);
 				step = step + 1;
-		except Exception as e: raise e;
+		except Exception as e:
+			raise MyException(sys.exc_info());
 
 	def encode(self,struct):
 		struct['intervals'] = list();
@@ -58,7 +57,7 @@ class TimeMager:
 					obj.init();
 					ret += obj.encode(struct);
 					if struct['step_id'] >= len(struct['text']): break;
-				if ret == -9:
+				if ret == -8:
 					if cur_status == True:
 						cur_status = False;
 						self.tail.encode(struct);
@@ -70,4 +69,4 @@ class TimeMager:
 			if struct.has_key('scope'): del struct['scope'];
 			if struct.has_key('prev_func'): del struct['prev_func'];
 		except Exception as e:
-			raise e;
+			raise MyException(sys.exc_info());
