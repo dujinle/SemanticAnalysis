@@ -1,0 +1,37 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
+
+import sys,json
+reload(sys);
+sys.setdefaultencoding('utf-8');
+
+def make_solar(dfile):
+	fp = open(dfile,'r');
+	tdic = dict();
+	tdic['keys'] = list();
+	tdic['regs'] = list();
+	while True:
+		line = fp.readline();
+		if not line: break;
+		if len(line) == 0 or line[0] == '#': continue;
+		line = line.strip('\n').strip('\r').decode('utf-8');
+		tarray = line.split(',');
+		tdic['keys'].append(tarray[0]);
+		dtime = tarray[1];
+		idic = dict();
+		tims = dtime.split('-');
+		idic['start'] = [tims[0],tims[1]];
+		idic['end'] = [tims[0],tims[2]];
+		idic['year_type'] = 'solar';
+		idic['same'] = [tarray[0]];
+		tdic['regs'].append(idic);
+	fp.close();
+	return tdic;
+
+
+if __name__ == '__main__':
+	if len(sys.argv) <= 1:
+		print 'Usage: %s infile' %(sys.argv[0]);
+		sys.exit(-1);
+	dic = make_solar(sys.argv[1])
+	print json.dumps(dic,indent = 2,ensure_ascii=False)

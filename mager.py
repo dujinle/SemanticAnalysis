@@ -156,7 +156,7 @@ class Mager:
 #		'''
 		return self.struct;
 
-'''
+#'''
 try:
 	mg = Mager();
 	mg.init();
@@ -212,5 +212,5 @@ try:
 #	common.print_dic(mg.encode(u'打电话','Phone'));
 #	common.print_dic(mg.encode(u'重复拨',None));
 except Exception as e:
-	raise e;
-'''
+	raise MyException(sys.exc_info());
+#'''
