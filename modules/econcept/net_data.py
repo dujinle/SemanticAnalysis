@@ -44,16 +44,13 @@ class NetData():
 			],
 		}
 		self.data = {
-			"SomeAdj":dict(),
-			"SomeVerb":dict(),
-			"SomeObjs":dict(),
-			"SomeSpace":dict(),
-			"SomePronoun":dict(),
-			"SomeAdverb":dict(),
-			"SomeAux":dict(),
-			"SomePrep":dict(),
-			"SomeTmood":dict(),
-			"SomeOther":dict()
+			"SomeVerbs":dict(),
+			"SomeNouns":dict(),
+			"SomeProns":dict(),
+			"SomeAuxs":dict(),
+			"SomeMoods":dict(),
+			"SomeTenses":dict(),
+			"SomeLogics":dict()
 		}
 
 	def get_data_key(self,key):

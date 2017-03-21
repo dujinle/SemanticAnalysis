@@ -4,8 +4,6 @@ import os,sys
 import common,config
 from net_data import NetData
 from mark_objs import MarkObjs
-from mark_pronoun import MarkPronoun
-from mark_tmood import MarkTmood
 
 import struct_utils as Sutil
 
@@ -14,15 +12,13 @@ class ConMager():
 		self.tag_objs = list();
 		self.net_data = NetData();
 
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeObjs'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeAdj'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeVerb'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeAux'));		#标记助词
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeOther'));
-		self.tag_objs.append(MarkTmood(self.net_data,'SomeTmood'));
-		self.tag_objs.append(MarkPronoun(self.net_data,'SomePronoun'));	#标记代词
-		self.tag_objs.append(MarkPronoun(self.net_data,'SomeSpace'));	#标记方位词
-		self.tag_objs.append(MarkPronoun(self.net_data,'SomeAdverb'));	#标记副词
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeNouns'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeAuxs'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeVerbs'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeMoods'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeProns'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeTenses'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeLogics'));
 
 	def init(self,dtype):
 		try:
