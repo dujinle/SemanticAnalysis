@@ -4,6 +4,11 @@
 		"stype":"GOOD",
 		"str":"好"
 	},
+	"不好":{
+		"type":"JM",
+		"stype":"BAD",
+		"str":"不好"
+	},
 	"对":{
 		"type":"JLM",
 		"stype":"RIGHT",

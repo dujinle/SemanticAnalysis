@@ -11,22 +11,6 @@ base_path = os.path.dirname(__file__);
 sys.path.append(os.path.join(base_path,'./commons'));
 
 sys.path.append(os.path.join(base_path,'./scenes'));
-sys.path.append(os.path.join(base_path,'./scenes/math'));
-sys.path.append(os.path.join(base_path,'./scenes/dmusic'));
-sys.path.append(os.path.join(base_path,'./scenes/flight'));
-sys.path.append(os.path.join(base_path,'./scenes/calendar'));
-sys.path.append(os.path.join(base_path,'./scenes/foodspot'));
-sys.path.append(os.path.join(base_path,'./scenes/shopping'));
-sys.path.append(os.path.join(base_path,'./scenes/traffic'));
-sys.path.append(os.path.join(base_path,'./scenes/push_news'));
-sys.path.append(os.path.join(base_path,'./scenes/navigation'));
-sys.path.append(os.path.join(base_path,'./scenes/on_off_line'));
-sys.path.append(os.path.join(base_path,'./scenes/translation'));
-sys.path.append(os.path.join(base_path,'./scenes/bvoice/pystr'));
-sys.path.append(os.path.join(base_path,'./scenes/send_message'));
-
-sys.path.append(os.path.join(base_path,'./scenes/alarm_clock/pystr'));
-sys.path.append(os.path.join(base_path,'./scenes/ctemperature/pystr'));
 
 sys.path.append(os.path.join(base_path,'./modules/timer'));
 sys.path.append(os.path.join(base_path,'./modules/mytag'));
@@ -35,11 +19,11 @@ sys.path.append(os.path.join(base_path,'./modules/prev_deal'));
 sys.path.append(os.path.join(base_path,'./modules/econcept'));
 sys.path.append(os.path.join(base_path,'./modules/fetch_stc'));
 sys.path.append(os.path.join(base_path,'./modules/dist_scene'));
-sys.path.append(os.path.join(base_path,'./modules/pronom_prep'));
 #==============================================================
 
 import common,config
 from myexception import MyException
+'''
 from scene_cmager import SceneMager
 from news_mager import NewsMager
 from guide_mager import GuideMager
@@ -55,7 +39,7 @@ from nav_mager import NavMager
 from temp_mager import TempMager
 from flight_mager import FlightMager
 from o2o_mager import O2oMager
-
+'''
 from time_cmager import TimeMager
 from tag_cmager import MytagMager
 from pdeal_cmager import PDealMager
@@ -76,23 +60,7 @@ class Mager:
 		self.dist = DistMager();
 
 		self.struct = collections.OrderedDict();
-
 		self.modules = dict();
-		self.modules['Voice'] = VoiceMager();
-		self.modules['Temp'] = TempMager();
-		self.modules['Alarm'] = SceneMager();
-		self.modules['News'] = NewsMager();
-		self.modules['Traffic'] = GuideMager();
-		self.modules['Music'] = MusicMager();
-		self.modules['Phone'] = PhoneMager();
-		self.modules['Calendar'] = CalMager();
-		self.modules['Trans'] = TransMager();
-		self.modules['Math'] = MathMager();
-		self.modules['Food'] = FoodMager();
-		self.modules['Shop'] = ShopMager();
-		self.modules['Nav'] = NavMager();
-		self.modules['Flight'] = FlightMager();
-		self.modules['O2O'] = O2oMager();
 
 	def set_step(self,step): self.struct['step'] = step;
 	def set_scene(self,scene):
@@ -135,8 +103,7 @@ class Mager:
 		self.timer.encode(self.struct);
 		self.mytag.encode(self.struct);
 		self.concpt.encode(self.struct);
-#		common.print_dic(self.struct);
-		self.fetch.encode(self.struct);
+#		self.fetch.encode(self.struct);
 		if not mdl is None:
 			self.struct['scene'] = mdl;
 		elif not self.struct.has_key('scene'):
@@ -144,7 +111,7 @@ class Mager:
 		if self.struct.has_key('scene'):
 			mdl = self.struct['scene'];
 			print 'get scene:',self.struct['scene'];
-#		'''
+		'''
 #		self.struct['step'] = 'which';
 		if self.modules.has_key(mdl):
 			self.struct['text'] = self.struct['otext'];
@@ -153,14 +120,14 @@ class Mager:
 		if self.struct.has_key('step') and self.struct['step'] == 'end':
 			del self.struct['scene'];
 			del self.struct['step'];
-#		'''
+		'''
 		return self.struct;
 
-'''
+#'''
 try:
 	mg = Mager();
 	mg.init();
-#	common.print_dic(mg.encode(u'7点半叫我起床',None));
+	common.print_dic(mg.encode(u'7点半叫我起床',None));
 #	common.print_dic(mg.encode(u'好啦，受不了真恶心，我起来啦！','Alarm'));
 #	common.print_dic(mg.encode(u'哦，对了提醒下我9点半打个电话给老张',None));
 #	common.print_dic(mg.encode(u'小秘，有什么新闻',None));
@@ -213,4 +180,4 @@ try:
 #	common.print_dic(mg.encode(u'重复拨',None));
 except Exception as e:
 	raise e;
-'''
+#'''

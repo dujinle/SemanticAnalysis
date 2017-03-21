@@ -45,28 +45,10 @@ sys.path.append(os.path.join(base_path,'./modules/pronom_prep'));
 
 import common,config
 from myexception import MyException
-from scene_cmager import SceneMager
-from news_mager import NewsMager
-from guide_mager import GuideMager
-from music_mager import MusicMager
-from voice_mager import VoiceMager
-from phone_mager import PhoneMager
-from cal_mager import CalMager
-from trans_mager import TransMager
-from math_mager import MathMager
-from food_mager import FoodMager
-from shop_mager import ShopMager
-from nav_mager import NavMager
-from temp_mager import TempMager
-from flight_mager import FlightMager
-from o2o_mager import O2oMager
-
 from time_cmager import TimeMager
 from tag_cmager import MytagMager
 from pdeal_cmager import PDealMager
 from con_mager import ConMager
-from fetch_mager import FetchMager
-from dist_mager import DistMager
 
 from wordseg import WordSeg
 
@@ -77,32 +59,10 @@ class Mager:
 		self.mytag = MytagMager();
 		self.pdeal = PDealMager();
 		self.concpt = ConMager();
-		self.fetch = FetchMager();
-		self.dist = DistMager();
 
 		self.struct = collections.OrderedDict();
 
 		self.modules = dict();
-		self.modules['Voice'] = VoiceMager();
-		self.modules['Temp'] = TempMager();
-		self.modules['Alarm'] = SceneMager();
-		self.modules['News'] = NewsMager();
-		self.modules['Traffic'] = GuideMager();
-		self.modules['Music'] = MusicMager();
-		self.modules['Phone'] = PhoneMager();
-		self.modules['Calendar'] = CalMager();
-		self.modules['Trans'] = TransMager();
-		self.modules['Math'] = MathMager();
-		self.modules['Food'] = FoodMager();
-		self.modules['Shop'] = ShopMager();
-		self.modules['Nav'] = NavMager();
-		self.modules['Flight'] = FlightMager();
-		self.modules['O2O'] = O2oMager();
-
-	def set_step(self,step): self.struct['step'] = step;
-	def set_scene(self,scene):
-		self._clear_struct(self.struct);
-		self.struct['scene'] = scene;
 
 	def init(self):
 		try:
@@ -110,8 +70,6 @@ class Mager:
 			self.mytag.init('Mytag');
 			self.pdeal.init('PDeal');
 			self.concpt.init('Concept');
-			self.fetch.init('Fetch');
-			self.dist.init('Dist');
 			for key in self.modules:
 				self.modules[key].init(key);
 		except Exception as e:
@@ -138,11 +96,9 @@ class Mager:
 		self.struct['inlist'] = self.wordseg.tokens(self.struct['text']);
 		self.struct['result'] = dict();
 
-		common.print_dic(self.struct);
 		self.timer.encode(self.struct);
 		self.mytag.encode(self.struct);
 		self.concpt.encode(self.struct);
-		self.fetch.encode(self.struct);
 		return self.struct;
 
 if __name__ == '__main__':
@@ -157,7 +113,7 @@ if __name__ == '__main__':
 		dfile = sys.argv[1];
 		dp = open(dfile,'r');
 		for line in dp.readlines():
-			line = line.strip('\n').decode('utf8');
+			line = line.strip('\n').strip('\r').decode('utf8');
 			if len(line) == 0 or line[0] == '#':
 				continue;
 			common.print_dic(mg.encode(line,None));

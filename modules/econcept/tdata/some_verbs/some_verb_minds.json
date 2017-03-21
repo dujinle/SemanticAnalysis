@@ -9,6 +9,11 @@
 		"stype":"THINK",
 		"str":"想"
 	},
+	"想去":{
+		"type":"XV",
+		"stype":"WANT",
+		"str":"想去"
+	},
 	"知道":{
 		"type":"XV",
 		"stype":"KNOW",

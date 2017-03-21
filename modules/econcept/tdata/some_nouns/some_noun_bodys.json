@@ -23,5 +23,10 @@
 		"type":"NB",
 		"stype":"STARMAN",
 		"str":"宋仲基"
+	},
+	"主人":{
+		"type":"NB",
+		"stype":"MASTER",
+		"str":"主人"
 	}
 }

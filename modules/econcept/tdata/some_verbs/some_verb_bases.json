@@ -24,6 +24,11 @@
 		"stype":"LISTEN",
 		"str":"听"
 	},
+	"约":{
+		"type":"RV",
+		"stype":"ASK",
+		"str":"约"
+	},
 	"停":{
 		"type":"RV",
 		"stype":"STOP",
@@ -159,6 +164,11 @@
 		"stype":"SELECT",
 		"str":"选"
 	},
+	"飞":{
+		"type":"RV",
+		"stype":"FLY",
+		"str":"飞"
+	},
 	"连线":{
 		"type":"RV",
 		"stype":"WIRED",
@@ -193,5 +203,20 @@
 		"type":"RV",
 		"stype":"EDIT",
 		"str":"编辑"
+	},
+	"起床":{
+		"type":"RV",
+		"stype":"GETUP",
+		"str":"起床"
+	},
+	"在家":{
+		"type":"RV",
+		"stype":"AT_HOME",
+		"str":"在家"
+	},
+	"送到":{
+		"type":"RV",
+		"stype":"SEND_TO",
+		"str":"送到"
 	}
 }

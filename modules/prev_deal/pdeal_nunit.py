@@ -13,7 +13,6 @@ class PDealNunit(PDealBase):
 			self._fetch_num(struct);
 			self._fetch_unit(struct);
 			self._fetch_num_unit(struct);
-			#Sutil._link_split_words(struct,self.key);
 		except Exception:
 			raise MyException(sys.exc_info());
 
@@ -90,7 +89,7 @@ class PDealNunit(PDealBase):
 				match = comp.search(struct['text']);
 				if not match is None:
 					pstr = match.group(0);
-					Sutil._merge_some_words(struct,pstr,0,True);
+#					Sutil._merge_some_words(struct,pstr,0,True);
 					tdic = dict();
 					tdic['str'] = pstr;
 					tdic['type'] = 'NUNIT';
