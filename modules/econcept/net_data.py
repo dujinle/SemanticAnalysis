@@ -9,61 +9,39 @@ class NetData():
 	def __init__(self):
 		self.dfiles = {
 			#名词对象数据加载地址
-			"SomeObjs":[
-				os.path.join(abspath,'tdata','some_noun','some_noun_person.json'),#人物名称
-				os.path.join(abspath,'tdata','some_noun','some_noun_pname.json'), #人物名称
-				os.path.join(abspath,'tdata','some_noun','some_noun_place.json'), #地点名称
-				os.path.join(abspath,'tdata','some_noun','some_noun_sth.json'),   #事物名称
-				os.path.join(abspath,'tdata','some_noun','some_noun_absth.json'), #抽象名词
-				os.path.join(abspath,'tdata','some_noun','some_noun_food.json'),  #食物名词
-				os.path.join(abspath,'tdata','some_noun','some_noun_pattr.json'), #任务属性名词
-				os.path.join(abspath,'tdata','some_noun','some_noun_time.json')   #时间名词
+			"SomeNouns":[
+				os.path.join(abspath,'tdata','some_nouns','some_noun_bodys.json'),#人物名称
+				os.path.join(abspath,'tdata','some_nouns','some_noun_poss.json'), #人物名称
+				os.path.join(abspath,'tdata','some_nouns','some_noun_things.json') #地点名称
 			],
-			#形容词数据加载地址
-			"SomeAdj":[
-				os.path.join(abspath,'tdata','some_adj','some_adj_abstract.json'),
-				os.path.join(abspath,'tdata','some_adj','some_adj_appear.json'),
-				os.path.join(abspath,'tdata','some_adj','some_adj_feel.json'),
-				os.path.join(abspath,'tdata','some_adj','some_adj_ppro.json'),
-				os.path.join(abspath,'tdata','some_adj','some_adj_level.json')
+			#情态词加载地址
+			"SomeMoods":[
+				os.path.join(abspath,'tdata','some_moods','some_mood_jds.json')
 			],
 			#动词数据加载地址
-			"SomeVerb":[
-				os.path.join(abspath,'tdata','some_verb','some_verb_tend.json'),#趋向动词
-				os.path.join(abspath,'tdata','some_verb','some_verb_can.json'),#能愿动词
-				os.path.join(abspath,'tdata','some_verb','some_verb_pycho.json'),#心理动词
-				os.path.join(abspath,'tdata','some_verb','some_verb_xi.json'),#判定动词
-				os.path.join(abspath,'tdata','some_verb','some_verb_irre.json'),#不规则动词
-				os.path.join(abspath,'tdata','some_verb','some_verb_let.json'),#LET 动词
-				os.path.join(abspath,'tdata','some_verb','some_verb_call.json'),#CALL 动词
-				os.path.join(abspath,'tdata','some_verb','some_verb_do.json'),#DO 动词
-				os.path.join(abspath,'tdata','some_verb','some_verb_action.json') #ACTION 动词
+			"SomeVerbs":[
+				os.path.join(abspath,'tdata','some_verbs','some_verb_minds.json'),
+				os.path.join(abspath,'tdata','some_verbs','some_verb_logics.json'),
+				os.path.join(abspath,'tdata','some_verbs','some_verb_bases.json')
 			],
 			#代词数据加载地址
-			"SomePronoun":[
-				os.path.join(abspath,'tdata','some_pron','some_pron_person.json'),#人称代词
-				os.path.join(abspath,'tdata','some_pron','some_pron_logic.json'),#逻辑代词
-				os.path.join(abspath,'tdata','some_pron','some_pron_question.json'),#疑问代词
-				os.path.join(abspath,'tdata','some_pron','some_pron_specify.json') #相对代词
+			"SomeProns":[
+				os.path.join(abspath,'tdata','some_prons','some_prons.json')
 			],
-			#介词数据加载地址
-			"SomePrep":os.path.join(abspath,'tdata','some_prep','some_prep.json'),
-			#副词数据加载地址
-			"SomeAdverb":[
-				os.path.join(abspath,'tdata','some_adverb','some_adverb_level.json'),#程度副词
-				os.path.join(abspath,'tdata','some_adverb','some_adverb_time.json'),#时间副词
-				os.path.join(abspath,'tdata','some_adverb','some_adverb_dect.json'),#判定副词
-				os.path.join(abspath,'tdata','some_adverb','some_adverb_scope.json'),#范围副词
-				os.path.join(abspath,'tdata','some_adverb','some_adverb_rate.json'),#频率副词
-				os.path.join(abspath,'tdata','some_adverb','some_adverb_mood.json') #情态副词
+			#逻辑词加载地址
+			"SomeLogics":[
+				os.path.join(abspath,'tdata','some_logics','some_logic_poss.json'),
+				os.path.join(abspath,'tdata','some_logics','some_logic_terms.json'),
+				os.path.join(abspath,'tdata','some_logics','some_logic_times.json')
 			],
 			#助词数据加载地址
-			"SomeAux":[
-				os.path.join(abspath,'tdata','some_aux','some_auxj.json')#结构助词
+			"SomeAuxs":[
+				os.path.join(abspath,'tdata','some_auxs','some_auxs.json')#结构助词
 			],
-			"SomeSpace":os.path.join(abspath,'tdata','some_pspace.json'),
-			"SomeTmood":os.path.join(abspath,'tdata','some_tmood.json'),
-			"SomeOther":os.path.join(abspath,'tdata','some_other','some_other.json')
+			#时态词加载地址
+			"SomeTenses":[
+				os.path.join(abspath,'tdata','some_tenses','some_tenses.json')
+			],
 		}
 		self.data = {
 			"SomeAdj":dict(),
