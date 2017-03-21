@@ -1,0 +1,32 @@
+{
+	"北京":{
+		"type":"NPOS",
+		"stype":"BEIJING",
+		"str":"北京"
+	},
+	"广州":{
+		"type":"NPOS",
+		"stype":"GUANGZHOU",
+		"str":"广州"
+	},
+	"国贸":{
+		"type":"NPOS",
+		"stype":"GUOMAO",
+		"str":"国贸"
+	},
+	"家里":{
+		"type":"NPOS",
+		"stype":"HOME",
+		"str":"家里"
+	},
+	"公司":{
+		"type":"NPOS",
+		"stype":"COMPANY",
+		"str":"公司"
+	},
+	"家":{
+		"type":"NPOS",
+		"stype":"HOME",
+		"str":"家"
+	}
+}

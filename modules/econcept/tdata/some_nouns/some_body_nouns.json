@@ -1,0 +1,27 @@
+{
+	"宝贝":{
+		"type":"NB",
+		"stype":"BABY",
+		"str":"宝贝"
+	},
+	"太太":{
+		"type":"NB",
+		"stype":"WIFE",
+		"str":"太太"
+	},
+	"客户":{
+		"type":"NB",
+		"stype":"CLIENT",
+		"str":"客户"
+	},
+	"人":{
+		"type":"NB",
+		"stype":"PEOPLE",
+		"str":"人"
+	},
+	"宋仲基":{
+		"type":"NB",
+		"stype":"STARMAN",
+		"str":"宋仲基"
+	}
+}

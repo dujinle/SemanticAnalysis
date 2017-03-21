@@ -1,0 +1,17 @@
+{
+	"想要":{
+		"type":"XV",
+		"stype":"WANT",
+		"str":"想要"
+	},
+	"想":{
+		"type":"XV",
+		"stype":"THINK",
+		"str":"想"
+	},
+	"知道":{
+		"type":"XV",
+		"stype":"KNOW",
+		"str":"知道"
+	}
+}

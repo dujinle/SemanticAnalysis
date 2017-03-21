@@ -1,0 +1,43 @@
+{
+	"个":{
+		"type":"QS",
+		"stype":"GE",
+		"str":"个"
+	},
+	"条":{
+		"type":"QS",
+		"stype":"TIAO",
+		"str":"条"
+	},
+	"首":{
+		"type":"QS",
+		"stype":"SHOU",
+		"str":"首"
+	},
+	"点":{
+		"type":"QU",
+		"stype":"DIAN",
+		"str":"点"
+
+	},
+	"星级":{
+		"type":"QS",
+		"stype":"STAR",
+		"str":"星级"
+	},
+	"天":{
+		"type":"QS",
+		"stype":"DAY",
+		"str":"天"
+	},
+	"些":{
+		"type":"QU",
+		"stype":"SOME",
+		"str":"些"
+	},
+	"斤":{
+		"type":"QS",
+		"stype":"JIN",
+		"str":"斤"
+	}
+}
