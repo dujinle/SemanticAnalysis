@@ -42,6 +42,10 @@ class NetData():
 			"SomeTenses":[
 				os.path.join(abspath,'tdata','some_tenses','some_tenses.json')
 			],
+			#量词加载地址
+			"SomeNunit":[
+				os.path.join(abspath,'tdata','some_nunit','some_nunit.json')
+			],
 		}
 		self.data = {
 			"SomeVerbs":dict(),
@@ -50,7 +54,8 @@ class NetData():
 			"SomeAuxs":dict(),
 			"SomeMoods":dict(),
 			"SomeTenses":dict(),
-			"SomeLogics":dict()
+			"SomeLogics":dict(),
+			"SomeNunit":dict()
 		}
 
 	def get_data_key(self,key):

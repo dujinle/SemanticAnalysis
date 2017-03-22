@@ -4,6 +4,8 @@ import os,sys
 import common,config
 from net_data import NetData
 from mark_objs import MarkObjs
+from mark_nunit import MarkNunit
+from con_tail import ConTail
 
 import struct_utils as Sutil
 
@@ -19,6 +21,8 @@ class ConMager():
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeProns'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeTenses'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeLogics'));
+		self.tag_objs.append(MarkNunit(self.net_data,'SomeNunit'));
+		self.tail = ConTail();
 
 	def init(self,dtype):
 		try:
@@ -28,10 +32,10 @@ class ConMager():
 
 	def encode(self,struct):
 		try:
-			struct['merg'] = list();
-			self._fetch_time(struct);
+#			self._fetch_time(struct);
 			for obj in self.tag_objs:
 				obj.encode(struct);
+			self.tail.encode(struct);
 		except Exception as e:
 			raise e;
 
@@ -45,5 +49,4 @@ class ConMager():
 			inter['type'] = 'TIME';
 			inter['str'] = istr;
 			struct['Times'].append(inter);
-			#struct['text'] = struct['text'].replace(istr,'',1);
 		del struct['intervals'];

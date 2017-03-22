@@ -43,7 +43,6 @@ class TimeMager:
 
 	def encode(self,struct):
 		struct['intervals'] = list();
-		struct['mood'] = list();
 		struct['my_inter_id'] = 0;
 		struct['step_id'] = 0;
 		try:

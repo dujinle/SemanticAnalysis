@@ -17,7 +17,6 @@ sys.path.append(os.path.join(base_path,'./modules/mytag'));
 sys.path.append(os.path.join(base_path,'./modules/wordsegs'));
 sys.path.append(os.path.join(base_path,'./modules/prev_deal'));
 sys.path.append(os.path.join(base_path,'./modules/econcept'));
-sys.path.append(os.path.join(base_path,'./modules/fetch_stc'));
 sys.path.append(os.path.join(base_path,'./modules/dist_scene'));
 #==============================================================
 
@@ -44,7 +43,6 @@ from time_cmager import TimeMager
 from tag_cmager import MytagMager
 from pdeal_cmager import PDealMager
 from con_mager import ConMager
-from fetch_mager import FetchMager
 from dist_mager import DistMager
 
 from wordseg import WordSeg
@@ -56,7 +54,6 @@ class Mager:
 		self.mytag = MytagMager();
 		self.pdeal = PDealMager();
 		self.concpt = ConMager();
-		self.fetch = FetchMager();
 		self.dist = DistMager();
 
 		self.struct = collections.OrderedDict();
@@ -73,7 +70,6 @@ class Mager:
 			self.mytag.init('Mytag');
 			self.pdeal.init('PDeal');
 			self.concpt.init('Concept');
-			self.fetch.init('Fetch');
 			self.dist.init('Dist');
 			for key in self.modules:
 				self.modules[key].init(key);
@@ -95,8 +91,8 @@ class Mager:
 	def encode(self,text,mdl = None):
 		self._clear_struct(self.struct);
 		self.struct['text'] = text;
-		self.struct['inlist'] = self.wordseg.tokens(self.struct['text']);
 		self.pdeal.encode(self.struct);
+		self.struct['inlist'] = self.wordseg.tokens(self.struct['text']);
 		self.struct['otext'] = self.struct['text'];
 		self.struct['result'] = dict();
 
