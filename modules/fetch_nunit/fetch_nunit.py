@@ -89,7 +89,7 @@ class FetchNunit(FetchBase):
 				match = comp.search(struct['text']);
 				if not match is None:
 					pstr = match.group(0);
-					Sutil._merge_some_words(struct,pstr,0,True);
+#					Sutil._merge_some_words(struct,pstr,0,True);
 					tdic = dict();
 					tdic['str'] = pstr;
 					tdic['type'] = 'NUNIT';
