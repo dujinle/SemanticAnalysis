@@ -10,8 +10,8 @@ class PDealReplace(PDealBase):
 	def encode(self,struct):
 		try:
 			pass;
-#			self._replace_str(struct);
-#			self._deal_time_rep(struct);
+			self._replace_str(struct);
+			self._deal_time_rep(struct);
 		except Exception as e:
 			raise e;
 
@@ -23,8 +23,6 @@ class PDealReplace(PDealBase):
 			match = compstr.search(struct['text']);
 			if not match is None:
 				struct['text'] = struct['text'].replace(match.group(0),value);
-				if match.group(0) in struct['inlist']:
-					struct['inlist'].remove(match.group(0));
 
 	def _deal_time_rep(self,struct):
 		com = re.compile(self.data['time_rep']);

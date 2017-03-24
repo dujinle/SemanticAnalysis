@@ -20,7 +20,7 @@ class TagMager:
 	def init(self,dtype):
 		try:
 			for i,dfile in enumerate(self.dfiles):
-				self.tag_objs[i].init(dfile):
+				self.tag_objs[i].init(dfile);
 		except Exception as e: raise e;
 
 	def encode(self,struct):
