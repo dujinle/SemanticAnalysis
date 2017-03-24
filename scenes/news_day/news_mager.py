@@ -4,10 +4,9 @@ import sys,os
 #==============================================================
 ''' import tagpy wordsegs '''
 base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
 #==============================================================
 
-import common,config
+import common
 from common import logging
 from news_data import NewsData
 from myexception import MyException
@@ -15,19 +14,21 @@ from news_analysis import NewsAnalysis
 
 class NewsMager:
 	def __init__(self):
+		self.dfiles = [
+			os.path.join(base_path,'tdata','under_model.txt'),
+			os.path.join(base_path,'tdata','pnews.txt')
+		];
 		self.tag_objs = list();
 		self.ndata = NewsData();
 		self.tag_objs.append(NewsAnalysis());
+		self.tag_objs.append(self.ndata);
 
-	def init(self,dtype):
+	def init(self):
 		try:
-			step = 1;
-			fdir = config.dfiles[dtype];
-			self.ndata.load_data(fdir[str(step)]);
-			step = step + 1;
-			for obj in self.tag_objs:
-				obj.load_data(fdir[str(step)]);
-				step = step + 1;
+			for i,sfile in enumerate(self.dfiles):
+				obj = self.tag_objs[i];
+				obj.load_data(self.dfiles[i]);
+			self.tag_objs.pop();
 		except Exception as e: raise e;
 
 	def encode(self,struct):

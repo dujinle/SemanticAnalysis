@@ -8,6 +8,8 @@ from com_base import ComBase as NewsBase
 #处理新闻场景
 class NewsData(NewsBase):
 
+	def encode(self,struct): pass;
+
 	#新闻数据中根据标题模糊匹配数据
 	def get_news_by_title(self,title):
 		for data in self.data:
@@ -28,11 +30,9 @@ class NewsData(NewsBase):
 		nlist = list();
 		while True:
 			if n <= 0: break;
-			idx = random.randint(0,len(plate));
-			if idx >= len(plate): idx = idx - 1;
+			idx = random.randint(0,len(plate) - 1);
 			items = self.data[plate[idx]];
-			nidx = random.randint(0,len(items));
-			if nidx == len(items): nidx = nidx - 1;
+			nidx = random.randint(0,len(items) - 1);
 			if items[nidx] in nlist:
 				n = n - 1;
 				continue;

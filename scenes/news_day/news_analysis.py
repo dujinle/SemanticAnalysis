@@ -11,13 +11,13 @@ class NewsAnalysis(NewsBase):
 
 	def encode(self,struct,super_b):
 		try:
-			logging.info('go into news analysis ......');
+			print 'go into news analysis ......';
 			if not struct.has_key('step'): struct['step'] = 'start';
 
 			func = self._fetch_func(struct);
-			logging.info('step:' + struct['step'] + 'func:' + func);
+			print 'step:' + struct['step'] + ' func:' + func;
 			if struct['step'] == 'start':
-				if not func is None and func == 'get':
+				if func == 'get':
 					self._get_news(struct,super_b);
 					struct['step'] = 'which';
 					return None;

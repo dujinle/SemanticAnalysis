@@ -28,17 +28,10 @@ class ConTail():
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
-	def fetch_cept(self,struct,cepts):
+	def fetch_cept(self,stc,cepts):
 		for ib in cepts:
 			istr = ib['str'];
-			if struct.has_key(istr):
-				struct[istr]['cepts'].append(ib);
-			else:
-				struct[istr] = dict();
-				struct[istr]['str'] = istr;
-				struct[istr]['cepts'] = list();
-				struct[istr]['cepts'].append(ib);
-
+			stc[istr] = dict(ib);
 
 	def _fetch_ckey(self,struct,ckey,ctype):
 		stc = struct['stc'];
@@ -48,8 +41,5 @@ class ConTail():
 				inter['stype'] = ctype;
 				inter['type'] = ctype;
 			inter['str'] = istr;
-			stc[istr] = dict();
-			stc[istr]['str'] = istr;
-			stc[istr]['cepts'] = list();
-			stc[istr]['cepts'].append(inter);
+			stc[istr] = dict(inter);
 		del struct[ckey];
