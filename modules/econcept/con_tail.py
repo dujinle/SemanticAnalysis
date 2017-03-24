@@ -14,11 +14,13 @@ class ConTail():
 	def encode(self,struct):
 		try:
 			ndata = self.net_data.data;
+			if struct.has_key('stc'): struct['stc'].clear();
+			else: struct['stc'] = dict();
+
 			for key in ndata.keys():
 				if not struct.has_key(key): continue;
-				self.fetch_cept(struct,struct[key]);
+				self.fetch_cept(struct['stc'],struct[key]);
 				del struct[key];
-
 			self._fetch_ckey(struct,'intervals','TIME');
 			self._fetch_ckey(struct,'SomeNums',None);
 			self._fetch_ckey(struct,'SomeUnits',None);
@@ -39,14 +41,15 @@ class ConTail():
 
 
 	def _fetch_ckey(self,struct,ckey,ctype):
+		stc = struct['stc'];
 		for inter in struct[ckey]:
 			istr = inter['str'].replace('_','');
 			if not ctype is None:
 				inter['stype'] = ctype;
 				inter['type'] = ctype;
 			inter['str'] = istr;
-			struct[istr] = dict();
-			struct[istr]['str'] = istr;
-			struct[istr]['cepts'] = list();
-			struct[istr]['cepts'].append(inter);
+			stc[istr] = dict();
+			stc[istr]['str'] = istr;
+			stc[istr]['cepts'] = list();
+			stc[istr]['cepts'].append(inter);
 		del struct[ckey];
