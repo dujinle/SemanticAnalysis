@@ -2,7 +2,8 @@
 #-*- coding:utf-8 -*-
 import common,os,sys
 from myexception import MyException
-class FetchBase:
+
+class TagBase:
 	def __init__(self):
 		self.data = None;
 

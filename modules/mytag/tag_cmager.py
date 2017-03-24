@@ -1,24 +1,26 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os
-import common,config
-from mytag_encode import MyTagEncode
+import sys,os,common
+
+from tag_encode import TagEncode
 from myexception import MyException
 
-class MytagMager:
+base_path = os.path.dirname(__file__);
+
+class TagMager:
 	def __init__(self):
 		self.tag_objs = list();
 
+		self.dfiles = [
+			os.path.join(base_path,'tdata','mytag.txt')
+		];
 		# mark tag objs #
-		self.tag_objs.append(MyTagEncode());
+		self.tag_objs.append(TagEncode());
 
 	def init(self,dtype):
 		try:
-			step = 1;
-			fdirs = config.dfiles[dtype];
-			for obj in self.tag_objs:
-				obj.init(fdirs[str(step)]);
-				step = step + 1;
+			for i,dfile in enumerate(self.dfiles):
+				self.tag_objs[i].init(dfile):
 		except Exception as e: raise e;
 
 	def encode(self,struct):
