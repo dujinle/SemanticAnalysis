@@ -1,12 +1,14 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,common,random
-from common import logging
-from myexception import MyException
-from com_base import ComBase as NewsBase
+import sys,os,random
+#====================================================================
+base_path = os.path.dirname(__file__);
+sys.path.append(os.path.join(base_path,'../scene_common'));
+#====================================================================
+from scene_base import SceneBase
 
 #处理新闻场景
-class NewsData(NewsBase):
+class NewsData(SceneBase):
 
 	def encode(self,struct): pass;
 

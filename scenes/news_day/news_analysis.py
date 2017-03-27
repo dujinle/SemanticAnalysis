@@ -3,11 +3,16 @@
 import sys,os,common,re
 from common import logging
 from myexception import MyException
-from com_base import ComBase as NewsBase
+#====================================================================
+base_path = os.path.dirname(__file__);
+sys.path.append(os.path.join(base_path,'../scene_common'));
+#====================================================================
+
+from scene_base import SceneBase
 import news_param as NewParam
 
 #处理新闻场景
-class NewsAnalysis(NewsBase):
+class NewsAnalysis(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
@@ -70,3 +75,22 @@ class NewsAnalysis(NewsBase):
 		else:
 			struct['result']['msg'] = news['message'];
 		return None;
+
+	def _fetch_func(self,struct):
+		if not struct.has_key('stc'): return 'None';
+		if not struct.has_key('stseg'): return 'None';
+
+		segs = struct.get('stseg');
+		stcs = struct.get('stc');
+		reg = '';
+		for istr in segs:
+			if not stcs.has_key(istr): continue;
+			item = stcs.get(istr);
+			if item.has_key('stype'):
+				reg = reg + item['stype'];
+
+		for model in self.data['models']:
+			comp = re.compile(model['reg']);
+			match = comp.search(reg);
+			if not match is None: return model['func'];
+		return 'None';
