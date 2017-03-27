@@ -19,6 +19,11 @@
 		"stype":"THAT",
 		"str":"那"
 	},
+	"那条":{
+		"type":"TP",
+		"stype":"THAT",
+		"str":"那条"
+	},
 	"这样":{
 		"type":"TP",
 		"stype":"THIS",
