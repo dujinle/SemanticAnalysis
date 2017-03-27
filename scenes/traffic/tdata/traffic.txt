@@ -6,7 +6,7 @@
 	},
 	"models":[
 		{
-			"reg":"TENDSP",
+			"reg":"GOUTGOCOMPANY",
 			"func":"gop"
 		},
 		{

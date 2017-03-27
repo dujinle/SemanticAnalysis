@@ -3,17 +3,17 @@
 import sys,os,common,re
 from common import logging
 from myexception import MyException
-from com_base import ComBase as GuideBase
 import com_funcs as ComFuncs
+from scene_base import SceneBase
 
 #处理新闻场景
-class GuideAnalysis(GuideBase):
+class GuideAnalysis(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
 			logging.info('go into news analysis ......');
 			if not struct.has_key('step'): struct['step'] = 'start';
-			func = self._fetch_func(struct,'type');
+			func = self._fetch_func(struct);
 			if struct['step'] == 'start':
 				if func is None:
 					ComFuncs._set_msg(struct,self.data['msg']['unknow']);
@@ -49,9 +49,9 @@ class GuideAnalysis(GuideBase):
 	#获取轨迹路线
 	def _get_end_guide(self,struct,super_b):
 		start = end = None;
-		for istr in struct['inlist']:
-			if not struct.has_key(istr): continue;
-			item = struct[istr];
+		for istr in struct['stseg']:
+			if not struct['stc'].has_key(istr): continue;
+			item = struct['stc'][istr];
 			if item['stype'] == 'GO':
 				if item.has_key('child'):
 					nit = item['child'];
@@ -65,3 +65,5 @@ class GuideAnalysis(GuideBase):
 			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
 		else:
 			struct['result']['msg'] = self.data['traffic'];
+
+

@@ -20,9 +20,9 @@ class PDealReplace(PDealBase):
 			regstr = reg['reg'];
 			value = reg['value'];
 			compstr = re.compile(regstr);
-			match = compstr.search(struct['text']);
-			if not match is None:
-				struct['text'] = struct['text'].replace(match.group(0),value);
+			match = compstr.findall(struct['text']);
+			for mat in match:
+				struct['text'] = struct['text'].replace(mat,value);
 
 	def _deal_time_rep(self,struct):
 		com = re.compile(self.data['time_rep']);

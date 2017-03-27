@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import common,sys
+import common,sys,re
 from myexception import MyException
 
 class SceneBase():
@@ -14,19 +14,21 @@ class SceneBase():
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
-	def _fetch_func(self,struct,tt = 'stype'):
+	def _fetch_func(self,struct):
+		if not struct.has_key('stc'): return 'None';
+		if not struct.has_key('stseg'): return 'None';
+
+		segs = struct.get('stseg');
+		stcs = struct.get('stc');
 		reg = '';
-		for istr in struct['inlist']:
-			if not struct.has_key(istr): continue;
-			item = struct[istr];
-			if item.has_key('parent'):
-				reg = reg + item['parent'][tt];
-			reg = reg + item[tt];
-			if item.has_key('child'):
-				reg = reg + item['child'][tt];
+		for istr in segs:
+			if not stcs.has_key(istr): continue;
+			item = stcs.get(istr);
+			if item.has_key('stype'):
+				reg = reg + item['stype'];
 
 		for model in self.data['models']:
 			comp = re.compile(model['reg']);
 			match = comp.search(reg);
 			if not match is None: return model['func'];
-		return None;
+		return 'None';

@@ -1,12 +1,12 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
-import sys,os,common,random
+import sys,os,common
 from common import logging
 from myexception import MyException
-from com_base import ComBase as GuideBase
+from scene_base import SceneBase
 
 #处理出行场景
-class GuideData(GuideBase):
+class GuideData(SceneBase):
 
 	#根据起始终点 查找 轨迹数据
 	def get_guide(self,start,end):
