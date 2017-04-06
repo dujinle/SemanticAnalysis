@@ -10,9 +10,9 @@ class NetData():
 		self.dfiles = {
 			#名词对象数据加载地址
 			"SomeNouns":[
-				os.path.join(abspath,'tdata','some_nouns','some_noun_concept.json'),#人物名称
-				os.path.join(abspath,'tdata','some_nouns','some_noun_person.json'), #人物名称
-				os.path.join(abspath,'tdata','some_nouns','some_noun_subject.json') #地点名称
+				os.path.join(abspath,'tdata','some_nouns','some_noun_concept.json'),
+				os.path.join(abspath,'tdata','some_nouns','some_noun_person.json'),
+				os.path.join(abspath,'tdata','some_nouns','some_noun_subject.json')
 			],
 			#情态词加载地址
 			"SomeMoods":[
