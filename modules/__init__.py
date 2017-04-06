@@ -1,4 +1,4 @@
-from econcept.con_mager import ConMager
+from econcept_ext.con_mager import ConMager
 from timer.time_cmager import TimeMager
 from wordsegs.wordseg import WordSeg
 from wsvd.wsvd_mager import WsvdMager

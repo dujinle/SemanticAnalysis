@@ -37,6 +37,10 @@ class NetData():
 			"SomeAuxs":[
 				os.path.join(abspath,'tdata','some_auxs','some_auxs.json')#结构助词
 			],
+			#POI地理数据加载地址
+			"SomePois":[
+				os.path.join(abspath,'tdata','some_pois','some_poi.json')
+			],
 			#时态词加载地址
 			"SomeTenses":[
 				os.path.join(abspath,'tdata','some_tenses','some_tenses.json')
@@ -51,6 +55,7 @@ class NetData():
 			"SomeNouns":dict(),
 			"SomeProns":dict(),
 			"SomeAuxs":dict(),
+			"SomePois":dict(),
 			"SomeMoods":dict(),
 			"SomeTenses":dict(),
 			"SomeLogics":dict(),
