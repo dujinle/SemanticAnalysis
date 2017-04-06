@@ -16,7 +16,8 @@ class NetData():
 			],
 			#情态词加载地址
 			"SomeMoods":[
-				os.path.join(abspath,'tdata','some_moods','some_mood_jds.json')
+				os.path.join(abspath,'tdata','some_moods','some_mood_jing.json'),
+				os.path.join(abspath,'tdata','some_moods','some_mood_logic.json')
 			],
 			#动词数据加载地址
 			"SomeVerbs":[
