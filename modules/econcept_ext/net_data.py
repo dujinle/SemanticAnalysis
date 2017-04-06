@@ -25,7 +25,7 @@ class NetData():
 			],
 			#代词数据加载地址
 			"SomeProns":[
-				os.path.join(abspath,'tdata','some_prons','some_prons.json')
+				os.path.join(abspath,'tdata','some_prons','some_pronp.json')
 			],
 			#逻辑词加载地址
 			"SomeLogics":[
