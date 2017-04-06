@@ -44,7 +44,7 @@ class NetData():
 			],
 			#时态词加载地址
 			"SomeTenses":[
-				os.path.join(abspath,'tdata','some_tenses','some_tenses.json')
+				os.path.join(abspath,'tdata','some_tenses','some_time_tense.json')
 			],
 			#量词加载地址
 			"SomeNunit":[

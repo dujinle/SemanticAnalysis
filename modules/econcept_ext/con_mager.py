@@ -20,12 +20,10 @@ class ConMager():
 		self.tag_objs.append(MarkObjs(self.net_data,'SomePois'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeProns'));
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeMoods'));
+		self.tag_objs.append(MarkObjs(self.net_data,'SomeTenses'));
+		self.tag_objs.append(MarkNunit(self.net_data,'SomeNunit'));
 #		self.tag_objs.append(MarkObjs(self.net_data,'SomeAuxs'));
-#		self.tag_objs.append(MarkObjs(self.net_data,'SomeVerbs'));
-#		self.tag_objs.append(MarkObjs(self.net_data,'SomeProns'));
-#		self.tag_objs.append(MarkObjs(self.net_data,'SomeTenses'));
 #		self.tag_objs.append(MarkObjs(self.net_data,'SomeLogics'));
-#		self.tag_objs.append(MarkNunit(self.net_data,'SomeNunit'));
 		self.tail = ConTail();
 
 	def init(self,dtype):
