@@ -3,11 +3,11 @@
 import sys,os,common,re
 from common import logging
 from myexception import MyException
-from com_base import ComBase as MusicBase
+from scene_base import SceneBase
 import com_funcs as ComFuncs
 
 #处理 音乐 场景
-class MusicAnalysis(MusicBase):
+class MusicAnalysis(SceneBase):
 
 	def encode(self,struct,super_b):
 		try:
@@ -29,10 +29,11 @@ class MusicAnalysis(MusicBase):
 	#获取指定所属的音乐
 	def _get_music(self,struct,super_b):
 		owner = None;
-		for istr in struct['inlist']:
-			if not struct.has_key(istr): continue;
-			item = struct[istr];
-			if item.has_key('type') and item['type'] == 'STH':
+		for istr in struct['stseg']:
+			if not struct['stc'].has_key(istr): continue;
+			item = struct['stc'][istr];
+
+			if item.has_key('type') and item['type'] == '':
 				if item.has_key('belong'):
 					belong = item['belong'];
 					owner = belong['str'];

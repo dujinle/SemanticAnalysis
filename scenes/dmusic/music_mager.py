@@ -4,7 +4,7 @@ import sys,os
 #==============================================================
 ''' import tagpy wordsegs '''
 base_path = os.path.dirname(__file__);
-sys.path.append(os.path.join(base_path,'../../commons'));
+sys.path.append(os.path.join(base_path,'../scene_common'));
 #==============================================================
 
 import common,config
@@ -13,22 +13,16 @@ from music_data import MusicData
 from myexception import MyException
 from music_analysis import MusicAnalysis
 
-class MusicMager:
+class MusicMager(SceneMager):
 	def __init__(self):
+		self.dfiles = [
+			os.path.join(base_path,'tdata','under_music.txt'),
+			os.path.join(base_path,'tdata','music_data.txt')
+		];
 		self.tag_objs = list();
 		self.mdata = MusicData();
 		self.tag_objs.append(MusicAnalysis());
-
-	def init(self,dtype):
-		try:
-			step = 1;
-			fdir = config.dfiles[dtype];
-			self.mdata.load_data(fdir[str(step)]);
-			step = step + 1;
-			for obj in self.tag_objs:
-				obj.load_data(fdir[str(step)]);
-				step = step + 1;
-		except Exception as e: raise e;
+		self.tag_objs.append(self.mdata);
 
 	def encode(self,struct):
 		try:
@@ -36,5 +30,6 @@ class MusicMager:
 			for obj in self.tag_objs:
 				obj.encode(struct,self.mdata);
 		except Exception as e:
-			logging.error(str(e));
-			print e;
+			ee = MyException(sys.exc_info());
+			logging.error(str(ee));
+			raise ee;

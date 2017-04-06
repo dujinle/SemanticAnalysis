@@ -3,10 +3,10 @@
 import sys,os,common,random
 from common import logging
 from myexception import MyException
-from com_base import ComBase as MusicBase
+from scene_base import SceneBase
 
 #处理音乐场景
-class MusicData(MusicBase):
+class MusicData(SceneBase):
 
 	#获取音乐 根据人名
 	def get_favorite(self,owner):
