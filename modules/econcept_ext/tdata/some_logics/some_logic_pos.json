@@ -1,0 +1,26 @@
+{
+	"附近":{
+		"_prop":{
+			"type":"LP",
+			"stype":"NEAR"
+		}
+	},
+	"后":{
+		"_prop":{
+			"type":"LP",
+			"stype":"LATER"
+		}
+	},
+	"里":{
+		"_prop":{
+			"type":"LP",
+			"stype":"INNER"
+		}
+	},
+	"里面":{
+		"_prop":{
+			"type":"LP",
+			"stype":"INNER"
+		}
+	}
+}

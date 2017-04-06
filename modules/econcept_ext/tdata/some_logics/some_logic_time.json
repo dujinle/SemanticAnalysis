@@ -1,0 +1,14 @@
+{
+	"现在":{
+		"_prop":{
+			"type":"LT",
+			"stype":"NOW"
+		}
+	},
+	"时候":{
+		"_prop":{
+			"type":"LT",
+			"stype":"DURATION"
+		}
+	}
+}

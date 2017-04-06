@@ -30,9 +30,10 @@ class NetData():
 			],
 			#逻辑词加载地址
 			"SomeLogics":[
-				os.path.join(abspath,'tdata','some_logics','some_logic_poss.json'),
-				os.path.join(abspath,'tdata','some_logics','some_logic_terms.json'),
-				os.path.join(abspath,'tdata','some_logics','some_logic_times.json')
+				os.path.join(abspath,'tdata','some_logics','some_logic_pos.json'),
+				os.path.join(abspath,'tdata','some_logics','some_logic_term.json'),
+				os.path.join(abspath,'tdata','some_logics','some_logic_level.json'),
+				os.path.join(abspath,'tdata','some_logics','some_logic_time.json')
 			],
 			#助词数据加载地址
 			"SomeAuxs":[
