@@ -51,6 +51,12 @@
 				"type":"QP",
 				"stype":"HOW_MANY"
 			}
+		},
+		"多少":{
+			"_prop":{
+				"type":"QP",
+				"stype":"HOW_MANY"
+			}
 		}
 	}
 }

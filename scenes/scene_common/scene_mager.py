@@ -8,6 +8,7 @@ class SceneMager:
 		try:
 			for i,sfile in enumerate(self.dfiles):
 				obj = self.tag_objs[i];
+				if obj is None: continue;
 				obj.load_data(self.dfiles[i]);
 			self.tag_objs.pop();
 		except Exception as e: raise e;

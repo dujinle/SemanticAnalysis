@@ -34,6 +34,8 @@ class Mager:
 		self.modules['Music'] = MusicMager();
 		self.modules['Phone'] = PhoneMager();
 		self.modules['Cal'] = CalMager();
+		self.modules['Etrans'] = TransMager();
+		self.modules['Calc'] = CalcMager();
 
 
 	def set_step(self,step): self.struct['step'] = step;
