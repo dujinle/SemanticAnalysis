@@ -33,10 +33,12 @@ class Mager:
 		self.modules['Guide'] = GuideMager();
 		self.modules['Music'] = MusicMager();
 		self.modules['Phone'] = PhoneMager();
+		self.modules['Cal'] = CalMager();
+
 
 	def set_step(self,step): self.struct['step'] = step;
 	def set_scene(self,scene):
-		common.print_dic(self.struct);
+#		common.print_dic(self.struct);
 		self.struct['scene'] = scene;
 
 	def init(self):
@@ -52,16 +54,9 @@ class Mager:
 			raise MyException(sys.exc_info());
 
 	def _clear_struct(self,struct):
-		idx = 0;
-		while True:
-			if idx >= len(struct.keys()): break;
-			key = struct.keys()[idx];
-			if key == 'step' or key == 'scene':
-				idx = idx + 1;
-				continue;
-			else:
-				del struct[key];
-				continue;
+		if struct.has_key('stseg'): del struct['stseg'];
+		if struct.has_key('stc'): del struct['stc'];
+		if struct.has_key('result'): del struct['result'];
 
 	def encode(self,text,mdl = None):
 		self._clear_struct(self.struct);
