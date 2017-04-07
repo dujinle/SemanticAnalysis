@@ -1,0 +1,27 @@
+{
+	"Users":{
+		"主人":{
+			"phone":"1234567890",
+			"name":"ABCD"
+		},
+		"老婆":{
+			"phone":"9090909090",
+			"name":"DDDDDD"
+		},
+		"太太":{
+			"phone":"9090909090",
+			"name":"DDDDDD"
+		},
+		"永科":{
+			"phone":"000000000",
+			"name":"DDDDDDD"
+		},
+		"宋仲基":{
+			"phone":"111111111111",
+			"name":"宋仲基",
+			"type":"SB",
+			"stype":"SUPER",
+			"weixin":"ssssssss"
+		}
+	}
+}
