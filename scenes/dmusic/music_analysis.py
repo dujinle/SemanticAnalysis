@@ -16,6 +16,7 @@ class MusicAnalysis(SceneBase):
 
 			if struct['step'] == 'start':
 				func = self._fetch_func(struct);
+				print 'music func ',func,'......'
 				if func == 'get':
 					self._get_music(struct,super_b);
 				elif func == 'next':
@@ -33,11 +34,9 @@ class MusicAnalysis(SceneBase):
 			if not struct['stc'].has_key(istr): continue;
 			item = struct['stc'][istr];
 
-			if item.has_key('type') and item['type'] == '':
-				if item.has_key('belong'):
-					belong = item['belong'];
-					owner = belong['str'];
-					break;
+			if item.has_key('type') and item['type'] == 'NB':
+				owner = item['str'];
+				break;
 		if owner is None:
 			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
 		else:

@@ -12,6 +12,7 @@ from common import logging
 from music_data import MusicData
 from myexception import MyException
 from music_analysis import MusicAnalysis
+from scene_mager import SceneMager
 
 class MusicMager(SceneMager):
 	def __init__(self):

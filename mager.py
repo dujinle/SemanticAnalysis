@@ -31,6 +31,7 @@ class Mager:
 		self.modules = dict();
 		self.modules['News'] = NewsMager();
 		self.modules['Guide'] = GuideMager();
+		self.modules['Music'] = MusicMager();
 
 	def set_step(self,step): self.struct['step'] = step;
 	def set_scene(self,scene):
