@@ -6,11 +6,11 @@
 	},
 	"models":[
 		{
-			"reg":"(STOP)*HAVEWHAT(NEW)*MUSIC",
+			"reg":"(STOP)*HAVEWHAT(NEW)*SONGS",
 			"func":"repeat"
 		},
 		{
-			"reg":"DOWNSHOU",
+			"reg":"DOWNNUM",
 			"func":"next"
 		},
 		{

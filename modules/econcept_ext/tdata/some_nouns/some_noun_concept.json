@@ -111,8 +111,10 @@
 							"stype":"PLANE"
 						},
 						"航班":{
-							"type":"N",
-							"stype":"FLIGHT"
+							"_prop":{
+								"type":"N",
+								"stype":"FLIGHT"
+							}
 						}
 					}
 				}
@@ -131,8 +133,10 @@
 					"stype":"MUSIC"
 				},
 				"新歌":{
-					"type":"N",
-					"stype":"NEW_SONGS"
+					"_prop":{
+						"type":"N",
+						"stype":"NEW_SONGS"
+					}
 				}
 			}
 		},

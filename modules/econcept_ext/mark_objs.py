@@ -19,17 +19,22 @@ class MarkObjs():
 			raise MyException(sys.exc_info());
 
 	def _mark_objs_inlist(self,struct):
-		data = self.net_data.get_data_key(self.key);
-		if data is None: return None;
+		try:
+			data = self.net_data.get_data_key(self.key);
+			if data is None: return None;
 
-		for tstr in struct['inlist']:
-			tdic = self._fetch_str(tstr,data);
-			if tdic is None: continue;
-			mtdic = tdic['dict'][tstr];
-			myd = dict(mtdic['_prop']);
-			myd['str'] = tstr;
-			myd['track'] = tdic['track'];
-			struct[self.key].append(myd);
+			for tstr in struct['inlist']:
+				tdic = self._fetch_str(tstr,data);
+				if tdic is None: continue;
+				mtdic = tdic['dict'][tstr];
+#				common.print_dic(mtdic);
+				myd = dict(mtdic['_prop']);
+				myd['stype'] = myd['stype'].replace('_','');
+				myd['str'] = tstr;
+				myd['track'] = tdic['track'];
+				struct[self.key].append(myd);
+		except Exception as e:
+			raise MyException(sys.exc_info());
 
 	def _fetch_str(self,strs,dicts):
 		if not isinstance(dicts,dict): return None;
