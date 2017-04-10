@@ -11,7 +11,7 @@ import common,config
 from common import logging
 from phone_data import PhoneData
 from myexception import MyException
-from phone_analysis import PhoneAnalysis
+from phone_analy import PhoneAnaly
 from phone_mkobj import PhoneMkobj
 from scene_mager import SceneMager
 
@@ -25,7 +25,7 @@ class PhoneMager(SceneMager):
 		self.tag_objs = list();
 		self.pdata = PhoneData();
 		self.tag_objs.append(PhoneMkobj())
-		self.tag_objs.append(PhoneAnalysis());
+		self.tag_objs.append(PhoneAnaly());
 		self.tag_objs.append(self.pdata);
 
 	def encode(self,struct):
