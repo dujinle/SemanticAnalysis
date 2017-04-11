@@ -6,21 +6,21 @@ import struct_utils as Sutil
 
 class WsvdWords():
 	def __init__(self):
-		self.text = None;
+		self.encomp = re.compile('[A-Za-z ]{1,}');
+		self.numcmp = re.compile('[0-9 ]{1,}');
 
 	def encode(self,struct):
 		try:
+			self.text = None;
 			self._wsvd(struct);
-			self._esvd(struct);
+			self._esvd(struct,self.encomp);
 			struct['stseg'] = self.text.split(' ');
 		except Exception:
 			raise MyException(sys.exc_info());
 
 	#重新对分词的结果进行整理 处理分错的问题 最长匹配原则
 	def _wsvd(self,struct):
-		if self.text is None:
-			if not struct.has_key('text'): return None;
-			self.text = ' '.join(list(struct['text']));
+		if self.text is None: self.text = ' '.join(list(struct['text']));
 		slen = len(struct['text']);
 		sid = 0;eid = slen;
 		while True:
@@ -38,12 +38,10 @@ class WsvdWords():
 				sid = sid + 1;
 
 	#组合邻近的英文字符 和 数字
-	def _esvd(self,struct):
-		if self.text is None:
-			if not struct.has_key('text'): return None;
-			self.text = ' '.join(list(struct['text']));
-		comp = re.compile('[A-Za-z ]{1,}');
+	def _esvd(self,struct,comp):
+		if self.text is None: self.text = ' '.join(list(struct['text']));
 		match = comp.findall(self.text);
 		for m in match:
 			tm = m.replace(' ','');
-			elf.text = self.text.replace(m,tm);
+			if tm == '' or len(tm) == 0: continue;
+			self.text = self.text.replace(m,tm + ' ');
