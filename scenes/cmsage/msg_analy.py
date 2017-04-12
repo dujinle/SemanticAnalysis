@@ -60,6 +60,8 @@ class MsgAnaly(SceneBase):
 				reply = reply | 1;
 			if item.has_key('stype') and item['stype'] == 'NO':
 				reply = reply | (1 << 1);
+			if item.has_key('stype') and item['stype'] == 'NOTHING':
+				reply = reply | (1 << 1);
 		if reply > 1 or reply == 0:
 			struct['result']['status'] = 'filter';
 			return False;
