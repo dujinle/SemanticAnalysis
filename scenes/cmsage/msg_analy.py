@@ -24,11 +24,11 @@ class MsgAnaly(SceneBase):
 				self._send_message(struct,super_b);
 				return None;
 			elif struct['step'] == 'ifread':
-				self._read_msg(struct,super_b);
-				return None;
+				ret = self._read_msg(struct,super_b);
+				if ret == True: return None;
 			elif struct['step'] == 'reply':
-				self._reply_msg(struct,super_b);
-				return None;
+				ret = self._reply_msg(struct,super_b);
+				if ret == True: return None;
 			struct['step'] = 'end';
 		except Exception as e:
 			raise MyException(sys.exc_info());
@@ -39,16 +39,17 @@ class MsgAnaly(SceneBase):
 			if not struct['stc'].has_key(istr): continue;
 			item = struct['stc'][istr];
 			if item.has_key('stype') and item['stype'] == 'READ':
-				call = call | 1;
+				read = read | 1;
 			if item.has_key('stype') and item['stype'] == 'NO':
-				call = call | (1 << 1);
+				read = read | (1 << 1);
 		if read > 1 or read == 0:
 			struct['result']['status'] = 'filter';
+			return False;
 		else:
 			info = super_b.get_message();
 			ComFuncs._set_msg(struct,self.data['msg']['read_message'],info);
 			struct['step'] = 'reply';
-		return None;
+			return True;
 
 	def _reply_msg(self,struct,super_b):
 		reply = 0;
@@ -56,15 +57,16 @@ class MsgAnaly(SceneBase):
 			if not struct['stc'].has_key(istr): continue;
 			item = struct['stc'][istr];
 			if item.has_key('stype') and item['stype'] == 'REPLY':
-				call = call | 1;
+				reply = reply | 1;
 			if item.has_key('stype') and item['stype'] == 'NO':
-				call = call | (1 << 1);
-		if read > 1 or read == 0:
+				reply = reply | (1 << 1);
+		if reply > 1 or reply == 0:
 			struct['result']['status'] = 'filter';
+			return False;
 		else:
 			struct['result']['status'] = 'reply';
 			struct['step'] = 'send';
-		return None;
+			return True;
 
 	def _send_message(self,struct,super_b):
 		self._fetch_user(struct,super_b);

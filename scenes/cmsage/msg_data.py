@@ -12,3 +12,6 @@ class MsgData(SceneBase):
 
 	def get_msg_by_name(self,owner):
 		pass;
+
+	def get_message(self):
+		return self.data['Message'];
