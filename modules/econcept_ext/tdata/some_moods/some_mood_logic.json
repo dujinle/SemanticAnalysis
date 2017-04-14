@@ -52,8 +52,20 @@
 			"肯定":{
 				"恩":{
 					"_prop":{
-						"type":"LOK",
+						"type":"LT",
 						"stype":"OK"
+					}
+				},
+				"OK":{
+					"_prop":{
+						"type":"LT",
+						"stype":"OK"
+					}
+				},
+				"是的":{
+					"_prop":{
+						"type":"LT",
+						"stype":"YES"
 					}
 				}
 			}

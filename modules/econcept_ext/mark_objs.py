@@ -28,11 +28,14 @@ class MarkObjs():
 				if tdic is None: continue;
 				mtdic = tdic['dict'][tstr];
 #				common.print_dic(mtdic);
-				myd = dict(mtdic['_prop']);
-				myd['stype'] = myd['stype'].replace('_','');
-				myd['str'] = tstr;
-				myd['track'] = tdic['track'];
-				struct[self.key].append(myd);
+				if not mtdic.has_key('_prop'):
+					print '%s,no _prop[%s]' %(tstr,self.key);
+				else:
+					myd = dict(mtdic['_prop']);
+					myd['stype'] = myd['stype'].replace('_','');
+					myd['str'] = tstr;
+					myd['track'] = tdic['track'];
+					struct[self.key].append(myd);
 		except Exception as e:
 			raise MyException(sys.exc_info());
 

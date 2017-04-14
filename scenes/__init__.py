@@ -6,6 +6,7 @@ from cphone.phone_mager import PhoneMager
 from calendar.cal_mager import CalMager
 from etrans.trans_mager import TransMager
 from calc.calc_mager import CalcMager
+from cmsage.msg_mager import MsgMager
 
 __ALL__ = [
 	NewsMager,
@@ -14,5 +15,6 @@ __ALL__ = [
 	PhoneMager,
 	CalMager,
 	TransMager,
-	CalcMager
+	CalcMager,
+	MsgMager
 ];

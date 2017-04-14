@@ -36,6 +36,7 @@ class Mager:
 		self.modules['Cal'] = CalMager();
 		self.modules['Etrans'] = TransMager();
 		self.modules['Calc'] = CalcMager();
+		self.modules['Msage'] = MsgMager();
 
 
 	def set_step(self,step): self.struct['step'] = step;
@@ -60,7 +61,7 @@ class Mager:
 		if struct.has_key('stc'): del struct['stc'];
 		if struct.has_key('result'): del struct['result'];
 
-	def encode(self,text,mdl = None):
+	def encode(self,text,mdl = None,step = None):
 		self._clear_struct(self.struct);
 		self.struct['text'] = text;
 		self.pdeal.encode(self.struct);
@@ -80,7 +81,8 @@ class Mager:
 			mdl = self.struct['scene'];
 			print 'get scene:',self.struct['scene'];
 #		'''
-#		self.struct['step'] = 'which';
+		if not step is None:
+			self.struct['step'] = step;
 		if self.modules.has_key(mdl):
 			self.struct['text'] = self.struct['otext'];
 			mobj = self.modules[mdl];
@@ -102,8 +104,10 @@ try:
 		sarr = istr.decode('utf8').split(' ');
 		if len(sarr) == 2:
 			common.print_dic(mg.encode(sarr[0],sarr[1]));
+		elif len(sarr) == 3:
+			common.print_dic(mg.encode(sarr[0],sarr[1],sarr[2]));
 		else:
-			common.print_dic(mg.encode(sarr[0],None));
+			common.print_dic(mg.encode(sarr[0]));
 except Exception as e:
 	raise e;
 #'''

@@ -8,7 +8,6 @@ import com_funcs as ComFuncs
 
 #处理 电话短信  场景
 class PhoneAnaly(SceneBase):
-
 	def encode(self,struct,super_b):
 		try:
 			logging.info('go into phone analysis......');
@@ -18,21 +17,10 @@ class PhoneAnaly(SceneBase):
 			if struct['step'] == 'start':
 				if func == 'call':
 					self._get_call_info(struct,super_b);
-				elif func == 'message':
-					self._send_message(struct,super_b);
 				elif func == 'yuyin':
 					self._wired_yuyin(struct,super_b);
-			elif struct['step'] == 'ifread':
-				if func == 'read':
-					self._read_message(struct,super_b);
-					struct['step'] = 'reply';
-					return None;
-			elif struct['step'] == 'reply':
-				if func == 'no' or func == 'no_reply':
-					print 'no reply......';
-					pass;
-				elif func == 'message':
-					self._send_message(struct,super_b);
+			elif struct['step'] == 'recall':
+				self._open_call_info(struct,super_b);
 			elif struct['step'] == 'ifcall':
 				self._open_call_info(struct,super_b);
 			struct['step'] = 'end';
@@ -59,37 +47,6 @@ class PhoneAnaly(SceneBase):
 				return None;
 			struct['result']['phone'] = phone;
 			ComFuncs._set_msg(struct,self.data['msg']['call_succ']);
-
-	def _send_message(self,struct,super_b):
-		user = None;
-		for istr in struct['inlist']:
-			if not struct.has_key(istr): continue;
-			item = struct[istr];
-			if item['type'] == 'SB':
-				user = item['stype'];
-				break;
-			elif item.has_key('child') and item['child']['type'] == 'SB':
-				user = item['child']['stype'];
-				break;
-		if user is None:
-			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
-			return None;
-		idx = struct['text'].find(self.data['info']);
-		if idx == -1:
-			idx = struct['text'].find(self.data['message']);
-		if idx == -1:
-			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
-			return None;
-		tdic = dict();
-		tdic['user'] = super_b.get_phone_by_name(user);
-		tdic['msg'] = struct['text'][idx:];
-		struct['result']['message'] = tdic;
-		ComFuncs._set_msg(struct,self.data['msg']['send_message']);
-
-	def _read_message(self,struct,super_b):
-		info = super_b.get_message();
-		ComFuncs._set_msg(struct,self.data['msg']['read_message'],info);
-		return None;
 
 	def _wired_yuyin(self,struct,super_b):
 		way = user = None;
@@ -124,7 +81,8 @@ class PhoneAnaly(SceneBase):
 		for istr in struct['stseg']:
 			if not struct['stc'].has_key(istr): continue;
 			item = struct['stc'][istr];
-			if item.has_key('stype') and item['stype'] == 'YES':
+			if item.has_key('stype') and \
+				(item['stype'] == 'YES' or item['stype'] == 'OK'):
 				call = 'call';
 				break;
 			if item.has_key('stype') and item['stype'] == 'OPEN':
