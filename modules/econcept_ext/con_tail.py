@@ -13,6 +13,7 @@ class ConTail():
 
 	def encode(self,struct):
 		try:
+#			common.print_dic(struct);
 			ndata = self.net_data.data;
 			if struct.has_key('stc'): struct['stc'].clear();
 			else: struct['stc'] = dict();

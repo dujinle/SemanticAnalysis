@@ -7,6 +7,7 @@ from calendar.cal_mager import CalMager
 from etrans.trans_mager import TransMager
 from calc.calc_mager import CalcMager
 from cmsage.msg_mager import MsgMager
+from dtravel.travel_mager import TravelMager
 
 __ALL__ = [
 	NewsMager,
@@ -16,5 +17,6 @@ __ALL__ = [
 	CalMager,
 	TransMager,
 	CalcMager,
-	MsgMager
+	MsgMager,
+	TravelMager
 ];

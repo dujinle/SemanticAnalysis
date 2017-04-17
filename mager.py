@@ -37,6 +37,7 @@ class Mager:
 		self.modules['Etrans'] = TransMager();
 		self.modules['Calc'] = CalcMager();
 		self.modules['Msage'] = MsgMager();
+		self.modules['Travel'] = TravelMager();
 
 
 	def set_step(self,step): self.struct['step'] = step;
