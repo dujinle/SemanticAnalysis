@@ -25,7 +25,6 @@ class Mager:
 		self.pdeal = PDealMager();
 		self.concpt = ConMager();
 		self.dist = DistMager();
-		self.wsvd = WsvdMager();
 
 		self.struct = collections.OrderedDict();
 		self.modules = dict();
@@ -73,7 +72,6 @@ class Mager:
 		self.timer.encode(self.struct);
 		self.mytag.encode(self.struct);
 		self.concpt.encode(self.struct);
-		self.wsvd.encode(self.struct);
 		if not mdl is None:
 			self.struct['scene'] = mdl;
 		elif not self.struct.has_key('scene'):
