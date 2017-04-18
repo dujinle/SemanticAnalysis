@@ -11,23 +11,23 @@ class MarkObjs():
 
 	def load_data(self,dfile): pass;
 
-	def encode(self,struct):
+	def encode(self,struct,wlist = 'inlist'):
 		try:
 			if not struct.has_key(self.key): struct[self.key] = list();
-			self._mark_objs_inlist(struct);
+			self._mark_objs_list(struct,wlist);
 		except Exception:
 			raise MyException(sys.exc_info());
 
-	def _mark_objs_inlist(self,struct):
+	def _mark_objs_list(self,struct,wlist):
 		try:
+			if not struct.has_key(wlist): return None;
 			data = self.net_data.get_data_key(self.key);
 			if data is None: return None;
 
-			for tstr in struct['inlist']:
+			for tstr in struct[wlist]:
 				tdic = self._fetch_str(tstr,data);
 				if tdic is None: continue;
 				mtdic = tdic['dict'][tstr];
-#				common.print_dic(mtdic);
 				if not mtdic.has_key('_prop'):
 					print '%s,no _prop[%s]' %(tstr,self.key);
 				else:

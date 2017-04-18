@@ -6,6 +6,7 @@ from myexception import MyException
 from net_data import NetData
 from mark_objs import MarkObjs
 from mark_nunit import MarkNunit
+from remark_words import RemarkWords
 from con_tail import ConTail
 
 import struct_utils as Sutil
@@ -25,6 +26,7 @@ class ConMager():
 		self.tag_objs.append(MarkObjs(self.net_data,'SomeLogics'));
 #		self.tag_objs.append(MarkObjs(self.net_data,'SomeAuxs'));
 		self.tail = ConTail();
+		self.remark = RemarkWords();
 
 	def init(self,dtype):
 		try:
@@ -37,5 +39,10 @@ class ConMager():
 			for obj in self.tag_objs:
 				obj.encode(struct);
 			self.tail.encode(struct);
+			self.remark.encode(struct);
+			for obj in self.tag_objs:
+				obj.encode(struct,'stseg');
+			self.tail.encode(struct);
+
 		except Exception as e:
 			raise MyException(sys.exc_info());

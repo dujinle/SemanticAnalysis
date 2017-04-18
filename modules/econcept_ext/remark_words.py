@@ -4,7 +4,7 @@ import os,sys,common,re
 from myexception import MyException
 import struct_utils as Sutil
 
-class WsvdWords():
+class RemarkWords():
 	def __init__(self):
 		self.encomp = re.compile('[A-Za-z ]{1,}');
 		self.numcmp = re.compile('[0-9 ]{1,}');

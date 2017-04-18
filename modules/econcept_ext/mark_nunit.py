@@ -14,7 +14,7 @@ class MarkNunit():
 
 	def load_data(self,dfile): pass;
 
-	def encode(self,struct):
+	def encode(self,struct,wlist = 'inlist'):
 		try:
 			self._fetch_num(struct);
 			self._fetch_unit(struct);
