@@ -9,6 +9,7 @@ import struct_utils as Sutil
 class TravelData(SceneBase):
 	def __init__(self):
 		self.flight = None;
+		self.hotel = None;
 
 	def book_flight_time(self,time):
 		try:
@@ -49,32 +50,6 @@ class TravelData(SceneBase):
 				fls.append(fs);
 		self.flight['fls'] = fls;
 
-	def get_Travel(self,time):
-		'''
-		itime = time['start'];
-		if itime[0] == 'null':
-			itime = time['end'];
+	def get_hotel_info(self):
+		self.hotel.update(self.data['HOTEL'][0]);
 
-		stime = str(itime[3]);
-		if itime[4] <> 'null':
-			stime = stime + ':' + str(itime[4]);
-		else:
-			stime = stime + ':0';
-		if self.fls is None: self.fls = self.data['TravelS']
-		for fs in self.fls:
-			if fs['stime'] == stime:
-				return fs;
-		return None;
-		'''
-		pass;
-
-	def get_hotel(self,addr,level):
-		'''
-		self.history = 'Hotel';
-		for ht in self.data['HOTEL']:
-			if ht['place'] == addr['str']:
-				if level['str'] == ht['level']:
-					return ht;
-		return None;
-		'''
-		pass;

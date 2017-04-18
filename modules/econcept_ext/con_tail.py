@@ -14,8 +14,7 @@ class ConTail():
 	def encode(self,struct):
 		try:
 			ndata = self.net_data.data;
-			if struct.has_key('stc'): struct['stc'].clear();
-			else: struct['stc'] = dict();
+			if not struct.has_key('stc'): struct['stc'] = dict();
 
 			for key in ndata.keys():
 				if not struct.has_key(key): continue;

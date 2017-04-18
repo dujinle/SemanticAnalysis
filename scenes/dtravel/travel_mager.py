@@ -17,8 +17,8 @@ class TravelMager(SceneMager):
 	def __init__(self):
 		self.tag_objs = list();
 		self.dfiles = [
-			os.path.join(base_path,'tdata','under_flight.txt'),
-			os.path.join(base_path,'tdata','flight_data.txt')
+			os.path.join(base_path,'tdata','under_travel.txt'),
+			os.path.join(base_path,'tdata','travel_data.txt')
 		]
 		self.fdata = TravelData();
 		self.tag_objs.append(TravelAnaly());
