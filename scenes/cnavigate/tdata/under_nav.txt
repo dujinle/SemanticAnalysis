@@ -9,7 +9,7 @@
 	},
 	"models":[
 		{
-			"reg":"CARNEEDREFUEL",
+			"reg":"VEHICLENEEDREFUEL",
 			"func":"refuel"
 		},
 		{

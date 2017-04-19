@@ -19,19 +19,19 @@
 	},
 	"家里":{
 		"_prop":{
-			"type":"NP",
+			"type":"NPI",
 			"stype":"HOME"
 		}
 	},
 	"公司":{
 		"_prop":{
-			"type":"NP",
+			"type":"NPI",
 			"stype":"COMPANY"
 		}
 	},
 	"家":{
 		"_prop":{
-			"type":"NP",
+			"type":"NPI",
 			"stype":"HOME"
 		}
 	}
