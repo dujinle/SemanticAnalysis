@@ -9,6 +9,7 @@ from calc.calc_mager import CalcMager
 from cmsage.msg_mager import MsgMager
 from dtravel.travel_mager import TravelMager
 from cnavigate.nav_mager import NavMager
+from cshop.shop_mager import ShopMager
 
 __ALL__ = [
 	NewsMager,
@@ -20,5 +21,6 @@ __ALL__ = [
 	CalcMager,
 	MsgMager,
 	TravelMager,
-	NavMager
+	NavMager,
+	ShopMager
 ];

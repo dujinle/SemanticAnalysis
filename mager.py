@@ -37,6 +37,8 @@ class Mager:
 		self.modules['Calc'] = CalcMager();
 		self.modules['Msage'] = MsgMager();
 		self.modules['Travel'] = TravelMager();
+		self.modules['Naviga'] = NavMager();
+		self.modules['Shop'] = ShopMager();
 
 
 	def set_step(self,step): self.struct['step'] = step;
