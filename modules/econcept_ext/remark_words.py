@@ -44,4 +44,4 @@ class RemarkWords():
 		for m in match:
 			tm = m.replace(' ','');
 			if tm == '' or len(tm) == 0: continue;
-			self.text = self.text.replace(m,tm + ' ');
+			self.text = self.text.replace(m,' ' + tm + ' ');
