@@ -1,0 +1,25 @@
+[
+	{
+		"scope":"decade_desc",
+		"reg":"[0-3]*[0-9]世纪初(期)*",
+		"region":[0,30]
+	},
+	{
+		"scope":"decade_desc",
+		"reg":"[0-3]*[0-9]世纪中期",
+		"region":[30,70]
+	},
+	{
+		"scope":"decade_desc",
+		"reg":"[0-3]*[0-9]世纪后期",
+		"region":[70,100]
+	},
+	{
+		"scope":"decade",
+		"reg":"[0-3]*[0-9]世纪"
+	},
+	{
+		"scope":"year",
+		"reg":"[1-9]0年代"
+	}
+]
