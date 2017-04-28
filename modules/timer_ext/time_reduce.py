@@ -44,6 +44,8 @@ class TimeReduce():
 				self.merge_big_time(struct,item,match.group());
 			elif item['type'] == 'up_down_week':
 				self.merge_up_down(struct,item,match.group());
+			elif item['type'] == 'up_down_region':
+				self.merge_up_down_region(struct,item,match.group());
 
 
 	def merge_time(self,struct):
@@ -142,7 +144,7 @@ class TimeReduce():
 				item['stime'][idx] = item['stime'][idx] + len(match.group());
 				item['etime'][idx] = item['etime'][idx] + len(match.group());
 
-	def merge_up_down(self,struct,mstr):
+	def merge_up_down(self,struct,it,mstr):
 		cur_time = time.localtime();
 		comp = re.compile(it['sreg']);
 		match = comp.search(mstr);
@@ -158,3 +160,25 @@ class TimeReduce():
 				idx = time_common.tmenu[it['scope']];
 				item['stime'][idx] = item['stime'][idx] + len(match.group()) * 7;
 				item['etime'][idx] = item['etime'][idx] + len(match.group()) * 7;
+
+	def merge_up_down_region(self,struct,it,mstr):
+		item = dict();
+		item['str'] = mstr;
+
+		cur_time = time.localtime();
+		idx = time_common.tmenu[it['scope']];
+		item['stime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
+		item['etime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
+		cur_week = cur_time[time_common.tmenu['week_idx']];
+		comp = re.compile(it['sreg']);
+		match = comp.search(mstr);
+		if it['dir'] == '-':
+			idx = time_common.tmenu[it['scope']];
+			item['stime'][idx] = item['stime'][idx] - (len(match.group()) - 1) * 7 - (cur_week + 1);
+			item['etime'][idx] = item['etime'][idx] - len(match.group()) * 7 - (cur_week + 1);
+		else:
+			idx = time_common.tmenu[it['scope']];
+			item['stime'][idx] = item['stime'][idx] + (len(match.group()) - 1) * 7 + (7 - cur_week);
+			item['etime'][idx] = item['etime'][idx] + len(match.group()) * 7 + (7 - cur_week);
+		item['scope'] = it['scope'];
+		struct['time_stc'].append(item);

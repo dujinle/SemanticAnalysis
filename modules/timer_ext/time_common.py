@@ -103,8 +103,8 @@ def _creat_next_interval(struct):
 
 def _list_copy(l1,l2,idb):
 	tlist = list()
-	tlist.extend(l2);
-	for idx,value in enumerate(l1):
+	tlist.extend(l1);
+	for idx,value in enumerate(l2):
 		if tlist[idx] <> 'null' and value <> 'null':
 			tlist[idx] = tlist[idx] + value;
 
