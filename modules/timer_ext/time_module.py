@@ -101,17 +101,24 @@ class TimeModule():
 
 	def time_nunit(self,struct,key):
 		for item in struct[key]:
-			item['stime'] = time_common._create_null_time();
-			item['etime'] = time_common._create_null_time();
-			num = re.findall('\d+',item['str']);
-			if len(num) > 0: num = num[0];
-			if item['type'] == 'date':
-				if item.has_key('mnum'):
-					item['stime'][time_common.tmenu[item['scope']]] = int(num) + int(item['mnum']);
-					item['etime'][time_common.tmenu[item['scope']]] = int(num) + int(item['mnum']) + 1;
-				else:
-					item['stime'][time_common.tmenu[item['scope']]] = int(num);
-					item['etime'][time_common.tmenu[item['scope']]] = int(num) + 1;
+			try:
+				item['stime'] = time_common._create_null_time();
+				item['etime'] = time_common._create_null_time();
+				num = re.findall('\d+',item['str']);
+				for sid,scope in enumerate(item['scope']):
+					idx = time_common.tmenu[scope];
+					inum = num[sid];
+					if item['type'] == 'date':
+						item['stime'][idx] = int(inum);
+						if sid == len(item['scope']) - 1:
+							item['etime'][idx] = int(inum) + 1;
+							item['scope'] = scope;
+						else:
+							item['etime'][idx] = int(inum);
+					else:
+						item['num'] = inum;
+			except Exception:
+				raise MyException(sys.exc_info());
 
 	def time_solarterm(self,struct,key):
 		solarterm = self.data.get('SolarTerm');

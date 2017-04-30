@@ -101,13 +101,14 @@ def _creat_next_interval(struct):
 	struct['my_inter_id'] = struct['my_inter_id'] + 1;
 	return my_interval;
 
-def _list_copy(l1,l2,idb):
+def _list_copy(l1,l2,idb,flg = False):
 	tlist = list()
 	tlist.extend(l1);
 	for idx,value in enumerate(l2):
-		if tlist[idx] <> 'null' and value <> 'null':
+		if tlist[idx] <> 'null' and value <> 'null' and flg == False:
 			tlist[idx] = tlist[idx] + value;
-
+		elif tlist[idx] <> 'null' and value <> 'null':
+			tlist[idx] = value;
 		if value <> 'null': tlist[idx] = value;
 		if idb == idx: break;
 	return tlist;
@@ -115,13 +116,13 @@ def _list_copy(l1,l2,idb):
 def _create_null_time():
 	return ['null','null','null','null','null','null','null','null','null'];
 
-def _is_merge_able(st,et):
+def _is_merge_able(st,et,fal = False):
 	if not st.has_key('stime'): return None;
 	if not et.has_key('stime'): return None;
-	if st['scope'] == et['scope']: return None;
+	if fal == False and st['scope'] == et['scope']: return None;
 
-	stime = _list_copy(st['stime'],et['stime'],8);
-	etime = _list_copy(st['stime'],et['etime'],8);
+	stime = _list_copy(st['stime'],et['stime'],8,fal);
+	etime = _list_copy(st['stime'],et['etime'],8,fal);
 	return [stime,etime];
 
 def _get_time_stamp(t_time):

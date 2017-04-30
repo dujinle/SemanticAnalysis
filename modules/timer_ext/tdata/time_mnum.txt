@@ -20,21 +20,6 @@
 		"reg": "[0-9]{1,2}号"
 	},
 	{
-		"type":"num",
-		"scope":["day"],
-		"reg": "[0-9]{1,}[日天]"
-	},
-	{
-		"type":"num",
-		"scope":["year"],
-		"reg":"[0-9]{1,}年"
-	},
-	{
-		"type":"num",
-		"scope":["month"],
-		"reg": "[0-9]{1,}(个)*月"
-	},
-	{
 		"type":"date",
 		"scope":["hour","min","sec"],
 		"reg": "[0-9]{1,}[时点][0-9]{1,}分[0-9]{1,}秒"
@@ -51,49 +36,32 @@
 	},
 	{
 		"type":"num",
+		"scope":["day"],
+		"reg": "[0-9]{1,}[日天]"
+	},
+	{
+		"type":"num",
+		"scope":["year"],
+		"reg":"[0-9]{1,}年"
+	},
+	{
+		"type":"num",
+		"scope":["month"],
+		"reg": "[0-9]{1,}(个)*月"
+	},
+	{
+		"type":"num",
 		"scope":["hour"],
-		"reg": "[0-9]{1,}小时"
-	},
-	{
-		"type":"date",
-		"scope":["hour"],
-		"mnum":"0",
-		"reg": "((中午)|(上午)|(凌晨))[0-6]*[0-9][时点]"
-	},
-	{
-		"type":"date",
-		"scope":"hour",
-		"mnum":"12",
-		"reg": "((下午)|(晚上))[0-6]*[0-9][时点]"
+		"reg": "[0-9]{1,}(个)*小时"
 	},
 	{
 		"type":"num",
-		"scope": "hour",
-		"reg": "[0-6]*[0-9]小时"
+		"scope":["min"],
+		"reg": "[0-9]{1,}分钟"
 	},
 	{
 		"type":"num",
-		"scope":"hour",
-		"reg":"[1-9](个)*小时"
-	},
-	{
-		"type":"num",
-		"scope": "min",
-		"reg": "[0-6]*[0-9]分钟"
-	},
-	{
-		"type":"date",
-		"scope": "min",
-		"reg": "[0-6]*[0-9]分"
-	},
-	{
-		"type":"date",
-		"scope": "year",
-		"reg": "[0-9]{3,4}年"
-	},
-	{
-		"type":"date",
-		"scope": "sec",
-		"reg": "[0-6]*[0-9]秒"
+		"scope":["sec"],
+		"reg": "[0-9]{1,}秒"
 	}
 ]

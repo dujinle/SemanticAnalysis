@@ -10,7 +10,7 @@ class NetData():
 		self.dfiles = {
 			#时间表达式 xx年 等 结构
 			"TimeNunit":[
-				os.path.join(abspath,'tdata','time_num_unit.txt')
+				os.path.join(abspath,'tdata','time_mnum.txt')
 			],
 			#时间区间表达式 明天 等 结构
 			"TimeRegion":[

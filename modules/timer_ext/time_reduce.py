@@ -44,8 +44,10 @@ class TimeReduce():
 				self.merge_big_time(struct,item,match.group());
 			elif item['type'] == 'up_down_week':
 				self.merge_up_down(struct,item,match.group());
-			elif item['type'] == 'up_down_region':
-				self.merge_up_down_region(struct,item,match.group());
+			elif item['type'] == 'up_down_week_region':
+				self.merge_up_down_week_region(struct,item,match.group());
+			elif item['type'] == 'up_down_num':
+				self.merge_up_down_num(struct,item,match.group());
 
 
 	def merge_time(self,struct):
@@ -76,15 +78,31 @@ class TimeReduce():
 		struct['time_stc'].extend(left_list);
 
 	def merge_item(self,sitem,eitem):
+		lstr = sitem['str'] + eitem['str'];
 		ret = time_common._is_merge_able(sitem,eitem);
-		if ret is None: return None;
-		tdic = dict(sitem);
-		tdic.update(eitem);
-		tdic['str'] = sitem['str'] + eitem['str'];
-		tdic['stime'] = ret[0];
-		tdic['etime'] = ret[1];
-		if sitem.has_key('func') and sitem['func'] == 'add':
-			tdic['func'] = 'add';
+		if ret is None:
+			for item in self.data:
+				comp = re.compile(item['reg']);
+				match = comp.search(lstr);
+				if match is None: continue;
+				if item['type'] <> 'hour_hour': continue;
+				ret = time_common._is_merge_able(sitem,eitem,True);
+				tdic = dict(sitem);
+				tdic.update(eitem);
+				tdic['str'] = sitem['str'] + eitem['str'];
+				tdic['stime'] = ret[0];
+				tdic['etime'] = ret[1];
+				idx = time_common.tmenu[item['scope']];
+				tdic['stime'][idx] = int(tdic['stime'][idx]) + int(item['mnum']);
+				tdic['etime'][idx] = int(tdic['etime'][idx]) + int(item['mnum']);
+		else:
+			tdic = dict(sitem);
+			tdic.update(eitem);
+			tdic['str'] = sitem['str'] + eitem['str'];
+			tdic['stime'] = ret[0];
+			tdic['etime'] = ret[1];
+			if sitem.has_key('func') and sitem['func'] == 'add':
+				tdic['func'] = 'add';
 		return tdic;
 
 	def fill_time(self,struct):
@@ -161,7 +179,7 @@ class TimeReduce():
 				item['stime'][idx] = item['stime'][idx] + len(match.group()) * 7;
 				item['etime'][idx] = item['etime'][idx] + len(match.group()) * 7;
 
-	def merge_up_down_region(self,struct,it,mstr):
+	def merge_up_down_week_region(self,struct,it,mstr):
 		item = dict();
 		item['str'] = mstr;
 
@@ -182,3 +200,25 @@ class TimeReduce():
 			item['etime'][idx] = item['etime'][idx] + len(match.group()) * 7 + (7 - cur_week);
 		item['scope'] = it['scope'];
 		struct['time_stc'].append(item);
+
+	def merge_up_down_num(self,struct,it,mstr):
+
+		cur_time = time.localtime();
+		idx = time_common.tmenu[it['scope']];
+		comp = re.compile(it['sreg']);
+		match = comp.search(mstr);
+		for item in struct['time_stc']:
+			lstr = match.group() + item['str'];
+			if lstr <> mstr: continue;
+			item['str'] = lstr;
+			item['stime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
+			item['etime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
+			if it['dir'] == '-':
+				item['stime'][idx] = item['stime'][idx] - int(item['num']);
+				item['etime'][idx] = item['etime'][idx] - 1;
+			else:
+				item['stime'][idx] = item['stime'][idx] + 1;
+				item['etime'][idx] = item['etime'][idx] + int(item['num']);
+			del item['num'];
+			item['scope'] = it['scope'];
+			item['type'] = 'date';

@@ -76,14 +76,114 @@
 		"reg":"上{1,}((星期)|(周)|(礼拜))",
 		"sreg":"上{1,}",
 		"dir":"-",
-		"type":"up_down_region",
+		"type":"up_down_week_region",
 		"scope":"day"
 	},
 	{
 		"reg":"下{1,}((星期)|(周)|(礼拜))",
 		"sreg":"下{1,}",
 		"dir":"+",
-		"type":"up_down_region",
+		"type":"up_down_week_region",
 		"scope":"day"
+	},
+>>>上下前后和数字时间的表达式 上3天等
+	{
+		"reg":"(上|前)[0-9]{1,}(天|日)",
+		"sreg":"(上|前)",
+		"type":"up_down_num",
+		"dir":"-",
+		"scope":"day"
+	},
+	{
+		"reg":"(下|后)[0-9]{1,}(天|日)",
+		"sreg":"(下|后)",
+		"type":"up_down_num",
+		"dir":"+",
+		"scope":"day"
+	},
+	{
+		"reg":"(上|前)[0-9]{1,}月",
+		"sreg":"(上|前)",
+		"type":"up_down_num",
+		"dir":"-",
+		"scope":"month"
+	},
+	{
+		"reg":"(下|后)[0-9]{1,}月",
+		"sreg":"(下|后)",
+		"type":"up_down_num",
+		"dir":"+",
+		"scope":"month"
+	},
+	{
+		"reg":"(上|前)[0-9]{1,}年",
+		"sreg":"(上|前)",
+		"type":"up_down_num",
+		"dir":"-",
+		"scope":"year"
+	},
+	{
+		"reg":"(下|后)[0-9]{1,}年",
+		"sreg":"(下|后)",
+		"type":"up_down_num",
+		"dir":"+",
+		"scope":"year"
+	},
+	{
+		"reg":"(上|前)[0-9]{1,}小时",
+		"sreg":"(上|前)",
+		"type":"up_down_num",
+		"dir":"-",
+		"scope":"hour"
+	},
+	{
+		"reg":"(下|后)[0-9]{1,}小时",
+		"sreg":"(下|后)",
+		"type":"up_down_num",
+		"dir":"+",
+		"scope":"hour"
+	},
+	{
+		"reg":"(上|前)[0-9]{1,}分钟",
+		"sreg":"(上|前)",
+		"type":"up_down_num",
+		"dir":"-",
+		"scope":"min"
+	},
+	{
+		"reg":"(下|后)[0-9]{1,}分钟",
+		"sreg":"(下|后)",
+		"type":"up_down_num",
+		"dir":"+",
+		"scope":"min"
+	},
+	{
+		"reg":"(上|前)[0-9]{1,}秒",
+		"sreg":"(上|前)",
+		"type":"up_down_num",
+		"dir":"-",
+		"scope":"sec"
+	},
+	{
+		"reg":"(下|后)[0-9]{1,}秒",
+		"sreg":"(下|后)",
+		"type":"up_down_num",
+		"dir":"+",
+		"scope":"sec"
+	},
+<<<
+>>>合并的时间表达式 不会改变 时间
+	{
+		"type":"hour_hour",
+		"scope":"hour",
+		"mnum":"0",
+		"reg": "((中午)|(上午)|(凌晨))[0-9]{1,}[时点]"
+	},
+	{
+		"type":"hour_hour",
+		"scope":"hour",
+		"mnum":"12",
+		"reg": "((下午)|(晚上))[0-9]{1,}[时点]"
 	}
+>>>
 ]
