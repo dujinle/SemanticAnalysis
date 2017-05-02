@@ -7,6 +7,7 @@ from net_data import NetData
 from mark_objs import MarkObjs
 from time_module import TimeModule
 from time_reduce import TimeReduce
+from time_tail import TimeTail
 
 class TimeMager():
 	def __init__(self):
@@ -14,6 +15,7 @@ class TimeMager():
 		self.mobjs = MarkObjs();
 		self.tmodu = TimeModule();
 		self.treduce = TimeReduce();
+		self.tail = TimeTail();
 
 		self.tag_keys = list();
 		self.tag_keys.append('TimeNunit');
@@ -38,5 +40,6 @@ class TimeMager():
 				self.mobjs.encode(struct,key,self.net_data);
 				self.tmodu.encode(struct,key);
 			self.treduce.encode(struct,self.tag_keys);
+			self.tail.encode(struct);
 		except Exception as e:
 			raise MyException(sys.exc_info());

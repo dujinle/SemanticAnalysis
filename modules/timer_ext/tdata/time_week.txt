@@ -43,6 +43,6 @@
 	{
 		"scope":"week",
 		"reg":"周末",
-		"region":[6,8]
+		"region":[5,7]
 	}
 ]

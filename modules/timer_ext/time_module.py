@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import sys,os,time,common
-import time_common,re
+import time_common,re,datetime
 from myexception import MyException
 
 base_path = os.path.dirname(__file__);
@@ -64,26 +64,49 @@ class TimeModule():
 			item['stime'] = time_common._create_null_time();
 			item['etime'] = time_common._create_null_time();
 			idx = time_common.tmenu[item['scope']];
-			if item.has_key('func') and item['func'] == 'add':
-				item['stime'][idx] = int(mdate[0]) + cur_time[idx];
-				item['etime'][idx] = int(mdate[1]) + cur_time[idx];
-			elif item['scope'] == 'week':
+			if item['scope'] == 'week':
 				day_idx = time_common.tmenu['day'];
 				item['stime'][day_idx] = cur_time[day_idx] + int(mdate[0]) - cur_time[idx];
 				item['etime'][day_idx] = cur_time[day_idx] + int(mdate[1]) - cur_time[idx];
 				item['scope'] = 'day';
+				continue;
+			if item.has_key('func') and item['func'] == 'add':
+				item['stime'][idx] = int(mdate[0]) + cur_time[idx];
+				item['etime'][idx] = int(mdate[1]) + cur_time[idx];
 			else:
 				item['stime'][idx] = int(mdate[0]);
 				item['etime'][idx] = int(mdate[1]);
 
 	def time_week_festival(self,struct,key):
+		cur_time = time.localtime();
 		for item in struct[key]:
 			item['stime'] = time_common._create_null_time();
 			item['etime'] = time_common._create_null_time();
-			item['stime'][time_common.tmenu['week']] = int(item['week']) - 1;
-			item['etime'][time_common.tmenu['week']] = int(item['week']);
-			item['stime'][time_common.tmenu['week_idx']] = int(item['week_idx']);
-			item['etime'][time_common.tmenu['week_idx']] = int(item['week_idx']);
+
+			item['stime'][time_common.tmenu['month']] = int(item['month']);
+			item['etime'][time_common.tmenu['month']] = int(item['month']);
+			mdate = datetime.date(cur_time[time_common.tmenu['year']],int(item['month']),1);
+			nmdate = datetime.date(cur_time[time_common.tmenu['year']],int(item['month']) + 1,1);
+			week = mdate.weekday();
+			nweek = nmdate.weekday();
+			left_day = 0;
+			if int(item['week_idx']) > 0:
+				if week < int(item['week']):
+					left_day = int(item['week']) - week;
+				else:
+					left_day = 7 - week + int(item['week']);
+				left_day = (int(item['week_idx']) - 1) * 7 + left_day;
+				item['stime'][time_common.tmenu['day']] = left_day;
+				item['etime'][time_common.tmenu['day']] = left_day + 1;
+			elif int(item['week_idx']) == -1:
+				left_day = int(item['week']) - nweek - 7 + 1;
+				item['stime'][time_common.tmenu['month']] = int(item['month']) + 1;
+				item['etime'][time_common.tmenu['month']] = int(item['month']) + 1;
+				item['stime'][time_common.tmenu['day']] = left_day;
+				item['etime'][time_common.tmenu['day']] = left_day + 1;
+			del item['week'];
+			del item['month'];
+			del item['week_idx'];
 			item['scope'] = 'day';
 
 	def time_decade(self,struct,key):
@@ -131,7 +154,8 @@ class TimeModule():
 			item['etime'] = time_common._create_null_time();
 			solar = solarterm[int(item['order'])];
 
-			item['stime'][time_common.tmenu['month']] = int(item['month']);
-			item['etime'][time_common.tmenu['month']] = int(item['month']);
-			item['stime'][time_common.tmenu['day']] = int(item['day']);
-			item['etime'][time_common.tmenu['day']] = int(item['day']) + 1;
+			item['stime'][time_common.tmenu['month']] = int(solar['month']);
+			item['etime'][time_common.tmenu['month']] = int(solar['month']);
+			item['stime'][time_common.tmenu['day']] = int(solar['day']);
+			item['etime'][time_common.tmenu['day']] = int(solar['day']) + 1;
+			item['scope'] = 'day';

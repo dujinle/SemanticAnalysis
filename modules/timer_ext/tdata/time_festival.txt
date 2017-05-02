@@ -85,7 +85,7 @@
 		"year_type":"solar"
 	},
 	{
-		"date":"4/5",
+		"date":"4/4",
 		"reg":"清明节",
 		"year_type":"solar"
 	},

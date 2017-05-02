@@ -82,6 +82,7 @@ class TimeReduce():
 
 	def merge_item(self,sitem,eitem):
 		lstr = sitem['str'] + eitem['str'];
+
 		ret = time_common._is_merge_able(sitem,eitem);
 		if ret is None:
 			for item in self.data:
@@ -104,6 +105,7 @@ class TimeReduce():
 			tdic['str'] = sitem['str'] + eitem['str'];
 			tdic['stime'] = ret[0];
 			tdic['etime'] = ret[1];
+			tdic['scope'] = sitem['scope'];
 			if sitem.has_key('func') and sitem['func'] == 'add':
 				tdic['func'] = 'add';
 		return tdic;
@@ -116,8 +118,8 @@ class TimeReduce():
 			if item.has_key('region'): del item['region'];
 			idx = time_common.tmenu[item['scope']];
 			if idx - 1 < 0: continue;
-			item['stime'] = time_common._list_copy(item['stime'],cur_time,idx - 1);
-			item['etime'] = time_common._list_copy(item['etime'],cur_time,idx - 1);
+			item['stime'] = time_common._list_empty_copy(item['stime'],cur_time,idx);
+			item['etime'] = time_common._list_empty_copy(item['etime'],cur_time,idx);
 
 	def merge_big_time(self,struct,it,mstr):
 		cur_time = time.localtime();

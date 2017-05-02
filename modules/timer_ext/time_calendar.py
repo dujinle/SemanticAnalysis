@@ -3,8 +3,6 @@
 
 import os, io, sys, re, time, datetime
 import time_common
-reload(sys);
-sys.setdefaultencoding('utf-8');
 
 class LunarDate(object):
 	_startDate = datetime.date(1900, 1, 31)
@@ -146,50 +144,6 @@ class Info():
 		yearDays = [Info.yearInfo2yearDay(x) for x in Info.yearInfos]
 		return yearDays
 
-class SolarTerm():
-	#2016年内数据#
-	solars = [
-		u'0106#小寒#',
-		u'0120#大寒#',
-		u'0204#立春#',
-		u'0219#雨水#',
-		u'0305#惊蛰#',
-		u'0320#春分#',
-		u'0404#清明#',
-		u'0419#谷雨#',
-		u'0505#立夏#',
-		u'0520#小满#',
-		u'0605#芒种#',
-		u'0621#夏至#',
-		u'0707#小暑#',
-		u'0722#大暑#',
-		u'0807#立秋#',
-		u'0823#处暑#',
-		u'0907#白露#',
-		u'0922#秋分#',
-		u'1008#寒露#',
-		u'1023#霜降#',
-		u'1107#立冬#',
-		u'1122#小雪#',
-		u'1207#大雪#',
-		u'1221#冬至#',
-	];
-
-	@staticmethod
-	def GetSolarTerm(year,solar_idx):
-		if year <> 2016:
-			raise ValueError('year out of range[2016]');
-		(month,day) = SolarTerm.CalcDate(solar_idx);
-		return (year,month,day);
-
-	@staticmethod
-	def CalcDate(year_idx):
-		start_info = SolarTerm.solars[year_idx];
-		m_d_s = start_info.split('#');
-		month = int(m_d_s[0][:2]);
-		day = int(m_d_s[0][2:]);
-		return (month,day);
-
 def ToSolarDate(year,month,day,isLeapMonth=False):
 	solar = LunarDate.toSolarDate(year,month,day,isLeapMonth);
 	return solar.year,solar.month,solar.day;
@@ -230,42 +184,3 @@ def GetSolarFullWeek(year,month,idx,week):
 		cur_day = cur_day + 1;
 	cur_week = week_day[idx - 1];
 	return (year,month,cur_week + week - 1);
-
-def GetSolarTerm(year,solar_idx):
-	return SolarTerm.GetSolarTerm(year,solar_idx);
-
-def GetTimeStamp(t_time):
-	try:
-		tupletime = list(t_time);
-		if tupletime[0] == 'null': return 0;
-		if tupletime[1] == 'null': tupletime[1] = 0;
-		if tupletime[2] == 'null': tupletime[2] = 0;
-		if tupletime[3] == 'null': tupletime[3] = 0;
-		if tupletime[4] == 'null': tupletime[4] = 0;
-		if tupletime[5] == 'null': tupletime[5] = 0;
-		if tupletime[6] == 'null': tupletime[6] = 0;
-		if tupletime[7] == 'null': tupletime[7] = 0;
-		if tupletime[8] == 'null': tupletime[8] = 0;
-		while len(tupletime) < 9:
-			tupletime.append(0);
-		return time.mktime(tupletime);
-	except Exception as e:
-		print format(e);
-		return 0;
-
-def GetTimeFromStamp(stamp):
-	time_tuple = time.localtime(stamp);
-	return time_tuple;
-
-'''
-if __name__ == '__main__':
-	tlist = [2016,10,16,'null','null','null'];
-	stamp = GetTimeStamp(tlist);
-	print stamp;
-	print GetTimeFromStamp(stamp);
-	#print TolunarDate(2016,3,20);
-	#print GetSolarWeek(2016,7,2,3);
-	#print GetSolarFullWeek(2016,7,0,1);
-	#print GetSolarTerm(2016,1);
-
-'''

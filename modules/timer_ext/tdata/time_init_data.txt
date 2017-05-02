@@ -1,5 +1,5 @@
 {
-	"SloarTerm":[
+	"SolarTerm":[
 		{
 			"name":"小寒",
 			"month":"1",
