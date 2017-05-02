@@ -1,5 +1,6 @@
 #处理特殊的时间表达式
 [
+>>>大前天 等时间表达式
 	{
 		"reg":"大{1,}前(天|日)",
 		"sreg":"大{1,}",
@@ -28,7 +29,7 @@
 		"type":"big",
 		"scope":"year"
 	},
-#星期相关表达式
+>>>星期相关表达式
 	{
 		"reg":"上{1,}((星期)|(周)|(礼拜))[1-6]",
 		"sreg":"上{1,}",
@@ -39,7 +40,7 @@
 	{
 		"reg":"下{1,}((星期)|(周)|(礼拜))[1-6]",
 		"sreg":"下{1,}",
-		"dir":"-",
+		"dir":"+",
 		"type":"up_down_week",
 		"scope":"day"
 	},
@@ -53,7 +54,7 @@
 	{
 		"reg":"下{1,}((星期)|(周)|(礼拜))(天|日)",
 		"sreg":"下{1,}",
-		"dir":"-",
+		"dir":"+",
 		"type":"up_down_week",
 		"scope":"day"
 	},
@@ -67,11 +68,11 @@
 	{
 		"reg":"下{1,}周末",
 		"sreg":"下{1,}",
-		"dir":"-",
+		"dir":"+",
 		"type":"up_down_week",
 		"scope":"day"
 	},
-#星期区间相关表达式
+>>>星期区间相关表达式
 	{
 		"reg":"上{1,}((星期)|(周)|(礼拜))",
 		"sreg":"上{1,}",
@@ -171,7 +172,6 @@
 		"dir":"+",
 		"scope":"sec"
 	},
-<<<
 >>>合并的时间表达式 不会改变 时间
 	{
 		"type":"hour_hour",
@@ -184,6 +184,90 @@
 		"scope":"hour",
 		"mnum":"12",
 		"reg": "((下午)|(晚上))[0-9]{1,}[时点]"
+	},
+>>>匹配 3天(前|后) 等 时间表达式
+	{
+		"reg":"[0-9]{1,}秒前",
+		"sreg":"前",
+		"type":"prev_after_num",
+		"dir":"-",
+		"scope":"sec"
+	},
+	{
+		"reg":"[0-9]{1,}[日天]前",
+		"sreg":"前",
+		"type":"prev_after_num",
+		"dir":"-",
+		"scope":"day"
+	},
+	{
+		"reg":"[0-9]{1,}年前",
+		"sreg":"前",
+		"type":"prev_after_num",
+		"dir":"-",
+		"scope":"year"
+	},
+	{
+		"reg":"[0-9]{1,}(个)*月前",
+		"sreg":"前",
+		"type":"prev_after_num",
+		"dir":"-",
+		"scope":"month"
+	},
+	{
+		"reg":"[0-9]{1,}(个)*小时前",
+		"sreg":"前",
+		"type":"prev_after_num",
+		"dir":"-",
+		"scope":"hour"
+	},
+	{
+		"reg":"[0-9]{1,}分钟前",
+		"sreg":"前",
+		"type":"prev_after_num",
+		"dir":"-",
+		"scope":"min"
+	},
+	{
+		"reg":"[0-9]{1,}秒后",
+		"sreg":"后",
+		"type":"prev_after_num",
+		"dir":"+",
+		"scope":"sec"
+	},
+	{
+		"reg":"[0-9]{1,}[日天]后",
+		"sreg":"后",
+		"type":"prev_after_num",
+		"dir":"+",
+		"scope":"day"
+	},
+	{
+		"reg":"[0-9]{1,}年后",
+		"sreg":"后",
+		"type":"prev_after_num",
+		"dir":"+",
+		"scope":"year"
+	},
+	{
+		"reg":"[0-9]{1,}(个)*月后",
+		"sreg":"后",
+		"type":"prev_after_num",
+		"dir":"+",
+		"scope":"month"
+	},
+	{
+		"reg":"[0-9]{1,}(个)*小时后",
+		"sreg":"后",
+		"type":"prev_after_num",
+		"dir":"+",
+		"scope":"hour"
+	},
+	{
+		"reg":"[0-9]{1,}分钟后",
+		"sreg":"后",
+		"type":"prev_after_num",
+		"dir":"+",
+		"scope":"min"
 	}
->>>
 ]

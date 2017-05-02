@@ -55,6 +55,7 @@ class TimeModule():
 
 			item['stime'][time_common.tmenu['day']] = int(day);
 			item['etime'][time_common.tmenu['day']] = int(day) + 1;
+			item['scope'] = 'day';
 
 	def time_region(self,struct,key):
 		cur_time = time.localtime();
@@ -70,6 +71,7 @@ class TimeModule():
 				day_idx = time_common.tmenu['day'];
 				item['stime'][day_idx] = cur_time[day_idx] + int(mdate[0]) - cur_time[idx];
 				item['etime'][day_idx] = cur_time[day_idx] + int(mdate[1]) - cur_time[idx];
+				item['scope'] = 'day';
 			else:
 				item['stime'][idx] = int(mdate[0]);
 				item['etime'][idx] = int(mdate[1]);
@@ -82,6 +84,7 @@ class TimeModule():
 			item['etime'][time_common.tmenu['week']] = int(item['week']);
 			item['stime'][time_common.tmenu['week_idx']] = int(item['week_idx']);
 			item['etime'][time_common.tmenu['week_idx']] = int(item['week_idx']);
+			item['scope'] = 'day';
 
 	def time_decade(self,struct,key):
 		for item in struct[key]:
@@ -98,6 +101,7 @@ class TimeModule():
 			elif item['scope'] == 'year':
 				item['stime'][time_common.tmenu['year']] = int(year_num)
 				item['etime'][time_common.tmenu['year']] = int(year_num) + 10;
+			item['scope'] = 'year';
 
 	def time_nunit(self,struct,key):
 		for item in struct[key]:

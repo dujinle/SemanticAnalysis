@@ -40,14 +40,17 @@ class TimeReduce():
 			comp = re.compile(item['reg']);
 			match = comp.search(struct['text']);
 			if match is None: continue;
+#			common.print_dic(item);
 			if item['type'] == 'big':
 				self.merge_big_time(struct,item,match.group());
 			elif item['type'] == 'up_down_week':
-				self.merge_up_down(struct,item,match.group());
+				self.merge_up_down_week(struct,item,match.group());
 			elif item['type'] == 'up_down_week_region':
 				self.merge_up_down_week_region(struct,item,match.group());
 			elif item['type'] == 'up_down_num':
 				self.merge_up_down_num(struct,item,match.group());
+			elif item['type'] == 'prev_after_num':
+				self.merge_prev_after_num(struct,item,match.group());
 
 
 	def merge_time(self,struct):
@@ -111,39 +114,10 @@ class TimeReduce():
 			if item.has_key('type') and item['type'] == 'num': continue;
 			if item.has_key('reg'): del item['reg'];
 			if item.has_key('region'): del item['region'];
-			st = item['stime'];
-			et = item['etime'];
-			#fill year
-			idx = time_common.tmenu['year'];
-			if st[idx] == 'null': st[idx] = cur_time[idx];
-			if et[idx] == 'null': et[idx] = cur_time[idx];
-			if item.has_key('scope') and item['scope'] == 'year': continue;
-			#fill month
-			idx = time_common.tmenu['month'];
-			if st[idx] == 'null': st[idx] = cur_time[idx];
-			if et[idx] == 'null': et[idx] = cur_time[idx];
-			if item.has_key('scope') and item['scope'] == 'month': continue;
-			#fill day
-			idx = time_common.tmenu['day'];
-			if st[idx] == 'null': st[idx] = cur_time[idx];
-			if et[idx] == 'null': et[idx] = cur_time[idx];
-			if item.has_key('scope') and item['scope'] == 'day': continue;
-			if item.has_key('scope') and item['scope'] == 'week': continue;
-			#fill hour
-			idx = time_common.tmenu['hour'];
-			if st[idx] == 'null': st[idx] = cur_time[idx];
-			if et[idx] == 'null': et[idx] = cur_time[idx];
-			if item.has_key('scope') and item['scope'] == 'hour': continue;
-			#fill min
-			idx = time_common.tmenu['min'];
-			if st[idx] == 'null': st[idx] = cur_time[idx];
-			if et[idx] == 'null': et[idx] = cur_time[idx];
-			if item.has_key('scope') and item['scope'] == 'min': continue;
-			#fill sec
-			idx = time_common.tmenu['sec'];
-			if st[idx] == 'null': st[idx] = cur_time[idx];
-			if et[idx] == 'null': et[idx] = cur_time[idx];
-			if item.has_key('scope') and item['scope'] == 'sec': continue;
+			idx = time_common.tmenu[item['scope']];
+			if idx - 1 < 0: continue;
+			item['stime'] = time_common._list_copy(item['stime'],cur_time,idx - 1);
+			item['etime'] = time_common._list_copy(item['etime'],cur_time,idx - 1);
 
 	def merge_big_time(self,struct,it,mstr):
 		cur_time = time.localtime();
@@ -152,6 +126,7 @@ class TimeReduce():
 		for item in struct['time_stc']:
 			lstr = match.group() + item['str'];
 			if lstr <> mstr: continue;
+#			common.print_dic(item);
 			item['str'] = mstr;
 			if it['dir'] == '-':
 				idx = time_common.tmenu[it['scope']];
@@ -161,14 +136,18 @@ class TimeReduce():
 				idx = time_common.tmenu[it['scope']];
 				item['stime'][idx] = item['stime'][idx] + len(match.group());
 				item['etime'][idx] = item['etime'][idx] + len(match.group());
+			item['scope'] = it['scope'];
+			item['type'] = 'date';
 
-	def merge_up_down(self,struct,it,mstr):
+	def merge_up_down_week(self,struct,it,mstr):
 		cur_time = time.localtime();
 		comp = re.compile(it['sreg']);
 		match = comp.search(mstr);
+		cur_week = cur_time[time_common.tmenu['week']];
 		for item in struct['time_stc']:
 			lstr = match.group() + item['str'];
 			if lstr <> mstr: continue;
+#			common.print_dic(item);
 			item['str'] = mstr;
 			if it['dir'] == '-':
 				idx = time_common.tmenu[it['scope']];
@@ -178,6 +157,8 @@ class TimeReduce():
 				idx = time_common.tmenu[it['scope']];
 				item['stime'][idx] = item['stime'][idx] + len(match.group()) * 7;
 				item['etime'][idx] = item['etime'][idx] + len(match.group()) * 7;
+			item['scope'] = it['scope'];
+			item['type'] = 'date';
 
 	def merge_up_down_week_region(self,struct,it,mstr):
 		item = dict();
@@ -187,7 +168,7 @@ class TimeReduce():
 		idx = time_common.tmenu[it['scope']];
 		item['stime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
 		item['etime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
-		cur_week = cur_time[time_common.tmenu['week_idx']];
+		cur_week = cur_time[time_common.tmenu['week']];
 		comp = re.compile(it['sreg']);
 		match = comp.search(mstr);
 		if it['dir'] == '-':
@@ -199,10 +180,10 @@ class TimeReduce():
 			item['stime'][idx] = item['stime'][idx] + (len(match.group()) - 1) * 7 + (7 - cur_week);
 			item['etime'][idx] = item['etime'][idx] + len(match.group()) * 7 + (7 - cur_week);
 		item['scope'] = it['scope'];
+		item['type'] = 'date';
 		struct['time_stc'].append(item);
 
 	def merge_up_down_num(self,struct,it,mstr):
-
 		cur_time = time.localtime();
 		idx = time_common.tmenu[it['scope']];
 		comp = re.compile(it['sreg']);
@@ -218,7 +199,29 @@ class TimeReduce():
 				item['etime'][idx] = item['etime'][idx] - 1;
 			else:
 				item['stime'][idx] = item['stime'][idx] + 1;
-				item['etime'][idx] = item['etime'][idx] + int(item['num']);
+				item['etime'][idx] = item['etime'][idx] + int(item['num']) + 1;
+			del item['num'];
+			item['scope'] = it['scope'];
+			item['type'] = 'date';
+
+	def merge_prev_after_num(self,struct,it,mstr):
+		cur_time = time.localtime();
+		idx = time_common.tmenu[it['scope']];
+		comp = re.compile(it['sreg']);
+		match = comp.search(mstr);
+		is_enable_id = time_common.tmenu['enable'];
+		for item in struct['time_stc']:
+			lstr = item['str'] + match.group();
+			if lstr <> mstr: continue;
+			item['str'] = lstr;
+			item['stime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
+			item['etime'] = time_common._list_copy(time_common._create_null_time(),cur_time,idx);
+			if it['dir'] == '-':
+				item['stime'][idx] = item['stime'][idx] - int(item['num']);
+				item['etime'][is_enable_id] = -1;
+			else:
+				item['stime'][idx] = item['stime'][idx] + int(item['num']) + 1;
+				item['etime'][is_enable_id] = -1;
 			del item['num'];
 			item['scope'] = it['scope'];
 			item['type'] = 'date';
