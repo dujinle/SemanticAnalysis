@@ -32,7 +32,12 @@
 	{
 		"type":"date",
 		"scope":["hour"],
-		"reg": "[0-9]{1,}点"
+		"reg": "[0-9]{1,}[点时]"
+	},
+	{
+		"type":"date",
+		"scope":["month"],
+		"reg": "[0-9]{1,}月"
 	},
 	{
 		"type":"num",
@@ -47,7 +52,7 @@
 	{
 		"type":"num",
 		"scope":["month"],
-		"reg": "[0-9]{1,}(个)*月"
+		"reg": "[0-9]{1,}个月"
 	},
 	{
 		"type":"num",

@@ -439,7 +439,7 @@
 	},
 	{
 		"scope":"min",
-		"region":[45,45],
+		"region":[30,45],
 		"reg":"3刻钟*",
 		"func":"equal"
 	},
