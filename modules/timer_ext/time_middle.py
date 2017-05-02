@@ -6,12 +6,12 @@ from myexception import MyException
 
 base_path = os.path.dirname(__file__);
 
-class TimeReduce():
+class TimeMiddle():
 
 	def __init__(self):
 		self.data = None;
 		self.dfiles = [
-			os.path.join(base_path,'tdata','time_reduce.txt')
+			os.path.join(base_path,'tdata','time_middle.txt')
 		];
 
 	def load_data(self):
@@ -25,19 +25,20 @@ class TimeReduce():
 	def encode(self,struct,keys):
 		try:
 			if not struct.has_key('time_stc'): struct['time_stc'] = list();
-
-			self.merge_time(struct);
-			self.fill_time(struct);
-#			self.match_item(struct);
+			for key in keys:
+				struct['time_stc'].extend(struct[key]);
+				del struct[key];
+#进行一次去重 去除 多余的结构会对下一步造成影响
+			self.remove_time_item(struct);
+			self.match_item(struct,key);
 		except Exception:
 			raise MyException(sys.exc_info());
 
-	def match_item(self,struct):
+	def match_item(self,struct,key):
 		for item in self.data:
 			comp = re.compile(item['reg']);
 			match = comp.search(struct['text']);
 			if match is None: continue;
-#			common.print_dic(item);
 			if item['type'] == 'big':
 				self.merge_big_time(struct,item,match.group());
 			elif item['type'] == 'up_down_week':
@@ -48,77 +49,6 @@ class TimeReduce():
 				self.merge_up_down_num(struct,item,match.group());
 			elif item['type'] == 'prev_after_num':
 				self.merge_prev_after_num(struct,item,match.group());
-
-
-	def merge_time(self,struct):
-		left_list = list();
-		while True:
-			if len(struct['time_stc']) <= 0: break;
-			one_time = False;
-			item = struct['time_stc'].pop();
-			for it in struct['time_stc']:
-				rstr = item['str'] + it['str'];
-				lstr = it['str'] + item['str'];
-				if struct['text'].find(rstr) <> -1:
-					ret = self.merge_item(item,it);
-					if not ret is None:
-						struct['time_stc'].append(ret);
-						struct['time_stc'].remove(it);
-						one_time = True;
-						break;
-				elif struct['text'].find(lstr) <> -1:
-					ret = self.merge_item(it,item);
-					if not ret is None:
-						struct['time_stc'].append(ret);
-						struct['time_stc'].remove(it);
-						one_time = True;
-						break;
-			if one_time == False:
-				left_list.append(item);
-		struct['time_stc'].extend(left_list);
-
-	def merge_item(self,sitem,eitem):
-		lstr = sitem['str'] + eitem['str'];
-
-		ret = time_common._is_merge_able(sitem,eitem);
-		if ret is None:
-			for item in self.data:
-				comp = re.compile(item['reg']);
-				match = comp.search(lstr);
-				if match is None: continue;
-				if item['type'] <> 'hour_hour': continue;
-				ret = time_common._is_merge_able(sitem,eitem,True);
-				tdic = dict(sitem);
-				tdic.update(eitem);
-				tdic['str'] = sitem['str'] + eitem['str'];
-				tdic['stime'] = ret[0];
-				tdic['etime'] = ret[1];
-				idx = time_common.tmenu[item['scope']];
-				tdic['stime'][idx] = int(tdic['stime'][idx]) + int(item['mnum']);
-				tdic['etime'][idx] = int(tdic['etime'][idx]) + int(item['mnum']);
-				return tdic;
-		else:
-			tdic = dict(sitem);
-			tdic.update(eitem);
-			tdic['str'] = sitem['str'] + eitem['str'];
-			tdic['stime'] = ret[0];
-			tdic['etime'] = ret[1];
-#			tdic['scope'] = sitem['scope'];
-			if sitem.has_key('func') and sitem['func'] == 'add':
-				tdic['func'] = 'add';
-			return tdic;
-		return None;
-
-	def fill_time(self,struct):
-		cur_time = time.localtime();
-		for item in struct['time_stc']:
-			if item.has_key('type') and item['type'] == 'num': continue;
-			if item.has_key('reg'): del item['reg'];
-			if item.has_key('region'): del item['region'];
-			idx = time_common.tmenu[item['scope']];
-			if idx - 1 < 0: continue;
-			item['stime'] = time_common._list_empty_copy(item['stime'],cur_time,idx);
-			item['etime'] = time_common._list_empty_copy(item['etime'],cur_time,idx);
 
 	def merge_big_time(self,struct,it,mstr):
 		cur_time = time.localtime();
@@ -226,3 +156,26 @@ class TimeReduce():
 			del item['num'];
 			item['scope'] = it['scope'];
 			item['type'] = 'date';
+
+	#移除无效的时间对象 通过最长匹配原则
+	def remove_time_item(self,struct):
+		left_list = list();
+		slen = len(struct['text']);
+		sid = flg = 0;eid = slen;
+		while True:
+			if sid > slen: break;
+			istr = struct['text'][sid:eid];
+			flg = 0;
+			for item in struct['time_stc']:
+				if item['str'] == istr:
+					sid = eid;
+					eid = slen;
+					flg = 1;
+					left_list.append(item);
+					break;
+			if flg == 0:
+				eid = eid - 1;
+			if eid == 0:
+				eid = slen;
+				sid = sid + 1;
+		struct['time_stc'] = left_list;

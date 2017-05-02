@@ -159,3 +159,25 @@ class TimeModule():
 			item['stime'][time_common.tmenu['day']] = int(solar['day']);
 			item['etime'][time_common.tmenu['day']] = int(solar['day']) + 1;
 			item['scope'] = 'day';
+	#移除无效的时间对象 通过最长匹配原则
+	def remove_time_item(self,struct):
+		left_list = list();
+		slen = len(struct['text']);
+		sid = flg = 0;eid = slen;
+		while True:
+			if sid > slen: break;
+			istr = struct['text'][sid:eid];
+			flg = 0;
+			for item in struct['time_stc']:
+				if item['str'] == istr:
+					sid = eid;
+					eid = slen;
+					flg = 1;
+					left_list.append(item);
+					break;
+			if flg == 0:
+				eid = eid - 1;
+			if eid == 0:
+				eid = slen;
+				sid = sid + 1;
+		struct['time_stc'] = left_list;
