@@ -120,3 +120,4 @@ class TimeTail():
 				item['str'] = item['str'].replace(ditem['rstr'],ditem['ostr'],1);
 				struct['text'] = struct['text'].replace(ditem['rstr'],ditem['ostr'],1);
 				struct['otext'] = struct['otext'].replace(ditem['rstr'],ditem['ostr'],1);
+				struct['rep_stc'].remove(ditem);
