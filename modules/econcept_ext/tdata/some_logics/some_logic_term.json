@@ -29,6 +29,12 @@
 				"type":"LM",
 				"stype":"CANNOT"
 			}
+		},
+		"必须":{
+			"_prop":{
+				"type":"LM",
+				"stype":"MUST"
+			}
 		}
 	},
 	"动作":{

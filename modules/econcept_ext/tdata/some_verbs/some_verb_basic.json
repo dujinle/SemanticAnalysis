@@ -8,6 +8,18 @@
 							"type":"RV",
 							"stype":"DISCUSS"
 						}
+					},
+					"洽谈":{
+						"_prop":{
+							"type":"RV",
+							"stype":"DISCUSS"
+						}
+					}
+				},
+				"视察":{
+					"_prop":{
+						"type":"RV",
+						"stype":"INSPECT"
 					}
 				},
 				"接待":{
@@ -114,6 +126,12 @@
 						"stype":"CLOSED"
 					}
 				},
+				"上班":{
+					"_prop":{
+						"type":"RV",
+						"stype":"BE_DUTY"
+					}
+				},
 				"开会":{
 					"_prop":{
 						"type":"RV",
@@ -126,6 +144,12 @@
 					"_prop":{
 						"type":"RV",
 						"stype":"REMIND"
+					}
+				},
+				"验收":{
+					"_prop":{
+						"type":"RV",
+						"stype":"CHECK_ACCEPT"
 					}
 				}
 			}
@@ -205,6 +229,18 @@
 						"_prop":{
 							"type":"RV",
 							"stype":"FISHING"
+						}
+					},
+					"跑步":{
+						"_prop":{
+							"type":"RV",
+							"stype":"RUNNING"
+						}
+					},
+					"聚餐":{
+						"_prop":{
+							"type":"RV",
+							"stype":"DINNER_PARTY"
 						}
 					}
 				}
@@ -438,6 +474,12 @@
 					"_prop":{
 						"type":"RV",
 						"stype":"SEND"
+					}
+				},
+				"做":{
+					"_prop":{
+						"type":"RV",
+						"stype":"DO"
 					}
 				},
 				"闹":{

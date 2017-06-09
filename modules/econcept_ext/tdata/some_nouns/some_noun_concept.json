@@ -46,6 +46,30 @@
 							"type":"N",
 							"stype":"MEETING"
 						}
+					},
+					"项目":{
+						"_prop":{
+							"type":"N",
+							"stype":"PROJECT"
+						}
+					},
+					"打印部":{
+						"_prop":{
+							"type":"N",
+							"stype":"PRINTER"
+						}
+					},
+					"文件":{
+						"_prop":{
+							"type":"N",
+							"stype":"FILE"
+						}
+					}
+				},
+				"幼儿园":{
+					"_prop":{
+						"type":"N",
+						"stype":"KINDERGARTEN"
 					}
 				}
 			}
@@ -140,6 +164,12 @@
 								"stype":"FLIGHT"
 							}
 						}
+					}
+				},
+				"机场":{
+					"_prop":{
+						"type":"N",
+						"stype":"AIRPORT"
 					}
 				}
 			},
@@ -268,6 +298,12 @@
 					"type":"N",
 					"stype":"BREAKFAST"
 				}
+			},
+			"早饭":{
+				"_prop":{
+					"type":"N",
+					"stype":"BREAKFAST"
+				}
 			}
 		},
 		"饮品":{
@@ -326,6 +362,12 @@
 					"_prop":{
 						"type":"N",
 						"stype":"NAME"
+					}
+				},
+				"成果":{
+					"_prop":{
+						"type":"N",
+						"stype":"RESULT"
 					}
 				}
 			}

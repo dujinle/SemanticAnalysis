@@ -44,6 +44,12 @@
 							"type":"NB",
 							"stype":"WIFE"
 						}
+					},
+					"媳妇":{
+						"_prop":{
+							"type":"NB",
+							"stype":"WIFE"
+						}
 					}
 				}
 			},
@@ -68,6 +74,28 @@
 							"type":"NB",
 							"stype":"BABY"
 						}
+					},
+					"孩子":{
+						"_prop":{
+							"type":"NB",
+							"stype":"CHILD"
+						}
+					}
+				}
+			},
+			"身份":{
+				"护照":{
+					"_prop":{
+						"type":"NB",
+						"stype":"PASSPORT"
+					}
+				}
+			},
+			"部位":{
+				"头发":{
+					"_prop":{
+						"type":"NB",
+						"stype":"HAIR"
 					}
 				}
 			}

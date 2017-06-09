@@ -17,6 +17,12 @@
 			"stype":"GO"
 		}
 	},
+	"要":{
+		"_prop":{
+			"type":"LV",
+			"stype":"WANT"
+		}
+	},
 	"来":{
 		"_prop":{
 			"type":"LV",
