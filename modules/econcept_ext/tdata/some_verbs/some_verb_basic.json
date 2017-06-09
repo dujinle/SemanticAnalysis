@@ -339,6 +339,12 @@
 							"stype":"DIAL"
 						}
 					},
+					"取":{
+						"_prop":{
+							"type":"RV",
+							"stype":"GET"
+						}
+					},
 					"提":{
 						"_prop":{
 							"type":"RV",

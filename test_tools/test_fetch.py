@@ -29,7 +29,14 @@ if __name__ == '__main__':
 			line = line.strip('\n');
 			larr = line.split('\t');
 			struct = mg.encode(larr[0],None);
-			common.print_dic(struct);
+			fetch_type = list();
+			for st in struct['stseg']:
+				if struct['stc'].has_key(st):
+					item = struct['stc'][st];
+					fetch_type.append(item['type']);
+				else:
+					fetch_type.append(st);
+			sys.stderr.write(' '.join(struct['stseg']) + '\t' + ' '.join(fetch_type) + '\n');
 		fp.close();
 	except Exception as e:
 		raise MyException(sys.exc_info());

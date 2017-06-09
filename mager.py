@@ -64,6 +64,7 @@ class Mager:
 		if struct.has_key('stc_same'): del struct['stc_same'];
 		if struct.has_key('stc'): del struct['stc'];
 		if struct.has_key('result'): del struct['result'];
+		if struct.has_key('rep_stc'): del struct['rep_stc'];
 
 	def encode(self,text,mdl = None,step = None):
 		self._clear_struct(self.struct);
