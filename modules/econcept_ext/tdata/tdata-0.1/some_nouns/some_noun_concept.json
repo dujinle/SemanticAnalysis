@@ -83,12 +83,6 @@
 								"type":"N",
 								"stype":"PHONE"
 							}
-						},
-						"空调":{
-							"_prop":{
-								"type":"N",
-								"stype":"TCL"
-							}
 						}
 					}
 				}
@@ -360,76 +354,8 @@
 					"_prop":{
 						"type":"N",
 						"stype":"MATTER"
-					}
-				},
-				"音调":{
-					"_prop":{
-						"type":"N",
-						"stype":"TONE"
-					}
-				},
-				"声音":{
-					"_prop":{
-						"type":"N",
-						"stype":"VOICE"
-					}
-				},
-				"声":{
-					"_prop":{
-						"type":"N",
-						"stype":"VOICE"
-					}
+					}					
 				}
-			}
-		}
-	},
-	"自然气象":{
-		"冷气":{
-			"_prop":{
-				"type":"N",
-				"stype":"COOL_AIR"
-			}
-		},
-		"冷风":{
-			"_prop":{
-				"type":"N",
-				"stype":"COOL_AIR"
-			}
-		},
-		"暖风":{
-			"_prop":{
-				"type":"N",
-				"stype":"COOL_AIR"
-			}
-		},
-		"热风":{
-			"_prop":{
-				"type":"N",
-				"stype":"HOT_AIR"
-			}
-		}, 
-		"热气":{
-			"_prop":{
-				"type":"N",
-				"stype":"HOT_GAS"
-			}
-		},
-		"暖气":{
-			"_prop":{
-				"type":"N",
-				"stype":"HOT_GAS"
-			}
-		},
-		"风":{
-			"_prop":{
-				"type":"N",
-				"stype":"WIND"
-			}
-		},
-		"温度":{
-			"_prop":{
-				"type":"N",
-				"stype":"TEMPERATURE"
 			}
 		}
 	}
