@@ -1,11 +1,18 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 from mongodb import BaseConnect
+from commons import common
 
 class Connect(BaseConnect):
 
-	def __init__(self,*args):
-		super(Connect,self).__init__(*args);
+	__instance = None;
+	def __new__(cls,*args,**kw):
+		if Connect.__instance is None:
+			Connect.__instance = object.__new__(cls,*args,**kw);
+			return Connect.__instance;
+
+	def __init__(self,*args,**kw):
+		super(Connect,self).__init__(*args,**kw);
 
 	def connect(self,username = None,password = None,host = None,database = None):
 		super(Connect,self).connect(username = username,password = password,host = host,database = database);

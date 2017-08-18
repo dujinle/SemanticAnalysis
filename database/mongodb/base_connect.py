@@ -5,7 +5,7 @@ from pymongo import MongoClient
 
 class BaseConnect(object):
 
-	def __init__(self):
+	def __init__(self,*args,**kw):
 		self.conn = None;
 		self.db = None;
 		self.table = None;
@@ -13,10 +13,13 @@ class BaseConnect(object):
 
 	def connect(self,username = None,password = None,host = None,database = None):
 		try:
-			self.conn = MongoClient(host,port = 27017);
-			self.db_auth = self.conn.get_database("admin");
-			self.db_auth.authenticate(username,password);
-			return self.creat_db(database);
+			if self.db is None:
+				self.conn = MongoClient(host,port = 27017);
+				self.db_auth = self.conn.get_database("admin");
+				self.db_auth.authenticate(username,password);
+				return self.creat_db(database);
+			else:
+				return self.db;
 		except Exception as e:
 			raise e;
 
@@ -37,6 +40,13 @@ class BaseConnect(object):
 		try:
 			self.table = self.db.get_collection(table_name);
 			return self.table;
+		except Exception as e:
+			raise e;
+
+	def get_tables(self):
+		try:
+			tables = self.db.collection_names();
+			return tables;
 		except Exception as e:
 			raise e;
 
