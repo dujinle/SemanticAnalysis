@@ -3,19 +3,25 @@
 import os,sys,json
 from collections import OrderedDict
 from myexception import MyException
+from logger import *
+
+from database import Connect
 
 #global params
 PASS = 1;
 ENABLE = 8;
-debug = True;
-#============================================
-''' import MyException module '''
-base_path = os.path.dirname(__file__);
-sys.path.append(base_path);
+debug = False;
+SQLOBJ = None;
 
-#============================================
-from myexception import MyException
-from logger import *
+def get_sql_conn():
+
+	global SQLOBJ;
+	if SQLOBJ is None:
+		print('creat sql obj to connet......');
+		SQLOBJ = Connect();
+		SQLOBJ.connect('root','root','192.168.102.82','ChinaNet');
+	return SQLOBJ
+
 
 def read_json(dfile):
 	fid = open(dfile,'r');
