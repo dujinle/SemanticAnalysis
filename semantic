@@ -30,7 +30,7 @@ if [[ $# < 1 ]];then
 	echo "Usage: $0 [start|stop] -port [8082]"
 	exit -1
 fi
-port="8082";
+port="8089";
 func="";
 while true;do
 	if [[ $# == 0 ]];then break; fi
