@@ -34,7 +34,6 @@ class ConMager():
 			for obj in self.tag_objs:
 				self.mark_objs.encode(struct,obj,'inlist');
 			self.combine_objs.encode(struct);
-			common.print_dic(struct);
 			self.tail.encode(struct,self.tag_objs);
 			self.remark.encode(struct);
 			for obj in self.tag_objs:
