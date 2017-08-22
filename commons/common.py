@@ -5,23 +5,10 @@ from collections import OrderedDict
 from myexception import MyException
 from logger import *
 
-from database import Connect
-
 #global params
 PASS = 1;
 ENABLE = 8;
-debug = False;
-SQLOBJ = None;
-
-def get_sql_conn():
-
-	global SQLOBJ;
-	if SQLOBJ is None:
-		print('creat sql obj to connet......');
-		SQLOBJ = Connect();
-		SQLOBJ.connect('root','root','192.168.102.82','ChinaNet');
-	return SQLOBJ
-
+debug = True;
 
 def read_json(dfile):
 	fid = open(dfile,'r');

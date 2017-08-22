@@ -5,19 +5,6 @@ from myexception import MyException
 
 from database import Connect
 
-SQLOBJ = None;
-
-def get_sql_conn(){
-
-	global SQLOBJ;
-	if SQLOBJ is None:
-		print('creat sql obj to connet......');
-		SQLOBJ = Connect();
-		conn.connect('root','root','192.168.102.82','ChinaNet');
-	}
-	return SQLOBJ
-}
-
 def _merge_some_words(struct,words,sid,flg = False):
 	pid = struct['text'][sid:].find(words) + sid;
 	if pid == -1: return -1;

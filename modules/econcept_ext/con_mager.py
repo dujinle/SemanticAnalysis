@@ -5,44 +5,42 @@ import common,config
 from myexception import MyException
 from net_data import NetData
 from mark_objs import MarkObjs
-from mark_nunit import MarkNunit
+from combine_objs import CombineObjs
 from remark_words import RemarkWords
 from con_tail import ConTail
+from database import Connect
 
 import struct_utils as Sutil
 
 class ConMager():
 	def __init__(self):
 		self.tag_objs = list();
-		self.net_data = NetData();
-
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeNouns'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeVerbs'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomePois'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeProns'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeMoods'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeTenses'));
-		self.tag_objs.append(MarkNunit(self.net_data,'SomeNunit'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeLogics'));
-		self.tag_objs.append(MarkObjs(self.net_data,'SomeAuxs'));
+		self.conn = Connect();
+		self.mark_objs = MarkObjs(self.conn);
+		self.combine_objs = CombineObjs();
 		self.tail = ConTail();
 		self.remark = RemarkWords();
 
 	def init(self,dtype):
 		try:
-			self.net_data.load_data();
+			self.conn.connect('root','root','192.168.102.82','ChinaNet');
+			for table in self.conn.get_tables():
+				self.tag_objs.append(table);
 		except Exception as e:
 			raise e;
 
 	def encode(self,struct):
 		try:
 			for obj in self.tag_objs:
-				obj.encode(struct);
-			self.tail.encode(struct);
+				self.mark_objs.encode(struct,obj,'inlist');
+			self.combine_objs.encode(struct);
+			common.print_dic(struct);
+			self.tail.encode(struct,self.tag_objs);
 			self.remark.encode(struct);
 			for obj in self.tag_objs:
-				obj.encode(struct,'stseg');
-			self.tail.encode(struct);
+				self.mark_objs.encode(struct,obj,'stseg');
+			self.combine_objs.encode(struct);
+			self.tail.encode(struct,self.tag_objs);
 
 		except Exception as e:
 			raise MyException(sys.exc_info());

@@ -2,27 +2,23 @@
 #-*- coding:utf-8 -*-
 import os,sys
 import common,config
-from net_data import NetData
 from myexception import MyException
 
 class ConTail():
-	def __init__(self):
-		self.net_data = NetData();
 
 	def init(self,dtype): pass;
 
-	def encode(self,struct):
+	def encode(self,struct,tables):
 		try:
-			ndata = self.net_data.data;
 			if not struct.has_key('stc'): struct['stc'] = dict();
 
-			for key in ndata.keys():
+			for key in tables:
 				if not struct.has_key(key): continue;
 				self.fetch_cept(struct['stc'],struct[key]);
 				del struct[key];
 			self._fetch_ckey(struct,'time_stc','TIME');
 			self._fetch_ckey(struct,'SomeNums',None);
-			self._fetch_ckey(struct,'SomeUnits',None);
+			self._fetch_ckey(struct,'SomeNuit',None);
 
 		except Exception as e:
 			raise MyException(sys.exc_info());
