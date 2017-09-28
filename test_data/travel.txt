@@ -1,0 +1,18 @@
+北京到上海的高铁还有吗？	Travel
+好的， 定3点的那个吧。	Travel
+下午去北京的高铁有哪些？	Travel
+D333的火车票还有吗？	Travel
+赶快帮我预订	Travel
+T444次列车几点发车	Travel
+帮我取消下午3点的火车票	Travel
+帮我取消D333次列车	Travel
+我要退火车票	Travel
+是的	Travel
+下午去北京的飞机有哪些？	Travel
+算了，太晚了，明天的呢？	Travel
+好，那就订这一班吧。	Travel
+嗯。	Travel
+DH3333航班几点起飞？	Travel
+DH3333航班会不会晚点？	Travel
+帮我取消今天的航班	Travel
+取消DH3333这个航班	Travel

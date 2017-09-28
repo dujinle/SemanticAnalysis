@@ -3,7 +3,6 @@
 import os,sys
 import common,config
 from myexception import MyException
-from net_data import NetData
 from mark_objs import MarkObjs
 from combine_objs import CombineObjs
 from remark_words import RemarkWords

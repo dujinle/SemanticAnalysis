@@ -12,6 +12,7 @@ class CombineObjs():
 	def encode(self,struct):
 		try:
 			self._fetch_num(struct);
+			self._fetch_eng(struct);
 			self._fetch_num_unit(struct);
 		except Exception:
 			raise MyException(sys.exc_info());
@@ -28,6 +29,19 @@ class CombineObjs():
 			tdic['stype'] = match;
 			tdic['str'] = match;
 			struct['SomeNums'].append(tdic);
+
+	def _fetch_eng(self,struct):
+		if not struct.has_key('SomeEngs'): struct['SomeEngs'] = list();
+		words = struct['text'];
+		comp = re.compile('[a-zA-Z]+');
+		matchs = comp.findall(words);
+		if matchs is None: return False;
+		for match in matchs:
+			tdic = dict();
+			tdic['type'] = 'ENG';
+			tdic['stype'] = match;
+			tdic['str'] = match;
+			struct['SomeEngs'].append(tdic);
 
 	def _fetch_num_unit(self,struct):
 		if not struct.has_key('SomeNums'): return -1;

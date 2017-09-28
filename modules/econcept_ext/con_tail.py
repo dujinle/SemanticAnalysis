@@ -18,6 +18,7 @@ class ConTail():
 				del struct[key];
 			self._fetch_ckey(struct,'time_stc','TIME');
 			self._fetch_ckey(struct,'SomeNums',None);
+			self._fetch_ckey(struct,'SomeEngs',None);
 			self._fetch_ckey(struct,'SomeNuit',None);
 
 		except Exception as e:
