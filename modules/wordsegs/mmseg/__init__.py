@@ -6,6 +6,7 @@ class Dictionary(_Dictionary):
 	dictionaries = (
 		('chars', os.path.join(os.path.dirname(__file__), 'data', 't_chars.dic')),
 		('words', os.path.join(os.path.dirname(__file__), 'data', 't_words.dic')),
+		('words', os.path.join(os.path.dirname(__file__), 'data', 'people_name.dic')),
 	)
 
 	@staticmethod
