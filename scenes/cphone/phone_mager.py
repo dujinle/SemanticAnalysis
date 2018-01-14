@@ -12,19 +12,16 @@ from common import logging
 from phone_data import PhoneData
 from myexception import MyException
 from phone_analy import PhoneAnaly
-from phone_mkobj import PhoneMkobj
 from scene_mager import SceneMager
 
 class PhoneMager(SceneMager):
 	def __init__(self):
 		self.dfiles = [
-			os.path.join(base_path,'tdata','phone_users.txt'),
 			os.path.join(base_path,'tdata','under_phone.txt'),
 			os.path.join(base_path,'tdata','phone_data.txt')
 		];
 		self.tag_objs = list();
 		self.pdata = PhoneData();
-		self.tag_objs.append(PhoneMkobj())
 		self.tag_objs.append(PhoneAnaly());
 		self.tag_objs.append(self.pdata);
 

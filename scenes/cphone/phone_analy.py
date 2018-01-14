@@ -38,15 +38,17 @@ class PhoneAnaly(SceneBase):
 				if item.has_key('type') and item['type'] == 'NB':
 					owner = item;
 					break;
+				if item.has_key('type') and item['type'] == 'RN':
+					owner = item;
+					break;
 		if owner is None:
 			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
 		else:
-			phone = super_b.get_phone_by_name(owner['str']);
-			if phone is None:
-				ComFuncs._set_msg(struct,self.data['msg']['unknow']);
-				return None;
-			struct['result']['phone'] = phone;
-			ComFuncs._set_msg(struct,self.data['msg']['call_succ']);
+			struct['result']['phone'] = owner;
+			if owner["type"] == 'NB':
+				ComFuncs._set_msg(struct,self.data['msg']['call_nb_succ']);
+			else:
+				ComFuncs._set_msg(struct,self.data['msg']['call_rn_succ'],owner["str"]);
 
 	def _wired_yuyin(self,struct,super_b):
 		way = user = None;

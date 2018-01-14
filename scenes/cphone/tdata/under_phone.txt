@@ -5,7 +5,8 @@
 		"unknow":["没有找到相关的信息"],
 		"unk_user":["还没有指定联系人哦"],
 		"unk_info":["还没有设置短信内容哦"],
-		"call_succ":["最重要的人，暖暖的"],
+		"call_nb_succ":["最重要的人，暖暖的"],
+		"call_rn_succ":["已经帮您找到%s的电话"],
 		"send_message":["已记录，用微信还是短信息发出"],
 		"read_message":["内容是:%s。老板需要回复吗？"],
 		"wired_unanswer":["已连线成功，但对方无应答。"],
@@ -14,7 +15,8 @@
 	"models":[
 		{
 			"reg":"(GIVE.*IPHONE)
-				|(HIT.*PHONE)",
+				|(CONNECT.*IPHONE)
+				|(HIT.*IPHONE)",
 			"func":"call"
 		},
 		{
