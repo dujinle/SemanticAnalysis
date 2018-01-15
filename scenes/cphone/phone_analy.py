@@ -23,7 +23,8 @@ class PhoneAnaly(SceneBase):
 				self._open_call_info(struct,super_b);
 			elif struct['step'] == 'ifcall':
 				self._open_call_info(struct,super_b);
-			struct['step'] = 'end';
+			elif struct['step'] == 'setbody':
+				self._set_body(struct,super_b);
 		except Exception as e:
 			raise MyException(sys.exc_info());
 
@@ -40,6 +41,26 @@ class PhoneAnaly(SceneBase):
 				if item.has_key('type') and item['type'] == 'RN':
 					owner = item;
 		if owner is None:
+			ComFuncs._set_msg(struct,self.data['msg']['unk_user']);
+			struct['step'] = 'setbody';
+		else:
+			struct['result']['phone'] = owner;
+			if owner["type"] == 'NB':
+				ComFuncs._set_msg(struct,self.data['msg']['call_nb_succ']);
+			else:
+				ComFuncs._set_msg(struct,self.data['msg']['call_rn_succ'],owner["str"]);
+			struct['step'] = 'end';
+
+	def _set_body(self,struct,super_b):
+		owner = None;
+		for istr in struct['stseg']:
+			if not struct['stc'].has_key(istr): continue;
+			item = struct['stc'][istr];
+			if item.has_key('type') and item['type'] == 'NB':
+				owner = item;
+			if item.has_key('type') and item['type'] == 'RN':
+				owner = item;
+		if owner is None:
 			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
 		else:
 			struct['result']['phone'] = owner;
@@ -47,6 +68,7 @@ class PhoneAnaly(SceneBase):
 				ComFuncs._set_msg(struct,self.data['msg']['call_nb_succ']);
 			else:
 				ComFuncs._set_msg(struct,self.data['msg']['call_rn_succ'],owner["str"]);
+		struct['step'] = 'end';
 
 	def _wired_yuyin(self,struct,super_b):
 		way = user = None;
@@ -74,6 +96,7 @@ class PhoneAnaly(SceneBase):
 			struct['result']['user'] = user;
 			struct['result']['way'] = way;
 			ComFuncs._set_msg(struct,self.data['msg']['wired_unanswer']);
+		struct['step'] = 'end';
 
 	def _open_call_info(self,struct,super_b):
 		call = None
@@ -94,3 +117,4 @@ class PhoneAnaly(SceneBase):
 			if handfree == 3:
 				struct['result']['handfree'] = 'open';
 			ComFuncs._set_msg(struct,self.data['msg']['call_sure_succ']);
+			struct['step'] = 'end';
