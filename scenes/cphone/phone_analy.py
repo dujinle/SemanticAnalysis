@@ -32,19 +32,13 @@ class PhoneAnaly(SceneBase):
 		if not super_b.user is None:
 			owner = super_b.user;
 		else:
-			flag = False;
 			for istr in struct['stseg']:
 				if not struct['stc'].has_key(istr): continue;
 				item = struct['stc'][istr];
-				if item.has_key('stype') and item['stype'] == 'GIVE':
-					flag = True;
-					continue;
-				if item.has_key('type') and item['type'] == 'NB' and flag  == True:
+				if item.has_key('type') and item['type'] == 'NB':
 					owner = item;
-					break;
-				if item.has_key('type') and item['type'] == 'RN' and flag == True:
+				if item.has_key('type') and item['type'] == 'RN' and:
 					owner = item;
-					break;
 		if owner is None:
 			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
 		else:
