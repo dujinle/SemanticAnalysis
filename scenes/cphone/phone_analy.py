@@ -37,7 +37,7 @@ class PhoneAnaly(SceneBase):
 				item = struct['stc'][istr];
 				if item.has_key('type') and item['type'] == 'NB':
 					owner = item;
-				if item.has_key('type') and item['type'] == 'RN' and:
+				if item.has_key('type') and item['type'] == 'RN':
 					owner = item;
 		if owner is None:
 			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
