@@ -8,7 +8,7 @@ function start(){
 		pid=`ps -ef | grep $pid | grep web`;
 	fi
 	if [[ "${pid}x" == "x" ]];then
-		./fwebstr/web.py ${port} &
+		./fwebstr/web.py ${port} > /dev/null &
 		echo $! > .pidfile \
 		&& echo "server start ......" \
 		&& echo "start server,listening port ${port}"
