@@ -16,6 +16,7 @@
 		{
 			"reg":"(GIVE.*IPHONE)
 				|(CONNECT.*IPHONE)
+				|(CALLOUT)
 				|(HIT.*IPHONE)",
 			"func":"call"
 		},

@@ -29,7 +29,7 @@ class PhoneAnaly(SceneBase):
 			raise MyException(sys.exc_info());
 
 	def _get_call_info(self,struct,super_b):
-		owner = None;
+		owner = addr = ptype = None;
 		if not super_b.user is None:
 			owner = super_b.user;
 		else:
@@ -40,11 +40,19 @@ class PhoneAnaly(SceneBase):
 					owner = item;
 				if item.has_key('type') and item['type'] == 'RN':
 					owner = item;
+				if item.has_key('type') and item['type'] == 'NP':
+					addr = item;
+				if item.has_key('type') and item['stype'] == 'COMPANY':
+					ptype = item;
 		if owner is None:
 			ComFuncs._set_msg(struct,self.data['msg']['unk_user']);
 			struct['step'] = 'setbody';
 		else:
-			struct['result']['phone'] = owner;
+			struct['result']['name'] = owner;
+			if not addr is None:
+				struct['result']['addr'] = addr;
+			if not ptype is None:
+				struct['result']['ptype'] = ptype;
 			if owner["type"] == 'NB':
 				ComFuncs._set_msg(struct,self.data['msg']['call_nb_succ']);
 			else:

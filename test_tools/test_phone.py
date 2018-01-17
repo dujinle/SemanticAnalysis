@@ -28,7 +28,7 @@ if __name__ == '__main__':
 			if len(line) == 0 or line[0] == '#':
 				continue;
 			lline = line.split('\t');
-			struct = mg.encode(lline[0]);
+			struct = mg.encode(lline[0],lline[1]);
 			common.print_dic(struct);
 	except Exception as e:
 		raise MyException(sys.exc_info());
