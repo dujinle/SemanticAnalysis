@@ -19,6 +19,8 @@ class PhoneAnaly(SceneBase):
 					self._get_call_info(struct,super_b);
 				elif func == 'yuyin':
 					self._wired_yuyin(struct,super_b);
+				elif func == 'message':
+					self._send_message(struct,super_b);
 			elif struct['step'] == 'recall':
 				self._open_call_info(struct,super_b);
 			elif struct['step'] == 'ifcall':
@@ -126,3 +128,34 @@ class PhoneAnaly(SceneBase):
 				struct['result']['handfree'] = 'open';
 			ComFuncs._set_msg(struct,self.data['msg']['call_sure_succ']);
 			struct['step'] = 'end';
+
+	def _send_message(self,struct,super_b):
+		owner = None;
+		for istr in struct['stseg']:
+			if not struct['stc'].has_key(istr): continue;
+			item = struct['stc'][istr];
+			if item.has_key('type') and item['type'] == 'NB':
+				owner = item;
+				break;
+			if item.has_key('type') and item['type'] == 'RN':
+				owner = item;
+				break;
+		if owner is None:
+			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
+			struct['step'] = 'end';
+			return None;
+		idx = struct['text'].find(self.data['info']);
+		if idx == -1:
+			idx = struct['text'].find(self.data['message']);
+			if idx <> -1:
+				idx = idx + len(self.data['message']);
+		else:
+			idx = idx + len(self.data['info']);
+		if idx == -1:
+			ComFuncs._set_msg(struct,self.data['msg']['unknow']);
+			struct['step'] = 'end';
+			return None;
+		struct['result']['name'] = owner;
+		struct['result']['message'] = struct['text'][idx:];
+		ComFuncs._set_msg(struct,self.data['msg']['send_message']);
+		struct['step'] = 'end';
