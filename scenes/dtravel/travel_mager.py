@@ -12,15 +12,18 @@ from travel_data import TravelData
 from myexception import MyException
 from scene_mager import SceneMager
 from travel_analy import TravelAnaly
+from travel_fetch import TravelFetch
 
 class TravelMager(SceneMager):
 	def __init__(self):
 		self.tag_objs = list();
 		self.dfiles = [
+			None,
 			os.path.join(base_path,'tdata','under_travel.txt'),
 			os.path.join(base_path,'tdata','travel_data.txt')
 		]
 		self.fdata = TravelData();
+		self.tag_objs.append(TravelFetch());
 		self.tag_objs.append(TravelAnaly());
 		self.tag_objs.append(self.fdata);
 

@@ -95,7 +95,7 @@ class Mager:
 			del self.struct['step'];
 #		'''
 		return self.struct;
-
+#common.debug = True
 if common.debug == True:
 	try:
 		mg = Mager();

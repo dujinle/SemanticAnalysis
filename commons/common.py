@@ -8,7 +8,7 @@ from logger import *
 #global params
 PASS = 1;
 ENABLE = 8;
-debug = True;
+debug = False;
 
 def read_json(dfile):
 	fid = open(dfile,'r');
