@@ -39,6 +39,7 @@ class Mager:
 		self.modules['Naviga'] = NavMager();
 		self.modules['Shop'] = ShopMager();
 		self.modules['Alarm'] = SmartckMager();
+		self.modules['LJFL'] = LJFLMager();
 
 
 	def set_step(self,step): self.struct['step'] = step;
@@ -95,6 +96,7 @@ class Mager:
 			del self.struct['step'];
 #		'''
 		return self.struct;
+common.debug == True;
 
 if common.debug == True:
 	try:

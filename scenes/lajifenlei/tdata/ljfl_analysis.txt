@@ -1,0 +1,32 @@
+{
+	"msg":{
+		"unknow":["对不起，小秘才疏学浅，无法帮助您！"],
+		"throw":["%s马上为您处理掉"],
+		"nothrow":["好的!%s为您保留"]
+	},
+	"obj":[
+		[{"stype":"FEI"},{"type":"N"}],
+		[{"stype":"SHENG"},{"type":"N"}],
+		[{"type":"N"},{"type":"N"}],
+		[{"type":"N"}]
+	],
+	"fenlei":{
+		"kehuishou":{
+			"type":"N",
+			"match":{
+				"track":["纸"],
+				"stype":["ZHI"]
+			}
+		}
+	},
+	"models":[
+		{
+			"reg":"NO.*RENG",
+			"func":"nothrow"
+		},
+		{
+			"reg":"RENG",
+			"func":"throw"
+		}
+	]
+}
