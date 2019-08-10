@@ -11,6 +11,7 @@ from dtravel.travel_mager import TravelMager
 from cnavigate.nav_mager import NavMager
 from cshop.shop_mager import ShopMager
 from smartck.smartck_mager import SmartckMager
+from lajifenlei.ljfl_mager import LJFLMager
 
 __ALL__ = [
 	NewsMager,
@@ -24,5 +25,6 @@ __ALL__ = [
 	TravelMager,
 	NavMager,
 	ShopMager,
+	LJFLMager,
 	SmartckMager
 ];

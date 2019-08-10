@@ -21,7 +21,8 @@
 			"func":"call"
 		},
 		{
-			"reg":"SENDMESSAGE",
+			"reg":"(SEND.*MESSAGE)
+				|(SEND.*NOTE)",
 			"func":"message"
 		},
 		{

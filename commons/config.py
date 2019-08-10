@@ -10,12 +10,11 @@ tm_day = 2;
 tm_hour = 3;
 tm_min = 4;
 tm_sec = 5;
-mongodb = {
-	'ip':'172.17.0.5',
-	'user':'root',
-	'pwd':'root',
-	'database':'ChinaNet'
-};
+
+db_ip = '172.17.0.5';
+db_user = 'root';
+db_pwd = 'root';
+db_name = 'ChinaNet';
 dfiles = {
 	'Voice':{
 		"1":os.path.join(abspath,'data','voice','M.txt'),

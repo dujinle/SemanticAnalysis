@@ -22,7 +22,7 @@ class ConMager():
 
 	def init(self,dtype):
 		try:
-			self.conn.connect(config.mongodb['user'],config.mongodb['pwd'],config.mongodb['ip'],config.mongodb['database']);
+			self.conn.connect(config.db_user,config.db_pwd,config.db_ip,config.db_name);
 			for table in self.conn.get_tables():
 				self.tag_objs.append(table);
 		except Exception as e:
