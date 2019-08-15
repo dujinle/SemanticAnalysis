@@ -9,24 +9,5 @@
 		[{"stype":"SHENG"},{"type":"N"}],
 		[{"type":"N"},{"type":"N"}],
 		[{"type":"N"}]
-	],
-	"fenlei":{
-		"kehuishou":{
-			"type":"N",
-			"match":{
-				"track":["纸"],
-				"stype":["纸"]
-			}
-		}
-	},
-	"action":[
-		{
-			"stype":"NO.*RENG",
-			"func":"nothrow"
-		},
-		{
-			"stype":"RENG",
-			"func":"throw"
-		}
 	]
 }

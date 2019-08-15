@@ -40,7 +40,8 @@ class LJFLMkobj(LJFLBase):
 			it = None;
 			if idx < len(struct['stseg']):
 				mstr = struct['stseg'][idx];
-				mstr_obj = struct['stc'][mstr];
+				if struct['stc'].has_key(mstr):
+					mstr_obj = struct['stc'][mstr];
 			if itm_idx < len(item):
 				it = item[itm_idx];
 			ret = self._deep_match(mstr_obj,it,mkobj);

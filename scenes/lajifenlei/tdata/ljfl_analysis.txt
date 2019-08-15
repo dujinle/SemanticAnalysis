@@ -14,7 +14,7 @@
 		"kehuishou":{
 			"type":"N",
 			"match":{
-				"track":["纸"],
+				"track":["纸","金属","塑料","布料","玻璃"],
 				"stype":["ZHI"]
 			}
 		}
